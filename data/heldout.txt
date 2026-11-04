@@ -1,0 +1,9 @@
+# Held-out documents: excluded at ingest by every corpus builder.
+# One document ID per line, exactly as it appears in each source.
+# Removing a line requires a PR that cites the frozen-prediction tag.
+# Policy: CLAUDE.md, plan §0.4. Reason for the lineara.xyz entries: research-notes 2026-11-04.
+
+# Knossos ivory sceptre (Anetaki plot); Kanta et al. 2025
+lineara.xyz:KNZg57a
+lineara.xyz:KNZg57b
+lineara.xyz:KNZg58

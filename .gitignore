@@ -1,0 +1,12 @@
+# Fetched third-party data (see DATA_SOURCES.md); only fetch scripts and manifests are committed
+data/raw/**
+!data/raw/**/
+!data/raw/**/fetch.py
+!data/raw/**/README.md
+!data/raw/**/SHA256SUMS
+*.part
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.ipynb_checkpoints/
+.venv/
