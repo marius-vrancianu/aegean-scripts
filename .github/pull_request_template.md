@@ -1,3 +1,5 @@
+**Merge:** auto-merge / **Needs Marius's merge** (touches `hypotheses/`, `findings/`, or the rules; see CLAUDE.md → Merging)
+
 **Task ID:** A?.? — (title)
 
 **What this does:**

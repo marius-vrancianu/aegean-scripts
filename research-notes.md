@@ -69,3 +69,16 @@ Confidence that the summary above matches the article: high (read directly, pp. 
   - the unreported random-syllable-string null;
   - a lower-case bug that makes `run.py`'s Linear B figure (0.608) the wrong one to cite.
 - openscriptures HebrewLexicon pinned at `21c9add1…` (CC BY 4.0).
+
+---
+
+## 2026-11-04 — Merge policy
+
+Decided with Marius:
+- `main` requires a PR and passing CI. Force-pushes and deletions are blocked. **No required approvals**, because agents open PRs under Marius's account and GitHub does not let an author approve their own PR.
+- Routine PRs may auto-merge on green CI.
+- Marius merges by hand any PR that touches:
+  - `hypotheses/`, where merging is the act of pre-registration;
+  - `findings/`, which are claims;
+  - the rules: `CLAUDE.md`, the guardrails script, `.github/`, `data/heldout.txt`.
+- The rule is written in `CLAUDE.md` → Workflow → Merging. GitHub cannot enforce it for a single account, so it relies on agents following it.
