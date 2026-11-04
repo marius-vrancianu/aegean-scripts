@@ -10,3 +10,6 @@ __pycache__/
 .pytest_cache/
 .ipynb_checkpoints/
 .venv/
+
+# Generated corpus files are rebuilt from pinned inputs; only manifests are committed
+data/processed/**/*.jsonl

@@ -6,9 +6,13 @@ Every dataset used anywhere in this repo is listed here before it is used. Field
 - **What:** `LinearAInscriptions.js`, a JavaScript data file with one record per inscription: `parsedInscription` (Unicode Linear A / Aegean numbers), `words`, `transliteratedWords`, `translatedWords`, `site`, `support`, `scribe`, `context` (period), `findspot`, image links.
 - **Source:** https://github.com/mwenge/lineara.xyz (data pipeline in https://github.com/mwenge/LinearA). Built from the GORILA scans (École française d'Athènes) and John Younger's transliterations and commentary.
 - **Pinned version:** commit `9c81beba669a4ffec3f5b29d4e7748d02c060eff`; file SHA-256 `9a14cc300201ac8ed07563c09b92142ab59de91a74e646b2e743ca6aeb695f5e` (1,609,512 bytes). Fetched 2026-11-02.
-- **Licence:** **none found.** The repo has no LICENSE file (checked 2026-11-04), which by default means all rights reserved. **Do not commit the file.** Use `data/raw/lineara.xyz/fetch.py`. Open item V2 / A1.3: ask the maintainer.
+- **Licence:** the repo has no LICENSE file, but the data file itself opens with a **public-domain dedication** ("The author disclaims copyright to this source code. In place of a legal notice, here is a blessing…", the SQLite blessing; seen 2026-11-04). That covers the maintainer's own work. It cannot cover the underlying GORILA transcriptions and images (École française d'Athènes). We still fetch rather than commit the file. Derived L0 corpus files are also regenerated, not committed, until A1.12 settles this. Open item V2 / A1.3.
 - **Conventions:** GORILA sigla as document names (e.g. `HT104`, sides as `HT122a`). `transliteratedWords` uses Linear B homomorph values (L1). `translatedWords` contains interpretive glosses and converts fractions to numbers. **Neither may be used as L0 input.**
-- **Known issues:** derived source; readings must be checked against GORILA / SigLA (A1.9). Exact-token counts on this snapshot: KU-RO in 34 document sides, KI-RO in 12, PO-TO-KU-RO in 2 (HT 122a/b).
+- **Known issues:** derived source; readings must be checked against GORILA / SigLA (A1.9).
+  - **Damage marking is incomplete.** U+1076B (lacuna) marks some broken edges. Other damage appears only as editorial brackets in `transliteratedWords` (e.g. HT 104 `TE+RO[`), or not at all: HT 104 lines 3–4 lie in a stippled damage band in the GORILA facsimile but carry no flag. corpus-v0.1 records both signals; neither is complete.
+  - The line breaks in `words` follow lineara's entry segmentation, not always the tablet's physical lines.
+  - Two records share the ID `KH101` (one empty). The builder keeps the non-empty one.
+  - The snapshot includes the held-out sceptre records (KNZg57a, KNZg57b, KNZg58), which are excluded by name before parsing. Exact-token counts on this snapshot: KU-RO in 34 document sides, KI-RO in 12, PO-TO-KU-RO in 2 (HT 122a/b).
 
 ## SigLA — The Signs of Linear A
 - **Source:** https://sigla.phis.me (Salgarella & Castellan).

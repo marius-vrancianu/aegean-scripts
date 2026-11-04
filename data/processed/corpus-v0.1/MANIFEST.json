@@ -1,0 +1,32 @@
+{
+  "version": "corpus-v0.1",
+  "description": "Provisional, single-source corpus: lineara.xyz only, L0 only, held-out documents excluded. For A2 work until the reconciled corpus-v1.0 (A1.6-A1.12).",
+  "layer": "L0",
+  "inputs": {
+    "lineara.xyz": {
+      "path": "data/raw/lineara.xyz/9c81beba669a/LinearAInscriptions.js",
+      "commit": "9c81beba669a4ffec3f5b29d4e7748d02c060eff",
+      "sha256": "9a14cc300201ac8ed07563c09b92142ab59de91a74e646b2e743ca6aeb695f5e"
+    }
+  },
+  "heldout_excluded": [
+    "KNZg57a",
+    "KNZg57b",
+    "KNZg58"
+  ],
+  "duplicate_ids_resolved": {
+    "KH101": "2 records; kept the only non-empty one"
+  },
+  "documents": 1718,
+  "lines": 3883,
+  "token_types": {
+    "fraction": 414,
+    "group": 3594,
+    "lacuna": 542,
+    "mixed": 10,
+    "numeral": 1300,
+    "other": 71,
+    "separator": 468
+  },
+  "documents_jsonl_sha256": "bb14ce5cbf9fda7798a91830685cf14f01e6c36b625ecfb9adfc9c6d00adb791"
+}
