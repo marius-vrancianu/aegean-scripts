@@ -19,10 +19,26 @@ Every dataset used anywhere in this repo is listed here before it is used. Field
 - **Licence:** reported as CC BY-NC-SA 4.0 by third parties; **not yet verified on the site** (V1 / A1.2). Not yet used.
 
 ## DAMOS — Database of Mycenaean at Oslo (Linear B control corpus)
-- **Source:** https://damos.hf.uio.no. Online browse and search; raw-data release was "being developed" per Aurora 2024. **Availability and terms not yet established** (V3 / A1.10). Not yet used.
+- **Source:** https://damos.hf.uio.no
+- **Licence:** content **CC BY-NC-SA 4.0**, software GPL-3.0 (damos.hf.uio.no/about/database, checked 2026-11-04). Anything derived from DAMOS texts must carry NC-SA terms, which constrains the repo's eventual licence choice.
+- **Access:** no bulk download yet. Aurora 2024 (*Ariadne* Suppl. 5, p. 157): "Downloading possibilities are currently limited to downloading word search results", as CSV. A full release (TXT and EpiDoc XML) is stated as "the ultimate goal".
+- **Options for A2.4 / A3 / A4:**
+  - (a) word-search CSV exports (e.g. *to-so*, the Linear B "total" word) plus the online texts of the matching tablets, used within NC-SA terms;
+  - (b) ask the editor (Federico Aurora, UiO) for a data extract.
+
+  Not yet used.
 
 ## NeuroDecipher data (Luo, Cao & Barzilay 2019)
 - **Source:** https://github.com/j-luo93/NeuroDecipher, `data/` (Linear B–Greek cognates, 919 pairs; Ugaritic–Hebrew from Snyder et al. 2010). **Licence not yet checked** (A5.1). Not yet used.
+
+## Corazza, Ferrara, Montecchi, Tamburini & Valério 2021 (fraction values)
+- **What:** "The mathematical values of fraction signs in the Linear A script: A computational, statistical and typological approach", *Journal of Archaeological Science* 125:105214.
+- **Open copy:** https://cris.unibo.it/retrieve/e1dcb336-9b0e-7715-e053-1705fe0a6cc9/Montecchi_JAS_125_2021.pdf, CC BY-NC-ND 4.0. Cite it; do not commit it or derivatives of its text.
+- **Contents relevant to A2.** These were read through a web-fetch summary on 2026-11-04 and **must be verified against the PDF before use**:
+  - Six premises encoded in MiniZinc and solved with Gecode. Simulation 1 gave 2,172,836 solutions; Simulation 2 (without L) gave 3,794,740. The solutions were ranked by frequency-vs-divisibility, ambiguity of combinations, typology, and an optimality score (best 0.67094).
+  - Final values (Table 8): J 1/2, E 1/4, F 1/8, B 1/5, D 1/6, K 1/10, L2 1/20, L3 1/30, L4 1/40, L6 1/60, H 1/16 (tentative), A 1/24 (tentative). W, X, Y, Ω and L were left unvalued.
+  - **No per-tablet list of totals used as constraints.** HT 104 and PE 1 are cited as support for J = 1/2. HT 123b, the MM II Phaistos tablets and several uncertain readings were excluded. No error tolerance is stated.
+  - No supplementary data or code link was found.
 
 ## openscriptures HebrewLexicon (used in Finding 001)
 - **Source:** https://github.com/openscriptures/HebrewLexicon, `HebrewStrong.xml`. CC BY 4.0. Pinned at commit `21c9add13bc727d3a951361778e97e3ff7afd1ce`, sha256 `a628f4f89f8bdaf2483fd3faf1abc8653cc6717758dfc9f24beb7571d9bdd0c4`. The 2026-10-28 fetch used `master` without recording a commit; reproducing Finding 001 exactly on this pin confirms the same content. Fetched by `experiments/finding-001/reproduce.py`.
