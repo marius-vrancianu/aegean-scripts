@@ -107,7 +107,7 @@ To-do:
 - H-A2-06 and H-A2-07: sceptre fraction-order test, see A2.9.
 
 To-do:
-- [ ] A2.1 Write the parser for numerals and fraction sequences; unit-test it on hand-checked tablets (e.g. HT 104: 45 + J + 20 J + 29 = 95 per Corazza et al.).
+- [x] A2.1 Write the parser for numerals and fraction sequences; unit-test it on hand-checked tablets (e.g. HT 104: 45 + J + 20 J + 29 = 95 per Corazza et al.). Done 2026-11-04: `aegean.arithmetic.parse`; fractions kept symbolic; fixtures HT 104, HT 13, HT 122a checked against GORILA facsimiles (`tests/test_arithmetic_parse.py`). On corpus-v0.1: 1,566 entries, 434 flagged damaged, 202 with no label on their line.
 - [ ] A2.2 List every document with KU-RO, KI-RO or PO-TO-KU-RO; classify each as complete / damaged / indeterminate.
 - [ ] A2.3 Reproduce Corazza et al. 2021 (get the repository PDF and any supplementary data).
 - [ ] A2.4 Build the Linear B *to-so* validation set and run the checker.
