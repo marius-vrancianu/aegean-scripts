@@ -1,0 +1,56 @@
+doc,site,support,scribe,period,marker,marker_line,n_markers_in_doc,total_integer,total_fractions,total_damaged,scope_entries,scope_damaged,scope_unlabelled,scope_fraction_signs,doc_lacunae,doc_warnings,class,reason
+HT1,Haghia Triada,Tablet,HT Scribe 21,LMIB,KI-RO,1,1,197,,False,0,0,0,,0,0,indeterminate,R2: no entries before the marker
+HT100,Haghia Triada,Tablet,,LMIB,KU-RO,6,1,97,,False,5,0,0,,3,0,complete,R6: total and every entry in scope intact
+HT102,Haghia Triada,Tablet,HT Scribe 5,LMIB,KU-RO,8,1,1060,,False,7,1,0,,2,0,damaged,R4: damaged entry or unparsed token in scope
+HT104,Haghia Triada,Tablet,HT Scribe 5,LMIB,KU-RO,4,1,95,,False,3,0,0,J,0,0,complete,R6: total and every entry in scope intact
+HT109,Haghia Triada,Tablet,HT Scribe 7,LMIB,KU-RO,4,1,129,,False,2,1,0,,5,0,damaged,R4: damaged entry or unparsed token in scope
+HT110a,Haghia Triada,Tablet,,LMIB,KU-RO,2,1,100,,True,2,0,0,,4,0,damaged,R3: the total itself is damaged
+HT116b,Haghia Triada,Tablet,,LMIB,KU-RO,0,1,100,,True,0,0,0,,1,0,indeterminate,R2: no entries before the marker
+HT117a,Haghia Triada,Tablet,HT Scribe 9,LMIB,KI-RO,0,2,,,False,0,0,0,,0,1,indeterminate,R1: marker has no quantity on its line
+HT117a,Haghia Triada,Tablet,HT Scribe 9,LMIB,KU-RO,11,2,10,,False,10,0,0,,0,1,damaged,R4: damaged entry or unparsed token in scope
+HT118,Haghia Triada,Tablet,HT Scribe 3,LMIB,KU-RO,8,1,30,,False,7,0,0,,1,0,complete,R6: total and every entry in scope intact
+HT119,Haghia Triada,Tablet,HT Scribe 9,LMIB,KU-RO,9,1,160,,False,9,0,0,,0,0,complete,R6: total and every entry in scope intact
+HT11a,Haghia Triada,Tablet,HT Scribe 24,LMIB,KU-RO,3,1,10,,False,3,1,0,,2,0,damaged,R4: damaged entry or unparsed token in scope
+HT11b,Haghia Triada,Tablet,HT Scribe 24,LMIB,KU-RO,7,1,180,,False,5,0,0,,1,0,complete,R6: total and every entry in scope intact
+HT122a,Haghia Triada,Tablet,HT Scribe 9,LMIB,KU-RO,17,1,31,,False,16,2,1,,6,0,damaged,R4: damaged entry or unparsed token in scope
+HT122b,Haghia Triada,Tablet,HT Scribe 9,LMIB,KU-RO,6,2,65,,False,5,1,0,,4,0,damaged,R4: damaged entry or unparsed token in scope
+HT122b,Haghia Triada,Tablet,HT Scribe 9,LMIB,PO-TO-KU-RO,7,2,97,,False,0,0,0,,4,0,indeterminate,R2: no entries before the marker
+HT123+124a,Haghia Triada,Tablet,HT Scribe 6,LMIB,KI-RO,2,7,1,X,False,2,0,0,E,4,0,complete-scope-unclear,R5: several markers or unlabelled quantities; scope rule needed
+HT123+124a,Haghia Triada,Tablet,HT Scribe 6,LMIB,KI-RO,5,7,,X,False,2,0,0,J JE,4,0,complete-scope-unclear,R5: several markers or unlabelled quantities; scope rule needed
+HT123+124a,Haghia Triada,Tablet,HT Scribe 6,LMIB,KI-RO,8,7,,JE,False,2,1,0,A,4,0,damaged,R4: damaged entry or unparsed token in scope
+HT123+124a,Haghia Triada,Tablet,HT Scribe 6,LMIB,KI-RO,11,7,,JE,False,2,0,0,E,4,0,complete-scope-unclear,R5: several markers or unlabelled quantities; scope rule needed
+HT123+124a,Haghia Triada,Tablet,HT Scribe 6,LMIB,KU-RO,12,7,93,J,False,0,0,0,,4,0,indeterminate,R2: no entries before the marker
+HT123+124a,Haghia Triada,Tablet,HT Scribe 6,LMIB,KU-RO,14,7,25,H,True,0,0,0,,4,0,indeterminate,R2: no entries before the marker
+HT123+124a,Haghia Triada,Tablet,HT Scribe 6,LMIB,KI-RO,15,7,6,,True,0,0,0,,4,0,indeterminate,R2: no entries before the marker
+HT123+124b,Haghia Triada,Tablet,HT Scribe 6,LMIB,KU-RO,10,2,20,,False,8,0,0,A E F J JE L2,3,0,complete-scope-unclear,R5: several markers or unlabelled quantities; scope rule needed
+HT123+124b,Haghia Triada,Tablet,HT Scribe 6,LMIB,KI-RO,11,2,5,,True,0,0,0,,3,0,indeterminate,R2: no entries before the marker
+HT127b,Haghia Triada,Tablet,,LMIB,KU-RO,3,2,156,,False,1,1,0,,4,0,damaged,R4: damaged entry or unparsed token in scope
+HT127b,Haghia Triada,Tablet,,LMIB,KU-RO,9,2,292,,False,5,1,0,,4,0,damaged,R4: damaged entry or unparsed token in scope
+HT13,Haghia Triada,Tablet,HT Scribe 8,LMIB,KU-RO,7,1,130,J,False,6,1,0,J,2,0,damaged,R4: damaged entry or unparsed token in scope
+HT130,Haghia Triada,Tablet,HT Scribe 19,LMIB,KU-RO,5,1,,,False,1,0,0,,6,1,indeterminate,R1: marker has no quantity on its line
+HT131b,Haghia Triada,Tablet,,LMIB,PO-TO-KU-RO,5,1,452,J,True,2,1,0,,7,1,damaged,R3: the total itself is damaged
+HT15,Haghia Triada,Tablet,,LMIB,KI-RO,3,1,400,,False,2,0,0,,1,0,complete,R6: total and every entry in scope intact
+HT25b,Haghia Triada,Tablet,,LMIB,KU-RO,2,2,16,,False,0,0,0,,2,0,indeterminate,R2: no entries before the marker
+HT25b,Haghia Triada,Tablet,,LMIB,KU-RO,5,2,52,,False,2,0,0,,2,0,complete-scope-unclear,R5: several markers or unlabelled quantities; scope rule needed
+HT27a,Haghia Triada,Tablet,HT Scribe 11,LMIB,KU-RO,11,1,335,,False,8,1,1,,7,0,damaged,R4: damaged entry or unparsed token in scope
+HT30,Haghia Triada,Tablet,HT Scribe 1,LMIB,KI-RO,9,1,8,,False,8,1,1,D DD J,5,0,damaged,R4: damaged entry or unparsed token in scope
+HT34,Haghia Triada,Tablet,,LMIB,KI-RO,11,1,30,,False,8,2,1,A B E H K,5,1,damaged,R4: damaged entry or unparsed token in scope
+HT37,Haghia Triada,Tablet,,LMIB,KI-RO,7,1,,,False,2,1,1,,6,0,indeterminate,R1: marker has no quantity on its line
+HT39,Haghia Triada,Tablet,HT Scribe 12,LMIB,KU-RO,5,1,100,,False,3,1,0,,10,0,damaged,R4: damaged entry or unparsed token in scope
+HT40,Haghia Triada,Tablet,HT Scribe 2,LMIB,KU-RO,2,1,,,False,2,0,0,,4,0,indeterminate,R1: marker has no quantity on its line
+HT46a,Haghia Triada,Tablet,,LMIB,KU-RO,2,1,43,J,False,1,1,0,,4,0,damaged,R4: damaged entry or unparsed token in scope
+HT55a,Haghia Triada,Tablet,,LMIB,KI-RO,0,1,,,False,0,0,0,,8,0,indeterminate,R1: marker has no quantity on its line
+HT67,Haghia Triada,Tablet,HT Scribe 23,LMIB,KU-RO,2,1,420,,True,0,0,0,,6,0,indeterminate,R2: no entries before the marker
+HT74,Haghia Triada,Tablet,HT Scribe 24,LMIB,KU-RO,2,1,20,,True,0,0,0,,5,0,indeterminate,R2: no entries before the marker
+HT85a,Haghia Triada,Tablet,HT Scribe 9,LMIB,KU-RO,8,1,66,,True,7,0,0,,2,0,damaged,R3: the total itself is damaged
+HT88,Haghia Triada,Tablet,HT Scribe 7,LMIB,KI-RO,3,2,,,False,3,0,0,,0,0,indeterminate,R1: marker has no quantity on its line
+HT88,Haghia Triada,Tablet,HT Scribe 7,LMIB,KU-RO,10,2,6,,False,6,0,0,,0,0,complete-scope-unclear,R5: several markers or unlabelled quantities; scope rule needed
+HT89,Haghia Triada,Tablet,HT Scribe 2,LMIB,KU-RO,5,1,87,,False,5,0,0,,1,0,complete,R6: total and every entry in scope intact
+HT93b,Haghia Triada,Tablet,HT Scribe 5,LMIB,KI-RO,1,1,,,False,1,1,1,H,2,0,indeterminate,R1: marker has no quantity on its line
+HT94a,Haghia Triada,Tablet,HT Scribe 9,LMIB,KU-RO,5,1,110,,False,5,0,0,,2,0,complete,R6: total and every entry in scope intact
+HT94b,Haghia Triada,Tablet,HT Scribe 9,LMIB,KI-RO,0,2,,,False,0,0,0,,3,0,indeterminate,R1: marker has no quantity on its line
+HT94b,Haghia Triada,Tablet,HT Scribe 9,LMIB,KU-RO,6,2,5,,False,5,0,0,,3,0,complete-scope-unclear,R5: several markers or unlabelled quantities; scope rule needed
+HT9a,Haghia Triada,Tablet,,LMIB,KU-RO,8,1,31,JE,False,7,0,0,E J JE,0,0,complete,R6: total and every entry in scope intact
+HT9b,Haghia Triada,Tablet,,LMIB,KU-RO,11,1,24,,False,7,0,0,,1,1,damaged,R4: damaged entry or unparsed token in scope
+PH(?)31a,Phaistos,Tablet,,,KU-RO,8,1,1,,False,5,1,0,,8,0,damaged,R4: damaged entry or unparsed token in scope
+ZA15b,Zakros,Tablet,ZA Scribe 5,,KU-RO,2,1,78,,False,1,0,0,,0,1,damaged,R4: damaged entry or unparsed token in scope

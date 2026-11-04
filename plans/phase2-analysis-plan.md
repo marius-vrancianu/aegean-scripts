@@ -108,7 +108,7 @@ To-do:
 
 To-do:
 - [x] A2.1 Write the parser for numerals and fraction sequences; unit-test it on hand-checked tablets (e.g. HT 104: 45 + J + 20 J + 29 = 95 per Corazza et al.). Done 2026-11-04: `aegean.arithmetic.parse`; fractions kept symbolic; fixtures HT 104, HT 13, HT 122a checked against GORILA facsimiles (`tests/test_arithmetic_parse.py`). On corpus-v0.1: 1,566 entries, 434 flagged damaged, 202 with no label on their line.
-- [ ] A2.2 List every document with KU-RO, KI-RO or PO-TO-KU-RO; classify each as complete / damaged / indeterminate.
+- [~] A2.2 List every document with KU-RO, KI-RO or PO-TO-KU-RO; classify each as complete / damaged / indeterminate. 2026-11-04: rule-based inventory on corpus-v0.1 (`experiments/A2/inventory-corpus-v0.1.csv`, rules in `inventory-rules.md`): 55 marker occurrences in 42 documents; 9 complete, 7 complete-scope-unclear. **Still to do:** check each candidate row against the GORILA facsimile, because the source's damage flags are incomplete.
 - [ ] A2.3 Reproduce Corazza et al. 2021 (get the repository PDF and any supplementary data).
 - [ ] A2.4 Build the Linear B *to-so* validation set and run the checker.
 - [ ] A2.5 Log H-A2-01…05 with exact test definitions and tolerance rules.
