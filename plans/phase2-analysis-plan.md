@@ -69,7 +69,7 @@ A1 (corpus) ──┬──> A2 (arithmetic)
 **Deliverables.** `data/` with raw snapshots + processed corpus; `docs/schema.md`; `DATA_SOURCES.md` (source, version/date, licence, conventions); tagged release v1.0; baseline statistics report.
 
 To-do:
-- [~] A1.1 Set up the GitHub repo structure (https://github.com/marius-vrancianu/aegean-scripts): `data/raw`, `data/processed`, `src/`, `notebooks/`, `findings/`, `hypotheses/`, `research-notes.md`, `DATA_SOURCES.md`, `CLAUDE.md`, CI guardrails. Done 2026-11-04 except: Finding 001 code (`nulltest.py`, `run.py`, `run2.py`) still to be added; write-up is in.
+- [x] A1.1 Set up the GitHub repo structure (https://github.com/marius-vrancianu/aegean-scripts): `data/raw`, `data/processed`, `src/`, `notebooks/`, `findings/`, `hypotheses/`, `research-notes.md`, `DATA_SOURCES.md`, `CLAUDE.md`, CI guardrails. Done 2026-11-04, including the Finding 001 code (`experiments/finding-001/`, reproduced exactly).
 - [ ] A1.2 Verify the SigLA licence directly on the site (survey reports CC BY-NC-SA 4.0 secondhand). Record exact terms and what redistribution is allowed.
 - [~] A1.3 Establish the lineara.xyz licence. 2026-11-04: the repo has no LICENSE file (all rights reserved by default), so we fetch rather than commit. Still to do: ask the maintainer. Record it for Finding 001's data provenance too.
 - [ ] A1.4 Harvest SigLA: documents, sign tokens, sign roles (syllabogram/logogram/numeral/fraction/ligature), word division, findspot/support metadata. Store a dated raw snapshot with a content hash.

@@ -57,3 +57,15 @@ Confidence that the summary above matches the article: high (read directly, pp. 
 2. The KU-RO / KI-RO / PO-TO-KU-RO counts reported on 2026-11-02 (34 / 12 / 2) were exact-word matches over the whole file. None of the matched sides is a Knossos document, so the sceptre records did not contribute to them.
 3. **Finding 001** (2026-10-28) used the same source and probably included these records' sign-groups among its 696 unique sign-groups. This does not affect Finding 001's conclusion: it is a null test with no predictions about the sceptre, and at most a handful of sign-groups are involved. It should still be checked when the code is moved in, and the finding re-run with the exclusion for the record.
 4. Any future source (SigLA, Younger) must be checked for the sceptre on ingest, and its IDs added to `data/heldout.txt` before anything else is done with it.
+
+---
+
+## 2026-11-04 — Finding 001 code restored and reproduced (A1.1 complete)
+
+- The Finding 001 scripts were recovered verbatim from the 2026-10-28 chat's tool calls and committed under `experiments/finding-001/original/`.
+- Re-running them on pinned inputs reproduces every reported figure exactly.
+- **Correction to the entry above ("Held-out sceptre records…", item 3):** excluding the sceptre records leaves the output byte-identical. They contributed nothing to Finding 001.
+- Two reporting gaps in Finding 001 are now documented in its addendum. Neither changes the conclusion:
+  - the unreported random-syllable-string null;
+  - a lower-case bug that makes `run.py`'s Linear B figure (0.608) the wrong one to cite.
+- openscriptures HebrewLexicon pinned at `21c9add1…` (CC BY 4.0).

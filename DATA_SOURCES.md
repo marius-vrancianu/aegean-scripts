@@ -21,7 +21,7 @@ Every dataset used anywhere in this repo is listed here before it is used. Field
 - **Source:** https://github.com/j-luo93/NeuroDecipher, `data/` (Linear B–Greek cognates, 919 pairs; Ugaritic–Hebrew from Snyder et al. 2010). **Licence not yet checked** (A5.1). Not yet used.
 
 ## openscriptures HebrewLexicon (used in Finding 001)
-- **Source:** https://github.com/openscriptures/HebrewLexicon, `HebrewStrong.xml`. CC BY 4.0. Fetched 2026-10-28; commit not recorded (to be added when Finding 001 code is moved in).
+- **Source:** https://github.com/openscriptures/HebrewLexicon, `HebrewStrong.xml`. CC BY 4.0. Pinned at commit `21c9add13bc727d3a951361778e97e3ff7afd1ce`, sha256 `a628f4f89f8bdaf2483fd3faf1abc8653cc6717758dfc9f24beb7571d9bdd0c4`. The 2026-10-28 fetch used `master` without recording a commit; reproducing Finding 001 exactly on this pin confirms the same content. Fetched by `experiments/finding-001/reproduce.py`.
 
 ## Kanta, Nakassis, Palaima & Perna 2025 (Knossos sceptre overview) — HELD OUT
 - doi:10.26248/ariadne.vi.1841, CC BY-NC-SA 4.0. Descriptive only, no sign-by-sign text. **Held-out material: do not read or ingest** (see `CLAUDE.md`).
