@@ -119,3 +119,25 @@ All are documented in `DATA_SOURCES.md`.
   Consequence: "reproduce Corazza" (A2.3) means reproducing their solution counts and ranking. H-A2-01 (do their values make the tablet totals more consistent than random value sets do?) is a new test. Given the inventory, at most about 12 KU-RO totals are usable, so its power will be low and the pre-registration must say so.
 - **DAMOS:** content CC BY-NC-SA 4.0. Only word-search results can be downloaded, as CSV. A bulk release is planned but not available. The Linear B validation set for A2.4 needs either word-search exports plus the online texts, or a data request to the editor.
 - **Not done:** the `corpus-v0.1` git tag. Creating tags or releases is outside what this session is permitted to do. Marius to create it on commit `fc87559`. Results cite `corpus-v0.1 @ fc87559` either way.
+
+---
+
+## 2026-11-04 — Session handoff (state of A2)
+
+**Done:**
+- corpus-v0.1 (`fc87559`, rebuilt from a fresh clone to the same hash);
+- A2.1 parser;
+- A2.2 rule-based inventory;
+- V3 and V7 checked;
+- pre-registration batch 1 (H-A2-04, H-A2-07) opened as PR #7, **awaiting Marius's merge**.
+
+**Next, in order:**
+1. **A2.2 completion.** Check every inventory row with class `complete`, `complete-scope-unclear` or `damaged` against its GORILA facsimile (lineara.xyz `images/<ID>-Facsimile.jpg` at 9c81beba; view in scratch, do not commit). Record legibility per quantity and any corpus errata.
+2. **Verify the Corazza et al. 2021 details against the PDF:** the six premises, Table 8, and whether descending order is a premise. H-A2-07's secondary test depends on this.
+3. **After PR #7 merges:** run H-A2-07 (value-free, quick), then H-A2-04 (needs the HT 122a/b GORILA check from step 1).
+4. **Register H-A2-01/02/03/05** with scope and tolerance rules informed by step 1. Their power will be low, since at most about 12 KU-RO totals are intact; say so in the files.
+5. **A2.4 Linear B validation set** via DAMOS word-search CSV (*to-so*), or ask the editor.
+
+**Open items for Marius:**
+- the `corpus-v0.1` tag on `fc87559` (this session cannot create tags);
+- the repo licence (deferred; DAMOS NC-SA terms matter for it).
