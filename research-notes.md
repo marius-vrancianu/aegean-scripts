@@ -82,3 +82,27 @@ Decided with Marius:
   - `findings/`, which are claims;
   - the rules: `CLAUDE.md`, the guardrails script, `.github/`, `data/heldout.txt`.
 - The rule is written in `CLAUDE.md` → Workflow → Merging. GitHub cannot enforce it for a single account, so it relies on agents following it.
+
+---
+
+## 2026-11-04 — corpus-v0.1 built; a small held-out leak
+
+**Decision (Marius):** A2 proceeds on a provisional, single-source release, corpus-v0.1 (lineara.xyz only, L0). All A2 results on it carry that caveat and are re-run on corpus-v1.0.
+
+**Build:**
+- 1,718 documents and 3,883 entry lines.
+- Deterministic: rebuilding gives the same SHA-256, recorded in `data/processed/corpus-v0.1/MANIFEST.json`.
+- The JSONL itself is regenerated, not committed (see DATA_SOURCES, lineara.xyz licence).
+
+**Source problems found while building:**
+- duplicate ID `KH101`;
+- incomplete damage marking;
+- entry-based line breaks;
+- the data file's public-domain header.
+
+All are documented in `DATA_SOURCES.md`.
+
+**Held-out leak (minor):** while diagnosing a JSON parse error, a Python error message printed a 30-character excerpt of record `KNZg57b`, which included **two signs** of the sceptre ring text. My diagnostic parsed all records before applying the exclusion. Only Claude (this session) saw them; Marius did not.
+- Impact: negligible for A2, since the ring has no numerals. For A4, two signs out of about 119 do not constrain any sign-value prediction, but they count as seen.
+- Fix: the builder now drops held-out IDs by name before parsing any record (`aegean.corpus.lineara.iter_raw_records`).
+- Rule for future agents: never run whole-file diagnostics on a source that contains held-out records. Filter first.
