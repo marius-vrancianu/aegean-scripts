@@ -106,3 +106,16 @@ All are documented in `DATA_SOURCES.md`.
 - Impact: negligible for A2, since the ring has no numerals. For A4, two signs out of about 119 do not constrain any sign-value prediction, but they count as seen.
 - Fix: the builder now drops held-out IDs by name before parsing any record (`aegean.corpus.lineara.iter_raw_records`).
 - Rule for future agents: never run whole-file diagnostics on a source that contains held-out records. Filter first.
+
+---
+
+## 2026-11-04 — V7 (Corazza et al. 2021) and V3 (DAMOS) checked
+
+- **Corazza et al. 2021 did not fit fraction values to tablet totals.** As far as a web-fetch summary of the open PDF shows (to be verified against the PDF):
+  - their values come from six premises solved exhaustively, with the solutions ranked by frequency, typology and optimality;
+  - HT 104 and PE 1 appear only as support;
+  - no per-tablet constraint list or supplementary data exists.
+
+  Consequence: "reproduce Corazza" (A2.3) means reproducing their solution counts and ranking. H-A2-01 (do their values make the tablet totals more consistent than random value sets do?) is a new test. Given the inventory, at most about 12 KU-RO totals are usable, so its power will be low and the pre-registration must say so.
+- **DAMOS:** content CC BY-NC-SA 4.0. Only word-search results can be downloaded, as CSV. A bulk release is planned but not available. The Linear B validation set for A2.4 needs either word-search exports plus the online texts, or a data request to the editor.
+- **Not done:** the `corpus-v0.1` git tag. Creating tags or releases is outside what this session is permitted to do. Marius to create it on commit `fc87559`. Results cite `corpus-v0.1 @ fc87559` either way.

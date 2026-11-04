@@ -109,8 +109,8 @@ To-do:
 To-do:
 - [x] A2.1 Write the parser for numerals and fraction sequences; unit-test it on hand-checked tablets (e.g. HT 104: 45 + J + 20 J + 29 = 95 per Corazza et al.). Done 2026-11-04: `aegean.arithmetic.parse`; fractions kept symbolic; fixtures HT 104, HT 13, HT 122a checked against GORILA facsimiles (`tests/test_arithmetic_parse.py`). On corpus-v0.1: 1,566 entries, 434 flagged damaged, 202 with no label on their line.
 - [~] A2.2 List every document with KU-RO, KI-RO or PO-TO-KU-RO; classify each as complete / damaged / indeterminate. 2026-11-04: rule-based inventory on corpus-v0.1 (`experiments/A2/inventory-corpus-v0.1.csv`, rules in `inventory-rules.md`): 55 marker occurrences in 42 documents; 9 complete, 7 complete-scope-unclear. **Still to do:** check each candidate row against the GORILA facsimile, because the source's damage flags are incomplete.
-- [ ] A2.3 Reproduce Corazza et al. 2021 (get the repository PDF and any supplementary data).
-- [ ] A2.4 Build the Linear B *to-so* validation set and run the checker.
+- [ ] A2.3 Reproduce Corazza et al. 2021. **Revised 2026-11-04 (V7):** their values were not fitted to tablet totals. They come from six premises solved in MiniZinc/Gecode (2,172,836 / 3,794,740 solutions), then ranked by frequency, typology and optimality, with HT 104 and PE 1 cited only as support. So: (a) the reproduction target is their solution counts and final ranking under their premises (needs the premises verified from the PDF); (b) H-A2-01, whether their value set makes tablet totals more consistent than random value sets do, is a **new** test, not a reproduction.
+- [ ] A2.4 Build the Linear B *to-so* validation set and run the checker. Source route (V3): DAMOS word-search CSV for *to-so* plus the online texts of those tablets (CC BY-NC-SA 4.0), or a data extract requested from the editor.
 - [ ] A2.5 Log H-A2-01…05 with exact test definitions and tolerance rules.
 - [ ] A2.6 Run the value-set comparison and the null distributions.
 - [ ] A2.7 Run the KI-RO relation test.
@@ -314,11 +314,11 @@ To-do:
 ## Open verification items (resolve before relying on them)
 - [ ] V1 SigLA licence (reported CC BY-NC-SA 4.0 secondhand) — A1.2.
 - [~] V2 lineara.xyz licence — A1.3. No LICENSE file (2026-11-04); maintainer not yet asked.
-- [ ] V3 DAMOS raw-data availability and terms — A1.10.
+- [~] V3 DAMOS raw-data availability and terms — A1.10. Content CC BY-NC-SA 4.0; downloads limited to word-search CSV (Aurora 2024, p. 157); no bulk export yet. Options in DATA_SOURCES.
 - [ ] V4 Luo et al. 2021 code and Gothic/Iberian data — A5.2.
 - [ ] V5 jhnwnstd/shannon lexicon: sources and quality.
 - [ ] V6 An open digital corpus of the Cypriot syllabary (none identified yet) — needed for T1 and A6 validation.
-- [ ] V7 Corazza et al. 2021 supplementary data (list of tablets and constraints used).
+- [~] V7 Corazza et al. 2021 supplementary data (list of tablets and constraints used). Open copy found (CC BY-NC-ND 4.0); no supplementary data or code located; no per-tablet constraint list in the paper. Details in DATA_SOURCES; to be verified against the PDF.
 - [~] V8 Readable text of KN Zg 57/58. A descriptive overview is available, open access (CC BY-NC-SA 4.0): Kanta, Nakassis, Palaima & Perna 2025, *Ariadne* Suppl. 5, 27–43, doi:10.26248/ariadne.vi.1841. It has no sign-by-sign transcription. Still waiting for *Anetaki II* (Kanta ed., forthcoming).
 - [ ] V9 Access to Salgarella 2025 (Cambridge Elements; paywalled unless free period).
 
