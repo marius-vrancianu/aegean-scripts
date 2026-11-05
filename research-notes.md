@@ -182,3 +182,19 @@ Consequences:
 1. GORILA check of the KI-RO rows (for H-A2-03).
 2. Register H-A2-01/02 (fraction value sets) and H-A2-03 (KI-RO). The 7 fraction-bearing totals from this census are their test set, and they are equally few, so the files must say how little power they have.
 3. Obtain Montecchi 2009 and 2013.
+
+---
+
+## 2026-11-05 — Exploratory full census (all markers, damaged rows and fractions included)
+
+**Requested by Marius** after H-A2-08 came out inconclusive. Full write-up: `experiments/A2/exploratory/README.md`.
+
+**Consequence for pre-registration:** fraction totals have now been evaluated under the Corazza and Schrijver value sets. **H-A2-01/02 can no longer be blind tests on corpus-v0.1.** They can only be confirmed on new material: corpus-v1.0 additions, or the sceptre with H-A2-06. Given the result below, this costs little.
+
+**Results (exploratory):**
+- **KU-RO, primary scope:** 9 of 37 exact, plus 3 off by one stroke. Over the 29 comparable rows, the chance baseline expects 0.48 exact matches (p < 0.0001). Caveat: possible circularity through editorial restorations, since 7 of the 9 exact matches are on rows marked damaged.
+- **Most mismatches have a visible cause:** lost entries on broken sides, a running total (HT 127b: 292 = 156 + 136), or a scope rule that catches the wrong list.
+- **The totals cannot discriminate between fraction value sets.** No testable total involves B, D, K, H, A or the L series. On corpus-v0.1, totals constrain only J and E.
+- **KI-RO:** none of the three naive relations holds in 11 pairs. KI-RO rows are not yet GORILA-checked.
+
+**Comparisons run here:** for KU-RO and PO-TO-KU-RO, one per scope and value set; for KI-RO, 3 relations × 2 value sets × 11 pairs. All are exploratory and none counts as a hypothesis test.
