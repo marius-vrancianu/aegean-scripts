@@ -318,7 +318,7 @@ To-do:
 - [ ] V4 Luo et al. 2021 code and Gothic/Iberian data — A5.2.
 - [ ] V5 jhnwnstd/shannon lexicon: sources and quality.
 - [ ] V6 An open digital corpus of the Cypriot syllabary (none identified yet) — needed for T1 and A6 validation.
-- [~] V7 Corazza et al. 2021 supplementary data (list of tablets and constraints used). Open copy found (CC BY-NC-ND 4.0); no supplementary data or code located; no per-tablet constraint list in the paper. Details in DATA_SOURCES; to be verified against the PDF.
+- [x] V7 Corazza et al. 2021: verified from the PDF 2026-11-05 (`docs/references/corazza-2021-notes.md`). No supplementary data or code; no per-tablet constraint list. Descending order is their premise 5.
 - [~] V8 Readable text of KN Zg 57/58. A descriptive overview is available, open access (CC BY-NC-SA 4.0): Kanta, Nakassis, Palaima & Perna 2025, *Ariadne* Suppl. 5, 27–43, doi:10.26248/ariadne.vi.1841. It has no sign-by-sign transcription. Still waiting for *Anetaki II* (Kanta ed., forthcoming).
 - [ ] V9 Access to Salgarella 2025 (Cambridge Elements; paywalled unless free period).
 
