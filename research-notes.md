@@ -156,3 +156,15 @@ All are documented in `DATA_SOURCES.md`.
 1. GORILA check of the remaining KU-RO candidate rows (A2.2 completion). This is the main input for registering H-A2-01/02/03/05.
 2. Find Montecchi 2009 and 2013 (calculation errors in Linear A totals). They are the direct prior work and appear to be paywalled.
 3. Register H-A2-01/02/03/05, then H-A2-06.
+
+---
+
+## 2026-11-05 — HT 122b entries looked at before the totals tests were registered (disclosure)
+
+While Marius was checking the HT 122b facsimile, we compared side b's entries with its KU-RO. In corpus-v0.1, side b's surviving entries are 7] (damaged), 2, 2, 2, 2 = **15**, against **KU-RO 65**. The KU-RO is not the sum of anything visible on that side. The edges where the entries sit are damaged, so lost entries are the likeliest explanation, but that is an inference.
+
+Consequences:
+- H-A2-04 only tested subtotals against the grand total (31 + 65 vs 97). It said nothing about whether the subtotals match their own entries. HT 122 is less reliable than the "grand total" label suggests.
+- **H-A2-01 and H-A2-03 (and any totals census) must list in their "What I already know" sections:** the HT 122b entry sum (15 vs 65), and the HT 104 sum (45 J + 20 J + 29 = 95 under J = 1/2, known from the literature).
+- Marius's own count of the HT 122b PO-TO-KU-RO read "97, possibly 96". This independently supports the "partly intact" judgement in the H-A2-04 outcome.
+- lineara.xyz entry lines are not physical lines: several short entries share one physical line on HT 122b. Anyone checking a facsimile against corpus-v0.1 should expect this.
