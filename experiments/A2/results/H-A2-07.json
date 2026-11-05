@@ -1,0 +1,233 @@
+{
+  "hypothesis": "H-A2-07",
+  "corpus": "corpus-v0.1 (documents.jsonl sha256 bb14ce5cbf9fda7798a91830685cf14f01e6c36b625ecfb9adfc9c6d00adb791)",
+  "code_commit": "09b3963bf2cfc61d62f178b9726145c6e7ff9e26",
+  "seed": 20261104,
+  "n_permutations": 10000,
+  "primary_all_quantities": {
+    "quantities_with_2plus_fraction_signs": 61,
+    "adjacent_distinct_pairs": 41,
+    "identical_sign_pairs_excluded": 26,
+    "C": 1.0,
+    "pair_table": {
+      "A|B": {
+        "A>B": 1,
+        "B>A": 0
+      },
+      "A|J": {
+        "A>J": 0,
+        "J>A": 1
+      },
+      "A|L": {
+        "A>L": 0,
+        "L>A": 1
+      },
+      "B|E": {
+        "B>E": 0,
+        "E>B": 1
+      },
+      "B|J": {
+        "B>J": 0,
+        "J>B": 4
+      },
+      "B|JE": {
+        "B>JE": 0,
+        "JE>B": 1
+      },
+      "B|L6": {
+        "B>L6": 1,
+        "L6>B": 0
+      },
+      "E|F": {
+        "E>F": 5,
+        "F>E": 0
+      },
+      "E|J": {
+        "E>J": 1,
+        "J>E": 0
+      },
+      "E|L": {
+        "E>L": 0,
+        "L>E": 1
+      },
+      "E|L2": {
+        "E>L2": 3,
+        "L2>E": 0
+      },
+      "E|L4": {
+        "E>L4": 1,
+        "L4>E": 0
+      },
+      "E|L6": {
+        "E>L6": 1,
+        "L6>E": 0
+      },
+      "E|Y": {
+        "E>Y": 1,
+        "Y>E": 0
+      },
+      "F|J": {
+        "F>J": 0,
+        "J>F": 1
+      },
+      "F|K": {
+        "F>K": 1,
+        "K>F": 0
+      },
+      "F|L2": {
+        "F>L2": 1,
+        "L2>F": 0
+      },
+      "H|J": {
+        "H>J": 0,
+        "J>H": 1
+      },
+      "H|K": {
+        "H>K": 1,
+        "K>H": 0
+      },
+      "J|K": {
+        "J>K": 1,
+        "K>J": 0
+      },
+      "J|L2": {
+        "J>L2": 2,
+        "L2>J": 0
+      },
+      "JE|L2": {
+        "JE>L2": 3,
+        "L2>JE": 0
+      },
+      "K|L2": {
+        "K>L2": 5,
+        "L2>K": 0
+      },
+      "L|L2": {
+        "L>L2": 1,
+        "L2>L": 0
+      },
+      "L2|L4": {
+        "L2>L4": 1,
+        "L4>L2": 0
+      }
+    },
+    "majority_cycles": [],
+    "acyclic": true,
+    "p_permutation": 0.0,
+    "null_C_mean": 0.7645066364152013,
+    "null_C_95th_percentile": 0.8571428571428571,
+    "decision": "supported",
+    "secondary_table8": {
+      "descending": 30,
+      "valued_pairs": 33,
+      "skipped_pairs": 8,
+      "label": "consistency check, not independent evidence (descending order is Corazza premise 5)"
+    },
+    "exploratory_table8_plus_ligatures": {
+      "descending": 34,
+      "valued_pairs": 37,
+      "skipped_pairs": 4
+    }
+  },
+  "secondary_undamaged_only": {
+    "quantities_with_2plus_fraction_signs": 42,
+    "adjacent_distinct_pairs": 29,
+    "identical_sign_pairs_excluded": 16,
+    "C": 1.0,
+    "pair_table": {
+      "A|B": {
+        "A>B": 1,
+        "B>A": 0
+      },
+      "A|J": {
+        "A>J": 0,
+        "J>A": 1
+      },
+      "B|E": {
+        "B>E": 0,
+        "E>B": 1
+      },
+      "B|J": {
+        "B>J": 0,
+        "J>B": 3
+      },
+      "B|JE": {
+        "B>JE": 0,
+        "JE>B": 1
+      },
+      "E|F": {
+        "E>F": 5,
+        "F>E": 0
+      },
+      "E|J": {
+        "E>J": 1,
+        "J>E": 0
+      },
+      "E|L": {
+        "E>L": 0,
+        "L>E": 1
+      },
+      "E|L2": {
+        "E>L2": 1,
+        "L2>E": 0
+      },
+      "E|L4": {
+        "E>L4": 1,
+        "L4>E": 0
+      },
+      "E|L6": {
+        "E>L6": 1,
+        "L6>E": 0
+      },
+      "F|J": {
+        "F>J": 0,
+        "J>F": 1
+      },
+      "F|K": {
+        "F>K": 1,
+        "K>F": 0
+      },
+      "H|J": {
+        "H>J": 0,
+        "J>H": 1
+      },
+      "H|K": {
+        "H>K": 1,
+        "K>H": 0
+      },
+      "J|K": {
+        "J>K": 1,
+        "K>J": 0
+      },
+      "J|L2": {
+        "J>L2": 2,
+        "L2>J": 0
+      },
+      "K|L2": {
+        "K>L2": 4,
+        "L2>K": 0
+      },
+      "L|L2": {
+        "L>L2": 1,
+        "L2>L": 0
+      }
+    },
+    "majority_cycles": [],
+    "acyclic": true,
+    "p_permutation": 0.0007,
+    "null_C_mean": 0.7963411494252873,
+    "null_C_95th_percentile": 0.9,
+    "decision": "supported",
+    "secondary_table8": {
+      "descending": 23,
+      "valued_pairs": 26,
+      "skipped_pairs": 3,
+      "label": "consistency check, not independent evidence (descending order is Corazza premise 5)"
+    },
+    "exploratory_table8_plus_ligatures": {
+      "descending": 24,
+      "valued_pairs": 27,
+      "skipped_pairs": 2
+    }
+  }
+}
