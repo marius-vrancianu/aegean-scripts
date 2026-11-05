@@ -34,7 +34,7 @@ Every dataset used anywhere in this repo is listed here before it is used. Field
 ## Corazza, Ferrara, Montecchi, Tamburini & Valério 2021 (fraction values)
 - **What:** "The mathematical values of fraction signs in the Linear A script: A computational, statistical and typological approach", *Journal of Archaeological Science* 125:105214.
 - **Open copy:** https://cris.unibo.it/retrieve/e1dcb336-9b0e-7715-e053-1705fe0a6cc9/Montecchi_JAS_125_2021.pdf, CC BY-NC-ND 4.0. Cite it; do not commit it or derivatives of its text.
-- **Contents relevant to A2.** These were read through a web-fetch summary on 2026-11-04 and **must be verified against the PDF before use**:
+- **Contents relevant to A2.** Verified from the PDF on 2026-11-05. Full notes, with page references: `docs/references/corazza-2021-notes.md`. The points below match the PDF:
   - Six premises encoded in MiniZinc and solved with Gecode. Simulation 1 gave 2,172,836 solutions; Simulation 2 (without L) gave 3,794,740. The solutions were ranked by frequency-vs-divisibility, ambiguity of combinations, typology, and an optimality score (best 0.67094).
   - Final values (Table 8): J 1/2, E 1/4, F 1/8, B 1/5, D 1/6, K 1/10, L2 1/20, L3 1/30, L4 1/40, L6 1/60, H 1/16 (tentative), A 1/24 (tentative). W, X, Y, Ω and L were left unvalued.
   - **No per-tablet list of totals used as constraints.** HT 104 and PE 1 are cited as support for J = 1/2. HT 123b, the MM II Phaistos tablets and several uncertain readings were excluded. No error tolerance is stated.
