@@ -1,0 +1,111 @@
+doc,tablet,site,marker,line,scope,total,n_entries,entries,integer_only,gorila_checked,gorila_total_intact,gorila_scope_intact,gorila_entry_area_complete,parser_total_damaged,parser_scope_damaged,damage_class,corazza2021_total,corazza2021_sum,corazza2021_diff,corazza2021_status,schrijver2014_total,schrijver2014_sum,schrijver2014_diff,schrijver2014_status
+HT1,HT1,Haghia Triada,KI-RO,1,S1,197,0,,True,False,,,,False,0,clean (parser only),197,0,197,empty_scope,197,0,197,empty_scope
+HT1,HT1,Haghia Triada,KI-RO,1,S2,197,4,70; 52; 109; 105,True,False,,,,False,0,clean (parser only),197,336,-139,mismatch,197,336,-139,mismatch
+HT100,HT100,Haghia Triada,KU-RO,6,S1,97,5,58; 12; 2; 5; 16,True,True,yes,partly,unclear,False,0,damaged,97,93,4,mismatch,97,93,4,mismatch
+HT100,HT100,Haghia Triada,KU-RO,6,S2,97,11,58; 12; 2; 5; 16; 5 E; 2 D D; 2 J; 2 H; 3; JE,False,True,yes,partly,unclear,False,0,damaged,97,5227/48,-571/48,mismatch,97,3277/30,-367/30,mismatch
+HT102,HT102,Haghia Triada,KU-RO,8,S1,1060,7,976; 33; 33; 10; 3; 10; 5,True,True,partly,partly,no,False,1,damaged,1060,1070,-10,near_miss_one_stroke,1060,1070,-10,near_miss_one_stroke
+HT102,HT102,Haghia Triada,KU-RO,8,S2,1060,7,976; 33; 33; 10; 3; 10; 5,True,True,partly,partly,no,False,1,damaged,1060,1070,-10,near_miss_one_stroke,1060,1070,-10,near_miss_one_stroke
+HT104,HT104,Haghia Triada,KU-RO,4,S1,95,3,45 J; 20 J; 29,False,True,yes,partly,yes,False,0,damaged,95,95,0,exact,95,95,0,exact
+HT104,HT104,Haghia Triada,KU-RO,4,S2,95,3,45 J; 20 J; 29,False,True,yes,partly,yes,False,0,damaged,95,95,0,exact,95,95,0,exact
+HT109,HT109,Haghia Triada,KU-RO,4,S1,129,2,4; 4,True,True,yes,partly,no,False,1,damaged,129,8,121,mismatch,129,8,121,mismatch
+HT109,HT109,Haghia Triada,KU-RO,4,S2,129,3,4; 4; 123,True,True,yes,partly,no,False,1,damaged,129,131,-2,mismatch,129,131,-2,mismatch
+HT110a,HT110,Haghia Triada,KU-RO,2,S1,100,2,20; 1,True,True,partly,partly,no,True,0,damaged,100,21,79,mismatch,100,21,79,mismatch
+HT110a,HT110,Haghia Triada,KU-RO,2,S2,100,4,20; 1; 15; 60,True,True,partly,partly,no,True,2,damaged,100,96,4,mismatch,100,96,4,mismatch
+HT116b,HT116,Haghia Triada,KU-RO,0,S1,100,0,,True,True,partly,yes,yes,True,0,damaged,100,0,100,empty_scope,100,0,100,empty_scope
+HT116b,HT116,Haghia Triada,KU-RO,0,S2,100,2,15; 17,True,True,partly,yes,yes,True,0,damaged,100,32,68,mismatch,100,32,68,mismatch
+HT117a,HT117,Haghia Triada,KI-RO,0,S1,-,0,,True,False,,,,False,0,clean (parser only),,,,no_total,,,,no_total
+HT117a,HT117,Haghia Triada,KI-RO,0,S2,-,15,1; 1; 1; 1; 1; 1; 1; 1; 1; 1; 1; 1; 1; 1; 1,True,False,,,,False,0,clean (parser only),,,,no_total,,,,no_total
+HT117a,HT117,Haghia Triada,KU-RO,11,S1,10,10,1; 1; 1; 1; 1; 1; 1; 1; 1; 1,True,True,yes,yes,yes,False,0,clean,10,10,0,exact,10,10,0,exact
+HT117a,HT117,Haghia Triada,KU-RO,11,S2,10,15,1; 1; 1; 1; 1; 1; 1; 1; 1; 1; 1; 1; 1; 1; 1,True,True,yes,yes,yes,False,0,clean,10,15,-5,mismatch,10,15,-5,mismatch
+HT118,HT118,Haghia Triada,KU-RO,8,S1,30,7,15; 10; 6; 4; 4; 1; 10,True,True,yes,yes,yes,False,0,clean,30,50,-20,mismatch,30,50,-20,mismatch
+HT118,HT118,Haghia Triada,KU-RO,8,S2,30,8,15; 10; 6; 4; 4; 1; 10; 15,True,True,yes,yes,yes,False,1,damaged,30,65,-35,mismatch,30,65,-35,mismatch
+HT119,HT119,Haghia Triada,KU-RO,9,S1,160,9,34; 68; 13; 10; 7; 7; 10; 2; 8,True,True,yes,yes,yes,False,0,clean,160,159,1,near_miss_one_stroke,160,159,1,near_miss_one_stroke
+HT119,HT119,Haghia Triada,KU-RO,9,S2,160,9,34; 68; 13; 10; 7; 7; 10; 2; 8,True,True,yes,yes,yes,False,0,clean,160,159,1,near_miss_one_stroke,160,159,1,near_miss_one_stroke
+HT11a,HT11,Haghia Triada,KU-RO,3,S1,10,3,3; 2; 1,True,True,yes,partly,partly,False,1,damaged,10,6,4,mismatch,10,6,4,mismatch
+HT11a,HT11,Haghia Triada,KU-RO,3,S2,10,6,3; 2; 1; 1; 3; 15,True,True,yes,partly,partly,False,1,damaged,10,25,-15,mismatch,10,25,-15,mismatch
+HT11b,HT11,Haghia Triada,KU-RO,7,S1,180,5,40; 30; 50; 30; 30,True,True,partly,partly,no,False,0,damaged,180,180,0,exact,180,180,0,exact
+HT11b,HT11,Haghia Triada,KU-RO,7,S2,180,5,40; 30; 50; 30; 30,True,True,partly,partly,no,False,0,damaged,180,180,0,exact,180,180,0,exact
+HT122a,HT122,Haghia Triada,KU-RO,17,S1,31,16,2; 2; 2; 1; 2; 3; 1; 1; 1; 1; 1; 1; 1; 1; 1; 1,True,True,yes,partly,no,False,2,damaged,31,22,9,mismatch,31,22,9,mismatch
+HT122a,HT122,Haghia Triada,KU-RO,17,S2,31,17,2; 2; 2; 1; 2; 3; 1; 1; 1; 1; 1; 1; 1; 1; 1; 1; 1,True,True,yes,partly,no,False,2,damaged,31,23,8,mismatch,31,23,8,mismatch
+HT122b,HT122,Haghia Triada,KU-RO,6,S1,65,5,7; 2; 2; 2; 2,True,True,yes,partly,no,False,1,damaged,65,15,50,mismatch,65,15,50,mismatch
+HT122b,HT122,Haghia Triada,KU-RO,6,S2,65,5,7; 2; 2; 2; 2,True,True,yes,partly,no,False,1,damaged,65,15,50,mismatch,65,15,50,mismatch
+HT122b,HT122,Haghia Triada,PO-TO-KU-RO,7,P1,97,2,31; 65,True,True,partly,yes,no,False,0,damaged,97,96,1,near_miss_one_stroke,97,96,1,near_miss_one_stroke
+HT122b,HT122,Haghia Triada,PO-TO-KU-RO,7,P2,97,22,2; 2; 2; 1; 2; 3; 1; 1; 1; 1; 1; 1; 1; 1; 1; 1; 1; 7; 2; 2; 2; 2,True,True,partly,yes,no,False,3,damaged,97,38,59,mismatch,97,38,59,mismatch
+HT123+124a,HT123+124,Haghia Triada,KI-RO,2,S1,1 X,2,31; 8 E,False,False,,,,False,0,clean (parser only),,157/4,,unvalued,,157/4,,unvalued
+HT123+124a,HT123+124,Haghia Triada,KI-RO,2,S2,1 X,8,31; 8 E; 31 J; 8 JE; 16; 4 A; 15; 4 E,False,False,,,,False,1,damaged (parser only),,2851/24,,unvalued,,713/6,,unvalued
+HT123+124a,HT123+124,Haghia Triada,KI-RO,5,S1,X,2,31 J; 8 JE,False,False,,,,False,0,clean (parser only),,161/4,,unvalued,,161/4,,unvalued
+HT123+124a,HT123+124,Haghia Triada,KI-RO,5,S2,X,8,31; 8 E; 31 J; 8 JE; 16; 4 A; 15; 4 E,False,False,,,,False,1,damaged (parser only),,2851/24,,unvalued,,713/6,,unvalued
+HT123+124a,HT123+124,Haghia Triada,KI-RO,8,S1,JE,2,16; 4 A,False,False,,,,False,1,damaged (parser only),3/4,481/24,-463/24,mismatch,3/4,241/12,-58/3,mismatch
+HT123+124a,HT123+124,Haghia Triada,KI-RO,8,S2,JE,8,31; 8 E; 31 J; 8 JE; 16; 4 A; 15; 4 E,False,False,,,,False,1,damaged (parser only),3/4,2851/24,-2833/24,mismatch,3/4,713/6,-1417/12,mismatch
+HT123+124a,HT123+124,Haghia Triada,KI-RO,11,S1,JE,2,15; 4 E,False,False,,,,False,0,clean (parser only),3/4,77/4,-37/2,mismatch,3/4,77/4,-37/2,mismatch
+HT123+124a,HT123+124,Haghia Triada,KI-RO,11,S2,JE,8,31; 8 E; 31 J; 8 JE; 16; 4 A; 15; 4 E,False,False,,,,False,1,damaged (parser only),3/4,2851/24,-2833/24,mismatch,3/4,713/6,-1417/12,mismatch
+HT123+124a,HT123+124,Haghia Triada,KU-RO,12,S1,93 J,0,,False,True,yes,partly,unclear,False,0,damaged,187/2,0,187/2,empty_scope,187/2,0,187/2,empty_scope
+HT123+124a,HT123+124,Haghia Triada,KU-RO,12,S2,93 J,8,31; 8 E; 31 J; 8 JE; 16; 4 A; 15; 4 E,False,True,yes,partly,unclear,False,1,damaged,187/2,2851/24,-607/24,mismatch,187/2,713/6,-76/3,mismatch
+HT123+124a,HT123+124,Haghia Triada,KU-RO,14,S1,25 H,0,,False,True,partly,partly,unclear,True,0,damaged,401/16,0,401/16,empty_scope,76/3,0,76/3,empty_scope
+HT123+124a,HT123+124,Haghia Triada,KU-RO,14,S2,25 H,8,31; 8 E; 31 J; 8 JE; 16; 4 A; 15; 4 E,False,True,partly,partly,unclear,True,1,damaged,401/16,2851/24,-4499/48,mismatch,76/3,713/6,-187/2,mismatch
+HT123+124a,HT123+124,Haghia Triada,KI-RO,15,S1,6,0,,True,False,,,,True,0,damaged (parser only),6,0,6,empty_scope,6,0,6,empty_scope
+HT123+124a,HT123+124,Haghia Triada,KI-RO,15,S2,6,8,31; 8 E; 31 J; 8 JE; 16; 4 A; 15; 4 E,False,False,,,,True,1,damaged (parser only),6,2851/24,-2707/24,mismatch,6,713/6,-677/6,mismatch
+HT123+124b,HT123+124,Haghia Triada,KU-RO,10,S1,20,8,11; 1 JE; 4; 1; 10; J L2; A; E F,False,True,yes,partly,unclear,False,0,damaged,20,1723/60,-523/60,mismatch,20,115/4,-35/4,mismatch
+HT123+124b,HT123+124,Haghia Triada,KU-RO,10,S2,20,8,11; 1 JE; 4; 1; 10; J L2; A; E F,False,True,yes,partly,unclear,False,0,damaged,20,1723/60,-523/60,mismatch,20,115/4,-35/4,mismatch
+HT123+124b,HT123+124,Haghia Triada,KI-RO,11,S1,5,0,,True,False,,,,True,0,damaged (parser only),5,0,5,empty_scope,5,0,5,empty_scope
+HT123+124b,HT123+124,Haghia Triada,KI-RO,11,S2,5,8,11; 1 JE; 4; 1; 10; J L2; A; E F,False,False,,,,True,0,damaged (parser only),5,1723/60,-1423/60,mismatch,5,115/4,-95/4,mismatch
+HT127b,HT127,Haghia Triada,KU-RO,3,S1,156,1,13,True,True,yes,partly,no,False,1,damaged,156,13,143,mismatch,156,13,143,mismatch
+HT127b,HT127,Haghia Triada,KU-RO,3,S2,156,6,13; 72; 24; 15; 11; 14,True,True,yes,partly,no,False,2,damaged,156,149,7,mismatch,156,149,7,mismatch
+HT127b,HT127,Haghia Triada,KU-RO,9,S1,292,5,72; 24; 15; 11; 14,True,True,yes,partly,unclear,False,1,damaged,292,136,156,mismatch,292,136,156,mismatch
+HT127b,HT127,Haghia Triada,KU-RO,9,S2,292,6,13; 72; 24; 15; 11; 14,True,True,yes,partly,unclear,False,2,damaged,292,149,143,mismatch,292,149,143,mismatch
+HT13,HT13,Haghia Triada,KU-RO,7,S1,130 J,6,5 J; 56; 27 J; 18; 19; 5,False,True,yes,partly,yes,False,1,damaged,261/2,131,-1/2,mismatch,261/2,131,-1/2,mismatch
+HT13,HT13,Haghia Triada,KU-RO,7,S2,130 J,6,5 J; 56; 27 J; 18; 19; 5,False,True,yes,partly,yes,False,1,damaged,261/2,131,-1/2,mismatch,261/2,131,-1/2,mismatch
+HT130,HT130,Haghia Triada,KU-RO,5,S1,-,1,3,True,True,no,partly,no,False,0,damaged,,,,no_total,,,,no_total
+HT130,HT130,Haghia Triada,KU-RO,5,S2,-,4,3; 8; 6; 3,True,True,no,partly,no,False,0,damaged,,,,no_total,,,,no_total
+HT131b,HT131,Haghia Triada,PO-TO-KU-RO,5,P1,452 J,0,,False,True,partly,partly,no,True,0,damaged,905/2,0,905/2,empty_scope,905/2,0,905/2,empty_scope
+HT131b,HT131,Haghia Triada,PO-TO-KU-RO,5,P2,452 J,7,62; 353; 58; 12 J; 12 JE; 30; 2,False,True,partly,partly,no,True,3,damaged,905/2,2121/4,-311/4,mismatch,905/2,2121/4,-311/4,mismatch
+HT15,HT15,Haghia Triada,KI-RO,3,S1,400,2,684; 570,True,False,,,,False,0,clean (parser only),400,1254,-854,mismatch,400,1254,-854,mismatch
+HT15,HT15,Haghia Triada,KI-RO,3,S2,400,2,684; 570,True,False,,,,False,0,clean (parser only),400,1254,-854,mismatch,400,1254,-854,mismatch
+HT25b,HT25,Haghia Triada,KU-RO,2,S1,16,0,,True,True,partly,yes,no,False,0,damaged,16,0,16,empty_scope,16,0,16,empty_scope
+HT25b,HT25,Haghia Triada,KU-RO,2,S2,16,2,28; 24,True,True,partly,yes,no,False,0,damaged,16,52,-36,mismatch,16,52,-36,mismatch
+HT25b,HT25,Haghia Triada,KU-RO,5,S1,52,2,28; 24,True,True,yes,partly,no,False,0,damaged,52,52,0,exact,52,52,0,exact
+HT25b,HT25,Haghia Triada,KU-RO,5,S2,52,2,28; 24,True,True,yes,partly,no,False,0,damaged,52,52,0,exact,52,52,0,exact
+HT27a,HT27,Haghia Triada,KU-RO,11,S1,335,8,90; 50; 51; 20; 43; 21; 5; 42,True,True,partly,partly,no,False,1,damaged,335,322,13,mismatch,335,322,13,mismatch
+HT27a,HT27,Haghia Triada,KU-RO,11,S2,335,11,90; 50; 51; 20; 43; 21; 5; 42; 9 JE B; 10 B; 7,False,True,partly,partly,no,False,1,damaged,335,6983/20,-283/20,mismatch,335,4189/12,-169/12,mismatch
+HT30,HT30,Haghia Triada,KI-RO,9,S1,8,8,4; 14 J; 7 D; 8 J; DD; D; J; 1,False,False,,,,False,1,damaged (parser only),8,217/6,-169/6,mismatch,8,363/10,-283/10,mismatch
+HT30,HT30,Haghia Triada,KI-RO,9,S2,8,13,4; 14 J; 7 D; 8 J; DD; D; J; 1; DD; J; 1; D; D,False,False,,,,False,3,damaged (parser only),8,115/3,-91/3,mismatch,8,193/5,-153/5,mismatch
+HT34,HT34,Haghia Triada,KI-RO,11,S1,30,8,B; 200; 2 H K; A; E; 245; 100; 70,False,False,,,,False,2,damaged (parser only),30,148237/240,-141037/240,mismatch,30,29659/48,-28219/48,mismatch
+HT34,HT34,Haghia Triada,KI-RO,11,S2,30,11,B; 200; 2 H K; A; E; 245; 100; 70; 7; K; F,False,False,,,,False,3,damaged (parser only),30,149971/240,-142771/240,mismatch,30,7501/12,-7141/12,mismatch
+HT37,HT37,Haghia Triada,KI-RO,7,S1,-,2,6; 1,True,False,,,,False,1,damaged (parser only),,,,no_total,,,,no_total
+HT37,HT37,Haghia Triada,KI-RO,7,S2,-,5,6; 1; 11; 15; 17,True,False,,,,False,1,damaged (parser only),,,,no_total,,,,no_total
+HT39,HT39,Haghia Triada,KU-RO,5,S1,100,3,10; 8; 10,True,True,partly,partly,no,False,1,damaged,100,28,72,mismatch,100,28,72,mismatch
+HT39,HT39,Haghia Triada,KU-RO,5,S2,100,4,10; 8; 10; 2,True,True,partly,partly,no,False,2,damaged,100,30,70,mismatch,100,30,70,mismatch
+HT40,HT40,Haghia Triada,KU-RO,2,S1,-,2,207; 134,True,True,no,yes,no,False,0,damaged,,,,no_total,,,,no_total
+HT40,HT40,Haghia Triada,KU-RO,2,S2,-,2,207; 134,True,True,no,yes,no,False,0,damaged,,,,no_total,,,,no_total
+HT46a,HT46,Haghia Triada,KU-RO,2,S1,43 J,1,1,False,True,yes,partly,no,False,1,damaged,87/2,1,85/2,mismatch,87/2,1,85/2,mismatch
+HT46a,HT46,Haghia Triada,KU-RO,2,S2,43 J,1,1,False,True,yes,partly,no,False,1,damaged,87/2,1,85/2,mismatch,87/2,1,85/2,mismatch
+HT55a,HT55,Haghia Triada,KI-RO,0,S1,-,0,,True,False,,,,False,0,clean (parser only),,,,no_total,,,,no_total
+HT55a,HT55,Haghia Triada,KI-RO,0,S2,-,4,1; 1; 1; 1,True,False,,,,False,2,damaged (parser only),,,,no_total,,,,no_total
+HT67,HT67,Haghia Triada,KU-RO,2,S1,420,0,,True,True,partly,yes,no,True,0,damaged,420,0,420,empty_scope,420,0,420,empty_scope
+HT67,HT67,Haghia Triada,KU-RO,2,S2,420,1,400,True,True,partly,yes,no,True,1,damaged,420,400,20,mismatch,420,400,20,mismatch
+HT74,HT74,Haghia Triada,KU-RO,2,S1,20,0,,True,True,partly,yes,no,True,0,damaged,20,0,20,empty_scope,20,0,20,empty_scope
+HT74,HT74,Haghia Triada,KU-RO,2,S2,20,0,,True,True,partly,yes,no,True,0,damaged,20,0,20,empty_scope,20,0,20,empty_scope
+HT85a,HT85,Haghia Triada,KU-RO,8,S1,66,7,12; 12; 6; 24; 5; 3; 4,True,True,partly,partly,yes,True,0,damaged,66,66,0,exact,66,66,0,exact
+HT85a,HT85,Haghia Triada,KU-RO,8,S2,66,7,12; 12; 6; 24; 5; 3; 4,True,True,partly,partly,yes,True,0,damaged,66,66,0,exact,66,66,0,exact
+HT88,HT88,Haghia Triada,KI-RO,3,S1,-,3,20; 6; 7,True,False,,,,False,0,clean (parser only),,,,no_total,,,,no_total
+HT88,HT88,Haghia Triada,KI-RO,3,S2,-,9,20; 6; 7; 1; 1; 1; 1; 1; 1,True,False,,,,False,0,clean (parser only),,,,no_total,,,,no_total
+HT88,HT88,Haghia Triada,KU-RO,10,S1,6,6,1; 1; 1; 1; 1; 1,True,True,yes,yes,yes,False,0,clean,6,6,0,exact,6,6,0,exact
+HT88,HT88,Haghia Triada,KU-RO,10,S2,6,9,20; 6; 7; 1; 1; 1; 1; 1; 1,True,True,yes,yes,yes,False,0,clean,6,39,-33,mismatch,6,39,-33,mismatch
+HT89,HT89,Haghia Triada,KU-RO,5,S1,87,5,23; 22; 24; 13; 5,True,True,partly,yes,yes,False,0,damaged,87,87,0,exact,87,87,0,exact
+HT89,HT89,Haghia Triada,KU-RO,5,S2,87,8,23; 22; 24; 13; 5; 2 JE; 2 E; 6,False,True,partly,yes,yes,False,1,damaged,87,98,-11,mismatch,87,98,-11,mismatch
+HT93b,HT93,Haghia Triada,KI-RO,1,S1,-,1,165 H,False,False,,,,False,1,damaged (parser only),,,,no_total,,,,no_total
+HT93b,HT93,Haghia Triada,KI-RO,1,S2,-,1,165 H,False,False,,,,False,1,damaged (parser only),,,,no_total,,,,no_total
+HT94a,HT94,Haghia Triada,KU-RO,5,S1,110,5,62; 20; 7; 18; 4,True,True,yes,partly,yes,False,0,damaged,110,111,-1,near_miss_one_stroke,110,111,-1,near_miss_one_stroke
+HT94a,HT94,Haghia Triada,KU-RO,5,S2,110,13,62; 20; 7; 18; 4; 5; 3 H; 2; 11; D D; D D; 14 J; D,False,True,yes,partly,yes,False,2,damaged,110,7075/48,-1795/48,mismatch,110,887/6,-227/6,mismatch
+HT94b,HT94,Haghia Triada,KI-RO,0,S1,-,0,,True,False,,,,False,0,clean (parser only),,,,no_total,,,,no_total
+HT94b,HT94,Haghia Triada,KI-RO,0,S2,-,7,1; 1; 1; 1; 1; 1; 1,True,False,,,,False,0,clean (parser only),,,,no_total,,,,no_total
+HT94b,HT94,Haghia Triada,KU-RO,6,S1,5,5,1; 1; 1; 1; 1,True,True,partly,partly,yes,False,0,damaged,5,5,0,exact,5,5,0,exact
+HT94b,HT94,Haghia Triada,KU-RO,6,S2,5,7,1; 1; 1; 1; 1; 1; 1,True,True,partly,partly,yes,False,0,damaged,5,7,-2,mismatch,5,7,-2,mismatch
+HT9a,HT9,Haghia Triada,KU-RO,8,S1,31 JE,7,5 JE; 10; 4; 2; 2 J; 2 J; 4 E,False,True,yes,yes,yes,False,0,clean,127/4,31,3/4,mismatch,127/4,31,3/4,mismatch
+HT9a,HT9,Haghia Triada,KU-RO,8,S2,31 JE,7,5 JE; 10; 4; 2; 2 J; 2 J; 4 E,False,True,yes,yes,yes,False,0,clean,127/4,31,3/4,mismatch,127/4,31,3/4,mismatch
+HT9b,HT9,Haghia Triada,KU-RO,11,S1,24,7,3; 3; 8; 2; 2; 2; 4,True,True,yes,partly,yes,False,0,damaged,24,24,0,exact,24,24,0,exact
+HT9b,HT9,Haghia Triada,KU-RO,11,S2,24,7,3; 3; 8; 2; 2; 2; 4,True,True,yes,partly,yes,False,0,damaged,24,24,0,exact,24,24,0,exact
+PH(?)31a,PH(?)31,Phaistos,KU-RO,8,S1,1,5,1; 1; 1; 1; 1,True,True,yes,partly,no,False,1,damaged,1,5,-4,mismatch,1,5,-4,mismatch
+PH(?)31a,PH(?)31,Phaistos,KU-RO,8,S2,1,7,1; 1; 1; 1; 1; 5; 3,True,True,yes,partly,no,False,2,damaged,1,13,-12,mismatch,1,13,-12,mismatch
+ZA15b,ZA15,Zakros,KU-RO,2,S1,78,1,3,True,True,yes,yes,yes,False,0,clean,78,3,75,mismatch,78,3,75,mismatch
+ZA15b,ZA15,Zakros,KU-RO,2,S2,78,2,3; 17,True,True,yes,yes,yes,False,0,clean,78,20,58,mismatch,78,20,58,mismatch

@@ -1,0 +1,12 @@
+doc,kiro_line,kuro_line,kiro,kuro,kiro_s1_sum,all_unmarked_sum,damaged,a_kiro_eq_its_entries,b_kuro_eq_all_minus_kiro,c_kuro_eq_all_plus_kiro
+HT123+124a,2,12,unvalued,187/2,157/4,2851/24,True,,,
+HT123+124a,2,14,unvalued,401/16,157/4,2851/24,True,,,
+HT123+124a,5,12,unvalued,187/2,161/4,2851/24,True,,,
+HT123+124a,5,14,unvalued,401/16,161/4,2851/24,True,,,
+HT123+124a,8,12,3/4,187/2,481/24,2851/24,True,mismatch,mismatch,mismatch
+HT123+124a,8,14,3/4,401/16,481/24,2851/24,True,mismatch,mismatch,mismatch
+HT123+124a,11,12,3/4,187/2,77/4,2851/24,True,mismatch,mismatch,mismatch
+HT123+124a,11,14,3/4,401/16,77/4,2851/24,True,mismatch,mismatch,mismatch
+HT123+124a,15,12,6,187/2,0,2851/24,True,empty,mismatch,mismatch
+HT123+124a,15,14,6,401/16,0,2851/24,True,empty,mismatch,mismatch
+HT123+124b,11,10,5,20,0,1723/60,True,empty,mismatch,mismatch
