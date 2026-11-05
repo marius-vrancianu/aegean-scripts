@@ -141,3 +141,18 @@ All are documented in `DATA_SOURCES.md`.
 **Open items for Marius:**
 - the `corpus-v0.1` tag on `fc87559` (this session cannot create tags);
 - the repo licence (deferred; DAMOS NC-SA terms matter for it).
+
+---
+
+## 2026-11-05 — First A2 results: H-A2-07 supported, H-A2-04 inconclusive
+
+- **Corazza et al. 2021 verified from the PDF** (supplied by Marius in the claude.ai project; not in the repo). Notes: `docs/references/corazza-2021-notes.md`. Descending order is their **premise 5**, so any order test under their values is circular. The solution counts and Table 8 match what was recorded on 2026-11-04.
+- **H-A2-07 (fraction order): supported.** No pair of fraction signs is ever written in both orders on corpus-v0.1. Measured over 41 adjacent pairs, C = 1.00, p < 0.0001. Most pairs are singletons; the six repeated pairs (22 occurrences) all agree.
+
+  Exploratory, n = 1 each: three orders clash with Corazza's values. Two are known reading disputes (ZA 8 "E J", Corazza n. 3; KH 86 "A B B" vs their "A A"). One, **HT 34 "2 H K"**, is unverified. If it is right, it would put H above 1/10, against their tentative H = 1/16. This is a lead for H-A2-05, to check against GORILA and Younger before use.
+- **H-A2-04 (HT 122 grand total): inconclusive by rule.** KU-RO 31 (a) + KU-RO 65 (b) = 96, but PO-TO-KU-RO reads 97. The last units of the 97 touch edge damage in the GORILA facsimile. A human second count of the strokes would help. For H-A2-01/02/03: the tolerance rules must handle off-by-one totals explicitly.
+
+**Next:**
+1. GORILA check of the remaining KU-RO candidate rows (A2.2 completion). This is the main input for registering H-A2-01/02/03/05.
+2. Find Montecchi 2009 and 2013 (calculation errors in Linear A totals). They are the direct prior work and appear to be paywalled.
+3. Register H-A2-01/02/03/05, then H-A2-06.
