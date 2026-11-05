@@ -41,7 +41,7 @@ Corazza and Schrijver differ on B, D, K, H, A and the L series. **None of those 
 - **HT 122:** 31 + 65 = 96 against 97. A near miss (+1), on a damaged tablet; see H-A2-04.
 - **HT 131b:** no KU-RO subtotals survive, so the scope is empty.
 
-### KI-RO: 18 occurrences, 11 KI-RO/KU-RO pairs on the same side
+### KI-RO: 16 occurrences, 11 KI-RO/KU-RO pairs on the same side
 Three candidate relations were tried on every pair. That makes 6 comparisons per pair, counting both value sets; all are counted here:
 - a) KI-RO = the sum of the entries before it;
 - b) KU-RO = all entries on the side − KI-RO;
