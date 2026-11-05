@@ -168,3 +168,17 @@ Consequences:
 - **H-A2-01 and H-A2-03 (and any totals census) must list in their "What I already know" sections:** the HT 122b entry sum (15 vs 65), and the HT 104 sum (45 J + 20 J + 29 = 95 under J = 1/2, known from the literature).
 - Marius's own count of the HT 122b PO-TO-KU-RO read "97, possibly 96". This independently supports the "partly intact" judgement in the H-A2-04 outcome.
 - lineara.xyz entry lines are not physical lines: several short entries share one physical line on HT 122b. Anyone checking a facsimile against corpus-v0.1 should expect this.
+
+---
+
+## 2026-11-05 — H-A2-08 census run: inconclusive; most totals untestable
+
+- **Step 1 (GORILA checks) was committed before any summing** (`a151ae3`), then the code (`8de0b44`), then the run. Departures from the protocol are in the checks README.
+- **Result:** under strict, cautious rules only **5 of 37 KU-RO totals are testable**: 23 damaged, 7 with fractions, 2 without a total. Of the 5, 2 are exact (HT 117a, HT 88), 1 is off by one (HT 119, 159 vs 160), and 2 are inconsistent (HT 118, ZA 15b). p = 0.049, so **inconclusive** by the frozen rule.
+- **Both inconsistencies look like scope failures.** ZA 15b's KU-RO sits below a ruled-off heading and probably totals entries on its other side. On HT 118, the KU-RO 30 probably covers only part of the seven entries above it (sum 50). A commodity- or section-based scope rule is the obvious next idea, but it is now post hoc for these tablets. It may only be registered as a new hypothesis, with its test data specified in advance (e.g. corpus-v1.0 additions, or KI-RO lists).
+- **Cheapest way to strengthen this:** a second, human check of the five testable rows, and of a sample of the "damaged" ones, where the cautious standard may have excluded good tablets.
+
+**Next:**
+1. GORILA check of the KI-RO rows (for H-A2-03).
+2. Register H-A2-01/02 (fraction value sets) and H-A2-03 (KI-RO). The 7 fraction-bearing totals from this census are their test set, and they are equally few, so the files must say how little power they have.
+3. Obtain Montecchi 2009 and 2013.
