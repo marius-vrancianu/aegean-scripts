@@ -70,7 +70,7 @@ A1 (corpus) ──┬──> A2 (arithmetic)
 
 To-do:
 - [x] A1.1 Set up the GitHub repo structure (https://github.com/marius-vrancianu/aegean-scripts): `data/raw`, `data/processed`, `src/`, `notebooks/`, `findings/`, `hypotheses/`, `research-notes.md`, `DATA_SOURCES.md`, `CLAUDE.md`, CI guardrails. Done 2026-11-04, including the Finding 001 code (`experiments/finding-001/`, reproduced exactly).
-- [ ] A1.2 Verify the SigLA licence directly on the site (survey reports CC BY-NC-SA 4.0 secondhand). Record exact terms and what redistribution is allowed.
+- [x] A1.2 Verify the SigLA licence directly on the site (survey reports CC BY-NC-SA 4.0 secondhand). Record exact terms and what redistribution is allowed. **Done 2026-11-06:** CC BY-NC-SA 4.0, verified in the site footer. Redistribution is allowed with attribution, non-commercially, and ShareAlike applies to corpus files derived from SigLA (see DATA_SOURCES).
 - [~] A1.3 Establish the lineara.xyz licence. 2026-11-04: the repo has no LICENSE file (all rights reserved by default), so we fetch rather than commit. Still to do: ask the maintainer. Record it for Finding 001's data provenance too.
 - [ ] A1.4 Harvest SigLA: documents, sign tokens, sign roles (syllabogram/logogram/numeral/fraction/ligature), word division, findspot/support metadata. Store a dated raw snapshot with a content hash.
 - [~] A1.5 Snapshot lineara.xyz (`LinearAInscriptions.js`, commit hash) and Younger's transliteration pages (date of access). lineara.xyz pinned 2026-11-04 (`data/raw/lineara.xyz/fetch.py`); Younger still to do. **The snapshot contains the sceptre records; see `data/heldout.txt` and research-notes 2026-11-04.**

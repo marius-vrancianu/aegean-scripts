@@ -285,3 +285,20 @@ Two refinements, both pending re-review in the same PR:
 - **Reviews are committed to the PR branch,** so the reviewer's push reruns CI and triggers the merge.
 
 **Repo setting needed (Marius):** make the CI job `test` a required status check on `main`. Without it, auto-merge has nothing to wait for and the gate is not binding. This cannot be done from an agent session (403).
+
+---
+
+## 2026-11-06 — A1.2: SigLA licence verified; A1 is the current focus
+
+**Decision (Marius):** the A2 manual checks and the Montecchi comparison are deferred, since he expects marginal gains. Work moves to A1 (corpus-v1.0).
+
+**SigLA licence:** CC BY-NC-SA 4.0, stated in the sigla.phis.me footer.
+- The raw snapshot can be committed with attribution.
+- ShareAlike means corpus files derived from SigLA carry the same licence. Code is unaffected.
+- The site has no export link, but the project paper describes a JSON database behind the site. Finding that JSON is the first step of A1.4.
+
+**Next on A1:**
+- A1.4: harvest SigLA, pinned and hashed.
+- A1.5: snapshot Younger. His site blocks automated access, so Marius may need to save the pages himself.
+- A1.6–A1.9: reconcile the sources, define the schema, write the disagreement report.
+- A1.10 (DAMOS raw data): Marius is checking.
