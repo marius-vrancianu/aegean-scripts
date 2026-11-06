@@ -36,6 +36,7 @@ HELDOUT_POLICY_FILES = {
     "plans/phase2-analysis-plan.md", "docs/literature-survey-2026-10.md",
     "tools/check_guardrails.py", ".github/pull_request_template.md",
     "data/heldout.txt", "src/aegean/corpus/heldout.py", "tests/test_heldout.py",
+    "tests/test_guardrails.py",  # tests the held-out regex, so it must name the documents
 }
 DATA_PATHS = ("data/", "src/", "experiments/", "tests/", "notebooks/")
 HELDOUT_RE = re.compile(r"KN\s*Zg\s*0?5[78]", re.IGNORECASE)
