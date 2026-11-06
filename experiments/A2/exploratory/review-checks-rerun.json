@@ -1,0 +1,40 @@
+{
+  "census_unstratified": {
+    "n": 29,
+    "observed_exact": 9,
+    "null_mean_exact": 0.485,
+    "p": 0.0,
+    "n_perm": 20000
+  },
+  "census_stratified_by_sum_magnitude": {
+    "n": 29,
+    "observed_exact": 9,
+    "null_mean_exact": 1.315,
+    "p": 0.0,
+    "n_perm": 20000
+  },
+  "census_without_rosters_HT104_HT85a": {
+    "n": 24,
+    "observed_exact": 4,
+    "null_mean_exact": 0.248,
+    "p": 5e-05,
+    "n_perm": 20000,
+    "exact_docs": [
+      "HT11b",
+      "HT25b",
+      "HT89",
+      "HT9b"
+    ]
+  },
+  "order_one_count_per_pair_per_doc": {
+    "pairs": 39,
+    "C": 1.0
+  },
+  "order_ligatures_split": {
+    "pairs": 72,
+    "C": 0.9861,
+    "acyclic": true,
+    "p": 0.0,
+    "null_mean_C": 0.648
+  }
+}

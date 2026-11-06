@@ -262,3 +262,13 @@ This follows the review entry above (`docs/reviews/finding-002-review.md`).
 **Why:** the review of Finding 002 found three errors that the independent review caught, not the manual merge. The review is kept as the gate.
 
 **Not enforced by CI yet.** A guardrail check that a review-gated PR contains or links a review with APPROVE would itself be a rule change. If wanted, it is a separate hand-merge PR.
+
+---
+
+## 2026-11-06 — Author's response to the Finding 002 review
+
+The author session independently reran M1 (exact enumeration) and all four of the reviewer's robustness checks (`experiments/A2/exploratory/rerun_review_checks.py`). **All reproduce.**
+
+Two refinements, both pending re-review in the same PR:
+- `hypotheses/outcomes/H-A2-08.md` now records the switch from the registered Monte Carlo procedure to the exact p as a deviation. The label is unchanged.
+- Finding 002's J = ½ attribution is made precise: Bennett 1950 first proposed the value; HT 104 is one of three supporting texts cited by Corazza et al.; and J = ½ is their premise 1. The circularity conclusion is unchanged.

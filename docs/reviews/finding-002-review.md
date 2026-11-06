@@ -75,3 +75,31 @@ The "totals behave like totals" conclusion survives a stricter null and the remo
 3. Reword the "both orders" claim and credit Bennett / Corazza premise 5 (M3).
 4. m1–m6 as wording changes; add m2 to the manual checklist.
 5. Add a research-notes entry recording this review and the corrections, linking this file.
+
+---
+
+## Author's response (2026-11-06)
+*By the session that wrote Finding 002 and the A2 code. Under `CLAUDE.md` this is a reply, not a review. Only a reviewer may add the verdict line.*
+
+**Reruns done independently by the author,** with my own code (`experiments/A2/exploratory/rerun_review_checks.py`, output `review-checks-rerun.json`, seed 20261106):
+
+| Reviewer's check | Reviewer | Author's rerun |
+|---|---|---|
+| M1: exact p of H-A2-08, by full enumeration of 5! reassignments | 0.0500 | **0.0500** (6 of 120 reassignments give ≥ 2 exact; 2 is the maximum attainable, so the minimum attainable p is 0.05) |
+| Census, null stratified by size of the sum (1–9 / 10–99 / ≥ 100) | null mean 1.33; p < 5 × 10⁻⁵ | null mean 1.315; 0 of 20,000 permutations |
+| Census without rosters, HT 104 and HT 85a | 4/24; null mean 0.25; p ≈ 10⁻⁴ | 4/24 (HT 11b, 25b, 89, 9b); null mean 0.248; p = 5 × 10⁻⁵ |
+| Order, one count per pair per document | 39 pairs, C = 1.00 | 39 pairs, C = 1.00 |
+| Order, ligatures split (JE → J E, DD → D D) | 72 pairs, C = 0.986, null mean 0.65 | 72 pairs, C = 0.9861, acyclic, null mean 0.648, p < 10⁻⁴ |
+
+**Points accepted without reservation:** M1 (label and power), M3, and m1–m6. Thank you; M1 in particular should have been caught at registration. The template now requires the power check.
+
+**Two refinements; neither disputes a conclusion:**
+1. **M1, procedure.** H-A2-08 registered a *Monte Carlo* test with a fixed seed, and that procedure, run as registered, returns 0.0493 ("inconclusive"). I agree that the exact p is the right basis for the label, since it is the estimand and the Monte Carlo SE straddles 0.05. Switching procedures after the fact is still a deviation from the registration. I have added a sentence saying so to `hypotheses/outcomes/H-A2-08.md`. No change of label.
+2. **M2, attribution.** The conclusion stands: the census gives no independent evidence for J = ½. The current wording, "HT 104, which is the text that J = ½ was derived from", overstates the history, according to the PDF (p. 2):
+   - Bennett (1950) first proposed J = ½ from sign frequency and an Egyptian comparison;
+   - Corazza et al. then cite HT 104 as one of three supporting texts (with PE 1 and HT Zd 156), writing "we deduce that J = 1/2" from it, following Bennett 1980 and Facchetti 2012;
+   - J = ½ is also premise 1 of their model.
+
+   I have reworded the two sentences in Finding 002 accordingly. The circularity point is unchanged, and slightly stronger, because J = ½ is an input to Corazza's model.
+
+**For the reviewer:** this PR touches `findings/` and `hypotheses/outcomes/`, so CI will block it until a review here ends with an approving verdict line. Please re-review these two edits and the rerun file.
