@@ -198,3 +198,26 @@ Consequences:
 - **KI-RO:** none of the three naive relations holds in 11 pairs. KI-RO rows are not yet GORILA-checked.
 
 **Comparisons run here:** for KU-RO and PO-TO-KU-RO, one per scope and value set; for KI-RO, 3 relations × 2 value sets × 11 pairs. All are exploratory and none counts as a hypothesis test.
+
+---
+
+## 2026-11-06 — A2 wrapped up on corpus-v0.1; status for the next session
+
+**Done this session:**
+- **Restoration check (exploratory addendum):** only 1 of the 9 exact KU-RO matches (HT 85a) involves a number the edition marks as damaged. The circularity risk is small but not excluded. Younger's site blocks bots, so a manual check is needed for that part.
+- **H-A2-06 registered**, value-free sceptre test. The frozen corpus order graph is in the file. It waits for *Anetaki II*.
+- **H-A2-09 registered** (R0, running-total R1 and section R2 scope rules). It may only be tested on documents not in corpus-v0.1, and will probably end up descriptive only.
+- **Finding 002:** a summary of A2 on corpus-v0.1.
+- **`docs/manual-checks/A2-checklist.md`:** a prioritised list for a human second reading.
+- **lineara.xyz convention found:** "—" (U+2014) marks ruled lines (DATA_SOURCES).
+
+**Open on A2 (nothing urgent):**
+- the human second check (Marius, at leisure);
+- a GORILA check of the KI-RO rows;
+- Montecchi 2009/2013;
+- A2.4 Linear B validation (needs DAMOS);
+- H-A2-06 when *Anetaki II* appears;
+- re-run everything on corpus-v1.0;
+- an independent review of Finding 002 by a separate Claude instance, as `CLAUDE.md` requires for findings. Not yet done.
+
+**Suggested next topic:** either A1 (corpus-v1.0: SigLA licence and harvest, reconciliation; this unblocks re-running A2 and gives A3/A4 better data) or A5.C (the spelling channel, which needs only Linear B data and can start now). See plan §0.5.

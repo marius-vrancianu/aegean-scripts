@@ -11,6 +11,7 @@ Every dataset used anywhere in this repo is listed here before it is used. Field
 - **Known issues:** derived source; readings must be checked against GORILA / SigLA (A1.9).
   - **Damage marking is incomplete.** U+1076B (lacuna) marks some broken edges. Other damage appears only as editorial brackets in `transliteratedWords` (e.g. HT 104 `TE+RO[`), or not at all: HT 104 lines 3–4 lie in a stippled damage band in the GORILA facsimile but carry no flag. corpus-v0.1 records both signals; neither is complete.
   - The line breaks in `words` follow lineara's entry segmentation, not always the tablet's physical lines.
+  - **Ruled lines** (horizontal rulings dividing sections) appear to be encoded as a token "—" (U+2014). The token sits exactly where rulings are drawn on HT 117a, ZA 15b, HT 130 and HT 131b (checked against GORILA facsimiles 2026-11-06). This is an inferred convention, medium-high confidence.
   - Two records share the ID `KH101` (one empty). The builder keeps the non-empty one.
   - The snapshot includes the held-out sceptre records (KNZg57a, KNZg57b, KNZg58), which are excluded by name before parsing. Exact-token counts on this snapshot: KU-RO in 34 document sides, KI-RO in 12, PO-TO-KU-RO in 2 (HT 122a/b).
 
