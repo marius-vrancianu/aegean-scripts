@@ -1,4 +1,4 @@
-**Merge:** auto-merge / **Needs Marius's merge** (touches `hypotheses/`, `findings/`, or the rules; see CLAUDE.md → Merging)
+**Merge:** auto-merge / **Review-gated: `docs/reviews/…`** (touches `hypotheses/` or `findings/`) / **Needs Marius's merge** (touches the rules; see CLAUDE.md → Merging)
 
 **Task ID:** A?.? — (title)
 
@@ -20,3 +20,4 @@
 - [ ] Plan checkbox updated
 - [ ] Anything I (an LLM) proposed is labelled as a hypothesis, not a finding
 - [ ] Next steps / open questions noted for whoever resumes this
+- [ ] Review-gated PRs: independent review file linked, ending in `Verdict: APPROVE`

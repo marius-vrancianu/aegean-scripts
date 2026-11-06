@@ -250,3 +250,15 @@ This follows the review entry above (`docs/reviews/finding-002-review.md`).
 - **`hypotheses/TEMPLATE.md`:** a power check is now required in every decision rule.
 - **`docs/manual-checks/A2-checklist.md`:** Priority 4 added (the order of stacked fraction signs).
 - **Lesson for future registrations:** check the minimum attainable p before freezing a decision rule, and do not report Monte Carlo p-values that sit on a threshold.
+
+---
+
+## 2026-11-06 — Merge policy changed: review-gated auto-merge for hypotheses and findings
+
+**Decided by Marius.** PRs that touch `hypotheses/` or `findings/` no longer need his manual merge. They auto-merge once an independent Claude review file ending in `Verdict: APPROVE` is in the PR and CI passes. See `CLAUDE.md` → Merging.
+
+**What stays manual:** rule files (`CLAUDE.md`, `tools/check_guardrails.py`, `.github/`, `data/heldout.txt`).
+
+**Why:** the review of Finding 002 found three errors that the independent review caught, not the manual merge. The review is kept as the gate.
+
+**Not enforced by CI yet.** A guardrail check that a review-gated PR contains or links a review with APPROVE would itself be a rule change. If wanted, it is a separate hand-merge PR.
