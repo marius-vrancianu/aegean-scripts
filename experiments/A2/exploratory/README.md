@@ -54,3 +54,12 @@ Three candidate relations were tried on every pair. That makes 6 comparisons per
 2. **Section and commodity scope.** HT 118, ZA 15b and PH 31a suggest that KU-RO totals one section or commodity, not the whole side.
 3. **The two fraction offsets** (HT 13, −1/2; HT 9a, +3/4) are candidates for checking against GORILA readings and the literature (Montecchi 2009/2013).
 4. **Damage standard.** Seven exact matches came from rows judged "damaged". The checking standard, or the reliance on restorations, needs revisiting before corpus-v1.0.
+
+## Addendum 2026-11-06: restoration check
+**Question:** do the exact matches depend on numbers that editors restored?
+
+**Method:** Younger's site blocks automated access, so the check used lineara.xyz's own damage marks on each numeral (U+1076B at the number's edge, or editorial brackets).
+
+**Result:** of the 9 exact matches, **only HT 85a** has a marked numeral, namely its total, 66, damaged at the left edge. Of the 3 near misses, only HT 102 has one (an entry, "33]"). The other "damaged" rows were flagged by Claude because of damage *near* the numbers, not on them.
+
+**Limits:** lineara's damage marking is incomplete (see DATA_SOURCES), so unmarked restorations cannot be excluded. Checking Younger's brackets by hand is item 4 of `docs/manual-checks/A2-checklist.md`.
