@@ -28,14 +28,30 @@ Marius works from secondary literature and does not read Linear B, Greek, Semiti
 ## Workflow
 - One branch and one PR per task ID: `a2.1-numeral-parser`, `a1.10-damos-check`. PR title starts with the task ID. Fill in the PR template.
 - `main` is protected. Never push to it directly (the initial scaffold was the only exception).
-- **Merging.** Agents open PRs under Marius's account, so GitHub cannot require an approval. The split below is a rule you must follow, not something GitHub enforces:
-  - **Auto-merge allowed** (enable auto-merge on the PR; GitHub merges it when CI passes): code, tests, data fetchers, docs, plan checkboxes, research-notes entries.
-  - **Marius merges by hand. Never enable auto-merge and never merge it yourself.** This applies to any PR that:
-    - adds or changes anything under `hypotheses/`. Merging is the pre-registration commitment.
-    - adds or changes anything under `findings/`. That is a claim.
-    - changes the rules themselves: `CLAUDE.md`, `tools/check_guardrails.py`, `.github/`, `data/heldout.txt`.
-  - For hand-merge PRs, write "**Needs Marius's merge**" and the reason as the first line of the PR description. For a finding, ask for a review by a separate Claude instance that did not produce it, and link that review.
+- **Merging.** Agents open PRs under Marius's account, so GitHub cannot require an approval. The three categories below are a rule you must follow, not something GitHub enforces:
+  - **Auto-merge** (enable auto-merge on the PR; GitHub merges it when CI passes): code, tests, data fetchers, docs, plan checkboxes, research-notes entries.
+  - **Review-gated auto-merge.** This applies to any PR that adds or changes anything under `hypotheses/` (merging is the pre-registration commitment) or `findings/` (that is a claim).
+    1. A separate Claude instance that did not produce the work reviews it.
+       - It writes the review to `docs/reviews/<subject>-review.md`.
+       - The review ends with exactly one verdict line: `Verdict: APPROVE` or `Verdict: CHANGES REQUESTED`.
+    2. **Hypothesis reviews** check, at minimum:
+       - the null model;
+       - the power check (minimum attainable p below the support threshold);
+       - the decision rule and the batch count;
+       - that "What I already know" is complete.
+    3. **Finding reviews** check, at minimum:
+       - that every claim follows from a registered outcome or is labelled exploratory;
+       - the numbers, by rerunning the code;
+       - circularity against the sources the values or readings came from;
+       - the literature the finding agrees or disagrees with.
+    4. On CHANGES REQUESTED, the author fixes the PR. A reviewer (the same instance or a new one) appends a re-review to the same file. Only a reviewer's APPROVE counts; the author never writes it.
+    5. Once the review file with APPROVE is in the PR (or linked from it), and CI passes, enable auto-merge.
+       - Write "**Review-gated: <review file>**" as the first line of the PR description.
+       - If the session cannot enable auto-merge (some sessions are blocked from merging), say so in the PR and leave it for Marius.
+  - **Marius merges by hand. Never enable auto-merge and never merge it yourself.** This applies to any PR that changes the rules themselves: `CLAUDE.md`, `tools/check_guardrails.py`, `.github/`, `data/heldout.txt`. An agent that could merge changes to its own rules would make every other rule optional. Write "**Needs Marius's merge**" and the reason as the first line of the PR description.
+  - A PR that touches both a rule file and anything else is a hand-merge PR. Better: split it.
   - If unsure which category a PR falls in, treat it as hand-merge.
+  - Marius can still stop or revert any merge. A reverted hypothesis or finding gets a research-notes entry saying why.
 - Results cite **corpus tag + commit hash** (e.g. `corpus-v1.0 @ abc1234`).
 - A finding is `findings/NNN-<slug>.md`. Take the next free number at merge time; if two PRs collide, the later one renumbers.
 - `research-notes.md` is **append-only**: add a dated entry at the end; never edit past entries (CI enforces this). Corrections are new entries referencing the old one.
