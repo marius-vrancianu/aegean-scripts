@@ -39,3 +39,13 @@ def test_s1_starts_after_a_marker_without_number():
     doc = {"id": "T1", "lines": [[g("AB001"), n(20)], [g(KI, RO)], [g("AB002"), n(1)], [g("AB003"), n(1)], [g(KU, RO), n(2)]]}
     s1 = [r for r in census.build_rows([doc]) if r.scope == "S1"][0]
     assert [e[0] for e in s1.entries] == [1, 1]
+
+
+def test_exact_p_for_small_n():
+    # H-A2-08's five testable rows: only two totals can match, so p = 3!/5! = 0.05 exactly.
+    pairs = [(10, 10), (6, 6), (159, 160), (50, 30), (3, 78)]
+    t = census.permutation_test(pairs, 2000)
+    assert t["p_exact"] == 0.05
+    assert t["p"] == 0.05
+    assert t["min_attainable_p"] == 0.05
+    assert census.decide(t) == "not supported"
