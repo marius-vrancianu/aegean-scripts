@@ -17,7 +17,13 @@ Every dataset used anywhere in this repo is listed here before it is used. Field
 
 ## SigLA — The Signs of Linear A
 - **Source:** https://sigla.phis.me (Salgarella & Castellan).
-- **Licence:** reported as CC BY-NC-SA 4.0 by third parties; **not yet verified on the site** (V1 / A1.2). Not yet used.
+- **Licence:** **CC BY-NC-SA 4.0**, verified 2026-11-06 in the site footer, which says the dataset and drawings are available under it.
+  - **Redistribution** is allowed, so the raw snapshot may be committed.
+  - **Attribution:** credit Salgarella & Castellan.
+  - **NonCommercial:** no commercial use.
+  - **ShareAlike:** corpus files derived from SigLA must carry the same licence, including corpus-v1.0 if it contains SigLA data. Code that only processes the data is not affected. Each derived file needs a licence notice.
+- **Access:** no download or export link on the site. The project paper (https://sigla.phis.me/paper.html) says the site can be downloaded and run locally, and that its data is a JSON database built from the drawing files. A1.4 should find that JSON rather than scrape HTML pages.
+- **Not yet used.**
 
 ## DAMOS — Database of Mycenaean at Oslo (Linear B control corpus)
 - **Source:** https://damos.hf.uio.no
