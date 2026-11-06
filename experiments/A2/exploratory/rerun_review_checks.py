@@ -57,13 +57,12 @@ def main():
     rows = census_rows()
     out["census_unstratified"] = perm(rows, 20000)
     out["census_stratified_by_sum_magnitude"] = perm(rows, 20000, strata=magnitude)
-    drop = {"HT117a", "HT88", "HT94b", "HT104", "HT85a"}  # rosters, HT 104 (source of J = 1/2), HT 85a (damaged total)
+    drop = {"HT117a", "HT88", "HT94b", "HT104", "HT85a"}  # rosters, HT 104 (published evidence for J = 1/2), HT 85a (damaged total)
     kept = [r for r in rows if r["doc"] not in drop]
     out["census_without_rosters_HT104_HT85a"] = perm(kept, 20000) | {
         "exact_docs": sorted(r["doc"] for r in kept if r["corazza2021_status"] == "exact")}
 
     docs = [json.loads(l) for l in CORPUS.open(encoding="utf-8")]
-    lists = order.fraction_lists(docs)
     # one count per ordered pair per document
     per_doc = []
     for d in docs:
