@@ -27,7 +27,9 @@ pytest
 ```
 
 ## Status
-Phase 2, starting with A1 (canonical corpus) and A2 (accounting-constraint analysis). See `plans/phase2-analysis-plan.md`.
+Phase 2 (see `plans/phase2-analysis-plan.md`):
+- **A2 done on corpus-v0.1.** See Finding 002 and its independent review in `docs/reviews/`. It is to be re-run on corpus-v1.0.
+- **Current focus: A1, building corpus-v1.0** from SigLA, lineara.xyz and Younger, with a cross-source disagreement report.
 
 ## Licence
 Not yet chosen; until a LICENSE file is added, all rights are reserved. Third-party data keeps its own terms (see `DATA_SOURCES.md`).
