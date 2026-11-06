@@ -28,10 +28,15 @@ Marius works from secondary literature and does not read Linear B, Greek, Semiti
 ## Workflow
 - One branch and one PR per task ID: `a2.1-numeral-parser`, `a1.10-damos-check`. PR title starts with the task ID. Fill in the PR template.
 - `main` is protected. Never push to it directly (the initial scaffold was the only exception).
-- **Merging.** Agents open PRs under Marius's account, so GitHub cannot require an approval. The three categories below are a rule you must follow, not something GitHub enforces:
-  - **Auto-merge** (enable auto-merge on the PR; GitHub merges it when CI passes): code, tests, data fetchers, docs, plan checkboxes, research-notes entries.
+- **Merging.** Agents open PRs under Marius's account, so GitHub cannot require an approval. The three categories below are a rule you must follow, not something GitHub enforces. CI (job `test`) is a required status check on `main`, and its guardrails fail any review-gated PR until an approving review is in it.
+  - **Enable auto-merge as soon as you open any PR that is not a rule-file PR.** Do not wait for CI or for a review. GitHub merges when CI passes, and for review-gated PRs CI cannot pass before `Verdict: APPROVE`. Waiting is what makes merges stall: GitHub refuses to enable auto-merge on a PR whose checks have already passed.
+  - If the session is blocked from enabling auto-merge, say so in the PR in one line and move on. Marius merges.
+  - **Auto-merge** (no review needed): code, tests, data fetchers, docs, plan checkboxes, research-notes entries.
   - **Review-gated auto-merge.** This applies to any PR that adds or changes anything under `hypotheses/` (merging is the pre-registration commitment) or `findings/` (that is a claim).
-    1. A separate Claude instance that did not produce the work reviews it.
+    1. A separate Claude instance that did not produce the work reviews it. That can be another session, or a **fresh subagent launched by the author session**:
+       - the subagent gets only the PR number and this exact prompt: "Review PR #<n> as an independent reviewer under CLAUDE.md → Merging (review-gated). You did not write this work. Push your review to the PR branch."
+       - the author adds no summary, argument or hint, and does not edit the subagent's review;
+       - the subagent's report is relayed to Marius unedited.
        - It writes the review to `docs/reviews/<subject>-review.md`.
        - The review ends with exactly one verdict line: `Verdict: APPROVE` or `Verdict: CHANGES REQUESTED`.
     2. **Hypothesis reviews** check, at minimum:
@@ -45,9 +50,8 @@ Marius works from secondary literature and does not read Linear B, Greek, Semiti
        - circularity against the sources the values or readings came from;
        - the literature the finding agrees or disagrees with.
     4. On CHANGES REQUESTED, the author fixes the PR. A reviewer (the same instance or a new one) appends a re-review to the same file. Only a reviewer's APPROVE counts; the author never writes it.
-    5. Once the review file with APPROVE is in the PR (or linked from it), and CI passes, enable auto-merge.
+    5. The reviewer commits the review (or re-review) **to the PR branch**, not to a new PR. That push reruns CI; with APPROVE, CI passes and the auto-merge set at opening merges the PR.
        - Write "**Review-gated: <review file>**" as the first line of the PR description.
-       - If the session cannot enable auto-merge (some sessions are blocked from merging), say so in the PR and leave it for Marius.
   - **Marius merges by hand. Never enable auto-merge and never merge it yourself.** This applies to any PR that changes the rules themselves: `CLAUDE.md`, `tools/check_guardrails.py`, `.github/`, `data/heldout.txt`. An agent that could merge changes to its own rules would make every other rule optional. Write "**Needs Marius's merge**" and the reason as the first line of the PR description.
   - A PR that touches both a rule file and anything else is a hand-merge PR. Better: split it.
   - If unsure which category a PR falls in, treat it as hand-merge.
