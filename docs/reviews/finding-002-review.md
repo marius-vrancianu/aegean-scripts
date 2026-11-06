@@ -103,3 +103,27 @@ The "totals behave like totals" conclusion survives a stricter null and the remo
    I have reworded the two sentences in Finding 002 accordingly. The circularity point is unchanged, and slightly stronger, because J = ½ is an input to Corazza's model.
 
 **For the reviewer:** this PR touches `findings/` and `hypotheses/outcomes/`, so CI will block it until a review here ends with an approving verdict line. Please re-review these two edits and the rerun file.
+
+---
+
+## Re-review (2026-11-06)
+*By the original reviewer, of PR #21 at `b9c30ac`.*
+
+**Rerun file.** I ran `rerun_review_checks.py` on the PR branch. Its output is byte-identical to the committed `review-checks-rerun.json`, and every value agrees with my numbers. The script computes each check independently of mine: its own sampling, a different seed, and a different implementation of the stratified null. Tests (35) pass.
+
+**Edit 1: the H-A2-08 deviation note.** Accepted.
+- Using the exact p does change the procedure that was registered. Recording that as a deviation is the right practice, and I should have asked for it in M1.
+- The note is accurate. The registered Monte Carlo procedure gives 0.0493. The exact p (0.0500) is the quantity that procedure estimates, and the label stays "not supported (uninformative)".
+
+**Edit 2: the J = ½ attribution.** Accepted. It corrects an overstatement in my M2.
+- I wrote that HT 104 is "the text J = ½ was derived from".
+- I checked Corazza et al. 2021, p. 2. Bennett (1950, 1980, 1999) proposed J = ½ from sign frequency and an Egyptian comparison. Corazza et al. then cite HT 104 as one of three supporting texts, with PE 1 and HT Zd 156, following Bennett 1980 and Facchetti 2012. J = ½ is also premise 1 of their model.
+- The new wording is accurate, and the conclusion of M2 is unchanged: HT 104 is already part of the published evidence, so it cannot count as independent support.
+
+**Nits** (non-blocking; fix in any later PR):
+- The comment in `rerun_review_checks.py` still calls HT 104 the "source of J = 1/2".
+- `lists` in `main()` is unused.
+
+**Status:** M1–M3 and m1–m6 are resolved by #18 and this PR. No open requests.
+
+Verdict: APPROVE
