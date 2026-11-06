@@ -221,3 +221,17 @@ Consequences:
 - an independent review of Finding 002 by a separate Claude instance, as `CLAUDE.md` requires for findings. Not yet done.
 
 **Suggested next topic:** either A1 (corpus-v1.0: SigLA licence and harvest, reconciliation; this unblocks re-running A2 and gives A3/A4 better data) or A5.C (the spelling channel, which needs only Linear B data and can start now). See plan §0.5.
+
+---
+
+## 2026-11-06 — Independent review of Finding 002
+
+A separate Claude instance reviewed Finding 002, as `CLAUDE.md` requires. Full text: `docs/reviews/finding-002-review.md`.
+
+**Verdict:** accept after corrections. The fixed fraction order (H-A2-07) and "totals behave like totals" (exploratory census) both survive the reviewer's robustness checks.
+
+**Corrections required (not yet made):**
+- **H-A2-08** is "not supported" by its frozen rule. The exact permutation p is 6/120 = 0.0500; the reported 0.049 was Monte Carlo noise. The test could only have been "supported" with 5 of 5 exact matches. This makes it uninformative, not evidence against KU-RO = total.
+- **"Supports J = ½" is circular.** HT 104 is the text J = ½ was derived from, and it is the only exact total with a fraction sign. No exact total contains E.
+- **"No pair in both orders" is false as written.** ZA 8 has E J, against 31 J E hidden in the ligature codepoint. The order regularity is Bennett's observation and Corazza's premise 5; H-A2-07 replicates it.
+- Six minor wording and caveat points: site clustering, linearisation of stacked signs, KI-RO denominators, the damage-mark source, exploratory p-values, and the 1s rosters.
