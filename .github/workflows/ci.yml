@@ -4,6 +4,7 @@ on:
   push:
     branches: [main]
   pull_request:
+    types: [opened, synchronize, reopened, edited]
 
 jobs:
   test:
@@ -18,5 +19,8 @@ jobs:
       - run: pip install -e ".[dev]"
       - name: Guardrails (PRs only)
         if: github.event_name == 'pull_request'
+        env:
+          # Passed through env, never interpolated into the script (injection-safe).
+          PR_BODY: ${{ github.event.pull_request.body }}
         run: python tools/check_guardrails.py origin/${{ github.base_ref }}
       - run: pytest -q
