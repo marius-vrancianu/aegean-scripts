@@ -1,6 +1,6 @@
 # Exploratory census of all accounting markers (corpus-v0.1)
 
-**EXPLORATORY — not a pre-registered test.** Marius requested it on 2026-11-05, after H-A2-08 came out inconclusive. Run by Claude the same day.
+**EXPLORATORY — not a pre-registered test.** Marius requested it on 2026-11-05, after H-A2-08 came out inconclusive (relabelled "not supported, uninformative" on 2026-11-06; see the review of Finding 002). Run by Claude the same day.
 
 - **Scope:** every KU-RO, KI-RO and PO-TO-KU-RO occurrence, including damaged and fraction-bearing rows.
 - **Fraction values:** two published value sets, Corazza et al. 2021 Table 8 and Schrijver 2014 as tabulated in Corazza's Table 3.

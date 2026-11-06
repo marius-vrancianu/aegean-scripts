@@ -235,3 +235,18 @@ A separate Claude instance reviewed Finding 002, as `CLAUDE.md` requires. Full t
 - **"Supports J = ½" is circular.** HT 104 is the text J = ½ was derived from, and it is the only exact total with a fraction sign. No exact total contains E.
 - **"No pair in both orders" is false as written.** ZA 8 has E J, against 31 J E hidden in the ligature codepoint. The order regularity is Bennett's observation and Corazza's premise 5; H-A2-07 replicates it.
 - Six minor wording and caveat points: site clustering, linearisation of stacked signs, KI-RO denominators, the damage-mark source, exploratory p-values, and the 1s rosters.
+
+---
+
+## 2026-11-06 — Corrections to Finding 002 applied (review M1–M3, m1–m6)
+
+This follows the review entry above (`docs/reviews/finding-002-review.md`).
+- **H-A2-08 relabelled "not supported".** `census.permutation_test` now computes the exact p and the minimum attainable p for n ≤ 8 (code `b0e0aba`), and the results were regenerated. The exact p is 0.0500, against the 0.049 Monte Carlo estimate. The minimum attainable p was 0.05, so the test had no power. The outcome file records the correction in place.
+- **Finding 002:**
+  - the J = ½ support claim is removed (circular via HT 104);
+  - the "both orders" claim is reworded, with credit to Bennett and Corazza premise 5 and the ligature sensitivity check;
+  - site clustering, linearisation and KI-RO denominators are stated;
+  - the exploratory p is flagged as post hoc, with the reviewer's robustness checks.
+- **`hypotheses/TEMPLATE.md`:** a power check is now required in every decision rule.
+- **`docs/manual-checks/A2-checklist.md`:** Priority 4 added (the order of stacked fraction signs).
+- **Lesson for future registrations:** check the minimum attainable p before freezing a decision rule, and do not report Monte Carlo p-values that sit on a threshold.

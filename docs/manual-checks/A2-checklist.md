@@ -42,3 +42,15 @@ If you can, record your answers **before** looking at Claude's row for the same 
 
 ## Priority 3: KI-RO tablets (needed before any KI-RO claim)
 These have not been checked by anyone yet. The list is the KI-RO rows in `experiments/A2/exploratory/census-all.csv`.
+
+## Priority 4: order of stacked fraction signs (review of Finding 002, m2)
+Corazza et al. say larger fractions are written to the left of or **above** smaller ones. When two signs are stacked, the edition has to decide which comes first in the linear transcription. For each tablet below, look at the drawing and note whether the fraction signs sit **side by side** or **stacked**. If they are stacked, note which one is on top.
+
+| Tablet | Pair in corpus-v0.1 |
+|---|---|
+| HT 16 | E F |
+| HT 8b | E F |
+| KH 11 | K L2 |
+| KH 5 | J B |
+| HT 33 | E L2 |
+| ZA 8 | E J (the one reversal) |

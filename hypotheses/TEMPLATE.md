@@ -23,5 +23,7 @@ Which known-answer run must pass first, and its pass criterion.
 ## Decision rule
 What result counts as support, what counts as refutation, and what counts as inconclusive. Include the multiple-comparison correction and the size of the batch this belongs to.
 
+**Power check (required):** the expected n, and the smallest p the test can attain at that n under the null. If it cannot go below the support threshold, the test cannot succeed: change the design or register it as descriptive. For permutation tests with n! ≤ ~10⁶, compute p by exact enumeration.
+
 ## What I already know that could bias this
 Anything seen in advance (results, papers, held-out leaks).

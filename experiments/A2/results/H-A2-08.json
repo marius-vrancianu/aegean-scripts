@@ -2,7 +2,7 @@
   "hypothesis": "H-A2-08",
   "corpus": "corpus-v0.1 (sha256 bb14ce5cbf9fda7798a91830685cf14f01e6c36b625ecfb9adfc9c6d00adb791)",
   "gorila_checks": "checks-2026-11-05.csv",
-  "code_commit": "8de0b44852cf9d499c6531ae8b4ee83a75ecd4c0",
+  "code_commit": "b0e0abaa2318e5144a6495f6f5d93bc8afe138e7",
   "seed": 20261105,
   "n_permutations": 10000,
   "category_table": {
@@ -36,8 +36,11 @@
     "observed_near_miss": 1,
     "null_mean_consistent": 0.3991,
     "null_mean_near_miss": 0.1941,
-    "p": 0.0493,
-    "decision": "inconclusive"
+    "p_monte_carlo": 0.0493,
+    "p_exact": 0.05,
+    "min_attainable_p": 0.05,
+    "p": 0.05,
+    "decision": "not supported"
   },
   "rows": [
     {

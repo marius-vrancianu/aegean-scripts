@@ -6,6 +6,8 @@ run on any occurrence without one. No fraction values are used anywhere.
 from __future__ import annotations
 
 import csv
+import itertools
+import math
 import random
 import re
 from dataclasses import dataclass, field
@@ -16,6 +18,7 @@ from aegean.arithmetic.parse import MARKERS, parse_document
 SEED = 20261105
 N_PERM = 10_000
 NEAR = {1, 10, 100, 1000}
+EXACT_MAX_N = 8  # enumerate all n! reassignments up to this size (8! = 40,320)
 SCOPES_KURO = ("S1", "S2")
 SCOPES_POTO = ("P1", "P2")
 
@@ -139,9 +142,24 @@ def permutation_test(pairs: list[tuple[int, int]], n_perm: int = N_PERM, seed: i
         cs.append(c)
         ns.append(sum(abs(t - s) in NEAR for s, t in zip(sums, sh)))
         ge += c >= obs_c
-    return {"n": len(pairs), "observed_consistent": obs_c, "observed_near_miss": obs_n,
-            "null_mean_consistent": sum(cs) / n_perm, "null_mean_near_miss": sum(ns) / n_perm,
-            "p": ge / n_perm}
+    out = {"n": len(pairs), "observed_consistent": obs_c, "observed_near_miss": obs_n,
+           "null_mean_consistent": sum(cs) / n_perm, "null_mean_near_miss": sum(ns) / n_perm,
+           "p_monte_carlo": ge / n_perm}
+    if len(pairs) <= EXACT_MAX_N:
+        # The registered p is "the share of reassignments with >= observed consistent rows".
+        # For small n, compute that share exactly instead of estimating it (review of Finding 002, M1).
+        hits = sum(sum(s == t for s, t in zip(sums, perm)) >= obs_c for perm in itertools.permutations(totals))
+        out["p_exact"] = hits / math.factorial(len(pairs))
+        out["min_attainable_p"] = min_attainable_p(sums, totals)
+    out["p"] = out.get("p_exact", out["p_monte_carlo"])
+    return out
+
+
+def min_attainable_p(sums: list, totals: list) -> float:
+    """Smallest p the test could give with these totals (all matchable totals matched)."""
+    best = max(sum(s == t for s, t in zip(sums, perm)) for perm in itertools.permutations(totals))
+    hits = sum(sum(s == t for s, t in zip(sums, perm)) >= best for perm in itertools.permutations(totals))
+    return hits / math.factorial(len(sums))
 
 
 def decide(test: dict) -> str:
