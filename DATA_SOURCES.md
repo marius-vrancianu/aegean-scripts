@@ -13,6 +13,10 @@ Every dataset used anywhere in this repo is listed here before it is used. Field
   - The line breaks in `words` follow lineara's entry segmentation, not always the tablet's physical lines.
   - **Ruled lines** (horizontal rulings dividing sections) appear to be encoded as a token "—" (U+2014). The token sits exactly where rulings are drawn on HT 117a, ZA 15b, HT 130 and HT 131b (checked against GORILA facsimiles 2026-11-06). This is an inferred convention, medium-high confidence.
   - Two records share the ID `KH101` (one empty). The builder keeps the non-empty one.
+  - **Found in A1.9** (`docs/reports/A1.9-source-disagreements.md`):
+    - The **Arkhanes tablets ARKH 1–7 and ARG Zg 1 have the site "Arkhalkhori"**. This is a lineara.xyz error: the prefix `ARKH` is Arkhanes.
+    - **AB022 (CAP) appears where SigLA and Younger both have AB021 (OVIS)**, 13–14 times, through the codepoint `AB022F`; it needs checking on GORILA.
+    - The man sign is encoded with Unicode's merged `A100-102` codepoint, normalised to AB100.
   - The snapshot includes the held-out sceptre records (KNZg57a, KNZg57b, KNZg58), which are excluded by name before parsing. Exact-token counts on this snapshot: KU-RO in 34 document sides, KI-RO in 12, PO-TO-KU-RO in 2 (HT 122a/b).
 
 ## SigLA — The Signs of Linear A
@@ -32,6 +36,7 @@ Every dataset used anywhere in this repo is listed here before it is used. Field
   - **Uncertain reading** is a per-sign flag. Erasures are flagged. Unidentified signs (`[?]`) and unclassified signs are kept as attestations without a sign ID. There is no restoration field.
   - **Conventional values** in the sign table are L1. They never enter attestations.
   - **Metadata ID differs from the key** in 7 documents (e.g. KH 87 → "KH 97", PH Wa 52 → "PE Wa 52"). Both are kept, for A1.9.
+  - **Found in A1.9:** SigLA **omits all fractions on 57 documents** where lineara.xyz and Younger have them (KH 1, KH 10, KH 11, ARKH 1 …). It marks fewer word-edge breaks than the other sources. It gives AB072 the value `ko` (Unicode Linear B `pe`; also `ko` for AB070). It has more signs on tablets than the other editions (e.g. HT 29, HT 10, HT 49). The hypothesis is that SigLA draws damaged signs the others omit.
   - Period and support are free text with spelling variants (`Libation Table` / `Libation table`; `''`, `n/a`, `unknown`). They are normalised in A1.6/A1.7, not at ingest.
 - **Citation:** Salgarella, E. & Castellan, S. (2020–). *SigLA: The Signs of Linear A. A palæographical database.* https://sigla.phis.me. Paper: https://sigla.phis.me/paper.html.
 

@@ -78,6 +78,6 @@
       "AB043": 1
     }
   },
-  "output_sha256": "a0d2ec6e33e799982c6cf4fe5e190df71578e9dfb7dea189b7a799f31b2618b4",
+  "output_sha256": "d2d4b41f1451cd0ea98b71506cd0ed865b205944064890fdfabe82d8d37205d3",
   "licence_note": "witnesses.jsonl is not committed: it holds lineara.xyz and Younger texts (no licence) and SigLA data (CC BY-NC-SA 4.0). Rebuild it from the pinned inputs."
 }

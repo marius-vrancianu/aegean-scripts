@@ -446,3 +446,26 @@ Logogram labels come from SigLA's sign-table names. **2,709 of 3,035 Younger tok
 - the lines where Younger's printed value (`l1_value`) differs from the uniform `l1`.
 
 **Output:** `data/processed/corpus-v1.0-pre/` (witnesses.jsonl gitignored; MANIFEST committed), reproducible from pinned inputs. 3,049 witnesses, all schema-valid. Next: A1.9 (disagreement report).
+
+---
+
+## 2026-11-10 — A1.9: cross-source disagreement report (data-quality, not a finding)
+
+**Report:** `docs/reports/A1.9-source-disagreements.md`. Its figures come from `data/processed/disagreements/summary.json`, built by `python -m aegean.corpus.disagreements`. It is a data-quality report by Marius's choice, not review-gated.
+
+**Headlines:**
+- **Identified signs agree 97.5% (lineara.xyz–SigLA), 98.7% (lineara.xyz–Younger) and 98.2% (SigLA–Younger).** All three rest on GORILA, and lineara.xyz derives from Younger, so this is agreement between editions, not accuracy.
+- **The HT numerals have one source (lineara.xyz)**: Younger has no HT and SigLA has no numerals. SigLA also **omits fractions entirely on 57 documents**. So A2's single-source caveat for HT cannot be removed by corpus-v1.0.
+- lineara.xyz vs Younger numerals: identical in 117 of 135 documents. There are 17 differences (MA 4: 123 vs 137; MA 6: 35 vs 45 …), all non-HT; they are a manual-check list.
+- **Likely lineara.xyz errors**, to be checked on GORILA:
+  - AB022 (CAP) where SigLA and Younger have AB021 (OVIS), 13–14 times;
+  - the Arkhanes tablets labelled "Arkhalkhori".
+- **Fraction order** differs in one document (PH 9). Ligature codepoints account for all apparent JE/DD differences: they disappear once ligatures are expanded, as the A1.7 schema now does.
+
+**Bugs found and fixed while building this report (my code):**
+1. The A1.7 Unicode-name mapper bypassed the number-based series rule for names without a variant, and did not know Unicode's merged `A100-102` codepoint. lineara.xyz's man sign came out as `A100`; it is now AB100.
+2. My first comparison counted only "word" items and selected fractions by role. That made lineara.xyz's logograms look like extra signs, and SigLA's missing fractions look like letter disagreements. Both are fixed before any figure was used.
+
+The A1.8 MANIFEST is rebuilt; its output hash changed because of fix 1.
+
+**Next:** the A1 tasks Marius assigned (A1.4–A1.9) are done. A1.10 (DAMOS) is his. Remaining in A1: A1.11 baseline statistics, A1.12 freeze the held-out split and tag v1.0, A1.13 the sceptre text when published.
