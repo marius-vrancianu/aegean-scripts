@@ -1,0 +1,30 @@
+# Hand-made mappings for source IDs that are not regular GORILA sigla (A1.6).
+# Read by aegean.corpus.concordance. Columns: source, source_id, key, confidence, note.
+# A key may be a non-GORILA label; such documents are flagged id_irregular.
+# "unresolved" keys are deliberately source-specific: do not merge them without a primary publication.
+source	source_id	key	confidence	note
+lineara.xyz	THEfr.1	THE fr.1	high	same label as Younger "THE small tablet fragment 1" (Akrotiri); relation to SigLA THE 7-12 unresolved
+lineara.xyz	THEfr.2	THE fr.2	high	as above
+lineara.xyz	THEfr.3	THE fr.3	high	as above
+lineara.xyz	THEtab.4	THE tab.4	high	same label as Younger "THE tablet 4"; relation to SigLA THE 7-12 unresolved
+lineara.xyz	THEtab.5	THE tab.5	high	as above
+lineara.xyz	THEtab.6	THE tab.6	high	as above
+younger	THE small tablet fragment 1	THE fr.1	high	see lineara.xyz THEfr.1
+younger	THE small tablet fragment 2	THE fr.2	high	
+younger	THE small tablet fragment 3	THE fr.3	high	
+younger	THE tablet 4	THE tab.4	high	
+younger	THE tablet 5	THE tab.5	high	
+younger	THE tablet 6	THE tab.6	high	
+lineara.xyz	PEWs	PE Ws	high	Petras; no number in either source
+younger	PE Ws	PE Ws	high	
+lineara.xyz	PEZb	PE Zb	high	Petras sherd; no number in either source
+younger	PE Zb	PE Zb	high	
+lineara.xyz	PETSWc	PETS Wc	high	Petsofas roundel (found 1993); no number in either source
+younger	PETS Wc	PETS Wc	high	
+younger	ZO ZA 1	ZO Za 1	medium	Younger writes the series in capitals; lineara.xyz has ZOZa1
+lineara.xyz	HTWeWc3020	HT Wc 3020	medium	lineara.xyz "We Wc" looks like a slip; SigLA has HT Wc 3020
+lineara.xyz	PKZb?	PK Zb ? (lineara.xyz)	unresolved	Younger has two unnumbered PK Zb entries (AIA 2004 sherd; Hood 1964 cup); which one is meant is unknown
+younger	PK Zb	PK Zb ? (younger)	unresolved	two entries share this ID; both kept under this key
+younger	MA Zb no. unknown	MA Zb ? (P89P33)	medium	Younger: Malia Mus. Strat. P89P33 (Perna 2003)
+lineara.xyz	KNsceau	KN sceau	unresolved	lineara.xyz only; no GORILA siglum given
+lineara.xyz	HTZf(HM767)	HT Zf (HM 767)	medium	lineara.xyz only; museum number instead of a siglum
