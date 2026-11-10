@@ -8,7 +8,7 @@ The aim is **falsifiable, reproducible results**, not decipherment: arithmetic c
 | Path | Contents |
 |---|---|
 | `CLAUDE.md` | Rules for every contributor, human or agent. Read first. |
-| `plans/` | Working plan with task IDs (A1–A7) |
+| `plans/` | Working plan with task IDs (A1–A9) |
 | `hypotheses/` | One pre-registered file per hypothesis; immutable once merged |
 | `findings/` | Results, positive and negative |
 | `research-notes.md` | Append-only dated log |
@@ -27,9 +27,12 @@ pytest
 ```
 
 ## Status
-Phase 2 (see `plans/phase2-analysis-plan.md`):
-- **A2 done on corpus-v0.1.** See Finding 002 and its independent review in `docs/reviews/`. It is to be re-run on corpus-v1.0.
-- **Current focus: A1, building corpus-v1.0** from SigLA, lineara.xyz and Younger, with a cross-source disagreement report.
+Phase 2 (see `plans/phase2-analysis-plan.md`, order of work in §0.6):
+- **Findings so far:** 001 (a published Semitic reading fails its null test) and 002 (what the arithmetic of totals can and cannot show; reviewed). No new positive result about Linear A yet.
+- **Corpus:** `corpus-v1.0-pre` is built from SigLA, lineara.xyz and Younger (1,619 documents listed, 568 in the default analysis set), with a cross-source disagreement report in `docs/reports/`. Not yet tagged.
+- **Next:** freeze the held-out split and tag corpus-v1.0, then the Linear A-only tests (claims audit, commodity association, abbreviation test).
+- **Main goal:** a false-positive benchmark for decipherment methods (A5.17) and a functional role classifier validated on Linear B (A8.8).
+- **Parked:** A6 (typology), A7 (palaeography) and the remaining A2 tasks.
 
 ## Licence
 Not yet chosen; until a LICENSE file is added, all rights are reserved. Third-party data keeps its own terms (see `DATA_SOURCES.md`).

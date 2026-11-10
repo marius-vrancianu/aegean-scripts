@@ -469,3 +469,32 @@ Logogram labels come from SigLA's sign-table names. **2,709 of 3,035 Younger tok
 The A1.8 MANIFEST is rebuilt; its output hash changed because of fix 1.
 
 **Next:** the A1 tasks Marius assigned (A1.4–A1.9) are done. A1.10 (DAMOS) is his. Remaining in A1: A1.11 baseline statistics, A1.12 freeze the held-out split and tag v1.0, A1.13 the sceptre text when published.
+
+---
+
+## 2026-11-10 — Project review: revised order, new analyses A8 and A9 (plan v1.3)
+
+**What happened.** Marius and Claude reviewed the whole project in a claude.ai session (status, progress, direction), then brainstormed further analyses and ranked everything.
+
+**Assessment recorded at the review:**
+- No novel positive result about Linear A yet. H-A2-07 replicates Bennett; the totals support the standard reading of KU-RO.
+- Corpus size is the binding constraint, and the three sources are not independent (all derive from GORILA).
+- Re-running A2 on corpus-v1.0 will change little, because HT numerals rest on lineara.xyz alone (A1.9).
+- Risks: blindness is being spent (the 20% split is not frozen yet); the Linear B control blocks most validation; the sceptre tests wait on a publication with no known date.
+
+**Decided by Marius:**
+- Main goal: A5 Tier 1 (false-positive benchmark) plus a functional role classifier (A8.8). A5 Tier 2 is a stretch goal.
+- The order in plan §0.6, starting with the split freeze (A1.12).
+- Parked: A6, A7, A2.3, A2.4, A2.6, A2.7.
+- Left out: Cretan Hieroglyphic as extra material, Egyptian renderings of Keftiu names, a restoration model, synthetic corpus expansion.
+- Kept from the late additions: the labelled-picture gold set (A8.1) and the check of the January 2026 report (V10).
+
+**Uncertain.**
+- All signal ratings behind the order are Claude's judgement (Rule 5), not measurements.
+- The Linear B corpus size quoted in the session (about 5,900 documents) was from memory and not confirmed.
+- V10 is unread; it may pre-empt A8.8.
+- The same PR updates CLAUDE.md (task IDs A1–A9, order of work, rule 9 on synthetic text, confirmatory or exploratory status, layers and subpackages for A8 and A9) and the README status. It is therefore a hand-merge PR.
+- The "how" given for each new task (plan §0.7, A8, A9) is a proposed design, not a tested one; examples cited from memory (HT 31, the Linear B abbreviations, the libation-formula claims) are to be verified in the tasks.
+
+**Next:** A1.12 (freeze the split, tag v1.0), then A1.11 on the training split with A1.14. A1.10 (DAMOS) is with Marius.
+
