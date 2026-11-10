@@ -398,3 +398,25 @@ Marius found two candidate sources for corpus expansion or redundancy: lineara.e
 R5 (register), R6 (off-Crete), R8 (joins) and R10 (unresolved IDs) were not changed by Marius, so the proposed defaults stand.
 
 All three decisions match the proposed defaults, so the list is unchanged: **1,619 listed, 568 in the default analysis set**. Only the status in MANIFEST.json changes. A1.6 is done; next is A1.7 (schema).
+
+---
+
+## 2026-11-10 — A1.7: corpus schema and per-source adapters
+
+**Schema (`docs/schema.md`, v0.1):** document → witness → line → item → token.
+- **Witnesses are never merged.** A witness is one source's reading of one document or side, and each mark belongs to the witness it is in. Alternative readings are simply the other sources' witnesses.
+- **None vs False:** None means the source does not record a mark. This matters because lineara.xyz's damage marking is incomplete, and no source marks restorations comprehensively.
+- Damage (breaks), doubt, erasure, restoration (`< >`) and conjecture (Younger's green) are separate fields.
+
+**Canonical sign IDs:** the GORILA/Bennett number with GORILA variant suffixes (`AB081`, `AB131a`, `A709-2`); the Unicode codepoint is an attribute.
+- Unicode names some AB-sign variants in the A series (`A028B` …). These are normalised by number: below 300 is AB (medium-high confidence).
+- **Fraction ligatures keep both forms** (Finding 002 review, M3): JE = `A732` [A707, A704], DD = `A717`, and SigLA's DDDD = `A718`, which is not in Unicode.
+- 326 of SigLA's 388 signs have a Unicode codepoint. The rest are composites, variants and SigLA's own abstract signs (`SigLA:AAP800` …).
+
+**Adapters (`aegean.corpus.witnesses`):** lineara.xyz, SigLA and Younger. **All 3,049 witnesses validate** (lineara.xyz 1,719, SigLA 827, Younger 503).
+- On HT 13, lineara.xyz and SigLA give identical sign IDs for the first word and the wine logogram (`AB131a`).
+- Younger stays L0+L1. His `*nnn` values and `{*nnn}` logogram numbers map to L0 directly; 2,474 of his 3,036 tokens wait for the A1.8 value table.
+
+**Field coverage differs by source,** which A1.9 must respect. lineara.xyz has no per-sign doubt or erasure. SigLA has no numerals, lines or restorations. Younger has no HT. The full table is in `docs/schema.md`.
+
+**Next:** A1.8 (layers L0 and L1, including the Younger value → sign-ID table), then A1.9 (the disagreement report).
