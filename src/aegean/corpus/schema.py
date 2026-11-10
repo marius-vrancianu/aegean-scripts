@@ -68,6 +68,11 @@ def base_id(sign_id: str | None) -> str | None:
     return m.group(0) if m else sign_id
 
 
+# Unicode names that are not one GORILA sign. "A100-102" is a single codepoint for *100 (VIR) and
+# *102 (MUL); lineara.xyz uses it for VIR, where SigLA and Younger have AB100 (checked in A1.9).
+UNICODE_NAME_ALIASES = {"A100-102": "AB100"}
+
+
 def from_unicode_name(name: str) -> str:
     """Canonical ID from a Unicode Linear A sign name ("LINEAR A SIGN AB131A" -> "AB131a").
 
@@ -75,6 +80,8 @@ def from_unicode_name(name: str) -> str:
     fraction signs with their letter ("A707 J") and L variants as "A709-2 L2".
     """
     n = name.removeprefix("LINEAR A SIGN ").split()[0]
+    if n in UNICODE_NAME_ALIASES:
+        return UNICODE_NAME_ALIASES[n]
     n = n.replace("-VAS", "")
     m = re.fullmatch(r"(AB|A)(\d{3})(-\d)?([A-Z])?", n)
     if not m:
@@ -84,7 +91,7 @@ def from_unicode_name(name: str) -> str:
     # Bennett/GORILA number AB signs below 300 and Linear A-only signs from *301 up.
     if ser == "A" and int(num) < 300:
         ser = "AB"
-    return canonical_id(ser, num, (dash or "") + (var.lower() if var else "")) if (dash or var) else f"{ser}{num}"
+    return canonical_id(ser, num, ((dash or "") + (var.lower() if var else "")) or None)
 
 
 def unicode_codepoint(sign_id: str) -> str | None:

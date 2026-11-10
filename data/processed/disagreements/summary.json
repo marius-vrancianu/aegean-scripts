@@ -1,0 +1,832 @@
+{
+  "documents": 1619,
+  "pairs": {
+    "lineara.xyz|sigla": {
+      "documents": 647,
+      "documents_with_sign_differences": 258,
+      "signs": {
+        "agree": 4224,
+        "variant_only": 32,
+        "substitution": 108,
+        "unidentified_in_one": 39,
+        "only_a": 89,
+        "only_b": 410
+      },
+      "sign_agreement_rate_aligned": 0.9664,
+      "top_substitutions": [
+        [
+          "AB022",
+          "AB021",
+          14
+        ],
+        [
+          "AB028",
+          "A517",
+          4
+        ],
+        [
+          "AB021",
+          "AB022",
+          4
+        ],
+        [
+          "AB080",
+          "A561",
+          3
+        ],
+        [
+          "A805",
+          "A605",
+          3
+        ],
+        [
+          "AB037",
+          "A320",
+          3
+        ],
+        [
+          "AB057",
+          "AB056",
+          2
+        ],
+        [
+          "AB003",
+          "AB002",
+          2
+        ],
+        [
+          "AB067",
+          "AB069",
+          2
+        ],
+        [
+          "AB131",
+          "A597",
+          2
+        ],
+        [
+          "A303",
+          "A626",
+          2
+        ],
+        [
+          "AB120",
+          "A574",
+          2
+        ],
+        [
+          "AB041",
+          "AB002",
+          1
+        ],
+        [
+          "AB001",
+          "AB004",
+          1
+        ],
+        [
+          "AB031",
+          "A522",
+          1
+        ]
+      ],
+      "word_division": {
+        "runs": 544,
+        "boundaries_both": 1506,
+        "boundary_only_a": 9,
+        "boundary_only_b": 47
+      },
+      "breaks": {
+        "left_agree": 195,
+        "right_not_comparable": 1930,
+        "left_not_comparable": 1907,
+        "right_agree": 163,
+        "left_differ": 24,
+        "left_broken_only_a": 24,
+        "right_differ": 33,
+        "right_broken_only_a": 33
+      },
+      "numerals": "n/a (SigLA records no numeral values)",
+      "fractions": {
+        "documents_with_fractions": 153,
+        "fractions_only_in_lineara.xyz": 57,
+        "identical_letters": 83,
+        "documents_with_ligature_tokens": 24,
+        "fractions_only_in_sigla": 5,
+        "different_letters": 8
+      }
+    },
+    "lineara.xyz|younger": {
+      "documents": 496,
+      "documents_with_sign_differences": 174,
+      "signs": {
+        "agree": 2416,
+        "variant_only": 33,
+        "substitution": 32,
+        "unidentified_in_one": 106,
+        "only_a": 147,
+        "only_b": 238
+      },
+      "sign_agreement_rate_aligned": 0.946,
+      "top_substitutions": [
+        [
+          "AB022",
+          "AB021",
+          13
+        ],
+        [
+          "A628",
+          "A625",
+          2
+        ],
+        [
+          "AB021",
+          "AB022",
+          2
+        ],
+        [
+          "A363",
+          "AB012",
+          2
+        ],
+        [
+          "AB057",
+          "AB008",
+          1
+        ],
+        [
+          "AB059",
+          "AB004",
+          1
+        ],
+        [
+          "A559",
+          "A562",
+          1
+        ],
+        [
+          "A805",
+          "A301",
+          1
+        ],
+        [
+          "A351",
+          "A607",
+          1
+        ],
+        [
+          "A568",
+          "AB100",
+          1
+        ],
+        [
+          "AB008",
+          "AB030",
+          1
+        ],
+        [
+          "A559",
+          "A558",
+          1
+        ],
+        [
+          "A802",
+          "AB060",
+          1
+        ],
+        [
+          "AB046",
+          "AB080",
+          1
+        ],
+        [
+          "AB031",
+          "A522",
+          1
+        ]
+      ],
+      "word_division": {
+        "runs": 345,
+        "boundaries_both": 617,
+        "boundary_only_a": 0,
+        "boundary_only_b": 18
+      },
+      "breaks": {
+        "left_not_comparable": 892,
+        "right_not_comparable": 894,
+        "left_agree": 172,
+        "right_agree": 170
+      },
+      "numerals": {
+        "documents_with_numerals": 135,
+        "identical_sequence": 117,
+        "different": 17,
+        "same_sum_different_split": 1
+      },
+      "fractions": {
+        "documents_with_fractions": 83,
+        "identical_letters": 77,
+        "different_letters": 1,
+        "documents_with_ligature_tokens": 6,
+        "fractions_only_in_lineara.xyz": 3,
+        "fractions_only_in_younger": 1,
+        "same_letters_different_order": 1
+      }
+    },
+    "sigla|younger": {
+      "documents": 339,
+      "documents_with_sign_differences": 172,
+      "signs": {
+        "agree": 1633,
+        "variant_only": 9,
+        "substitution": 30,
+        "unidentified_in_one": 87,
+        "only_a": 248,
+        "only_b": 101
+      },
+      "sign_agreement_rate_aligned": 0.9331,
+      "top_substitutions": [
+        [
+          "A628",
+          "A625",
+          2
+        ],
+        [
+          "A320",
+          "AB037",
+          2
+        ],
+        [
+          "AB057",
+          "AB008",
+          1
+        ],
+        [
+          "AB045",
+          "AB044",
+          1
+        ],
+        [
+          "AB059",
+          "AB004",
+          1
+        ],
+        [
+          "A626",
+          "A303",
+          1
+        ],
+        [
+          "A641",
+          "AB067",
+          1
+        ],
+        [
+          "A605",
+          "A301",
+          1
+        ],
+        [
+          "A335",
+          "A336",
+          1
+        ],
+        [
+          "A633",
+          "A304",
+          1
+        ],
+        [
+          "A302",
+          "A303",
+          1
+        ],
+        [
+          "A411",
+          "A409",
+          1
+        ],
+        [
+          "A606",
+          "AB164",
+          1
+        ],
+        [
+          "AB061",
+          "AB164",
+          1
+        ],
+        [
+          "A568",
+          "AB100",
+          1
+        ]
+      ],
+      "word_division": {
+        "runs": 241,
+        "boundaries_both": 495,
+        "boundary_only_a": 5,
+        "boundary_only_b": 12
+      },
+      "breaks": {
+        "left_agree": 79,
+        "right_not_comparable": 723,
+        "left_not_comparable": 725,
+        "right_agree": 74,
+        "right_differ": 12,
+        "right_broken_only_b": 12,
+        "left_differ": 5,
+        "left_broken_only_b": 5
+      },
+      "numerals": "n/a (SigLA records no numeral values)",
+      "fractions": {
+        "documents_with_fractions": 84,
+        "fractions_only_in_younger": 57,
+        "identical_letters": 17,
+        "different_letters": 4,
+        "fractions_only_in_sigla": 6
+      }
+    }
+  },
+  "coverage": {
+    "lineara.xyz": 786,
+    "lineara.xyz+younger": 157,
+    "lineara.xyz+sigla+younger": 346,
+    "lineara.xyz+sigla": 301,
+    "sigla": 24,
+    "younger": 5
+  },
+  "coverage_by_support": {
+    "architecture": {
+      "lineara.xyz+sigla+younger": 1,
+      "lineara.xyz": 4,
+      "lineara.xyz+younger": 1
+    },
+    "clay_vessel": {
+      "lineara.xyz": 17,
+      "lineara.xyz+sigla": 4,
+      "lineara.xyz+younger": 47,
+      "lineara.xyz+sigla+younger": 8,
+      "younger": 1
+    },
+    "graffito": {
+      "lineara.xyz+sigla": 2,
+      "lineara.xyz": 1
+    },
+    "inked": {
+      "lineara.xyz+younger": 5,
+      "lineara.xyz": 2,
+      "lineara.xyz+sigla+younger": 2
+    },
+    "metal_object": {
+      "lineara.xyz+younger": 11,
+      "lineara.xyz": 9,
+      "lineara.xyz+sigla+younger": 2
+    },
+    "nodule": {
+      "lineara.xyz+sigla": 134,
+      "lineara.xyz": 727,
+      "lineara.xyz+sigla+younger": 21,
+      "younger": 1,
+      "lineara.xyz+younger": 3
+    },
+    "other_sealing": {
+      "lineara.xyz": 2,
+      "lineara.xyz+sigla": 1,
+      "lineara.xyz+younger": 3,
+      "sigla": 3
+    },
+    "roundel": {
+      "lineara.xyz+sigla+younger": 116,
+      "lineara.xyz+sigla": 21,
+      "lineara.xyz": 3,
+      "lineara.xyz+younger": 5,
+      "sigla": 5,
+      "younger": 1
+    },
+    "sealing": {
+      "lineara.xyz": 3,
+      "lineara.xyz+sigla+younger": 5,
+      "lineara.xyz+younger": 4
+    },
+    "stone_object": {
+      "lineara.xyz+younger": 15,
+      "lineara.xyz": 5,
+      "lineara.xyz+sigla+younger": 3
+    },
+    "stone_vessel": {
+      "lineara.xyz+younger": 51,
+      "lineara.xyz+sigla+younger": 5,
+      "lineara.xyz": 3
+    },
+    "tablet": {
+      "lineara.xyz+sigla+younger": 183,
+      "lineara.xyz+sigla": 139,
+      "lineara.xyz": 10,
+      "sigla": 16,
+      "younger": 2,
+      "lineara.xyz+younger": 12
+    }
+  },
+  "tier_disagreements": {
+    "documents": 67,
+    "examples": [
+      {
+        "doc": "ARM Zg 1",
+        "lineara.xyz": "T2",
+        "younger": "T1"
+      },
+      {
+        "doc": "CR Zg 3",
+        "lineara.xyz": "T1",
+        "younger": "T3"
+      },
+      {
+        "doc": "GO Wc 3",
+        "lineara.xyz": "T3",
+        "sigla": "T2",
+        "younger": "T1"
+      },
+      {
+        "doc": "HT 113ter",
+        "lineara.xyz": "T1",
+        "sigla": "T2"
+      },
+      {
+        "doc": "HT 136",
+        "lineara.xyz": "T1",
+        "sigla": "T2"
+      },
+      {
+        "doc": "HT Wa 1021bis",
+        "lineara.xyz": "T1",
+        "sigla": "T2"
+      },
+      {
+        "doc": "HT Wa 1172",
+        "lineara.xyz": "T2",
+        "sigla": "T3"
+      },
+      {
+        "doc": "KE Wc 2",
+        "lineara.xyz": "T3",
+        "sigla": "T3",
+        "younger": "T1"
+      },
+      {
+        "doc": "KE Zb 5",
+        "lineara.xyz": "T2",
+        "sigla": "T2",
+        "younger": "T1"
+      },
+      {
+        "doc": "KH 101",
+        "lineara.xyz": "T1",
+        "sigla": "T2",
+        "younger": "T3"
+      },
+      {
+        "doc": "KH 102",
+        "lineara.xyz": "T1",
+        "sigla": "T1",
+        "younger": "T3"
+      },
+      {
+        "doc": "KH 24",
+        "lineara.xyz": "T1",
+        "sigla": "T2",
+        "younger": "T1"
+      }
+    ],
+    "patterns": {
+      "lineara.xyz:T2 / sigla:T2 / younger:T1": 21,
+      "lineara.xyz:T1 / sigla:T2 / younger:T1": 14,
+      "lineara.xyz:T1 / younger:T3": 4,
+      "lineara.xyz:T1 / sigla:T1 / younger:T2": 4,
+      "lineara.xyz:T2 / younger:T1": 3,
+      "lineara.xyz:T1 / sigla:T2": 3,
+      "lineara.xyz:T3 / sigla:T3 / younger:T2": 3,
+      "lineara.xyz:T1 / sigla:T2 / younger:T2": 3,
+      "lineara.xyz:T2 / sigla:T3 / younger:T2": 2,
+      "lineara.xyz:T3 / sigla:T2 / younger:T2": 2
+    }
+  },
+  "site_name_disagreements": {
+    "documents": 19,
+    "examples": [
+      {
+        "doc": "ARKH 1",
+        "lineara.xyz": "Arkhalkhori",
+        "sigla": "Arkhanes"
+      },
+      {
+        "doc": "ARKH 2",
+        "lineara.xyz": "Arkhalkhori",
+        "sigla": "Arkhanes"
+      },
+      {
+        "doc": "ARKH 3",
+        "lineara.xyz": "Arkhalkhori",
+        "sigla": "Arkhanes"
+      },
+      {
+        "doc": "ARKH 4",
+        "lineara.xyz": "Arkhalkhori",
+        "sigla": "Arkhanes"
+      },
+      {
+        "doc": "ARKH 5",
+        "lineara.xyz": "Arkhalkhori",
+        "sigla": "Arkhanes"
+      },
+      {
+        "doc": "ARKH 6",
+        "lineara.xyz": "Arkhalkhori",
+        "sigla": "Arkhanes"
+      },
+      {
+        "doc": "ARKH 7",
+        "lineara.xyz": "Arkhalkhori",
+        "sigla": "Arkhanes"
+      },
+      {
+        "doc": "HS Zg 1",
+        "lineara.xyz": "Haghios Stehanos",
+        "sigla": "Haghios Stephanos"
+      },
+      {
+        "doc": "MA 10",
+        "lineara.xyz": "Malia",
+        "sigla": "Mallia"
+      },
+      {
+        "doc": "MA 1",
+        "lineara.xyz": "Malia",
+        "sigla": "Mallia"
+      },
+      {
+        "doc": "MA 2",
+        "lineara.xyz": "Malia",
+        "sigla": "Mallia"
+      },
+      {
+        "doc": "MA 4",
+        "lineara.xyz": "Malia",
+        "sigla": "Mallia"
+      },
+      {
+        "doc": "MA 6",
+        "lineara.xyz": "Malia",
+        "sigla": "Mallia"
+      },
+      {
+        "doc": "MA 9",
+        "lineara.xyz": "Malia",
+        "sigla": "Mallia"
+      },
+      {
+        "doc": "MA Wc 7",
+        "lineara.xyz": "Malia",
+        "sigla": "Mallia"
+      }
+    ]
+  },
+  "period_disagreements": {
+    "documents": 18,
+    "examples": [
+      {
+        "doc": "ARKH 2",
+        "lineara.xyz": "LMIB",
+        "sigla": "LM I"
+      },
+      {
+        "doc": "ARKH 5",
+        "lineara.xyz": "LMIB",
+        "sigla": "LM I"
+      },
+      {
+        "doc": "ARKH 6",
+        "lineara.xyz": "LMIB",
+        "sigla": "LM I"
+      },
+      {
+        "doc": "ARKH 7",
+        "lineara.xyz": "LMIB",
+        "sigla": "LM I"
+      },
+      {
+        "doc": "KH 100",
+        "lineara.xyz": "LMIIIA",
+        "sigla": "LM IB"
+      },
+      {
+        "doc": "KH 102",
+        "lineara.xyz": "LMIIIA",
+        "sigla": "LM I"
+      },
+      {
+        "doc": "KH Wc 2117",
+        "lineara.xyz": "LMIIIA",
+        "sigla": "LM IB"
+      },
+      {
+        "doc": "KN Zf 13",
+        "lineara.xyz": "LMIA",
+        "sigla": "MM III-LM IA"
+      },
+      {
+        "doc": "MA 9",
+        "lineara.xyz": "MMIII",
+        "sigla": "MM IIIB"
+      },
+      {
+        "doc": "MI 2",
+        "lineara.xyz": "LBI",
+        "sigla": "LM I"
+      },
+      {
+        "doc": "PH 10",
+        "lineara.xyz": "MMII",
+        "sigla": "MM IIB"
+      },
+      {
+        "doc": "PH 19",
+        "lineara.xyz": "MMII",
+        "sigla": "MM IIB"
+      },
+      {
+        "doc": "PH 24",
+        "lineara.xyz": "MMII",
+        "sigla": "MM IIB"
+      },
+      {
+        "doc": "PH 25",
+        "lineara.xyz": "MMII",
+        "sigla": "MM IIB"
+      },
+      {
+        "doc": "PH 26",
+        "lineara.xyz": "MMII",
+        "sigla": "MM IIB"
+      }
+    ],
+    "patterns": {
+      "MMII | MM IIB": 8,
+      "LMIB | LM I": 4,
+      "LMIIIA | LM IB": 2,
+      "LMIIIA | LM I": 1,
+      "LMIA | MM III-LM IA": 1,
+      "MMIII | MM IIIB": 1,
+      "LBI | LM I": 1
+    }
+  },
+  "id_differences": {
+    "join_or_key_differs": [
+      [
+        "HT 123+124",
+        [
+          "HT 123"
+        ]
+      ],
+      [
+        "HT Wa 1845+1733",
+        [
+          "HT Wa 1733"
+        ]
+      ],
+      [
+        "HT Zd 157+156",
+        [
+          "HT Zd 156",
+          "HT Zd 157"
+        ]
+      ],
+      [
+        "KH 68+71",
+        [
+          "KH 68"
+        ]
+      ],
+      [
+        "KH 79+89",
+        [
+          "KH 79",
+          "KH 89"
+        ]
+      ],
+      [
+        "KH Wc 2044",
+        [
+          "KH Wc 2044+2096",
+          "KH Wc 2096"
+        ]
+      ],
+      [
+        "KH Wc 2059",
+        [
+          "KH Wc 2059+2091+2092",
+          "KH Wc 2059+frr",
+          "KH Wc 2091",
+          "KH Wc 2092"
+        ]
+      ],
+      [
+        "KH Wc 2088+2089+fr",
+        [
+          "KH Wc 2088",
+          "KH Wc 2088+frr",
+          "KH Wc 2089"
+        ]
+      ]
+    ],
+    "lost_angle_bracket_disagreement": [
+      "HT Wa 1021bis",
+      "PH 29"
+    ],
+    "sigla_metadata_id_mismatch": [
+      "metadata_id=`KE Wc 2a",
+      "metadata_id=`KE Wc 2b",
+      "metadata_id=KH 97",
+      "metadata_id=KH Wc 2062",
+      "metadata_id=KH Wc 2088",
+      "metadata_id=MY Zf 2",
+      "metadata_id=PE Wa 52"
+    ]
+  },
+  "younger_value_vs_l1": [
+    [
+      "PA3",
+      "*56",
+      13
+    ],
+    [
+      "ZU",
+      "*79",
+      11
+    ],
+    [
+      "VINa",
+      "*131a",
+      6
+    ],
+    [
+      "PU3",
+      "*314",
+      5
+    ],
+    [
+      "OLE",
+      "*302",
+      4
+    ],
+    [
+      "FIC",
+      "NI",
+      3
+    ],
+    [
+      "VINum",
+      "*131um",
+      3
+    ],
+    [
+      "QIf",
+      "*21f",
+      2
+    ],
+    [
+      "VIR",
+      "*100",
+      2
+    ],
+    [
+      "AI",
+      "A3",
+      1
+    ],
+    [
+      "OLIV",
+      "*122",
+      1
+    ],
+    [
+      "BOS",
+      "MU",
+      1
+    ],
+    [
+      "TELA",
+      "WA",
+      1
+    ]
+  ],
+  "younger_vs_sigla_value_map_validation": {
+    "documents_paired": 335,
+    "aligned": 1125,
+    "agree": 1112,
+    "disagree": 13
+  },
+  "sigla_internal": {
+    "AB072_value": "SigLA gives ko; Unicode Linear B gives PE; SigLA also gives ko to AB070"
+  }
+}
