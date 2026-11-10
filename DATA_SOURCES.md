@@ -22,8 +22,18 @@ Every dataset used anywhere in this repo is listed here before it is used. Field
   - **Attribution:** credit Salgarella & Castellan.
   - **NonCommercial:** no commercial use.
   - **ShareAlike:** corpus files derived from SigLA must carry the same licence, including corpus-v1.0 if it contains SigLA data. Code that only processes the data is not affected. Each derived file needs a licence notice.
-- **Access:** no download or export link on the site. The project paper (https://sigla.phis.me/paper.html) says the site can be downloaded and run locally, and that its data is a JSON database built from the drawing files. A1.4 should find that JSON rather than scrape HTML pages.
-- **Not yet used.**
+- **Access:** no download or export link on the site. The project paper (https://sigla.phis.me/paper.html) calls the data a "JSON database". In fact the site loads **`https://sigla.phis.me/database.js`**, which holds two **OCaml `Marshal` values** (`signs`, `data`) inside JS string literals, not JSON. Decoded by `aegean.corpus.ocaml_marshal` and `aegean.corpus.sigla`; no scraping needed.
+- **Pinned version:** `data/raw/sigla/0c4ef69f5de4/database.js`, **committed** (licence allows it). SHA-256 `0c4ef69f5de4cc3d9382cca782c1cf47e2ca1be40696bcfc8e97514f9b0781dd`, 2,199,743 bytes, server Last-Modified 2026-10-27, fetched 2026-11-10. Verify with `python data/raw/sigla/fetch.py`.
+- **Contents:** 827 documents, 5,184 sign attestations, 1,417 words, 388 distinct signs. Field layout and how each field was checked: `data/raw/sigla/README.md`. No record of the held-out documents.
+- **Conventions and known issues** (A1.4, 2026-11-10):
+  - **No numeral values.** Numerals appear at most as an abstract `num` sign (`AAP800`, 7×). lineara.xyz stays the numeral source.
+  - **Fractions:** `AAF701–718`. DD (`AAF717`) and DDDD (`AAF718`) are single signs; **there is no JE ligature**, so J and E are separate attestations. lineara.xyz has a single JE codepoint (A732), so the two sources tokenise these differently.
+  - **Damage** is a per-word edge code (0 intact, 1 rendered `]-`/`-[`, 2 rendered `]`/`[`). The difference between 1 and 2 is not documented.
+  - **Uncertain reading** is a per-sign flag. Erasures are flagged. Unidentified signs (`[?]`) and unclassified signs are kept as attestations without a sign ID. There is no restoration field.
+  - **Conventional values** in the sign table are L1. They never enter attestations.
+  - **Metadata ID differs from the key** in 7 documents (e.g. KH 87 → "KH 97", PH Wa 52 → "PE Wa 52"). Both are kept, for A1.9.
+  - Period and support are free text with spelling variants (`Libation Table` / `Libation table`; `''`, `n/a`, `unknown`). They are normalised in A1.6/A1.7, not at ingest.
+- **Citation:** Salgarella, E. & Castellan, S. (2020–). *SigLA: The Signs of Linear A. A palæographical database.* https://sigla.phis.me. Paper: https://sigla.phis.me/paper.html.
 
 ## DAMOS — Database of Mycenaean at Oslo (Linear B control corpus)
 - **Source:** https://damos.hf.uio.no

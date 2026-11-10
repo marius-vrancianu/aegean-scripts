@@ -6,9 +6,9 @@ re-fetched and compared; if the live file has changed, the hash check fails,
 which means a new snapshot directory and a new SHA256SUMS line, never an edit
 to the pinned one.
 
-Held-out check: SigLA has no KN Zg 57/58 record in this snapshot (checked by
-document ID only, 2026-11-06). `aegean.corpus.sigla` still filters through
-data/heldout.txt at ingest.
+Held-out check: the pinned snapshot has no record of the documents in
+data/heldout.txt (checked by document ID only). `aegean.corpus.sigla` still
+filters through data/heldout.txt at ingest.
 
 Usage: python data/raw/sigla/fetch.py            # verify the committed snapshot
        python data/raw/sigla/fetch.py --download # re-download and verify

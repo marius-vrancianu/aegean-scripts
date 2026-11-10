@@ -302,3 +302,23 @@ Two refinements, both pending re-review in the same PR:
 - A1.5: snapshot Younger. His site blocks automated access, so Marius may need to save the pages himself.
 - A1.6–A1.9: reconcile the sources, define the schema, write the disagreement report.
 - A1.10 (DAMOS raw data): Marius is checking.
+
+---
+
+## 2026-11-10 — A1.4: SigLA harvested
+
+**Snapshot:** `data/raw/sigla/0c4ef69f5de4/database.js`, SHA-256 `0c4ef69f…0781dd`, committed under CC BY-NC-SA 4.0 with credit to Salgarella & Castellan. The same bytes were seen in the browser on 2026-11-06 and fetched by `curl` on 2026-11-10, once Marius had widened the network allowlist.
+
+**Format surprise:** the "JSON database" of the SigLA paper is, as served, two **OCaml `Marshal`** values inside JS strings. New code: `aegean.corpus.ocaml_marshal`, a generic decoder that checks the header's byte and object counts, and `aegean.corpus.sigla`, which interprets the records. Each field mapping was checked against the rendered static pages. Fields whose meaning is unclear are kept under raw names, not guessed.
+
+**Facts that change plans (high confidence; from the data and the rendered pages):**
+- **SigLA has no numeral values.** Numerals appear at most as an abstract `num` sign (7×). This corrects my 2026-11-06 working note, which said numerals were entirely absent. A2 totals cannot come from SigLA; lineara.xyz stays the numeral source in corpus-v1.0, and SigLA is the independent check on signs, fractions, word division and damage.
+- **No JE ligature in SigLA.** J and E are separate attestations, while DD and DDDD are single signs (`AAF717`/`718`). lineara.xyz has a single JE codepoint. The A1.7 schema must map between the two (Finding 002 review, M3).
+- **Damage is recorded per word edge,** with three codes. The difference between codes 1 and 2 is unverified. SigLA has no restoration field.
+- **Seven documents have a metadata ID that differs from their key** (e.g. KH 87 → "KH 97"). These are kept for the A1.9 report.
+
+**Held-out:** the snapshot has no record of the held-out documents. That was checked by document ID only, never by reading content. The reader filters through `data/heldout.txt` with cross-source normalised sigla, so `data/heldout.txt` needs no change.
+
+**Counts:** 827 documents (older harvests reported 772–787), 5,184 attestations, 1,417 words, 388 signs. These are source counts, not inclusion decisions (A1.6).
+
+**Next:** A1.5 (Younger pages, waiting on Marius), then A1.6 inclusion rules, A1.7 schema, A1.8 layers and A1.9 disagreement report.

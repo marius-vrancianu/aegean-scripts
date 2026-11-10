@@ -4,63 +4,72 @@
 *SigLA: The Signs of Linear A*, https://sigla.phis.me. Non-commercial use only; anything
 derived from these files must carry the same licence (see `DATA_SOURCES.md`).
 
-**Snapshot:** `database.js` from https://sigla.phis.me/database.js.
-2,199,743 bytes, server `Last-Modified: Tue, 27 Oct 2026 05:47:46 GMT`, ETag `"3915148839"`.
-SHA-256 in `SHA256SUMS`. `fetch.py` verifies the committed copy, and with `--download` it compares against the live file.
+## Snapshot `0c4ef69f5de4/database.js`
 
-**Held-out:** no KN Zg 57/58 record in this snapshot. This was checked by document ID only, on 2026-11-06. The only `Zg` documents are HS Zg 1, HS Zg 11 and KY Zg 1. The ingest code still filters through `data/heldout.txt`.
+| | |
+|---|---|
+| URL | https://sigla.phis.me/database.js |
+| Size | 2,199,743 bytes |
+| SHA-256 | `0c4ef69f5de4cc3d9382cca782c1cf47e2ca1be40696bcfc8e97514f9b0781dd` (`SHA256SUMS`) |
+| Server headers | `Last-Modified: Tue, 27 Oct 2026 05:47:46 GMT`, `ETag: "3915148839"` |
+| Fetched | 2026-11-10 by `curl`. Identical bytes were seen in a browser on 2026-11-06. |
+
+`fetch.py` verifies the committed copy. `fetch.py --download` compares the live file with every pinned snapshot. If the live file has changed, add a new snapshot directory and a new `SHA256SUMS` line; never overwrite a pinned one.
+
+**Held-out:** this snapshot contains no record of the held-out documents listed in `data/heldout.txt`. That was checked by document ID only. The only Knossos `Zg` document is `KN Zg <21>`, a different inscription. `aegean.corpus.sigla.load_documents` still filters every document through `data/heldout.txt`, matching normalised sigla across sources.
 
 ## Format
 
-`database.js` defines two JS variables, `signs` and `data`. Each is a single-quoted JS string holding an OCaml string literal, and the bytes of that literal are an OCaml `Marshal` value.
+`database.js` defines two JS variables, `signs` and `data`. Each is a single-quoted JS string holding an OCaml string literal, and that literal's bytes are an OCaml `Marshal` value. `aegean.corpus.sigla` undoes both layers of quoting and decodes the value with `aegean.corpus.ocaml_marshal`. The decoder checks the marshal header's byte and object counts; both blobs pass.
 
-`aegean.corpus.sigla.load_raw` undoes both layers of quoting, then decodes the value with `aegean.corpus.ocaml_marshal`. The decoder checks the header's byte and object counts, and both blobs pass that check.
+SigLA does not document field names. The mapping below was established by comparing decoded values with the rendered static pages on 2026-11-10.
+- **confirmed:** matches a rendered page; the page is cited in `tests/test_corpus_sigla.py`.
+- **raw:** kept under a raw name because its meaning is not established.
 
-Record field names are not in the data. The layout below was inferred by comparing decoded values with the rendered site on 2026-11-06, mainly HT 13: its sign pages `index-N.html` and its word view.
-- **confirmed:** checked against a rendered page.
-- **inferred:** consistent across the data but not yet checked.
+### `data`: an OCaml `Map` from document ID to document (827 documents)
 
-### `data`: one-field record holding a `Map` from document ID to document (827 documents)
-
-| Document field | Content | Status |
-|---|---|---|
-| 0 | metadata record, 12 fields: see below | |
-| 1 | document ID, e.g. `HT 13` | confirmed |
-| 2 | drawing size in px, `(w, h)` | confirmed (SVG viewBox) |
-| 3 | array of sign attestations, in SigLA's order | confirmed |
-| 4 | array of words | confirmed |
-
-Metadata: 0 support (`Tablet`, `Nodule`, `Roundel` …, with spelling variants); 1 ID; 2 site; 6 dimensions in cm, an option; 7 period, an option; 8 link to the EFA corpus, an option; 9 seal record, an option (`CMS` number and motif). These are confirmed for HT 13 and GO Wc 1. Fields 3–5, 10 and 11 are always 0.
-
-Attestation, 6 fields:
 | Field | Content | Status |
 |---|---|---|
-| 0 | index in the document | confirmed |
-| 1 | back-reference to the document | confirmed |
-| 2 | position record: `(location, f1, f2)`. `location` is either `InWord(index in word, word number)` or `Standalone(role)`, where role 0 = logogram, 1 = fraction, 2 = transaction sign (HT 13 #5, #9, #6). `f1` is 1 on some attestations and its meaning is not known. | location confirmed; f1/f2 open |
-| 3 | sign: `(sign record, flag)`, or a constant 0 (383×) or 1 (12×). The constant 0 is probably an unidentified sign. The flag is 0 on 44 attestations and probably marks uncertain identification. | open |
-| 4 | 0/1, with 1 on 7 attestations (HT 22, 33, 89, 94a; KH Wc 2047/2057/2065) | open |
-| 5 | bounding box `(x, y, w, h)` in drawing px | confirmed |
+| support | `Tablet` 452, `Nodule` 171, `Roundel` 164, … 21 values, spelling as given (`Libation Table` / `Libation table`, `Nodule?`) | confirmed |
+| site | 23 sites | confirmed |
+| dimensions_cm | `(h, w, d)`, optional | confirmed (HT 13, HT 22) |
+| period | free text, optional: `LM IB` 655, `MM IIB` 34 …; also `''`, `n/a`, `unknown` | confirmed |
+| corpus_link | link to the EFA *Études crétoises* page, optional | confirmed |
+| seal | `(raw int, CMS number, motif, …)`, optional | CMS and motif confirmed (GO Wc 1a); first field raw |
+| metadata_id | the ID inside the metadata record. It differs from the key in 7 documents, e.g. `KH 87` → `KH 97`, `PH Wa 52` → `PE Wa 52`, `KE Wc 2a` → `` `KE Wc 2a `` | kept for A1.9 |
+| drawing_size | drawing size in px | confirmed (SVG viewBox) |
 
-Word, 4 fields: 0 index; 1 document back-reference; 2 `(left, right)` with values 0/1/2, probably the edge state; 3 list of attestations. Field 2 is **open**: ARKH 1a is broken and has many 2s.
+**Attestation** (5,184; each is one drawn sign, in SigLA's order):
+| Field | Content | Status |
+|---|---|---|
+| sign | a sign record, or `[?]` (unidentified, 383) or `[unclassified]` (12) | confirmed |
+| reading_sure | `sure-reading` / `unsure-reading` on the site; 44 unsure | confirmed |
+| class | in a word → shown as "Syllabogram". Standalone → logogram 1,215, fraction 335, unknown 98, transaction 61, punctuation 7 | confirmed |
+| class_uncertain | the class is shown with "?" | confirmed |
+| word, index_in_word | position within a word | confirmed |
+| erased | shown as "Erasure"; 104 | confirmed |
+| hidden | 7 attestations are counted ("3 signs") but not drawn (HT 22 #3) | raw |
+| pos_f2 | always 0 | raw |
+| bbox | `(x, y, w, h)` in drawing px | confirmed |
 
-### `signs`: a `Map` from `(number, variant option)` to sign record (491 entries)
+**Word** (1,417): its attestation indices, plus left and right edge codes. The word view renders the codes like this:
+- 0 → intact;
+- 1 → `]-ka-ne` / `ru-mi-[`;
+- 2 → `]ta-pi` / `a-pa-[?][`.
 
-The sign record has 10 fields:
-- 0 series: `A` 267, `AB` 172, `AAF` 40 (fractions; `AAF707` = J, confirmed), `AAP` 8, `AAZ` 4;
-- 1 number;
-- 2 conventional values, as a list (e.g. `da`), **L1, not used for L0**;
-- 3 reference attestation, e.g. `PH 31a/17`;
-- 4 logogram name, an option (e.g. `OVIS`);
-- 5 variant label, an option (`f`, `m`, `bis` …);
-- 6 a boolean;
-- 7 an option pair;
-- 8 an option;
-- 9 composition, an option: a variant (tags 1–4) over components. This is how ligatures and composite signs such as `A5xx` and `A3xx` are built, and how they are decomposed.
+The site draws codes 1 and 2 differently but does not say what the difference means. A plausible reading is that 1 marks at least one lost sign beyond the break; this is **not verified** (medium-low confidence). The raw code is kept.
 
-Fields 6–9 are not yet interpreted in detail.
+### `signs`: an OCaml `Map` keyed by number and by name (491 keys, 388 distinct signs)
 
-## Consequences already visible
+Fields: series (`A`, `AB`, `AAF` = fractions, `AAP` = abstract signs `num`, `check-mark`, `word-divider`, `thumb-print`, `AAZ` = unnamed composites), number, variant, name (`OVIS`, `VIN`, `J`, `DD`, `num` …), reference attestation, conventional values, free-text notes, composition text, and the structured composition.
 
-- **SigLA has no numerals.** It records signs, logograms, fractions and transaction signs, but not the numeral strokes, bars or circles. For example, HT 13 has 27 attestations and none of them is a numeral. SigLA therefore cannot replace lineara.xyz for A2 totals. It can serve as an independent check on sign identities, fractions and word division (A1.9).
-- **The order of signs is SigLA's attestation order** plus in-word indices. Whether that is reading order for stacked fractions has to be checked (Finding 002 review, M3 and m2).
+Composition operators, as written in the text field: `a + b` (ligature), `a | b`, `a || b`, and `a+{b}`. All four map exactly onto the structured field (`tests/test_corpus_sigla.py`). The difference between `|` and `||` is not described on the site.
+
+**Conventional values are L1** (Linear B homomorph values such as `ka`). They stay in the sign table and never enter attestations (CLAUDE.md data rules).
+
+## What this means for corpus-v1.0
+
+- **No numeral values.** Numerals appear at most as the abstract punctuation sign `num` (`AAP800`), 7 times. SigLA cannot replace lineara.xyz as the numeral source for A2. It is an independent check on sign identities, fractions, word division and damage (A1.9).
+- **Fractions.** The fraction signs are `AAF701–718`: A, B, D, E, F, H, J, K, L (with variants 2, 3, 4, 6), W, X, Ω, plus **DD (`AAF717`) and DDDD (`AAF718`) as single signs**. There is **no JE ligature sign**: J and E are separate attestations. lineara.xyz encodes JE as one ligature codepoint, so the two sources tokenise these differently, and the A1.7 schema has to reconcile them (Finding 002 review, M3).
+- **Order.** The order of attestations is SigLA's index order. Whether this is reading order for stacked fraction signs is not established; the bounding boxes allow checking it (A1.9).
+- **Damage** is recorded per word edge, not per sign. **Uncertainty** is recorded per sign (`reading_sure`). **Erasure** is recorded per sign. SigLA has no restoration field.
