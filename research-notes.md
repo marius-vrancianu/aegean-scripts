@@ -322,3 +322,23 @@ Two refinements, both pending re-review in the same PR:
 **Counts:** 827 documents (older harvests reported 772–787), 5,184 attestations, 1,417 words, 388 signs. These are source counts, not inclusion decisions (A1.6).
 
 **Next:** A1.5 (Younger pages, waiting on Marius), then A1.6 inclusion rules, A1.7 schema, A1.8 layers and A1.9 disagreement report.
+
+---
+
+## 2026-11-10 — A1.5: Younger snapshot (Academia.edu, non-HT only)
+
+**Younger's website is gone.** `people.ku.edu` no longer resolves. Younger's folder introduction (23 April 2024) says KU removed the server in early 2024 and that he moved the material to Academia.edu. Marius downloaded five files by hand. Hashes are in `data/raw/younger/SHA256SUMS`; the files are not committed, since no licence is stated. The transliterations are in "Other Texts (not Haghia Triada)", last updated 28 March 2024.
+
+**Gap: no Haghia Triada.** Younger's HT file was not found on Academia, and Marius found no Wayback capture either. **Decided by Marius:** go ahead without it. In A1.9, HT documents are therefore compared between SigLA and lineara.xyz only. Non-HT documents have all three sources, but lineara.xyz was built from Younger's earlier HTML, so lineara–Younger agreement is not independent evidence.
+
+**Held-out screening (blinded):** before I read anything, a separate agent scanned all five files programmatically. It reported only counts, page numbers and pre-specified tokens. There is no held-out siglum and no reference to the held-out publications. Three single hits were checked by follow-up fields without showing context: Knossos Zg numbers 4, `<21>` and 55; "scepter" in the KH Wc 2097 entry; "2025" as a KH Wc document number. Metadata dates are April–May 2024, before the held-out publications.
+
+**Reader (`aegean.corpus.younger`):** works from PDF layout, via pdfplumber, because the typography carries data. Bold marks numbers. **Underline marks a doubtful reading**, per Younger's conventions, §3c. **Green marks his own conjectural fills.** Red is commentary. Small lowered glyphs are subscripts (RA2). Each convention was checked on page images; the fixtures cite the pages.
+
+**Facts with consequences for A1.7 and A1.9 (high confidence unless noted):**
+- **Younger, like SigLA, distinguishes two kinds of break:** `]-X` (the word continues beyond the break) and `]X`. This probably matches SigLA's word-edge codes 1 and 2, which would explain them. That is a hypothesis for A1.9 to test, not a fact.
+- **Younger prints a reconstructed PH 31 inside his commentary,** with switched sides and green fills "to match the totals". It is kept apart (`commentary_rows`). If it were ever read as transcription, it would contaminate A2, because the fills were chosen to make totals work.
+- Younger's written definitions of `X[` and `]X` are reversed relative to his usage. The parser follows the usage (medium-high confidence).
+- 503 entries; 2,181 statement signs (287 doubtful, 53 unidentified); 441 rows with numbers and 182 with fractions. About 2% of signs in free-text entries are stray notation. They are kept, to be classified in A1.7.
+
+**Next:** A1.6 inclusion rules, A1.7 schema, A1.8 layers (including Younger's L1 → sign-ID mapping) and A1.9 disagreement report.

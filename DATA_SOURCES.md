@@ -35,6 +35,28 @@ Every dataset used anywhere in this repo is listed here before it is used. Field
   - Period and support are free text with spelling variants (`Libation Table` / `Libation table`; `''`, `n/a`, `unknown`). They are normalised in A1.6/A1.7, not at ingest.
 - **Citation:** Salgarella, E. & Castellan, S. (2020–). *SigLA: The Signs of Linear A. A palæographical database.* https://sigla.phis.me. Paper: https://sigla.phis.me/paper.html.
 
+## John G. Younger, Linear A Texts in phonetic transcription (Academia.edu, 2024)
+- **What:** Younger's transliterations with commentary, in tables of side.line, statement, logogram, number and fraction, plus free-text inscriptions. They are based on GORILA, with Younger's normalisation from 1994 and continual updates since.
+- **Where:** the old site `people.ku.edu/~jyounger/LinearA/` **no longer exists** (domain gone, checked 2026-11-10; KU removed the server in early 2024, per Younger's folder introduction). Younger moved the material to Academia.edu as PDFs. Files, item URLs and hashes are in `data/raw/younger/README.md` and `SHA256SUMS`; Marius downloaded them by hand on 2026-11-10.
+- **Used:** "Other Texts (not Haghia Triada)", last update 28 March 2024, 132 pp., SHA-256 `05305bc5…907201`.
+- **Missing: the Haghia Triada texts.** The HT file was not found on Academia, and Marius found no Wayback capture of it. **Younger covers non-HT documents only.**
+- **Licence:** none stated, so all rights are reserved by default. The files are not committed; `fetch.py` verifies a manual download.
+- **Layer:** L1. Signs are given by Linear B values (KU-RO; *301 for signs without one). Mapping to sign IDs belongs to A1.8.
+- **Reader:** `aegean.corpus.younger` (pdfplumber). Typography carries data that plain-text extraction loses:
+  - bold = numbers;
+  - **underline = doubtful reading**;
+  - **green = Younger's conjectural restorations**;
+  - red = commentary;
+  - lowered small glyphs = subscripts (RA2).
+
+  Details and evidence: `data/raw/younger/README.md`.
+- **Known issues:**
+  - Younger's written definitions of `X[` and `]X` are reversed relative to his own (standard) usage; the parser follows the usage.
+  - Reconstruction tables in the commentary (PH 31) are kept apart from the transcription.
+  - About 2% of statement signs in free-text entries are stray notation.
+  - **Not independent of lineara.xyz**, which was built from Younger's earlier HTML pages.
+- **Held-out:** before anyone read the files, a separate agent screened all of them, returning counts only. No held-out siglum occurs in them.
+
 ## DAMOS — Database of Mycenaean at Oslo (Linear B control corpus)
 - **Source:** https://damos.hf.uio.no
 - **Licence:** content **CC BY-NC-SA 4.0**, software GPL-3.0 (damos.hf.uio.no/about/database, checked 2026-11-04). Anything derived from DAMOS texts must carry NC-SA terms, which constrains the repo's eventual licence choice.

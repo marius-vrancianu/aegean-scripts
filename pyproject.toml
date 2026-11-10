@@ -11,6 +11,7 @@ dependencies = []
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
+pdf = ["pdfplumber>=0.11"]  # Younger PDF reader (aegean.corpus.younger)
 
 [tool.setuptools.packages.find]
 where = ["src"]
