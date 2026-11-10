@@ -13,3 +13,6 @@ __pycache__/
 
 # Generated corpus files are rebuilt from pinned inputs; only manifests are committed
 data/processed/**/*.jsonl
+
+# SigLA is CC BY-NC-SA 4.0: the raw snapshot is committed (DATA_SOURCES.md, A1.4)
+!data/raw/sigla/**
