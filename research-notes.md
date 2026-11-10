@@ -420,3 +420,29 @@ All three decisions match the proposed defaults, so the list is unchanged: **1,6
 **Field coverage differs by source,** which A1.9 must respect. lineara.xyz has no per-sign doubt or erasure. SigLA has no numerals, lines or restorations. Younger has no HT. The full table is in `docs/schema.md`.
 
 **Next:** A1.8 (layers L0 and L1, including the Younger value → sign-ID table), then A1.9 (the disagreement report).
+
+---
+
+## 2026-11-10 — A1.8: layers L0 and L1
+
+**L1 table:** **Unicode Linear B syllable values.** They are read from `unicodedata` (Unicode 15.1, whose names encode Bennett number + value), not typed in. The table is applied uniformly to every source's L0 sign IDs. Signs Unicode leaves without a value (*22, *34, *56, *79, *82 …) and Linear A-only signs stay as numbers. SigLA's own value list is too thin to serve: 62 signs, missing 16 standard Linear B values.
+
+**Younger → L0:** the Unicode table, plus four values with cited evidence:
+- PA3 = *56 and PU3 = *314: Younger's introduction;
+- ZU = *79: Younger writes HT 13's KU-*79-NI also as KU-ZU-NI, and SigLA has AB079 there;
+- AI = AB043: SigLA.
+
+Logogram labels come from SigLA's sign-table names. **2,709 of 3,035 Younger tokens are mapped.**
+
+**Validation:** on 335 documents shared with SigLA, **1,112 of 1,125 aligned signs agree (98.8%)**, and every extra value agrees in every aligned case. This shows the map is consistent with an independent edition, not that the readings are correct.
+
+**Corrections to earlier work:**
+- The A1.4 SigLA reader read a value's subscript as a second value (AB29 = "pu, 2"; it is pu2). No earlier result used SigLA values.
+- Canonical sign series now always follows the number (SigLA's `AB302` OLE → `A302`).
+
+**For A1.9:**
+- SigLA gives AB072 the value `ko` (Unicode `pe`; SigLA also gives AB070 `ko`), probably a SigLA error;
+- the 13 sign-level disagreements between Younger and SigLA, e.g. Younger SO vs SigLA A363/A364;
+- the lines where Younger's printed value (`l1_value`) differs from the uniform `l1`.
+
+**Output:** `data/processed/corpus-v1.0-pre/` (witnesses.jsonl gitignored; MANIFEST committed), reproducible from pinned inputs. 3,049 witnesses, all schema-valid. Next: A1.9 (disagreement report).

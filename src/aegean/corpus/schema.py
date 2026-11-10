@@ -20,7 +20,7 @@ import re
 import unicodedata as ud
 from dataclasses import asdict, dataclass, field
 
-SCHEMA_VERSION = "0.1"
+SCHEMA_VERSION = "0.2"  # 0.2 (A1.8): Token.l1
 
 # --- canonical sign IDs -------------------------------------------------------
 
@@ -45,7 +45,13 @@ LIGATURE_LETTERS = {"ABB": "A714", "BB": "A715", "DD": "A717", "DDDD": "A718", "
 
 
 def canonical_id(series: str, number: int | str, variant: str | None = None) -> str:
-    """"AB" / "A" + 3-digit number + GORILA variant suffix, e.g. AB081, AB131a, A709-2, A506bis."""
+    """"AB" / "A" + 3-digit number + GORILA variant suffix, e.g. AB081, AB131a, A709-2, A506bis.
+
+    The series follows the number (Bennett): AB below 300, A from 301. Sources
+    are inconsistent here (Unicode "A028B", SigLA "AB302" for OLE), so the
+    `series` argument is not trusted.
+    """
+    series = "AB" if int(number) < 300 else "A"
     s = f"{series}{int(number):03d}"
     if variant:
         v = variant.strip()
@@ -122,7 +128,8 @@ class Token:
     sign_id: str | None  # L0 canonical ID; None if unidentified or not yet mapped (Younger: A1.8)
     role: str | None = None  # see ROLES; None if the source does not say
     components: list[str] = field(default_factory=list)  # ligature / composite components (L0 IDs)
-    l1_value: str | None = None  # conventional value given by the source (Younger only)
+    l1_value: str | None = None  # conventional value AS PRINTED by the source (Younger only)
+    l1: str | None = None  # uniform L1 value from sign_id (aegean.corpus.layers; A1.8)
     unidentified: bool = False
     doubtful: bool | None = None  # reading doubtful (SigLA unsure-reading; Younger underline)
     erased: bool | None = None

@@ -231,13 +231,15 @@ def to_sign(rec: Block) -> Sign:
 
 
 def _values(v) -> list[str]:
-    """Sign-table field 2: option of (value, alternative value option), e.g. Some ("da", None)."""
+    """Sign-table field 2: option of (value, subscript option), e.g. Some ("da", None) -> ["da"],
+    Some ("pu", Some "2") -> ["pu2"] (AB29 pu2, AB66 ta2, AB76 ra2). Corrected 2026-11-10:
+    the A1.4 reader read the subscript as a second value."""
     pair = om.option(v)
     if pair is None:
         return []
-    first, alt = pair.fields
-    alt = om.option(alt)
-    return [_s(first)] + ([] if alt is None else [_s(alt)])
+    first, sub = pair.fields
+    sub = om.option(sub)
+    return [_s(first) + ("" if sub is None else _s(sub))]
 
 
 def to_attestation(a: Block) -> Attestation:
