@@ -1,0 +1,83 @@
+{
+  "task": "A1.8",
+  "schema_version": "0.2",
+  "inputs": {
+    "lineara.xyz": {
+      "path": "data/raw/lineara.xyz/9c81beba669a/LinearAInscriptions.js",
+      "sha256": "9a14cc300201ac8ed07563c09b92142ab59de91a74e646b2e743ca6aeb695f5e"
+    },
+    "sigla": {
+      "path": "data/raw/sigla/0c4ef69f5de4/database.js",
+      "sha256": "0c4ef69f5de4cc3d9382cca782c1cf47e2ca1be40696bcfc8e97514f9b0781dd"
+    },
+    "younger": {
+      "path": "data/raw/younger/academia-2024/Linear_A_Texts_in_phonetic_transcription.pdf",
+      "sha256": "05305bc5235db0b0ebae1a828a46dcc35c0f004fb9a9a50ca522695a82907201"
+    }
+  },
+  "witnesses": {
+    "lineara.xyz": 1719,
+    "sigla": 827,
+    "younger": 503
+  },
+  "tokens": {
+    "lineara.xyz": {
+      "tokens": 6695,
+      "l0_sign_id": 6695,
+      "unidentified": 0,
+      "l1": 6695
+    },
+    "sigla": {
+      "tokens": 5184,
+      "l0_sign_id": 4789,
+      "unidentified": 395,
+      "l1": 4780
+    },
+    "younger": {
+      "tokens": 3035,
+      "l0_sign_id": 2709,
+      "unidentified": 54,
+      "l1": 2709
+    }
+  },
+  "younger_vs_sigla": {
+    "documents_paired": 335,
+    "aligned": 1125,
+    "agree": 1112,
+    "disagree": 13
+  },
+  "younger_extra_values": {
+    "PA3": [
+      "AB056",
+      "Younger, introduction, 'Phonetic values of the signs': *56=PA3"
+    ],
+    "PU3": [
+      "A314",
+      "Younger, introduction: *314 = PU3"
+    ],
+    "ZU": [
+      "AB079",
+      "Younger writes the same HT 13 word KU-*79-NI and KU-ZU-NI (introduction); SigLA HT 13 has AB079 there"
+    ],
+    "AI": [
+      "AB043",
+      "SigLA sign table: AB43 = ai (Unicode Linear B writes A3)"
+    ]
+  },
+  "younger_extra_values_validation": {
+    "PA3": {
+      "AB056": 8
+    },
+    "PU3": {
+      "A314": 4
+    },
+    "ZU": {
+      "AB079": 8
+    },
+    "AI": {
+      "AB043": 1
+    }
+  },
+  "output_sha256": "a0d2ec6e33e799982c6cf4fe5e190df71578e9dfb7dea189b7a799f31b2618b4",
+  "licence_note": "witnesses.jsonl is not committed: it holds lineara.xyz and Younger texts (no licence) and SigLA data (CC BY-NC-SA 4.0). Rebuild it from the pinned inputs."
+}

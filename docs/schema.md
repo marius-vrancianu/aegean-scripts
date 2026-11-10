@@ -1,4 +1,6 @@
-# Corpus schema (A1.7), version 0.1
+# Corpus schema (A1.7), version 0.2
+
+v0.2 (A1.8) adds `Token.l1`, the uniform L1 value computed from `sign_id` (see `docs/layers.md`). `Token.l1_value` remains the value as the source printed it.
 
 Code: `aegean.corpus.schema` (records, sign IDs, `validate`) and `aegean.corpus.witnesses` (one adapter per source). The document list and its inclusion rules are in `docs/inclusion-rules.md` (A1.6). Building the layers and the corpus-v1.0 files is A1.8.
 
@@ -67,7 +69,8 @@ The format is `AB` or `A`, then a 3-digit number, then the GORILA variant suffix
 
 **Token:**
 - `written_as`: the source's own encoding;
-- `sign_id`, `role`, `components`, `l1_value`, `unidentified`;
+- `sign_id`, `role`, `components`, `unidentified`;
+- `l1_value` (as printed by the source) and `l1` (uniform, from `sign_id`; A1.8);
 - `doubtful`, `erased`, **`restored`** and **`conjectural`**, kept as separate fields;
 - `break_before`, `break_after`, `stacked`, `bbox`, `flags`.
 
