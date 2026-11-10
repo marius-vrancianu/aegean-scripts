@@ -57,6 +57,31 @@ Every dataset used anywhere in this repo is listed here before it is used. Field
   - **Not independent of lineara.xyz**, which was built from Younger's earlier HTML pages.
 - **Held-out:** before anyone read the files, a separate agent screened all of them, returning counts only. No held-out siglum occurs in them.
 
+## Evaluated and not used (2026-11-10)
+Recorded so nobody re-does the check. Neither source adds independent readings.
+
+### lineara.eu
+- **What:** a presentation site ("Built 2026-10-17"; no named maintainer) showing 753 of a stated 1,883 documents as tracings, with a search and download page (https://lineara.eu/search/).
+- **Not used, because it is derived:** its footer says the corpus data is merged from lineara.xyz and SigLA, which are already sources here. No site-wide licence is stated.
+- **Held-out:** the site mentions the Knossos sceptre (checked by yes/no only). Any future use needs blinded handling.
+
+### Kaphtor (plasma-ai/kaphtor; T. di Mino, "Opening Linear A", plasma.ai, 2026-10-22)
+- **What:** the corpus, lexicon and tools behind di Mino's Semitic ("Ya Diktu") reading, the method tested in Finding 001.
+  - Code: Apache-2.0.
+  - Own data: CC BY 4.0.
+  - SigLA-derived parts: CC BY-NC-SA 4.0.
+  - lineara.xyz-derived parts: no licence.
+- **Screened blind on 2026-11-10** at commit `4b60a47030eb`. A separate agent reported structure, field names and document IDs only, then deleted the clone.
+- **Not used as a source, because it is a re-packaged lineara.xyz:**
+  - `data/linear-a/corpus.json` (1,716 documents, held-out excluded) uses lineara.xyz's own field names (`transcription`, `words`, `transliteratedWords` …).
+  - **1,696 of its IDs are in our lineara.xyz snapshot.**
+  - Its SigLA layer comes from an older SigLA export (802 documents, against 827 in ours).
+  - Only 9 IDs are absent from all three of our sources. About half are spelling variants (`KNZb27` vs `KN Zb <27>`); at most about 4 look new: HT Wa 1071, HT Wa 1072, PK Zb X, SKO Zc 2. They enter corpus-v1.0 only with a primary publication.
+  - "RILA-S1" is a source in name for only 2 records. Its 66 `post_gorila_publication` documents are all in lineara.xyz already.
+- **Editorial independence:** the compiler is the proponent of a reading that Finding 001 found indistinguishable from chance matching. His corrections, readings, segmentations and translations must not enter the corpus.
+- **Possible metadata use (CC BY 4.0 parts only), for A1.6:** `gorila_volume` (1,478 records), `source_provenance`, and the `rila_s1` status field (142 records). These are pointers to check against the publications, not facts.
+- **Held-out:** the repository contains three records of the held-out documents, sourced to the 2024/2025 *Ariadne* publication, plus wiki pages about them. **Do not browse or clone it unblinded.** Any use must go through a separate agent that drops those records first.
+
 ## DAMOS — Database of Mycenaean at Oslo (Linear B control corpus)
 - **Source:** https://damos.hf.uio.no
 - **Licence:** content **CC BY-NC-SA 4.0**, software GPL-3.0 (damos.hf.uio.no/about/database, checked 2026-11-04). Anything derived from DAMOS texts must carry NC-SA terms, which constrains the repo's eventual licence choice.

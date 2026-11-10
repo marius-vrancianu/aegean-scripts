@@ -342,3 +342,15 @@ Two refinements, both pending re-review in the same PR:
 - 503 entries; 2,181 statement signs (287 doubtful, 53 unidentified); 441 rows with numbers and 182 with fractions. About 2% of signs in free-text entries are stray notation. They are kept, to be classified in A1.7.
 
 **Next:** A1.6 inclusion rules, A1.7 schema, A1.8 layers (including Younger's L1 → sign-ID mapping) and A1.9 disagreement report.
+
+---
+
+## 2026-11-10 — Two candidate sources evaluated, neither used
+
+Marius found two candidate sources for corpus expansion or redundancy: lineara.eu and plasma.ai's Kaphtor corpus. Details are in `DATA_SOURCES.md` under "Evaluated and not used".
+
+- **lineara.eu** says itself that it merges lineara.xyz and SigLA, so it adds nothing independent.
+- **Kaphtor** is di Mino's corpus. It was screened blind: a separate agent reported structure, field names and IDs only. It is a re-packaged lineara.xyz, with 1,696 of 1,716 IDs shared and the same field names, plus an older SigLA export. At most about 4 document IDs are new, and they need a primary publication before inclusion. Its compiler's editorial layers are excluded on independence grounds (Finding 001).
+- **Both contain or mention the held-out sceptre.** Neither should be browsed unblinded.
+
+**Consequence:** corpus-v1.0 keeps three sources: SigLA, lineara.xyz, and Younger for non-HT documents. Real redundancy for Haghia Triada would need GORILA itself (EFA scans, read by hand). Kaphtor's publication metadata (GORILA volume, post-GORILA references) may help A1.6, but only as pointers to verify.
