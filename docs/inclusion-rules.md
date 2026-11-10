@@ -1,6 +1,6 @@
 # Inclusion rules for the canonical document list (A1.6)
 
-**Status: PROPOSAL (2026-11-10).** The defaults below are mine (Claude) and await Marius's decision. Every rule is a parameter in `aegean.corpus.inclusion.Rules`, so changing one is a single argument, and the effect of each is counted here. Built by `python -m aegean.corpus.document_list` → `data/processed/document-list/`.
+**Status: DECIDED (2026-11-10).** Marius decided R3/R4, R7 and R9, as proposed. R5, R6, R8 and R10 keep my proposed defaults; Marius did not change them. Every rule is a parameter in `aegean.corpus.inclusion.Rules`, so changing one is a single argument, and the effect of each is counted here. Built by `python -m aegean.corpus.document_list` → `data/processed/document-list/`.
 
 ## What the list is
 
@@ -38,7 +38,7 @@ Nothing is deleted. An analysis that wants single-sign nodules selects tier T2 e
 
 **R2 Held-out (fixed, not a proposal).** Documents in `data/heldout.txt` are excluded by every reader before parsing, matched across sources by normalised siglum. The frozen 20% split is added at A1.12.
 
-**R3/R4 Content tier (PROPOSAL). This is the decision with by far the largest effect.** Each source's record is judged on its own, with sides summed, and the best source decides:
+**R3/R4 Content tier (DECIDED by Marius 2026-11-10: T1 only in analyses). This is the decision with by far the largest effect.** Each source's record is judged on its own, with sides summed, and the best source decides:
 
 | Tier | Definition | Documents | Of which nodules |
 |---|---|---|---|
@@ -51,21 +51,21 @@ Nothing is deleted. An analysis that wants single-sign nodules selects tier T2 e
 - *Alternatives:* (a) include T2 in sign-frequency inventories (A1.11) but not in sequence analyses (A3/A4), which I'd also support; (b) include T2 everywhere; (c) drop T2/T3 from the list. I'd advise against (c), since nothing should be deleted.
 - *Caveat:* the tier depends on how each source counts. SigLA records no numerals, and Younger counts a logogram cell as a sign. **The sources disagree on the tier of 67 documents**, which go into the A1.9 report.
 
-**R5 Register (PROPOSAL).** This is taken from the GORILA series code, the same in every source:
+**R5 Register (proposed default kept).** This is taken from the GORILA series code, the same in every source:
 - *administrative* (1,420): no series = tablet; `W*` = sealing documents (`Wa` nodule, `Wb` sealing, `Wc` roundel, other `W*`);
 - *non-administrative* (199): `Z*` = inscriptions on other objects (`Za` stone vessel, `Zb` clay vessel, `Zc` inked, `Zd` graffito, `Ze` architecture, `Zf` metal, `Zg` stone object).
 
 *Proposed:* both enter analyses by default, with the register a field that analyses select on. A2 already restricts itself to tablets.
 
-**R6 Off-Crete documents (PROPOSAL).** 43 documents come from outside Crete (flag `off_crete`): Thera 25, Miletos 4, Mycenae 3, Kythera 2, Samothrace 4 (prefixes `SAM` and the older `SA`), Troy 2, and one each from Argos, Tel Haror and Tiryns. The prefix set was checked against the sources' site names. `SE` is Selakanos and `LACH` is Larani, both in Crete. *Proposed:* include. *Alternative:* exclude from analyses that assume a Cretan administration.
+**R6 Off-Crete documents (proposed default kept).** 43 documents come from outside Crete (flag `off_crete`): Thera 25, Miletos 4, Mycenae 3, Kythera 2, Samothrace 4 (prefixes `SAM` and the older `SA`), Troy 2, and one each from Argos, Tel Haror and Tiryns. The prefix set was checked against the sources' site names. `SE` is Selakanos and `LACH` is Larani, both in Crete. *Proposed:* include. *Alternative:* exclude from analyses that assume a Cretan administration.
 
-**R7 Single-source documents (PROPOSAL).** 815 documents are in one source only: 786 in lineara.xyz only, 24 in SigLA only, 5 in Younger only. Of these, 47 are T1 (lineara.xyz 39, SigLA 6, Younger 2). *Proposed:* include, flagged by `n_sources = 1`. *Alternative:* for T1 analyses, require two sources. That would cost 47 texts and all of SigLA's HT 154 fragments.
+**R7 Single-source documents (DECIDED by Marius 2026-11-10: kept, whatever the number of sources).** 815 documents are in one source only: 786 in lineara.xyz only, 24 in SigLA only, 5 in Younger only. Of these, 47 are T1 (lineara.xyz 39, SigLA 6, Younger 2). *Proposed:* include, flagged by `n_sources = 1`. *Alternative:* for T1 analyses, require two sources. That would cost 47 texts and all of SigLA's HT 154 fragments.
 
-**R8 Joins (PROPOSAL).** The key is the join as most sources edit it, with the other forms as aliases (see "How documents are matched"). *Alternative:* split joins into components. That would contradict the editions and double-count shared lines.
+**R8 Joins (proposed default kept).** The key is the join as most sources edit it, with the other forms as aliases (see "How documents are matched"). *Alternative:* split joins into components. That would contradict the editions and double-count shared lines.
 
-**R9 Documents known only from reports (PROPOSAL).** These are GORILA's `<n>` sigla (16 documents: KN Zb <27>, <36>–<39>, KN Zg <21>, PH <29> …). Their texts come from earlier reports and cannot be checked against the object. *Proposed:* listed, **not in analyses by default** (flag `lost`). This excludes 6 that would otherwise be T1.
+**R9 Documents known only from reports (DECIDED by Marius 2026-11-10: kept out of analyses).** These are GORILA's `<n>` sigla (16 documents: KN Zb <27>, <36>–<39>, KN Zg <21>, PH <29> …). Their texts come from earlier reports and cannot be checked against the object. *Proposed:* listed, **not in analyses by default** (flag `lost`). This excludes 6 that would otherwise be T1.
 
-**R10 Unresolved IDs (PROPOSAL).** These are the 3 IDs in `aliases.tsv` marked `unresolved` (the unnumbered Palaikastro Zb items and "KN sceau"). *Proposed:* listed, **not in analyses** until a primary publication resolves them. 2 of the 3 are T1.
+**R10 Unresolved IDs (proposed default kept).** These are the 3 IDs in `aliases.tsv` marked `unresolved` (the unnumbered Palaikastro Zb items and "KN sceau"). *Proposed:* listed, **not in analyses** until a primary publication resolves them. 2 of the 3 are T1.
 
 **Found while building the list (for A1.9, not resolved here):**
 - **ARG Zg 1:** lineara.xyz gives the site as Arkhalkhori, while Younger places it at Argos (Nafplion Museum). It is treated as off-Crete.
@@ -77,13 +77,13 @@ Nothing is deleted. An analysis that wants single-sign nodules selects tier T2 e
 - **Scribal hand:** SigLA has none; lineara.xyz and Younger have hands, from GORILA V.
 - Uncertain-site flags (`site_uncertain`, 3 documents) are kept and not used for exclusion.
 
-## Result with the proposed defaults
+## Result
 
 **1,619 listed; 568 in the default analysis set.** These are 576 T1 documents, less 6 lost and 2 unresolved. Exclusions by rule: T2 991, T3 52, R9 16, R10 3; a document can have more than one reason. See `data/processed/document-list/MANIFEST.json`.
 
-## Decisions needed from Marius
+## Decisions (Marius, 2026-11-10)
 
-1. **R3/R4:** T1 only by default (proposed), or T1 for sequence analyses and T1+T2 for sign inventories (alternative a)?
-2. **R7:** accept single-source T1 documents (proposed), or require two sources?
-3. **R9:** keep "lost" `<n>` documents out of analyses (proposed)?
-4. Anything else in R5, R6, R8 or R10 you would set differently?
+1. **R3/R4:** analyses use **T1 only** by default. T2 and T3 stay in the list, and an analysis must select them explicitly.
+2. **R7:** single-source documents are **kept**, whatever the number of sources.
+3. **R9:** documents known only from reports (`<n>`) are **kept out** of analyses.
+4. R5, R6, R8 and R10: no change requested, so the proposed defaults stand. Revisit any of them by a new research-notes entry and a change to `inclusion.Rules`.

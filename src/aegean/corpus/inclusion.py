@@ -1,8 +1,8 @@
 """Inclusion rules for the canonical document list (A1.6).
 
 The rules are documented, with their counts and the alternatives, in
-docs/inclusion-rules.md. The defaults below are a PROPOSAL awaiting Marius's
-decision; every rule is a parameter, so a different choice is one argument,
+docs/inclusion-rules.md. The defaults below were DECIDED by Marius on
+2026-11-10 (R3/R4, R7, R9) or kept as proposed (R5, R6, R8, R10); every rule is a parameter, so a different choice is one argument,
 not a code change, and the effect of each rule is reported.
 
 Two separate outputs per document:
