@@ -354,3 +354,34 @@ Marius found two candidate sources for corpus expansion or redundancy: lineara.e
 - **Both contain or mention the held-out sceptre.** Neither should be browsed unblinded.
 
 **Consequence:** corpus-v1.0 keeps three sources: SigLA, lineara.xyz, and Younger for non-HT documents. Real redundancy for Haghia Triada would need GORILA itself (EFA scans, read by hand). Kaphtor's publication metadata (GORILA volume, post-GORILA references) may help A1.6, but only as pointers to verify.
+
+---
+
+## 2026-11-10 — A1.6: concordance and canonical document list (rules proposed, not decided)
+
+**Built:**
+- `aegean.corpus.siglum` parses each source's IDs. It splits off sides, ignores angle brackets for matching, and keeps fragment letters, `bis`/`ter` and joins.
+- `aegean.corpus.concordance` clusters records by shared components, so differently-joined records (KH Wc 2059 …) end up in one document.
+- `data/concordance/aliases.tsv` maps 26 irregular IDs by hand, each with a confidence.
+- `aegean.corpus.inclusion` holds the rules as parameters.
+- The output is `data/processed/document-list/`: a TSV and a MANIFEST, licensed CC BY-NC-SA through SigLA, reproducible from pinned inputs.
+
+**Counts (held-out excluded):** 1,619 documents. 346 are in all three sources and 786 only in lineara.xyz, mostly Haghia Triada nodules.
+
+**The decision with by far the largest effect is the content tier:**
+- T1 "text" (≥2 signs, or a sign and a numeral): 576 documents;
+- T2 "single sign": 991, of which 841 are nodules;
+- T3 "no identified sign": 52.
+
+**Proposed** (by me, awaiting Marius): list everything; analyses use T1 by default, and also exclude documents known only from reports (`<n>`) and unresolved IDs. That leaves **568** documents. All rules, counts and alternatives are in `docs/inclusion-rules.md`.
+
+**Corrections made while checking** (my own errors, caught before commit):
+- My first list of off-Crete prefixes wrongly included `SE` (Selakanos) and `LACH` (Larani); both are in Crete. The set was re-checked against the sources' site names.
+- Four counts in the draft rules document were wrong. They were recomputed from the final build.
+
+**For A1.9:**
+- the sources disagree on the content tier of 67 documents;
+- the site of ARG Zg 1 (lineara.xyz: Arkhalkhori; Younger: Argos);
+- possible renumberings (Samothrace `SA We` / `SAM We`; Thera fragments vs SigLA's THE 7-12).
+
+**Open for Marius:** the four decisions at the end of `docs/inclusion-rules.md`.

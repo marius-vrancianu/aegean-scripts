@@ -1,0 +1,49 @@
+{
+  "task": "A1.6",
+  "status": "PROPOSAL: rule defaults await Marius's decision (docs/inclusion-rules.md)",
+  "code_commit_at_build": "5e3c6fec2fe2a80a8f9ec983f4e5e13f70f6e521",
+  "inputs": {
+    "lineara.xyz": {
+      "path": "data/raw/lineara.xyz/9c81beba669a/LinearAInscriptions.js",
+      "sha256": "9a14cc300201ac8ed07563c09b92142ab59de91a74e646b2e743ca6aeb695f5e"
+    },
+    "sigla": {
+      "path": "data/raw/sigla/0c4ef69f5de4/database.js",
+      "sha256": "0c4ef69f5de4cc3d9382cca782c1cf47e2ca1be40696bcfc8e97514f9b0781dd"
+    },
+    "younger": {
+      "path": "data/raw/younger/academia-2024/Linear_A_Texts_in_phonetic_transcription.pdf",
+      "sha256": "05305bc5235db0b0ebae1a828a46dcc35c0f004fb9a9a50ca522695a82907201"
+    }
+  },
+  "aliases_sha256": "798f005be2668d18d04be7ea988468ae6728654621568a975df6bc09805f2b6a",
+  "output_sha256": "9348ca024b214752d5b8188ae6848bdb81ad24ee580ad0ac29a75aa411d9768e",
+  "rules": {
+    "analysis_tiers": [
+      "T1"
+    ],
+    "analysis_registers": [
+      "administrative",
+      "non_administrative"
+    ],
+    "analysis_off_crete": true,
+    "analysis_single_source": true,
+    "analysis_lost": false,
+    "list_unresolved": true,
+    "analysis_unresolved": false
+  },
+  "documents": 1619,
+  "listed": 1619,
+  "analysis_default": 568,
+  "by_tier": {
+    "T2": 991,
+    "T1": 576,
+    "T3": 52
+  },
+  "excluded_by_reason": {
+    "R3/R4 tier T2": 991,
+    "R9 lost (<n>)": 16,
+    "R3/R4 tier T3": 52,
+    "R10 unresolved ID": 3
+  }
+}
