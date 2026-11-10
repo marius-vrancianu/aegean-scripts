@@ -385,3 +385,16 @@ Marius found two candidate sources for corpus expansion or redundancy: lineara.e
 - possible renumberings (Samothrace `SA We` / `SAM We`; Thera fragments vs SigLA's THE 7-12).
 
 **Open for Marius:** the four decisions at the end of `docs/inclusion-rules.md`.
+
+---
+
+## 2026-11-10 — A1.6 inclusion rules decided
+
+**Decided by Marius:**
+- **R3/R4:** analyses use **T1 (text) only** by default. Single-sign (T2) and no-sign (T3) documents stay in the list, and an analysis must select them explicitly.
+- **R7:** single-source documents are **kept**, whatever the number of sources.
+- **R9:** documents known only from reports (`<n>`) are **kept out** of analyses.
+
+R5 (register), R6 (off-Crete), R8 (joins) and R10 (unresolved IDs) were not changed by Marius, so the proposed defaults stand.
+
+All three decisions match the proposed defaults, so the list is unchanged: **1,619 listed, 568 in the default analysis set**. Only the status in MANIFEST.json changes. A1.6 is done; next is A1.7 (schema).

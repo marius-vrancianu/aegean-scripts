@@ -74,7 +74,7 @@ def build(out: Path = OUT, rules: inclusion.Rules = inclusion.Rules()) -> dict:
         commit = "unknown"
     manifest = {
         "task": "A1.6",
-        "status": "PROPOSAL: rule defaults await Marius's decision (docs/inclusion-rules.md)",
+        "status": "DECIDED 2026-11-10 (Marius: R3/R4 T1 only, R7 keep single-source, R9 keep <n> out; R5/R6/R8/R10 proposed defaults kept). See docs/inclusion-rules.md",
         "code_commit_at_build": commit,
         "inputs": {s: {"path": str(p.relative_to(REPO)), "sha256": PINNED[s]} for s, p in concordance.INPUTS.items()},
         "aliases_sha256": sha256(concordance.ALIASES),
