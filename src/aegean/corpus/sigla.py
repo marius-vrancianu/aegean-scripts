@@ -26,7 +26,6 @@ from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
 from aegean.corpus import ocaml_marshal as om
-from aegean.corpus.heldout import load_heldout
 from aegean.corpus.ocaml_marshal import Block
 
 SOURCE = "sigla"
@@ -295,33 +294,8 @@ def to_document(doc_id: str, d: Block) -> Document:
 
 
 # --- held-out filter -----------------------------------------------------------
-
-def _norm(doc_id: str) -> str:
-    return re.sub(r"\s+", "", doc_id).upper()
-
-
-def heldout_keys(heldout: dict[str, set[str]] | None = None) -> set[str]:
-    """Normalised sigla of every held-out document, from every source in data/heldout.txt.
-
-    SigLA writes sigla with spaces ("HT 13"); lineara.xyz without ("HT13", sides
-    as "a"/"b"). Matching on the normalised siglum, with a trailing side letter
-    removed, means a SigLA record of a held-out document is excluded even before
-    a `sigla:` line exists in data/heldout.txt.
-    """
-    heldout = load_heldout() if heldout is None else heldout
-    keys = set()
-    for ids in heldout.values():
-        for i in ids:
-            n = _norm(i)
-            keys.add(n)
-            keys.add(re.sub(r"[A-Z]$", "", n) if re.search(r"\d[A-Z]$", n) else n)
-    return keys
-
-
-def is_heldout(doc_id: str, keys: set[str]) -> bool:
-    n = _norm(doc_id)
-    base = re.sub(r"[A-Z]$", "", n) if re.search(r"\d[A-Z]$", n) else n
-    return n in keys or base in keys
+# Shared cross-source matching lives in aegean.corpus.heldout.
+from aegean.corpus.heldout import heldout_keys, is_heldout_siglum as is_heldout  # noqa: E402
 
 
 # --- entry points ----------------------------------------------------------------
