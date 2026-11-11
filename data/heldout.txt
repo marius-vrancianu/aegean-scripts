@@ -1,7 +1,11 @@
-# Held-out documents: excluded at ingest by every corpus builder.
-# One document ID per line, exactly as it appears in each source.
+# Held-out documents. Two kinds of line:
+#   <source>:<id>         excluded at ingest by every corpus builder; in no corpus file.
+#                         One document ID per line, exactly as it appears in that source.
+#   split:<document key>  the frozen confirmatory split (A1.12). In the corpus files;
+#                         withheld by aegean.corpus.load unless a frozen confirmatory
+#                         hypothesis is named. Generated block at the end; never edited by hand.
 # Removing a line requires a PR that cites the frozen-prediction tag.
-# Policy: CLAUDE.md, plan §0.4. Reason for the lineara.xyz entries: research-notes 2026-11-04.
+# Policy: CLAUDE.md, plan §0.4, docs/heldout-split.md. Reason for the lineara.xyz entries: research-notes 2026-11-04.
 
 # Knossos ivory sceptre (Anetaki plot); Kanta et al. 2025
 lineara.xyz:KNZg57a

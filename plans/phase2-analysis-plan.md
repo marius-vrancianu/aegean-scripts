@@ -39,7 +39,7 @@ The rules for how sounds become Linear-script spellings (omitted final consonant
 - **Multiple comparisons.** Count every hypothesis tested in each analysis; control false discovery rate (Benjamini–Hochberg) for exploratory batches; report the full count, including failures (Rule 2).
 - **Held-out data policy** (fixed at the A1 v1.0 release, never changed afterwards):
   - KN Zg 57 and KN Zg 58 (Knossos ivory sceptre) are reserved as held-out until predictions from A2–A4 are frozen. Blinding was partly compromised on 2026-11-02; see `research-notes.md` for what was seen and its consequences.
-  - A random 20% of documents, stratified by site and support type, is frozen as a confirmatory split for A3 and A4.
+  - A random 20% of documents, stratified by site and support type, is frozen as a confirmatory split for A3 and A4. **Frozen 2026-11-11 (A1.12):** 90 documents; strata with fewer than five documents are wholly training (`docs/heldout-split.md`).
 - **Blinded checks** (added 2026-11-02): a web fetch is not a blinding mechanism. Any check on held-out material is done either by a separate agent that returns only pre-specified fields, or by Marius after predictions are frozen.
 - **LLM output is a hypothesis, never evidence** (Rule 5). This applies to any sign value, segmentation or reading Claude suggests while working on these tasks.
 
@@ -91,7 +91,7 @@ This order replaces the "suggested order" in §0.5 wherever they differ. The dep
 
 **Considered and left out (2026-11-10):** Cretan Hieroglyphic as extra corpus material (sign correspondences uncertain); Egyptian renderings of Keftiu names (too few items to test); a model to restore damaged signs (corpus too small to train; restored signs could never count as evidence); synthetic expansion of the corpus (adds no information; allowed only as null corpora, degraded Linear B and resampling).
 
-**Held-out budget.** The frozen split will hold about 114 documents (20% of the 568 in the default analysis set), so confirmatory power is scarce. Before running items 6, 8 and 9, pre-register which of their hypotheses get a held-out test; the rest are exploratory.
+**Held-out budget.** The frozen split holds 90 documents (A1.12, 2026-11-11: 20% of the 450 documents in strata of five or more; v1.3 estimated about 114 before the small strata were counted), so confirmatory power is scarce. Before running items 6, 8 and 9, pre-register which of their hypotheses get a held-out test; the rest are exploratory.
 
 **Estimates in this section are judgement, not measurement** (Rule 5): the signal ratings behind the order have not been tested.
 
@@ -197,7 +197,7 @@ To-do:
 - [x] A1.9 Cross-source disagreement report: list every place where SigLA, Younger and lineara.xyz differ. This is a data-quality result in its own right. **Done 2026-11-10** as a data-quality report (Marius's choice), not a finding: `docs/reports/A1.9-source-disagreements.md`, built by `python -m aegean.corpus.disagreements`. Identified signs agree 97.5–98.7% between pairs of sources. **HT numerals and fractions effectively rest on lineara.xyz alone.** lineara.xyz appears to have OVIS/CAP and site-name errors; SigLA omits fractions on 57 documents.
 - [ ] A1.10 Linear B control corpus: check whether DAMOS offers raw data download (its developers have said they plan to release raw data); otherwise request it or harvest the online version within its terms. Keep its lemma/normalisation layers.
 - [ ] A1.11 Baseline statistics: sign frequencies, positional statistics (initial/medial/final), sign-group length distribution, breakdown by site/period/register. Re-derive Packard-style figures as a sanity check. **2026-11-10:** order and design revised, see §0.6 and §0.7.
-- [ ] A1.12 Freeze the held-out split (§0.4), then tag release v1.0 with a changelog. **2026-11-10:** order and design revised, see §0.6 and §0.7.
+- [x] A1.12 Freeze the held-out split (§0.4), then tag release v1.0 with a changelog. **2026-11-10:** order and design revised, see §0.6 and §0.7. **Done 2026-11-11:** 90 documents held out (20% of each of the 22 strata with five or more documents; 88 smaller strata, 118 documents, wholly training), seed 20261111. Procedure: `docs/heldout-split.md`; changelog and limits: `docs/corpus-changelog.md`; loader: `aegean.corpus.load`. Marius creates the `corpus-v1.0` tag on the merge commit.
 - [ ] A1.13 When a readable edition text of KN Zg 57/58 is available (the 2025 *Ariadne* overview has no sign-by-sign transcription; wait for *Anetaki II*), add it under the held-out flag.
 - [ ] A1.14 (added 2026-11-10) Resampling harness: rerun any analysis across (a) the alternative readings of damaged or doubtful signs given by the other witnesses and (b) bootstrap samples of documents, so results carry intervals that reflect reading uncertainty. Shared by A3, A4, A8 and A9. Why and how: §0.7.
 - [ ] A1.15 (added 2026-11-10, optional) Report the likely lineara.xyz errors from the A1.9 report upstream (OVIS/CAP, the Arkhanes site label), after checking them on GORILA. Marius sends the message. Why and how: §0.7.
@@ -563,3 +563,4 @@ To-do:
 - 2026-11-04 — v1.2. Repo created (A1.1 mostly done); hypotheses are now one file each in `hypotheses/`. lineara.xyz pinned and found to contain the held-out sceptre records (excluded via `data/heldout.txt`). A1.3, A1.5, V2 updated.
 - 2026-11-06 — A2 wrapped up on corpus-v0.1: Finding 002; H-A2-06 and H-A2-09 registered for future data; manual-check list for a human second reader. Remaining A2 items wait for new data (corpus-v1.0, *Anetaki II*, DAMOS) or literature (Montecchi).
 - 2026-11-10 — v1.3. Project review with Marius. Revised order in §0.6. New analyses A8 (functional meaning without sound values) and A9 (claims audit, site comparison); new tasks A1.14, A1.15, A3.8, A3.9, A5.17, A5.18; V10; why and how for each in §0.7 and in the A8 and A9 sections. A5 split into Tier 1 (A5.17, brought forward) and Tier 2. Parked: A6, A7, A2.3, A2.4, A2.6, A2.7 (A2: Finding 002 showed the totals have no power and the value-set tests are no longer blind; A6/A7: high cost, nothing depends on them). A1.4–A1.9 completed the same day (PRs #25–#32).
+- 2026-11-11 — A1.12 done: held-out split frozen (90 documents, not the estimated 114; §0.4, §0.6 budget and the A1.12 checkbox updated), corpus-v1.0 changelog written. No change to the order of work.
