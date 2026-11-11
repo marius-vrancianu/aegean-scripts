@@ -591,3 +591,33 @@ Neither abstract mentions the sceptre. Neither article has been read.
 **Blindness.** All figures come through `aegean.corpus.load` with the default split. The held-out documents were not read.
 
 **Next:** A8.1 (labelled-picture gold set).
+
+---
+
+## 2026-11-11 — A8.1: labelled-picture gold set, draft (not frozen)
+
+**Built:** `aegean.roles.gold` → `data/processed/gold/` (gold-set.tsv, vessel-candidates.tsv, MANIFEST.json) and `docs/reports/A8.1-gold-set.md`. Hand-written input for the literature items: `data/gold-input/literature-items.tsv`. Layer L0, training split only.
+
+**Result: 21 items, 16 usable for scoring** (grade A or B and attested in the training split): 5 vessel designations, 4 places, 4 persons, 2 total markers, 1 deficit marker. Plan A8 expected 20–40.
+
+**Labelled pictures: five, all on HT 31.**
+- A sign-group counts as a label when it is written in small signs over a vessel logogram (GORILA A400–A418, which Unicode names VAS, "vessel"). SigLA's sign coordinates show this; lineara.xyz encodes the same five as one item each, logogram first. Both sources agree on all five (grade A): QA-\*56, SU-PU, KA-RO-\*56, SU-\*56-RA, PA-TA-QE. (`*56` is a sign without an agreed sound value; some editions write PA3.)
+- This matches the published edition as far as a search excerpt shows (Duhoux 2000–2001, *Minos* 35–36, 31–62). The article was not read. Confidence that these are labels of vessels: high. What each word says about its vessel is unknown.
+- Not accepted: DA-RO-PA at a vessel sign on HT 38, and two groups on HT 93. They sit above a vessel sign in SigLA's coordinates but in signs of normal size, so ordinary line layout cannot be excluded.
+- The size threshold (0.9 of the document's median sign height) and the overlap threshold were chosen after looking at the training data. This is curation, not a test, but it is a choice of mine (Rule 5).
+- The two other words on HT 31 without a vessel sign of their own (SA-JA-MA, KI-DE-MA-\*323-NA) are not in the set.
+
+**Literature items: 16 rows, none checked against a primary source.** Roles and confidence come from the survey §5; attestations for six words come from a search excerpt of a *Minos* article whose author and title the excerpt did not show.
+- A check on the plumbing: every document that excerpt names and that is in the training split was found by the exact L0 match; for KA-PA the lists are identical (HT 6, 8, 94, 102, 105, 140). HT 97 (PA-I-TO) and ZA 10 (DA-I-PI-TA) are named there and are not in the training split; I checked their IDs against the training list only and did not look further.
+- Grades are my proposal. Grade C (KA-PA, KA-TA-RE, DI-KI-TE, I-DA, KU-NI-SU) is listed but not used for scoring.
+
+**Limits.**
+- Circularity: all items except the five vessel words were identified by scholars from the cues a role classifier uses. Scoring on them measures agreement with that scholarship.
+- The only circularity-free items are five words on one tablet by one scribe.
+- Partial build: lineara.xyz and SigLA only (no Younger PDFs in this session).
+
+**Held-out exposure in this session.** Search excerpts for V10 and A8.1 quoted the text of HT 6, HT 93, HT 102 and HT 120; all four are training documents (IDs checked). An excerpt for V10 showed a caption naming the sceptre, nothing more.
+
+**Why not frozen.** Plan A8.1 says to freeze the list with a hash before A8.2 runs. The manifest carries the hash, but freezing an answer key whose sources nobody has read would fix errors in place. To freeze: rebuild on the full witnesses, check each literature row, Marius confirms grades.
+
+**Next (plan §0.6):** A9.1–A9.2 (claims audit) and A5.17 (benchmark Tier 1). A1.10 is with Marius. Open from today: V10 blinded read; Younger rebuild for A1.11 and A8.1; the `Type` line in the hypothesis template.

@@ -1,0 +1,53 @@
+document	source	logogram	components	group_l1	group_l0	overlap	gap	size_ratio	verdict	reason
+HT 110	sigla	A648	A400+AB053						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+HT 31	lineara.xyz	A402							not_gold	vessel logogram stands alone in its item
+HT 31	lineara.xyz	A402		PA-TA-QE	AB003 AB059 AB078				label	logogram and sign-group encoded as one item
+HT 31	lineara.xyz	A402		QA-*56	AB016 AB056				label	logogram and sign-group encoded as one item
+HT 31	lineara.xyz	A402		SU-*56-RA	AB058 AB056 AB060				label	logogram and sign-group encoded as one item
+HT 31	lineara.xyz	A410							not_gold	vessel logogram stands alone in its item
+HT 31	lineara.xyz	A415		SU-PU	AB058 AB050				label	logogram and sign-group encoded as one item
+HT 31	lineara.xyz	A416		KA-RO-*56	AB077 AB002 AB056				label	logogram and sign-group encoded as one item
+HT 31	sigla	A402							not_gold	no sign-group written over it
+HT 31	sigla	A402		PA-TA-QE	AB003 AB059 AB078	0.92	-0.13	0.80	label	small signs written over the logogram
+HT 31	sigla	A402		QA-*56	AB016 AB056	1.00	-0.18	0.85	label	small signs written over the logogram
+HT 31	sigla	A402		SU-*56-RA	AB058 AB056 AB060	1.00	-0.44	0.78	label	small signs written over the logogram
+HT 31	sigla	A410							not_gold	no sign-group written over it
+HT 31	sigla	A415		SU-PU	AB058 AB050	0.96	-0.15	0.68	label	small signs written over the logogram
+HT 31	sigla	A416		KA-RO-*56	AB077 AB002 AB056	1.00	-0.15	0.62	label	small signs written over the logogram
+HT 33	sigla	A653	A401+A304						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+HT 38	lineara.xyz	A403							not_gold	vessel logogram stands alone in its item
+HT 38	sigla	A403		DA-RO-PA	AB001 AB002 AB003	0.74	-0.12	1.01	not_gold	over the logogram, but signs are of normal size (ratio >= 0.9): ordinary line layout cannot be excluded
+HT 39	sigla	A657	A407+AB008						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+HT 82	sigla	A653	A401+A304						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+HT 93	lineara.xyz	A406							not_gold	vessel logogram stands alone in its item
+HT 93	sigla	A406		DE-JU-KU	AB045 AB065 AB081	0.55	-0.23	1.04	not_gold	over the logogram, but signs are of normal size (ratio >= 0.9): ordinary line layout cannot be excluded
+HT 93	sigla	A406		O-TI-?	AB061 AB037 ?	1.00	-0.89	0.93	not_gold	over the logogram, but signs are of normal size (ratio >= 0.9): ordinary line layout cannot be excluded
+KH 12	sigla	A651	A401+AB026						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+KH 12	sigla	A651	A401+AB026						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+KH 12	sigla	A653	A401+A304						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+KH 18	sigla	A649	A401						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+KH 31	sigla	A649	A401						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+KH 31	sigla	A652	A401+AB060						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+KH 63	sigla	A651	A401+AB026						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+KH 83	sigla	A650	A401+AB008						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+KH 83	sigla	A651	A401+AB026						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+KH 84	sigla	A651	A401+AB026						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+KH 85	sigla	A651	A401+AB026						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+KH 91	sigla	A651	A401+AB026						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+KH 91	sigla	A652	A401+AB060						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+MA 10	lineara.xyz	A404							not_gold	vessel logogram stands alone in its item
+MA 10	sigla	A524	AB037+A412						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+MA 10	sigla	A654	A404+AB008						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+MA 10	sigla	A655	A405+A713						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+MA 10	sigla	A658	A412+A704						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+MA 10	sigla	A658	A412+A704						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+MA 10	sigla	A658	A412+A704						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+MA 10	sigla	A659	A412+A705						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+MA 10	sigla	A659	A412+A705						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+MA 10	sigla	A660	A413+AB058						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+MA 10	sigla	A661	A414						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+MA 10	sigla	A662	A414+A705						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+MI 2	sigla	A652	A401+AB060						not_gold	ligature of a vessel sign with other signs: an adjunct, not a sign-group
+PH 8	sigla	A417							not_gold	no sign-group written over it
+PH 8	sigla	A418							not_gold	no sign-group written over it
+ZO 1	lineara.xyz	A409							not_gold	vessel logogram stands alone in its item

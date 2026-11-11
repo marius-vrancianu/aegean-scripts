@@ -1,0 +1,48 @@
+{
+  "task": "A8.1",
+  "layer": "L0",
+  "split": "train",
+  "status": "DRAFT, not frozen: partial build (missing: younger; witnesses file is not the release file); literature sources not yet checked against the publications",
+  "partial_build": true,
+  "sources_present": [
+    "lineara.xyz",
+    "sigla"
+  ],
+  "sources_missing": [
+    "younger"
+  ],
+  "witnesses_sha256": "a4ddf19db4b298baa6758f2e2fe59b127dbd3bdaeb22c018f0a175d616d5d71a",
+  "literature_input_sha256": "7afa02eecd72d5ef7b64d0e42e9e7b91e2b432babbfb1a17a37023ccf71ebffd",
+  "parameters": {
+    "vessel_signs": "A400-A418",
+    "min_overlap": 0.5,
+    "max_size_ratio": 0.9,
+    "scoring_grades": [
+      "A",
+      "B"
+    ]
+  },
+  "counts": {
+    "items": 21,
+    "by_kind": {
+      "labelled_picture": 5,
+      "literature": 16
+    },
+    "by_grade": {
+      "A": 10,
+      "B": 6,
+      "C": 5
+    },
+    "by_role_scoring_grades": {
+      "deficit_marker": 1,
+      "person": 4,
+      "place": 4,
+      "total_marker": 2,
+      "vessel_designation": 5
+    },
+    "scorable": 16,
+    "vessel_candidate_rows": 52
+  },
+  "gold_set_sha256": "a1fe10a6fa074d7e34c667fe745aee62218c10c972c2dece1308f2eb6899a12e",
+  "licence": "Derived in part from SigLA (© Ester Salgarella & Simon Castellan, https://sigla.phis.me, CC BY-NC-SA 4.0); the same terms apply. Other inputs: lineara.xyz and Younger 2024 (no licence stated). Holds document identifiers and short sign sequences, not full texts."
+}

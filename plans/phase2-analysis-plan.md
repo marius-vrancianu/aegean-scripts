@@ -457,7 +457,7 @@ To-do:
 
 ### A8 to-do
 
-- [ ] **A8.1 Labelled-picture gold set.**
+- [~] **A8.1 Labelled-picture gold set.** **2026-11-11: draft built, not frozen** (`python -m aegean.roles.gold`; `docs/reports/A8.1-gold-set.md`). 21 items, 16 usable for scoring; the five labelled pictures are all on HT 31. Before freezing: full three-source build, literature rows checked against the publications, grades confirmed by Marius.
   - *Why.* A few inscriptions write a word beside a drawn or logographic object, which gives the word's referent with no assumption about language. These are the only ground truth Linear A offers for A8, so they are collected and frozen first.
   - *How.* Search the witnesses for sign-groups written above, inside or directly beside a logogram (HT 31, a tablet of vessel signs with words written over them, is the standard example; the details are to be verified from the witnesses and GORILA, not from this plan). Record for each: document, sign-group at L0, the object, the source, and a confidence grade. Add KU-RO and KI-RO and the place names shared with Linear B, each with its published source. Freeze the list with a hash before A8.2 runs.
   - *Output.* `data/processed/gold/` plus a short report. No hypothesis needed (it is data).
@@ -565,3 +565,4 @@ To-do:
 - 2026-11-10 — v1.3. Project review with Marius. Revised order in §0.6. New analyses A8 (functional meaning without sound values) and A9 (claims audit, site comparison); new tasks A1.14, A1.15, A3.8, A3.9, A5.17, A5.18; V10; why and how for each in §0.7 and in the A8 and A9 sections. A5 split into Tier 1 (A5.17, brought forward) and Tier 2. Parked: A6, A7, A2.3, A2.4, A2.6, A2.7 (A2: Finding 002 showed the totals have no power and the value-set tests are no longer blind; A6/A7: high cost, nothing depends on them). A1.4–A1.9 completed the same day (PRs #25–#32).
 - 2026-11-11 — A1.12 done: held-out split frozen (90 documents, not the estimated 114; §0.4, §0.6 budget and the A1.12 checkbox updated), corpus-v1.0 changelog written. No change to the order of work.
 - 2026-11-11 — A1.14 done; A1.11 code done, report partial (two of three sources).
+- 2026-11-11 — A8.1 draft gold set built (not frozen).
