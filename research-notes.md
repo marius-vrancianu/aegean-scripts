@@ -534,3 +534,32 @@ The A1.8 MANIFEST is rebuilt; its output hash changed because of fix 1.
 - run `python -m aegean.corpus.build_layers` once on the machine with the Younger PDFs and confirm the output hash matches the release manifest.
 
 **Next:** V10, A1.11 with A1.14 (training split only), A8.1, each as its own PR. A1.10 (DAMOS) stays with Marius.
+
+---
+
+## 2026-11-11 — V10: the January 2026 "meanings without decipherment" report (partly checked, not closed)
+
+**Status: open.** The page itself was not read. The fetch tool needed an approval that nobody was there to give, so everything below comes from search-engine excerpts of the page (three searches, 2026-11-11). Confidence in each point is given; none is higher than medium.
+
+**Held-out check.** The page is illustrated with a photograph of the Knossos ivory sceptre; only the picture caption appeared in the excerpts (it says the object carries two Linear A inscriptions). No reading, sign or number from the sceptre was shown. Because the page shows held-out material, **the full page must be read by a separate agent returning pre-specified fields, or by Marius** (plan §0.4), not by an analysis session.
+
+**What the report is** (source: excerpts of https://greekreporter.com/2026/01/15/reconstruct-linear-a-crack-language/).
+- It reads as an essay that sets out a method in its own voice ("the approach outlined here"), not as news about a named study. The excerpts name no author, journal, title or DOI. **The underlying publication is not identified**; whether one exists is unknown (confidence that the excerpts are complete on this point: low).
+- The method, as far as the excerpts show: treat the tablets as bookkeeping; count logograms in 147 Haghia Triada tablets; use numbers, layout and find context; carry over meanings of logograms shared with Linear B; compare Egyptian and Mesopotamian accounting. It claims that much administrative content can be recovered this way (confidence that this summary is fair: medium).
+- The excerpts show **no null model, no test on Linear B as a known answer, and no error rate** (confidence: low; absence from excerpts is weak evidence).
+
+**Does it pre-empt A8.8?** On what was seen, no: it describes the qualitative reasoning that A8 sets out to test, at the level of logograms and tablet types, not a classifier of sign-group roles with a measured accuracy. It supplies no baseline to compare against. This is a provisional judgement (Rule 5) until the page is read.
+
+**The Kadmos 2025 articles** that surfaced in the same searches are separate work, not the source of the report (confidence: medium). Both are in *Kadmos* 64(1/2), 2025:
+- "Industrial plants and palatial culture in Bronze Age Crete: olive in Linear A documents", doi:10.1515/kadmos-2025-0001 (author not shown in the excerpt). It analyses every Linear A document with the olive logogram AB 122 and its ligatures A518 and A587. Relevant to A8.2: a published, document-by-document commodity study to compare our association table with.
+- E. Salgarella, L. Bellinato & S. Ferrara, "On Aegean spices: decipherment prospects on Linear A and B spice-related signs", pp. 29–44, doi:10.1515/kadmos-2025-0002. It compares composite logograms across the two scripts (Linear B *157, Linear A A646). Relevant to A8.1: composite logograms as labelled objects.
+Neither abstract mentions the sceptre. Neither article has been read.
+
+**Also seen, unidentified:** an abstract that describes structural analysis of the administrative tablets without sound values (positional regularities, arithmetic consistency) and explicitly disclaims decipherment. The excerpt gave no author or title. It is the closest thing to A8 in these results and should be identified.
+
+**What changes in A8:** nothing yet. Two additions to the reading list for A8.2 and A8.1 (the Kadmos articles).
+
+**To close V10:**
+1. A blinded read of the Greek Reporter page: author, any cited publication, method, corpus, whether any quantitative validation is reported.
+2. Identify the unidentified abstract.
+3. Read the two Kadmos abstracts in full (not held-out as far as seen).
