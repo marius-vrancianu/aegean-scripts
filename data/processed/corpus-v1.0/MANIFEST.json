@@ -1,0 +1,935 @@
+{
+  "release": "corpus-v1.0",
+  "task": "A1.12",
+  "components": {
+    "document_list": {
+      "path": "data/processed/document-list/document-list.tsv",
+      "sha256": "9348ca024b214752d5b8188ae6848bdb81ad24ee580ad0ac29a75aa411d9768e"
+    },
+    "witnesses": {
+      "path": "data/processed/corpus-v1.0-pre/witnesses.jsonl (gitignored; rebuild with python -m aegean.corpus.build_layers)",
+      "sha256": "d2d4b41f1451cd0ea98b71506cd0ed865b205944064890fdfabe82d8d37205d3",
+      "schema_version": "0.2",
+      "inputs": {
+        "lineara.xyz": {
+          "path": "data/raw/lineara.xyz/9c81beba669a/LinearAInscriptions.js",
+          "sha256": "9a14cc300201ac8ed07563c09b92142ab59de91a74e646b2e743ca6aeb695f5e"
+        },
+        "sigla": {
+          "path": "data/raw/sigla/0c4ef69f5de4/database.js",
+          "sha256": "0c4ef69f5de4cc3d9382cca782c1cf47e2ca1be40696bcfc8e97514f9b0781dd"
+        },
+        "younger": {
+          "path": "data/raw/younger/academia-2024/Linear_A_Texts_in_phonetic_transcription.pdf",
+          "sha256": "05305bc5235db0b0ebae1a828a46dcc35c0f004fb9a9a50ca522695a82907201"
+        }
+      }
+    },
+    "heldout": {
+      "path": "data/heldout.txt",
+      "sha256": "696a780b8e938235738741d643e12ce0f23c326525889f8d582ebf43dab3f419"
+    }
+  },
+  "split": {
+    "seed": 20261111,
+    "fraction": "1/5",
+    "min_stratum": 5,
+    "stratified_by": [
+      "site",
+      "support"
+    ],
+    "method": "per stratum: order keys by sha256('<seed>|<key>'), hold out the first <quota>; quotas by largest remainder (see aegean.corpus.split)",
+    "population": 568,
+    "eligible_documents": 450,
+    "heldout": 90,
+    "training": 478,
+    "strata": 110,
+    "strata_split": 22,
+    "strata_kept_in_training": 88,
+    "documents_in_strata_kept_in_training": 118,
+    "heldout_keys_sha256": "d8a0030b3b12356c4b83224bdfdbc7cd49bd23622fc6b2611b03f5dd4a495fd4",
+    "by_stratum": [
+      {
+        "site": "AP",
+        "support": "stone_vessel",
+        "documents": 2,
+        "heldout": 0,
+        "training": 2,
+        "split": false
+      },
+      {
+        "site": "AR",
+        "support": "metal_object",
+        "documents": 2,
+        "heldout": 0,
+        "training": 2,
+        "split": false
+      },
+      {
+        "site": "ARG",
+        "support": "stone_object",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "ARKH",
+        "support": "inked",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "ARKH",
+        "support": "metal_object",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "ARKH",
+        "support": "tablet",
+        "documents": 6,
+        "heldout": 1,
+        "training": 5,
+        "split": true
+      },
+      {
+        "site": "ARM",
+        "support": "stone_object",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "CR",
+        "support": "metal_object",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "CR",
+        "support": "stone_object",
+        "documents": 2,
+        "heldout": 0,
+        "training": 2,
+        "split": false
+      },
+      {
+        "site": "DRA",
+        "support": "stone_object",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "FO",
+        "support": "inked",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "GO",
+        "support": "roundel",
+        "documents": 2,
+        "heldout": 0,
+        "training": 2,
+        "split": false
+      },
+      {
+        "site": "GO",
+        "support": "tablet",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "HS",
+        "support": "stone_object",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "HT",
+        "support": "clay_vessel",
+        "documents": 5,
+        "heldout": 1,
+        "training": 4,
+        "split": true
+      },
+      {
+        "site": "HT",
+        "support": "graffito",
+        "documents": 2,
+        "heldout": 0,
+        "training": 2,
+        "split": false
+      },
+      {
+        "site": "HT",
+        "support": "metal_object",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "HT",
+        "support": "nodule",
+        "documents": 26,
+        "heldout": 5,
+        "training": 21,
+        "split": true
+      },
+      {
+        "site": "HT",
+        "support": "roundel",
+        "documents": 18,
+        "heldout": 4,
+        "training": 14,
+        "split": true
+      },
+      {
+        "site": "HT",
+        "support": "sealing",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "HT",
+        "support": "tablet",
+        "documents": 139,
+        "heldout": 28,
+        "training": 111,
+        "split": true
+      },
+      {
+        "site": "HTW",
+        "support": "tablet",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "IN",
+        "support": "clay_vessel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "IO",
+        "support": "clay_vessel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "IO",
+        "support": "stone_vessel",
+        "documents": 14,
+        "heldout": 3,
+        "training": 11,
+        "split": true
+      },
+      {
+        "site": "KA",
+        "support": "metal_object",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "KAM",
+        "support": "clay_vessel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "KAN",
+        "support": "stone_vessel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "KE",
+        "support": "clay_vessel",
+        "documents": 2,
+        "heldout": 0,
+        "training": 2,
+        "split": false
+      },
+      {
+        "site": "KE",
+        "support": "roundel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "KE",
+        "support": "tablet",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "KH",
+        "support": "inked",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "KH",
+        "support": "nodule",
+        "documents": 6,
+        "heldout": 1,
+        "training": 5,
+        "split": true
+      },
+      {
+        "site": "KH",
+        "support": "roundel",
+        "documents": 22,
+        "heldout": 4,
+        "training": 18,
+        "split": true
+      },
+      {
+        "site": "KH",
+        "support": "tablet",
+        "documents": 85,
+        "heldout": 17,
+        "training": 68,
+        "split": true
+      },
+      {
+        "site": "KN",
+        "support": "architecture",
+        "documents": 5,
+        "heldout": 1,
+        "training": 4,
+        "split": true
+      },
+      {
+        "site": "KN",
+        "support": "clay_vessel",
+        "documents": 8,
+        "heldout": 2,
+        "training": 6,
+        "split": true
+      },
+      {
+        "site": "KN",
+        "support": "inked",
+        "documents": 2,
+        "heldout": 0,
+        "training": 2,
+        "split": false
+      },
+      {
+        "site": "KN",
+        "support": "metal_object",
+        "documents": 2,
+        "heldout": 0,
+        "training": 2,
+        "split": false
+      },
+      {
+        "site": "KN",
+        "support": "roundel",
+        "documents": 5,
+        "heldout": 1,
+        "training": 4,
+        "split": true
+      },
+      {
+        "site": "KN",
+        "support": "sealing",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "KN",
+        "support": "stone_object",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "KN",
+        "support": "stone_vessel",
+        "documents": 4,
+        "heldout": 0,
+        "training": 4,
+        "split": false
+      },
+      {
+        "site": "KN",
+        "support": "tablet",
+        "documents": 6,
+        "heldout": 1,
+        "training": 5,
+        "split": true
+      },
+      {
+        "site": "KO",
+        "support": "metal_object",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "KO",
+        "support": "stone_vessel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "KY",
+        "support": "stone_object",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "KY",
+        "support": "stone_vessel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "LA",
+        "support": "clay_vessel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "LACH",
+        "support": "stone_vessel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "MA",
+        "support": "architecture",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "MA",
+        "support": "clay_vessel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "MA",
+        "support": "tablet",
+        "documents": 5,
+        "heldout": 1,
+        "training": 4,
+        "split": true
+      },
+      {
+        "site": "MI",
+        "support": "clay_vessel",
+        "documents": 2,
+        "heldout": 0,
+        "training": 2,
+        "split": false
+      },
+      {
+        "site": "MI",
+        "support": "tablet",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "MIL",
+        "support": "clay_vessel",
+        "documents": 4,
+        "heldout": 0,
+        "training": 4,
+        "split": false
+      },
+      {
+        "site": "MO",
+        "support": "metal_object",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "NE",
+        "support": "stone_vessel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "PA",
+        "support": "tablet",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "PE",
+        "support": "clay_vessel",
+        "documents": 2,
+        "heldout": 0,
+        "training": 2,
+        "split": false
+      },
+      {
+        "site": "PE",
+        "support": "inked",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "PE",
+        "support": "other_sealing",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "PE",
+        "support": "stone_object",
+        "documents": 2,
+        "heldout": 0,
+        "training": 2,
+        "split": false
+      },
+      {
+        "site": "PE",
+        "support": "tablet",
+        "documents": 5,
+        "heldout": 1,
+        "training": 4,
+        "split": true
+      },
+      {
+        "site": "PH",
+        "support": "clay_vessel",
+        "documents": 3,
+        "heldout": 0,
+        "training": 3,
+        "split": false
+      },
+      {
+        "site": "PH",
+        "support": "nodule",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "PH",
+        "support": "other_sealing",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "PH",
+        "support": "roundel",
+        "documents": 6,
+        "heldout": 1,
+        "training": 5,
+        "split": true
+      },
+      {
+        "site": "PH",
+        "support": "tablet",
+        "documents": 23,
+        "heldout": 5,
+        "training": 18,
+        "split": true
+      },
+      {
+        "site": "PK",
+        "support": "clay_vessel",
+        "documents": 4,
+        "heldout": 0,
+        "training": 4,
+        "split": false
+      },
+      {
+        "site": "PK",
+        "support": "inked",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "PK",
+        "support": "stone_object",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "PK",
+        "support": "stone_vessel",
+        "documents": 14,
+        "heldout": 3,
+        "training": 11,
+        "split": true
+      },
+      {
+        "site": "PK",
+        "support": "tablet",
+        "documents": 2,
+        "heldout": 0,
+        "training": 2,
+        "split": false
+      },
+      {
+        "site": "PL",
+        "support": "metal_object",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "PO",
+        "support": "inked",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "POR",
+        "support": "metal_object",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "PR",
+        "support": "stone_vessel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "PS",
+        "support": "stone_vessel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "PSI",
+        "support": "stone_vessel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "PYR",
+        "support": "clay_vessel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "PYR",
+        "support": "roundel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "PYR",
+        "support": "tablet",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "SAM",
+        "support": "nodule",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "SAM",
+        "support": "other_sealing",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "SE",
+        "support": "metal_object",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "SI",
+        "support": "stone_object",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "SK",
+        "support": "clay_vessel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "SKO",
+        "support": "inked",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "SY",
+        "support": "clay_vessel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "SY",
+        "support": "stone_vessel",
+        "documents": 10,
+        "heldout": 2,
+        "training": 8,
+        "split": true
+      },
+      {
+        "site": "TEL",
+        "support": "clay_vessel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "THE",
+        "support": "clay_vessel",
+        "documents": 10,
+        "heldout": 2,
+        "training": 8,
+        "split": true
+      },
+      {
+        "site": "THE",
+        "support": "stone_object",
+        "documents": 3,
+        "heldout": 0,
+        "training": 3,
+        "split": false
+      },
+      {
+        "site": "THE",
+        "support": "tablet",
+        "documents": 5,
+        "heldout": 1,
+        "training": 4,
+        "split": true
+      },
+      {
+        "site": "TI",
+        "support": "clay_vessel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "TL",
+        "support": "stone_vessel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "TRA",
+        "support": "clay_vessel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "TRO",
+        "support": "stone_object",
+        "documents": 2,
+        "heldout": 0,
+        "training": 2,
+        "split": false
+      },
+      {
+        "site": "TRY",
+        "support": "clay_vessel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "TY",
+        "support": "clay_vessel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "TY",
+        "support": "stone_object",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "TY",
+        "support": "tablet",
+        "documents": 2,
+        "heldout": 0,
+        "training": 2,
+        "split": false
+      },
+      {
+        "site": "VRY",
+        "support": "clay_vessel",
+        "documents": 2,
+        "heldout": 0,
+        "training": 2,
+        "split": false
+      },
+      {
+        "site": "VRY",
+        "support": "stone_vessel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "ZA",
+        "support": "clay_vessel",
+        "documents": 2,
+        "heldout": 0,
+        "training": 2,
+        "split": false
+      },
+      {
+        "site": "ZA",
+        "support": "roundel",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      },
+      {
+        "site": "ZA",
+        "support": "stone_object",
+        "documents": 2,
+        "heldout": 0,
+        "training": 2,
+        "split": false
+      },
+      {
+        "site": "ZA",
+        "support": "tablet",
+        "documents": 27,
+        "heldout": 5,
+        "training": 22,
+        "split": true
+      },
+      {
+        "site": "ZO",
+        "support": "tablet",
+        "documents": 1,
+        "heldout": 0,
+        "training": 1,
+        "split": false
+      }
+    ]
+  },
+  "blindness": "Blind only for hypotheses registered after the freeze. A1.6-A1.9 and A2 processed every document; nothing from A2 can be confirmed on this split. See docs/corpus-changelog.md."
+}

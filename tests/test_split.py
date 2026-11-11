@@ -81,3 +81,14 @@ def test_frozen_split_reproduces_from_the_committed_seed_and_document_list():
     held, table = split.draw(split.read_population())
     assert sorted(frozen) == held
     assert all(t["heldout"] == 0 for t in table.values() if t["documents"] < split.MIN_STRATUM)
+
+
+def test_release_manifest_matches_the_committed_files():
+    """The manifest is generated; it must agree with the document list and held-out file next to it."""
+    import json
+    path = split.RELEASE_DIR / "MANIFEST.json"
+    if not path.exists():  # before the freeze commit
+        return
+    rows = split.read_population()
+    held, table = split.draw(rows)
+    assert json.loads(path.read_text(encoding="utf-8")) == json.loads(json.dumps(split.manifest(rows, held, table)))
