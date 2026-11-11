@@ -563,3 +563,31 @@ Neither abstract mentions the sceptre. Neither article has been read.
 1. A blinded read of the Greek Reporter page: author, any cited publication, method, corpus, whether any quantitative validation is reported.
 2. Identify the unidentified abstract.
 3. Read the two Kadmos abstracts in full (not held-out as far as seen).
+
+---
+
+## 2026-11-11 — A1.11 baseline statistics (partial) and A1.14 resampling harness
+
+**A1.14, done: `aegean.corpus.resample`.** One function, `run(statistic, corpus, source_order=…, seed=…)`, returns a point estimate and three intervals.
+- **Reading draws.** For each document one of its sources is chosen at random and that source's witnesses are used; signs the source marks doubtful are blanked with probability `p_doubt` (default 0.5).
+  - This is my reading of "each disputed sign takes one of its attested readings" (plan §0.7). The disputed signs of one document move together, so no draw contains a mixture of readings that no editor proposed. A per-sign draw would need sign-level alignment between sources and would create such mixtures. **Open for Marius** if the per-sign version is wanted.
+  - `p_doubt` is a convention, not a measurement.
+- **Bootstrap.** Documents drawn with replacement within sites.
+- **Both.** The interval to report by default.
+- Resampled corpora are never written out (rule 9). Seeds are explicit and recorded.
+
+**A1.11, code done, report partial: `aegean.corpus.baseline`.** L0, training split only, per source.
+- **The committed report covers lineara.xyz and SigLA only.** The Younger PDFs cannot be fetched by script, so this session built witnesses for two sources in a scratch folder and ran with `--allow-partial`; the report is stamped PARTIAL BUILD. Rerun `python -m aegean.corpus.baseline` on the full witnesses file to add Younger.
+- Headline counts (training split): lineara.xyz 472 documents, 4,314 sign tokens in sign-groups, 1,092 multi-sign groups; SigLA 333 documents, 3,393 identified sign tokens, 873 multi-sign groups. Mean multi-sign group length about 3 signs in both.
+- Position table: AB008 (conventional value A) is initial in 108 of 143 occurrences in lineara.xyz and 80 of 100 in SigLA; AB002 (RO) is final in 51 of 66 and 47 of 58. This matches the well-known initial A- and final -RO patterns (consensus; not checked against a specific publication in this session). It is a sanity check on the code, not a result.
+
+**Something the harness showed about itself.** For counts of distinct signs and of signs occurring once, the point estimate lies outside the bootstrap interval (284 distinct signs against 209–246). This is the known downward bias of the bootstrap for counts of types, not a bug. Intervals from this harness are usable for shares and means, not for inventory sizes. The report says so.
+
+**Not done.**
+- Comparison with Packard's published positional figures (Packard 1974, *Minoan Linear A*): the numbers were not available in the session. It needs a full-corpus run to be comparable.
+- Period labels are reported as each source gives them, not normalised.
+- Sign variants are merged by base ID.
+
+**Blindness.** All figures come through `aegean.corpus.load` with the default split. The held-out documents were not read.
+
+**Next:** A8.1 (labelled-picture gold set).
