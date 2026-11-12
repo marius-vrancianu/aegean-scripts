@@ -1,4 +1,4 @@
-**Merge:** auto-merge / **Review-gated: `docs/reviews/…`** (touches `hypotheses/` or `findings/`) / **Needs Marius's merge** (touches the rules; see CLAUDE.md → Merging)
+**Merge:** merges when CI is green / **Review-gated: `docs/reviews/…`** (touches `hypotheses/`, `findings/` or a rule file; see CLAUDE.md → Merging). A review-gated PR must *start* with the Review-gated line.
 
 **Task ID:** A?.? — (title)
 
@@ -21,3 +21,5 @@
 - [ ] Anything I (an LLM) proposed is labelled as a hypothesis, not a finding
 - [ ] Next steps / open questions noted for whoever resumes this
 - [ ] Review-gated PRs: independent review file linked, ending in `Verdict: APPROVE`
+- [ ] Rule-file PRs: no guardrail weakened, or the weakening is stated first and Marius's instruction is cited
+- [ ] `docs/for-marius.md` updated if this raises or settles something for him

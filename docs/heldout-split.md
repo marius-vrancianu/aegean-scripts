@@ -1,6 +1,6 @@
 # The frozen held-out split (A1.12)
 
-Status: **frozen at corpus-v1.0.** Plan §0.4 fixes the policy; this file describes the procedure and how to use the split. Code: `aegean.corpus.split` (the draw), `aegean.corpus.load` (the gate), `aegean.corpus.heldout` (the list). The list itself is `data/heldout.txt`, a rule file: changes need Marius's merge.
+Status: **frozen at corpus-v1.0.** Plan §0.4 fixes the policy; this file describes the procedure and how to use the split. Code: `aegean.corpus.split` (the draw), `aegean.corpus.load` (the gate), `aegean.corpus.heldout` (the list). The list itself is `data/heldout.txt`, a rule file: changes are review-gated, and removing a line needs a frozen-prediction tag (CLAUDE.md).
 
 ## What was drawn
 

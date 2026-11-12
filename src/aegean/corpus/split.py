@@ -22,7 +22,8 @@ document by hand. No step reads a document's text.
 
 The seed was published in the pull request description before the first draw
 (PR for A1.12). Changing SEED, FRACTION or MIN_STRATUM after the freeze is a
-change to the held-out policy and needs Marius's merge (CLAUDE.md).
+change to the held-out policy: it needs Marius's instruction and an independent
+review (CLAUDE.md -> Merging). The split is never redrawn (plan §0.4).
 """
 from __future__ import annotations
 

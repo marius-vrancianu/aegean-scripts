@@ -10,16 +10,22 @@
    texts (KN Zg 57 / 58). A crude tripwire, not a guarantee. Lift it for a
    document only in the PR that adds it after predictions are frozen.
 4. Review gate (CLAUDE.md -> Merging): a PR that changes anything under
-   hypotheses/ or findings/ must contain or link (in the PR body) a review
-   file docs/reviews/*.md whose last "Verdict:" line is "Verdict: APPROVE".
-   With several reviews, at least one must end in APPROVE.
-5. PR description headers (only when PR_BODY is set, i.e. in CI):
-   - a PR that touches a rule file starts with "**Needs Marius's merge**";
-   - otherwise, a review-gated PR starts with "**Review-gated:".
+   hypotheses/ or findings/, or a rule file (CLAUDE.md, this script,
+   .github/, data/heldout.txt), must contain or link (in the PR body) a
+   review file docs/reviews/*.md whose last "Verdict:" line is
+   "Verdict: APPROVE". With several reviews, at least one must end in APPROVE.
+5. PR description header (only when PR_BODY is set, i.e. in CI): a
+   review-gated PR starts with "**Review-gated:".
+6. Held-out list: an entry removed from data/heldout.txt needs a line
+   "Frozen-prediction tag: <tag>" in the PR body naming an existing git tag.
 
-Limits: CI checks that an approving review file exists, not who wrote it,
-and it cannot stop a merge by itself. It catches mistakes, not a determined
-agent; the "Marius merges rule files by hand" rule still rests on CLAUDE.md.
+CI runs the copy of this script on the base branch, not the PR's copy, so a
+PR that changes the script is judged by the rules in force before it.
+
+Limits: CI checks that an approving review file exists, not who wrote it. A
+PR can still edit the workflow that calls this script; the review of
+.github/ changes is the only guard there. Since 2026-11-12 no human merges:
+these checks and the independent review are the gate.
 
 Usage: python tools/check_guardrails.py <base-ref>
        (PR_BODY env var: the pull request description, set by CI)
@@ -59,9 +65,13 @@ def last_verdict(text: str) -> str | None:
     return found[-1] if found else None
 
 
+def is_gated(path: str) -> bool:
+    return path.startswith(GATED_PREFIXES) or is_rule_file(path)
+
+
 def review_gate(touched: list[str], reviews: dict[str, str]) -> list[str]:
     """touched: paths changed by the PR; reviews: {path: text} of reviews in or linked from it."""
-    gated = sorted(p for p in touched if p.startswith(GATED_PREFIXES))
+    gated = sorted(p for p in touched if is_gated(p))
     if not gated:
         return []
     if not reviews:
@@ -76,13 +86,38 @@ def review_gate(touched: list[str], reviews: dict[str, str]) -> list[str]:
 
 def header_errors(touched: list[str], body: str) -> list[str]:
     first = body.strip().splitlines()[0] if body.strip() else ""
-    if any(is_rule_file(p) for p in touched):
-        if not first.startswith("**Needs Marius's merge**"):
-            return ["rule files changed: PR description must start with \"**Needs Marius's merge**\""]
-        return []
-    if any(p.startswith(GATED_PREFIXES) for p in touched) and not first.startswith("**Review-gated:"):
-        return ["review-gated PR: description must start with \"**Review-gated: <review file>**\""]
+    if any(is_gated(p) for p in touched) and not first.startswith("**Review-gated:"):
+        return ["review-gated PR (hypotheses/, findings/ or a rule file): description must start with "
+                "\"**Review-gated: <review file>**\""]
     return []
+
+
+FROZEN_TAG_RE = re.compile(r"^\s*\**Frozen-prediction tag:\**\s*`?([\w.\-/]+)`?", re.MULTILINE)
+
+
+def heldout_entries(text: str) -> set[str]:
+    return {l.strip() for l in text.splitlines() if l.strip() and not l.strip().startswith("#")}
+
+
+def heldout_removal_errors(old: str, new: str, body: str | None, tag_exists) -> list[str]:
+    """old/new: data/heldout.txt on the base and in the PR; tag_exists: callable(name) -> bool."""
+    removed = sorted(heldout_entries(old) - heldout_entries(new))
+    if not removed:
+        return []
+    shown = ", ".join(removed[:3]) + (" ..." if len(removed) > 3 else "")
+    tags = FROZEN_TAG_RE.findall(body or "")
+    if not tags:
+        return [f"{len(removed)} entr{'y' if len(removed) == 1 else 'ies'} removed from data/heldout.txt ({shown}): "
+                "the PR description must contain \"Frozen-prediction tag: <tag>\""]
+    missing = [t for t in tags if not tag_exists(t)]
+    if missing:
+        return [f"entries removed from data/heldout.txt ({shown}) but tag(s) not found: {', '.join(missing)}"]
+    return []
+
+
+def tag_exists(name: str) -> bool:
+    return subprocess.run(["git", "rev-parse", "-q", "--verify", f"refs/tags/{name}"],
+                          capture_output=True).returncode == 0
 
 
 def git(*args: str) -> str:
@@ -134,6 +169,13 @@ def main(base: str) -> int:
     errors += review_gate(touched, reviews)
     if body is not None:
         errors += header_errors(touched, body)
+    if "data/heldout.txt" in touched:
+        old = subprocess.run(["git", "show", f"{base}:data/heldout.txt"], capture_output=True, text=True).stdout
+        try:
+            new = open("data/heldout.txt", encoding="utf-8").read()
+        except FileNotFoundError:
+            new = ""
+        errors += heldout_removal_errors(old, new, body, tag_exists)
 
     for e in errors:
         print(f"GUARDRAIL: {e}", file=sys.stderr)
