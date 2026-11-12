@@ -40,4 +40,9 @@ To undo one: open the PR → **Revert** → the revert PR merges under the same 
 
 - Add a `Type: confirmatory / exploratory` line to `hypotheses/TEMPLATE.md` (rule 10 and the loader gate rely on it). Review-gated PR.
 - Comparison of the A1.11 position table with Packard's published figures, once a source for them is available.
+- Four strengthenings of the guardrail script that the second review of #38 recommended (each a review-gated PR; none started):
+  - **N7** a verdict line with a condition after it ("APPROVE once …") is read as an approval; accept only a bare verdict line.
+  - **N8** an approval does not expire when the author pushes again; require that no commit to a gated path is newer than the approving review.
+  - **N9** changing one character in an old approving review still opens the gate; require the review to name the PR number.
+  - **N10** the held-out lock checks a tag's name, not what it points to; require the tag to be an ancestor of `main`.
 - Try a second workflow on `pull_request_target` (GitHub takes it from `main`, not from the PR) that runs the guardrail script, to narrow the gap for PRs that edit the workflow. Untested; review-gated PR.
