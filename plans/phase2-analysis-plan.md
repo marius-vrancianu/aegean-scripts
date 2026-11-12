@@ -566,3 +566,4 @@ To-do:
 - 2026-11-11 — A1.12 done: held-out split frozen (90 documents, not the estimated 114; §0.4, §0.6 budget and the A1.12 checkbox updated), corpus-v1.0 changelog written. No change to the order of work.
 - 2026-11-11 — A1.14 done; A1.11 code done, report partial (two of three sources).
 - 2026-11-11 — A8.1 draft gold set built (not frozen).
+- 2026-11-12 — Process change, no change to tasks: Marius no longer merges; all PRs merge when CI is green, rule files are review-gated, and open items for him are kept in `docs/for-marius.md` (CLAUDE.md → Merging; research-notes 2026-11-12).

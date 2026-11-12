@@ -10,16 +10,27 @@
    texts (KN Zg 57 / 58). A crude tripwire, not a guarantee. Lift it for a
    document only in the PR that adds it after predictions are frozen.
 4. Review gate (CLAUDE.md -> Merging): a PR that changes anything under
-   hypotheses/ or findings/ must contain or link (in the PR body) a review
-   file docs/reviews/*.md whose last "Verdict:" line is "Verdict: APPROVE".
-   With several reviews, at least one must end in APPROVE.
-5. PR description headers (only when PR_BODY is set, i.e. in CI):
-   - a PR that touches a rule file starts with "**Needs Marius's merge**";
-   - otherwise, a review-gated PR starts with "**Review-gated:".
+   hypotheses/ or findings/, or a rule file (CLAUDE.md, this script,
+   .github/, data/heldout.txt, and the held-out code in src/aegean/corpus/:
+   load.py, heldout.py, split.py), must contain a
+   review file docs/reviews/*.md whose last "Verdict:" line is
+   "Verdict: APPROVE". Only a review file that the PR itself adds or changes
+   counts; a linked, unchanged review (an approval given to another PR) is an
+   error. With several reviews, at least one must end in APPROVE.
+5. PR description header (only when PR_BODY is set, i.e. in CI): a
+   review-gated PR starts with "**Review-gated:".
+6. Held-out list: an entry removed from data/heldout.txt needs a line
+   "Frozen-prediction tag: predictions-<name>" in the PR body naming an
+   existing git tag with that prefix.
 
-Limits: CI checks that an approving review file exists, not who wrote it,
-and it cannot stop a merge by itself. It catches mistakes, not a determined
-agent; the "Marius merges rule files by hand" rule still rests on CLAUDE.md.
+CI runs the copy of this script on main, not the PR's copy, so a PR that
+changes the script is judged by the rules in force before it.
+
+Limits: CI checks that an approving review file exists, not who wrote it. A
+PR can still edit the workflow that calls this script, and such a PR runs
+its own workflow, so CI cannot be relied on to demand its review; the rule
+in CLAUDE.md is the only guard there. Since 2026-11-12 no human merges:
+these checks and the independent review are the gate.
 
 Usage: python tools/check_guardrails.py <base-ref>
        (PR_BODY env var: the pull request description, set by CI)
@@ -42,7 +53,10 @@ DATA_PATHS = ("data/", "src/", "experiments/", "tests/", "notebooks/")
 HELDOUT_RE = re.compile(r"KN\s*Zg\s*0?5[78]", re.IGNORECASE)
 
 GATED_PREFIXES = ("hypotheses/", "findings/")
-RULE_FILES = ("CLAUDE.md", "tools/check_guardrails.py", "data/heldout.txt")
+RULE_FILES = ("CLAUDE.md", "tools/check_guardrails.py", "data/heldout.txt",
+              # the code that enforces the held-out lock
+              "src/aegean/corpus/load.py", "src/aegean/corpus/heldout.py", "src/aegean/corpus/split.py")
+FROZEN_TAG_PREFIX = "predictions-"
 RULE_PREFIXES = (".github/",)
 REVIEW_DIR = "docs/reviews/"
 REVIEW_LINK_RE = re.compile(r"docs/reviews/[\w.\-]+\.md")
@@ -59,14 +73,23 @@ def last_verdict(text: str) -> str | None:
     return found[-1] if found else None
 
 
+def is_gated(path: str) -> bool:
+    return path.startswith(GATED_PREFIXES) or is_rule_file(path)
+
+
+def counted_reviews(added_or_changed: list[str]) -> set[str]:
+    """Review files that can open the gate: those the PR itself adds or changes."""
+    return {p for p in added_or_changed if p.startswith(REVIEW_DIR) and p.endswith(".md")}
+
+
 def review_gate(touched: list[str], reviews: dict[str, str]) -> list[str]:
-    """touched: paths changed by the PR; reviews: {path: text} of reviews in or linked from it."""
-    gated = sorted(p for p in touched if p.startswith(GATED_PREFIXES))
+    """touched: paths changed by the PR; reviews: {path: text} of reviews the PR adds or changes."""
+    gated = sorted(p for p in touched if is_gated(p))
     if not gated:
         return []
     if not reviews:
         return [f"review-gated paths changed ({', '.join(gated)}) but no review in {REVIEW_DIR} "
-                "is added, changed or linked in the PR body"]
+                "is added or changed by this PR"]
     verdicts = {p: last_verdict(t) for p, t in reviews.items()}
     if "APPROVE" in verdicts.values():
         return []
@@ -76,13 +99,42 @@ def review_gate(touched: list[str], reviews: dict[str, str]) -> list[str]:
 
 def header_errors(touched: list[str], body: str) -> list[str]:
     first = body.strip().splitlines()[0] if body.strip() else ""
-    if any(is_rule_file(p) for p in touched):
-        if not first.startswith("**Needs Marius's merge**"):
-            return ["rule files changed: PR description must start with \"**Needs Marius's merge**\""]
-        return []
-    if any(p.startswith(GATED_PREFIXES) for p in touched) and not first.startswith("**Review-gated:"):
-        return ["review-gated PR: description must start with \"**Review-gated: <review file>**\""]
+    if any(is_gated(p) for p in touched) and not first.startswith("**Review-gated:"):
+        return ["review-gated PR (hypotheses/, findings/ or a rule file): description must start with "
+                "\"**Review-gated: <review file>**\""]
     return []
+
+
+FROZEN_TAG_RE = re.compile(r"^\s*\**Frozen-prediction tag:\**\s*`?([\w.\-/]+)`?", re.MULTILINE)
+
+
+def heldout_entries(text: str) -> set[str]:
+    return {l.strip() for l in text.splitlines() if l.strip() and not l.strip().startswith("#")}
+
+
+def heldout_removal_errors(old: str, new: str, body: str | None, tag_exists) -> list[str]:
+    """old/new: data/heldout.txt on the base and in the PR; tag_exists: callable(name) -> bool."""
+    removed = sorted(heldout_entries(old) - heldout_entries(new))
+    if not removed:
+        return []
+    shown = ", ".join(removed[:3]) + (" ..." if len(removed) > 3 else "")
+    tags = FROZEN_TAG_RE.findall(body or "")
+    if not tags:
+        return [f"{len(removed)} entr{'y' if len(removed) == 1 else 'ies'} removed from data/heldout.txt ({shown}): "
+                "the PR description must contain \"Frozen-prediction tag: <tag>\""]
+    wrong = [t for t in tags if not t.startswith(FROZEN_TAG_PREFIX)]
+    if wrong:
+        return [f"entries removed from data/heldout.txt ({shown}) but {', '.join(wrong)} is not a frozen-prediction "
+                f"tag (name must start with \"{FROZEN_TAG_PREFIX}\")"]
+    missing = [t for t in tags if not tag_exists(t)]
+    if missing:
+        return [f"entries removed from data/heldout.txt ({shown}) but tag(s) not found: {', '.join(missing)}"]
+    return []
+
+
+def tag_exists(name: str) -> bool:
+    return subprocess.run(["git", "rev-parse", "-q", "--verify", f"refs/tags/{name}"],
+                          capture_output=True).returncode == 0
 
 
 def git(*args: str) -> str:
@@ -122,18 +174,29 @@ def main(base: str) -> int:
 
     touched = sorted({p for l in changes for p in l.split("\t")[1:]})
     body = os.environ.get("PR_BODY")
-    review_paths = {p for p in added_files if p.startswith(REVIEW_DIR) and p.endswith(".md")}
-    if body:
-        review_paths |= set(REVIEW_LINK_RE.findall(body))
+    # Only a review that this PR itself adds or changes counts. A review that is merely linked
+    # (an approval written for another PR) must not open the gate.
+    review_paths = counted_reviews(added_files)
     reviews = {}
     for p in sorted(review_paths):
         try:
             reviews[p] = open(p, encoding="utf-8").read()
         except FileNotFoundError:
-            errors.append(f"linked review not found in the PR's tree: {p}")
+            pass
+    if body:
+        for p in sorted(set(REVIEW_LINK_RE.findall(body)) - review_paths):
+            if any(is_gated(t) for t in touched):
+                errors.append(f"review linked in the PR body is not added or changed by this PR and does not count: {p}")
     errors += review_gate(touched, reviews)
     if body is not None:
         errors += header_errors(touched, body)
+    if "data/heldout.txt" in touched:
+        old = subprocess.run(["git", "show", f"{base}:data/heldout.txt"], capture_output=True, text=True).stdout
+        try:
+            new = open("data/heldout.txt", encoding="utf-8").read()
+        except FileNotFoundError:
+            new = ""
+        errors += heldout_removal_errors(old, new, body, tag_exists)
 
     for e in errors:
         print(f"GUARDRAIL: {e}", file=sys.stderr)

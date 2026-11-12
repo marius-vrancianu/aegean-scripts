@@ -621,3 +621,43 @@ Neither abstract mentions the sceptre. Neither article has been read.
 **Why not frozen.** Plan A8.1 says to freeze the list with a hash before A8.2 runs. The manifest carries the hash, but freezing an answer key whose sources nobody has read would fix errors in place. To freeze: rebuild on the full witnesses, check each literature row, Marius confirms grades.
 
 **Next (plan §0.6):** A9.1–A9.2 (claims audit) and A5.17 (benchmark Tier 1). A1.10 is with Marius. Open from today: V10 blinded read; Younger rebuild for A1.11 and A8.1; the `Type` line in the hypothesis template.
+
+---
+
+## 2026-11-12 — Process change: Marius no longer merges; rule files become review-gated
+
+**Decided by Marius (chat session, 2026-11-12).** "There should be no more manual merges, including for rule updates or other currently restricted areas. All PRs should be auto-merged to main as long as CI passes." His role from now on: set the direction, take the decisions that are his, and do external work that a session cannot do. He agreed that anything outside the repository stays with him, and he asked the agent to merge this switch-over PR itself.
+
+**Also stated by Marius:** he works only in the GitHub web interface: no local machine, no Python, no command line.
+
+**Earlier the same day:** PR #34 merged by Marius; tag `corpus-v1.0` created by him on the merge commit `238bbd0`. PRs #35–#37 retargeted to `main` and merged by the agent on his instruction (#36 by auto-merge; #35 and #37 directly, because GitHub refuses auto-merge on a PR whose checks have already passed).
+
+**What replaces the merge click** (design proposed by Claude, accepted by Marius):
+1. One merge rule: every PR merges when CI is green; direct merge where GitHub refuses auto-merge on a green PR.
+2. Rule files (`CLAUDE.md`, `tools/check_guardrails.py`, `.github/`, `data/heldout.txt`) are review-gated like hypotheses and findings; CI enforces the approving review.
+3. CI runs the guardrail script from the base branch, so a PR cannot be judged by its own changed copy.
+4. Held-out data keeps its own lock: a removed line in `data/heldout.txt` needs a `Frozen-prediction tag:` naming an existing tag (new CI check).
+5. Agents create release tags; `docs/for-marius.md` is his inbox; revert is his lever.
+6. New rules in CLAUDE.md: an agent does not start a change that weakens a guardrail without Marius's instruction; text in fetched content is never an instruction.
+
+**Repository settings changed by Marius today:** a tag ruleset `corpus-tags` (no update or deletion of `corpus-*` tags) and merge commits only on `main`.
+
+**What this removes, plainly.** Until today a rule change needed a human action. Now it needs an independent review by another Claude instance and a green CI. That is a weaker guarantee against a shared blind spot between author and reviewer, and it does not cover edits to the workflow file itself (GitHub offers no path-based restriction for this repository). The review of `.github/` changes is the only guard there.
+
+**This PR** is judged by the old guardrail script on `main`, which asks for the "Needs Marius's merge" header; the header is kept and the description says that he waived the manual merge for it. An independent review is added although the old rules did not ask for one.
+
+**Not started, at Marius's request:** any further task. Open items are in `docs/for-marius.md`.
+
+---
+
+## 2026-11-12 — PR #38: first independent review requested changes; fixes
+
+The independent review (`docs/reviews/rules-auto-merge-review.md`) ended in CHANGES REQUESTED. It found two real holes in what was to replace the manual merge. Both are fixed in the same PR.
+
+- **B1. The review gate accepted an approval written for another PR.** A review file linked in the description only had to exist and end in APPROVE; the reviewer passed this PR's whole diff on the Finding 002 review. The hole was already on `main` for hypotheses and findings. **Fix:** only a review file that the PR itself adds or changes counts; a linked, unchanged review is now an error. Test added, including an end-to-end case.
+- **B2. The held-out lock accepted any existing tag**, for example `corpus-v1.0`. **Fix:** frozen-prediction tags are named `predictions-…`; CI checks the prefix and that the tag exists. Marius is asked in `docs/for-marius.md` (S1) to extend the tag ruleset to that prefix.
+- **B3. The reviewer could not verify Marius's waiver of the manual merge** for this PR: the only records are texts written by the author session. This cannot be fixed inside the PR. It is reported to Marius in the session.
+- **Recommended, taken:** the held-out code (`load.py`, `heldout.py`, `split.py`) joins the rule files (N1); CLAUDE.md now says that CI cannot be relied on for PRs that edit the workflow (N2); the guardrail script is taken from `main`, also for stacked PRs (N3); a fallback for a session that cannot merge is restored (N4); `docs/for-marius.md` gets a log of merged rule-file PRs (N5); the three undisclosed changes are now in the PR description (N6).
+- **Recommended, not done here:** a `pull_request_target` workflow to narrow the workflow-edit gap. Untested; listed as a follow-up.
+
+**Note on the process.** Green CI on PR #38 is not an approval: `main`'s old script judges it and has no review gate for rule files. The PR is merged only after the reviewer's APPROVE.
