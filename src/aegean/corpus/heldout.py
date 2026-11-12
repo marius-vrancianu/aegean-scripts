@@ -1,19 +1,38 @@
-"""Held-out document list. Every corpus builder must filter through this."""
+"""Held-out documents (data/heldout.txt). Two kinds, both listed in that file:
+
+- **Excluded at ingest** (`<source>:<id>` lines; the Knossos sceptre): every
+  corpus builder drops these before parsing, so they are in no corpus file.
+- **The frozen split** (`split:<document key>` lines; A1.12): these documents
+  are in the corpus files, and `aegean.corpus.load` withholds them unless the
+  caller names a frozen confirmatory hypothesis.
+"""
 from pathlib import Path
 
 HELDOUT_FILE = Path(__file__).resolve().parents[3] / "data" / "heldout.txt"
+SPLIT_SOURCE = "split"
 
 
-def load_heldout(path: Path = HELDOUT_FILE) -> dict[str, set[str]]:
-    """Return {source: {doc_id, ...}} from data/heldout.txt."""
-    out: dict[str, set[str]] = {}
+def _entries(path: Path):
     for line in path.read_text(encoding="utf-8").splitlines():
         line = line.strip()
         if not line or line.startswith("#"):
             continue
         source, doc_id = line.split(":", 1)
-        out.setdefault(source, set()).add(doc_id)
+        yield source, doc_id
+
+
+def load_heldout(path: Path = HELDOUT_FILE) -> dict[str, set[str]]:
+    """Return {source: {doc_id, ...}} for the documents excluded at ingest (not the split)."""
+    out: dict[str, set[str]] = {}
+    for source, doc_id in _entries(path):
+        if source != SPLIT_SOURCE:
+            out.setdefault(source, set()).add(doc_id)
     return out
+
+
+def load_split(path: Path = HELDOUT_FILE) -> set[str]:
+    """Canonical document keys of the frozen held-out split (empty before the freeze)."""
+    return {doc_id for source, doc_id in _entries(path) if source == SPLIT_SOURCE}
 
 
 def is_heldout(source: str, doc_id: str, heldout: dict[str, set[str]] | None = None) -> bool:

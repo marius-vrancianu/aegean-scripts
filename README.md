@@ -29,8 +29,9 @@ pytest
 ## Status
 Phase 2 (see `plans/phase2-analysis-plan.md`, order of work in §0.6):
 - **Findings so far:** 001 (a published Semitic reading fails its null test) and 002 (what the arithmetic of totals can and cannot show; reviewed). No new positive result about Linear A yet.
-- **Corpus:** `corpus-v1.0-pre` is built from SigLA, lineara.xyz and Younger (1,619 documents listed, 568 in the default analysis set), with a cross-source disagreement report in `docs/reports/`. Not yet tagged.
-- **Next:** freeze the held-out split and tag corpus-v1.0, then the Linear A-only tests (claims audit, commodity association, abbreviation test).
+- **Corpus:** `corpus-v1.0` is built from SigLA, lineara.xyz and Younger (1,619 documents listed, 568 in the default analysis set), with a cross-source disagreement report in `docs/reports/`. Changelog and limits: `docs/corpus-changelog.md`.
+- **Held-out split:** 90 of the 568 documents are frozen as a confirmatory split (`docs/heldout-split.md`). Analyses load the corpus through `aegean.corpus.load`, which returns the training split unless a merged confirmatory hypothesis is named.
+- **Next:** baseline statistics on the training split with the resampling harness, then the Linear A-only tests (claims audit, commodity association, abbreviation test).
 - **Main goal:** a false-positive benchmark for decipherment methods (A5.17) and a functional role classifier validated on Linear B (A8.8).
 - **Parked:** A6 (typology), A7 (palaeography) and the remaining A2 tasks.
 

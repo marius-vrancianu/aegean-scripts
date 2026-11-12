@@ -36,7 +36,7 @@ Nothing is deleted. An analysis that wants single-sign nodules selects tier T2 e
 
 **R1 Scope (fixed).** Documents listed as Linear A by at least one of the three sources. All three are Linear A corpora; none of them is used to add documents of another script.
 
-**R2 Held-out (fixed, not a proposal).** Documents in `data/heldout.txt` are excluded by every reader before parsing, matched across sources by normalised siglum. The frozen 20% split is added at A1.12.
+**R2 Held-out (fixed, not a proposal).** Documents in `data/heldout.txt` are excluded by every reader before parsing, matched across sources by normalised siglum. The frozen split (A1.12, `docs/heldout-split.md`) is different: its 90 documents stay in the list and in the corpus files, and the loader `aegean.corpus.load` withholds them from analyses.
 
 **R3/R4 Content tier (DECIDED by Marius 2026-11-10: T1 only in analyses). This is the decision with by far the largest effect.** Each source's record is judged on its own, with sides summed, and the best source decides:
 

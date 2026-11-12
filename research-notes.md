@@ -498,3 +498,39 @@ The A1.8 MANIFEST is rebuilt; its output hash changed because of fix 1.
 
 **Next:** A1.12 (freeze the split, tag v1.0), then A1.11 on the training split with A1.14. A1.10 (DAMOS) is with Marius.
 
+
+---
+
+## 2026-11-11 — A1.12: held-out split frozen, corpus-v1.0 prepared
+
+**Done (PR #34, hand-merge: it changes `data/heldout.txt`).**
+- **90 documents are held out**, drawn once with seed 20261111. The seed and the procedure were pushed and written into the PR description (09:43 UTC) before the draw; the draw is a later commit.
+- Stratified by site and support type. **88 strata with fewer than five documents (118 documents) are wholly training**; 20% was drawn from each of the other 22 strata (450 documents). The lists are in `docs/heldout-split.md`.
+- The loader `aegean.corpus.load` returns the training split (478 documents) by default. The held-out split needs `heldout_for=<ID>` of a hypothesis that is merged on main, unmodified, and marked `- **Type:** confirmatory`.
+- Changelog and limits: `docs/corpus-changelog.md`. Release manifest: `data/processed/corpus-v1.0/MANIFEST.json`.
+
+**Decided by Marius:** 20% of each stratum (90 documents, 15.8% of the 568), not a fixed 114. Plan §0.6 had estimated 114 without counting the small strata; the plan text is corrected.
+
+**Design choices made by Claude** (hypotheses about good practice, Rule 5; all visible in the PR):
+- the draw orders documents by a SHA-256 of seed and document key instead of using a random-number generator, so it is the same on any Python version and one document can be checked by hand;
+- quotas are whole numbers by largest remainder; at this list they equal ordinary rounding per stratum;
+- the seed is the date of the freeze, fixed before any draw; only one seed was ever run;
+- split lines in `data/heldout.txt` are `split:<document key>`, and CI redraws the split to check that the file was not edited by hand.
+
+**Limits** (full list in the changelog):
+- The split is blind only for hypotheses registered from now on. A1.6–A1.9, A2 and Finding 001 processed every document. Nothing from A2 can be confirmed on it.
+- A held-out result speaks for 22 strata at 12 sites, not for small sites or rare supports.
+- The gate stops mistakes, not intent: the documents are in the corpus files.
+
+**Not verified in this session:**
+- The witnesses file was not rebuilt (the Younger PDFs cannot be fetched by script), so the release pins the hash from the A1.9 build and keeps the `corpus-v1.0-pre` path.
+- The loader's witness-to-document mapping was checked on all lineara.xyz and SigLA witnesses (2,546, none unmatched), not on Younger's 503.
+
+**What the session saw.** The document IDs of the split, in `data/heldout.txt`. No text of any document was read for this task.
+
+**Open for Marius:**
+- merge PR #34 and create the tag `corpus-v1.0` on the merge commit;
+- `hypotheses/TEMPLATE.md` has no `Type: confirmatory / exploratory` line although rule 10 requires the statement; adding it is a review-gated PR of its own;
+- run `python -m aegean.corpus.build_layers` once on the machine with the Younger PDFs and confirm the output hash matches the release manifest.
+
+**Next:** V10, A1.11 with A1.14 (training split only), A8.1, each as its own PR. A1.10 (DAMOS) stays with Marius.
