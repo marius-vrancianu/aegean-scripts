@@ -661,3 +661,14 @@ The independent review (`docs/reviews/rules-auto-merge-review.md`) ended in CHAN
 - **Recommended, not done here:** a `pull_request_target` workflow to narrow the workflow-edit gap. Untested; listed as a follow-up.
 
 **Note on the process.** Green CI on PR #38 is not an approval: `main`'s old script judges it and has no review gate for rule files. The PR is merged only after the reviewer's APPROVE.
+
+---
+
+## 2026-11-12 — PR #38 merged: the new merging rules are in force
+
+- The re-review (a second independent instance) ended in APPROVE for commit `76f0964`. The agent merged PR #38 at `bf72162` (that commit plus the review file only), on Marius's instruction in the session. `main` is at `51b4be9`, CI green.
+- **Both reviewers recorded that they could not verify Marius's instruction or his waiver** (B3): the session in which he gave them is not visible to a reviewer. Both suggested that he merge #38 himself. He had told the author session twice to merge it. He is told about B3 in the session; Revert on #38 is his remedy if the account is wrong.
+- The second review named four further gaps in the guardrail script (N7–N10). None was introduced by #38; all matter more now that the review is the only gate for rule files. They are listed in `docs/for-marius.md` as follow-ups and are not started.
+- From here on CI judges every PR with the script now on `main`: rule files and the held-out code are review-gated, and only a review that the PR itself adds or changes counts.
+
+**Nothing else is started.** Next steps wait for Marius's direction (`docs/for-marius.md`, D3).
