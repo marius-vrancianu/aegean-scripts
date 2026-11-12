@@ -97,3 +97,61 @@ The description is honest about it. A rule change used to need a human. It will 
 3. N2's one-sentence correction in CLAUDE.md (the rest of N1–N6 at the author's choice).
 
 Verdict: CHANGES REQUESTED
+
+---
+
+## Re-review, 2026-11-12
+
+Reviewer: a second independent Claude instance (subagent; wrote neither the work nor the first review).
+Reviewed commit: `76f0964` against `main` @ `27b2e99`. This re-review covers that commit only. Anything pushed after it, other than this file, is unreviewed.
+
+### Scope of the verdict
+
+- **The verdict below is about the content of the PR. It is not an authorisation to merge it.** Under the rules on `main`, this PR is merged by Marius. Whether he waived that is between him and the author session (B3, still open).
+- **I could not confirm the 2026-11-12 instruction either.** I searched the conversations I can reach. Confidence in each point: high for what I found, none for what I could not see.
+  - 2026-11-06: Marius himself proposed "how about we deactivate all manual merges?". The outcome then kept rule files manual.
+  - 2026-11-11 (latest conversation I can see): rule-file PRs still needed his merge.
+  - 2026-11-12: nothing reachable. The direction fits what he asked for on 11-06; the instruction itself and the waiver rest on the author session's text.
+- **Cheapest way to settle it:** Marius clicks **Merge pull request** on #38 in the web interface. It costs one click and makes the last hand-merge the one that ends hand-merges.
+
+### What I checked
+
+| Check | Result |
+|---|---|
+| `pytest -q` at `76f0964` | 201 passed, 15 skipped |
+| **B1** fixed | Yes. The first review's reproduction (`PR_BODY` linking `finding-002-review.md`) now exits 1 with two errors. An end-to-end test covers it |
+| **B2** fixed | Yes. `corpus-v1.0`, `v1`, `corpus-predictions-1` are rejected; prefix and existence are both tested. S1 is in `docs/for-marius.md` |
+| **N2** sentence in CLAUDE.md | Present ("CI cannot be relied on there and the rule alone binds you") |
+| N1, N3, N4, N5, N6 | All taken. `ci.yml` now reads `origin/main:tools/check_guardrails.py`; a test pins it |
+| `main`'s script on this PR, as CI runs it | `guardrails OK`. CI on `76f0964`: success |
+| The PR's own script on this PR | Fails as it should: review ends in CHANGES REQUESTED; old header |
+| `data/heldout.txt`, `hypotheses/`, `findings/` | Untouched |
+| `research-notes.md` | Append only (two new entries) |
+| Rulesets | `main-protection`: required check `test`, merge commits only, no bypass actors. `corpus-tags`: `refs/tags/corpus-*`, no update or deletion. As described |
+| Weakening stated, instruction cited | Stated plainly in the description, the notes and the `for-marius.md` log. Instruction cited; not verifiable (above) |
+| Prompted by fetched or third-party text | No sign of it |
+
+### Remaining gaps (not blocking; each is a strengthening and can be its own review-gated PR)
+
+None is introduced by this PR. All four matter more after it, because the review gate becomes the only gate for rule files.
+
+**N7. A conditional verdict line opens the gate.** `VERDICT_RE` accepts any line that begins with the approve verdict, whatever follows. Checked with the PR's script: a review whose last verdict line reads "…APPROVE once B1 is fixed" parses as APPROVE. The regex is unchanged from `main`. Fix: anchor the match to the end of the line.
+
+**N8. An approval does not expire when the author pushes again.** The gate checks that an approving review file is among the PR's changed files. It does not check that the review is newer than the work.
+- With auto-merge set at opening, the PR usually merges the moment the approval lands, so the window is small.
+- It is open whenever CI fails for another reason after the approval, or auto-merge was refused. The author then pushes a "fix" and the PR merges with unreviewed changes to gated files.
+- Fix, two parts: one sentence in CLAUDE.md ("a commit to a gated path after the approval needs a re-review"), and a CI check that no commit touching a gated path is newer than the last commit touching the approving review file.
+
+**N9. Touching an old review still opens the gate.** B1's fix stops a *linked* old approval. A PR that changes one character in `finding-002-review.md` still counts that file (`counted_reviews` takes any changed `.md` under `docs/reviews/`). This is the stated limit "CI checks that a file exists, not who wrote it", but it is cheap to narrow: require the counted review to name the PR number, which the workflow can pass in.
+
+**N10. The held-out lock checks the tag's name, not what it points to.** Agents create tags. A `predictions-x` tag on any commit satisfies CI. Suggested: CI checks that the tag is an ancestor of `main`; the rule-file checklist adds "the hypothesis that names the released document is merged at the tagged commit". Until S1 is done, such a tag can also be moved or deleted.
+
+**Two stale lines, cosmetic.** The description's `ci.yml` bullet still says "taken from the base branch" (later corrected to `main` in the same description). The `for-marius.md` log lists #38 as merged before it is.
+
+### Assessment
+
+- The first review's three conditions for approval are met, and I verified each by running the code.
+- The change does what the description says. The weakening is disclosed without softening.
+- What is weaker after the merge, in one line: a rule change needs a second Claude instance and CI instead of a human; the instruction behind a weakening can be asserted but not checked by any reviewer. The `for-marius.md` log and Revert are the remaining human lever, and they work only if he reads the log.
+
+Verdict: APPROVE
