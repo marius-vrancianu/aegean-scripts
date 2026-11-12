@@ -48,7 +48,41 @@ def test_rule_files_are_review_gated():
         assert cg.review_gate([path], {})
         assert cg.review_gate([path], {"docs/reviews/r.md": APPROVE}) == []
         assert cg.review_gate([path], {"docs/reviews/r.md": CHANGES})
-    assert not cg.is_gated("docs/heldout-split.md") and not cg.is_gated("src/aegean/corpus/heldout.py")
+    for path in ("src/aegean/corpus/load.py", "src/aegean/corpus/heldout.py", "src/aegean/corpus/split.py"):
+        assert cg.is_gated(path), path  # the code that enforces the held-out lock
+    assert not cg.is_gated("docs/heldout-split.md") and not cg.is_gated("src/aegean/corpus/baseline.py")
+
+
+def test_only_reviews_the_pr_adds_or_changes_count():
+    # An approval that sits in the tree from another PR is not in the PR's changed files.
+    assert cg.counted_reviews(["CLAUDE.md", "src/a.py"]) == set()
+    assert cg.counted_reviews(["CLAUDE.md", "docs/reviews/rules-x-review.md", "docs/reviews/notes.txt"]) == {
+        "docs/reviews/rules-x-review.md"}
+    assert cg.review_gate(["CLAUDE.md"], {p: APPROVE for p in cg.counted_reviews(["CLAUDE.md"])})
+
+
+def test_linked_but_unchanged_review_does_not_open_the_gate(tmp_path, monkeypatch):
+    """End to end on a throwaway repository: PR changes CLAUDE.md and links an old approval."""
+    import subprocess
+
+    def git(*a):
+        subprocess.run(["git", "-c", "user.name=t", "-c", "user.email=t@example.org", "-c", "commit.gpgsign=false",
+                        *a], cwd=tmp_path, check=True, capture_output=True)
+    (tmp_path / "docs/reviews").mkdir(parents=True)
+    (tmp_path / "docs/reviews/old-review.md").write_text(APPROVE, encoding="utf-8")
+    (tmp_path / "CLAUDE.md").write_text("rules\n", encoding="utf-8")
+    (tmp_path / "research-notes.md").write_text("notes\n", encoding="utf-8")
+    git("init", "-q", "-b", "main"); git("add", "."); git("commit", "-q", "-m", "base")
+    git("checkout", "-q", "-b", "pr")
+    (tmp_path / "CLAUDE.md").write_text("weaker rules\n", encoding="utf-8")
+    git("commit", "-q", "-am", "change rules")
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setenv("PR_BODY", "**Review-gated: docs/reviews/old-review.md**")
+    assert cg.main("main") == 1
+    (tmp_path / "docs/reviews/new-review.md").write_text(APPROVE, encoding="utf-8")
+    git("add", "."); git("commit", "-q", "-m", "review")
+    monkeypatch.setenv("PR_BODY", "**Review-gated: docs/reviews/new-review.md**")
+    assert cg.main("main") == 0
 
 
 def test_header_rules():
@@ -77,10 +111,16 @@ def test_heldout_removal_needs_an_existing_frozen_prediction_tag():
     body = "**Review-gated: docs/reviews/x.md**\n\nFrozen-prediction tag: predictions-a3-v1\n"
     assert cg.heldout_removal_errors(OLD, new, body, lambda t: t == "predictions-a3-v1") == []
     assert cg.heldout_removal_errors(OLD, new, body, lambda t: False)
-    assert cg.heldout_removal_errors(OLD, new, "**Frozen-prediction tag:** `v1`", lambda t: t == "v1") == []
+    assert cg.heldout_removal_errors(OLD, new, "**Frozen-prediction tag:** `predictions-v1`", lambda t: True) == []
 
 
-def test_ci_runs_the_guardrail_script_from_the_base_branch():
+def test_a_release_tag_is_not_a_frozen_prediction_tag():
+    new = "# comment\nlineara.xyz:X1\nsplit:HT 1\n"
+    for name in ("corpus-v1.0", "v1", "corpus-predictions-1"):
+        assert cg.heldout_removal_errors(OLD, new, f"Frozen-prediction tag: {name}", lambda t: True), name
+
+
+def test_ci_runs_the_guardrail_script_from_main():
     ci = (Path(__file__).resolve().parents[1] / ".github/workflows/ci.yml").read_text(encoding="utf-8")
-    assert 'git show "origin/$BASE_REF:tools/check_guardrails.py"' in ci
+    assert 'git show "origin/main:tools/check_guardrails.py"' in ci
     assert "python tools/check_guardrails.py" not in ci

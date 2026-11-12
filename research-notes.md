@@ -647,3 +647,17 @@ Neither abstract mentions the sceptre. Neither article has been read.
 **This PR** is judged by the old guardrail script on `main`, which asks for the "Needs Marius's merge" header; the header is kept and the description says that he waived the manual merge for it. An independent review is added although the old rules did not ask for one.
 
 **Not started, at Marius's request:** any further task. Open items are in `docs/for-marius.md`.
+
+---
+
+## 2026-11-12 — PR #38: first independent review requested changes; fixes
+
+The independent review (`docs/reviews/rules-auto-merge-review.md`) ended in CHANGES REQUESTED. It found two real holes in what was to replace the manual merge. Both are fixed in the same PR.
+
+- **B1. The review gate accepted an approval written for another PR.** A review file linked in the description only had to exist and end in APPROVE; the reviewer passed this PR's whole diff on the Finding 002 review. The hole was already on `main` for hypotheses and findings. **Fix:** only a review file that the PR itself adds or changes counts; a linked, unchanged review is now an error. Test added, including an end-to-end case.
+- **B2. The held-out lock accepted any existing tag**, for example `corpus-v1.0`. **Fix:** frozen-prediction tags are named `predictions-…`; CI checks the prefix and that the tag exists. Marius is asked in `docs/for-marius.md` (S1) to extend the tag ruleset to that prefix.
+- **B3. The reviewer could not verify Marius's waiver of the manual merge** for this PR: the only records are texts written by the author session. This cannot be fixed inside the PR. It is reported to Marius in the session.
+- **Recommended, taken:** the held-out code (`load.py`, `heldout.py`, `split.py`) joins the rule files (N1); CLAUDE.md now says that CI cannot be relied on for PRs that edit the workflow (N2); the guardrail script is taken from `main`, also for stacked PRs (N3); a fallback for a session that cannot merge is restored (N4); `docs/for-marius.md` gets a log of merged rule-file PRs (N5); the three undisclosed changes are now in the PR description (N6).
+- **Recommended, not done here:** a `pull_request_target` workflow to narrow the workflow-edit gap. Untested; listed as a follow-up.
+
+**Note on the process.** Green CI on PR #38 is not an approval: `main`'s old script judges it and has no review gate for rule files. The PR is merged only after the reviewer's APPROVE.

@@ -22,7 +22,22 @@ Last updated: 2026-11-12.
 | E4 | 2026-11-11 | **Younger's PDFs** — set aside by you on 2026-11-12. They are on Academia.edu behind a login and have no licence; this repository is public, so they cannot be uploaded here. | Login; licence. | The Younger column in the A1.11 report and in the gold set; confirming the witnesses hash of corpus-v1.0. |
 | E5 | 2026-11-10 | **A1.15 (optional): message to the lineara.xyz maintainer** about the probable errors and the licence question. An agent drafts it when you ask. | Only you write to other people. | A1.3 (licence). |
 
+## Settings only you can change
+
+| # | Since | What | Steps |
+|---|---|---|---|
+| S1 | 2026-11-12 | **Protect frozen-prediction tags.** A held-out document can be released only against a tag named `predictions-…`. Such a tag should not be movable or deletable. | **Settings → Rules → Rulesets → `corpus-tags` → Target tags → Add target → Include by pattern** → `predictions-*` → **Save changes**. |
+
+## Rule-file PRs merged since 2026-11-12
+
+To undo one: open the PR → **Revert** → the revert PR merges under the same rules.
+
+| PR | Date | What changed | Weakens a guardrail? |
+|---|---|---|---|
+| #38 | 2026-11-12 | No manual merges; rule files review-gated; guardrail script run from `main`; held-out lock in CI; held-out code added to the rule files | **Yes**: rule changes no longer need your merge (your instruction, 2026-11-12). Also stronger in four places: review gate no longer accepts an approval from another PR; removed held-out lines need a `predictions-` tag; the guardrail script cannot approve its own change; `load.py`, `heldout.py`, `split.py` are now rule files. |
+
 ## Small things an agent will do without asking, unless you object
 
 - Add a `Type: confirmatory / exploratory` line to `hypotheses/TEMPLATE.md` (rule 10 and the loader gate rely on it). Review-gated PR.
 - Comparison of the A1.11 position table with Packard's published figures, once a source for them is available.
+- Try a second workflow on `pull_request_target` (GitHub takes it from `main`, not from the PR) that runs the guardrail script, to narrow the gap for PRs that edit the workflow. Untested; review-gated PR.

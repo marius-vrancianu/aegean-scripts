@@ -23,9 +23,9 @@ jobs:
           # Passed through env, never interpolated into the script (injection-safe).
           PR_BODY: ${{ github.event.pull_request.body }}
           BASE_REF: ${{ github.base_ref }}
-        # The script is taken from the base branch, not from the PR: a PR that changes the
-        # guardrails is judged by the rules in force before it (CLAUDE.md -> Merging).
+        # The script is taken from main, not from the PR (and not from a stacked PR's base branch):
+        # a PR that changes the guardrails is judged by the rules in force before it (CLAUDE.md -> Merging).
         run: |
-          git show "origin/$BASE_REF:tools/check_guardrails.py" > "$RUNNER_TEMP/check_guardrails.py"
+          git show "origin/main:tools/check_guardrails.py" > "$RUNNER_TEMP/check_guardrails.py"
           python "$RUNNER_TEMP/check_guardrails.py" "origin/$BASE_REF"
       - run: pytest -q
