@@ -34,13 +34,12 @@ To undo one: open the PR → **Revert** → the revert PR merges under the same 
 
 ## Settled recently
 
-- **Next task (was D3), 2026-11-14.** You chose the false-positive benchmark, A5.17 (Tier 1). Started the same day: the benchmark code and the port of the Finding 001 matcher are in `src/aegean/benchmark/` (how it works: `docs/benchmark.md`). Nothing has been run on Linear A yet; the protocol is registered first (`hypotheses/H-A5-01.md`, its own review-gated PR).
+- **Next task (was D3), 2026-11-14.** You chose the false-positive benchmark, A5.17 (Tier 1). Started the same day: the benchmark code and the port of the Finding 001 matcher are in `src/aegean/benchmark/` (how it works: `docs/benchmark.md`). Nothing has been run on Linear A yet; the protocol is registered first (`hypotheses/H-A5-01.md`, review in `docs/reviews/H-A5-01-review.md`). The same PR added the `Type:` line to `hypotheses/TEMPLATE.md`.
 - **For your information, no action needed: the null in Finding 001 was not quite fair** (research-notes 2026-11-14, "A5.17"). Its random lexicons gave the matcher about 12% more targets than the real Hebrew lexicon, which tilted the comparison against Hebrew. The benchmark uses a corrected null. I expect the conclusion of Finding 001 to hold; the registered run will say.
 - **Younger's PDFs (was E4), 2026-11-14.** You put the five files in the private repository `marius-vrancianu/aegean-scripts-private`, folder `Younger/`. All five hashes match; the rebuilt witnesses reproduce the corpus-v1.0 hash. Sessions fetch them with `data/raw/younger/fetch.py --from`. Please keep that repository private and leave the files in place.
 
 ## Small things an agent will do without asking, unless you object
 
-- Add a `Type: confirmatory / exploratory` line to `hypotheses/TEMPLATE.md` (rule 10 and the loader gate rely on it). Review-gated PR.
 - Comparison of the A1.11 position table with Packard's published figures, once a source for them is available.
 - An addendum to Finding 001 saying that its null was larger than the real lexicon as the matcher sees it, with the corrected figures from the H-A5-01 run. Review-gated PR, after that run.
 - Four strengthenings of the guardrail script that the second review of #38 recommended (each a review-gated PR; none started):
