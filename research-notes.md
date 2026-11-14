@@ -782,3 +782,15 @@ The committed test (`tests/test_benchmark_m1.py`) repeats the comparison on rand
 - Later pairs (other lexicons, other rules, M2 …) each get a short hypothesis file citing Part 1 of H-A5-01.
 
 **Next:** after the merge, run `python -m aegean.benchmark.tier1 --method M1 --lexicon hebrew-strong-verbs --protocol H-A5-01`, write `hypotheses/outcomes/H-A5-01.md`, and add the addendum to Finding 001 (both review-gated).
+
+## 2026-11-14 — H-A5-01: first independent review requested changes; fixes
+
+Review: `docs/reviews/H-A5-01-review.md` (fresh subagent, fixed prompt; its report is recorded unedited as a comment on PR #45). It reran the control-side and lexicon-side figures and confirmed them. Four changes were requested and made before the merge; none alters the first run's design or constants.
+
+- **R1, decision rule.** A pair with both raw p-values ≤ α but a batch-adjusted p above 0.05 had no label. It is now outcome B, and the file says that A and B are decided on raw values.
+- **R2, Test 2.** The file claimed that Test 2 removes whatever Linear A and the control share. It removes only a shift of equal size on both. The assumption is now stated, with its consequence: a small p2 is possible without any relationship, and only Tier 2 can tell.
+- **R3.** The control's excess at four signs is +0.019, not +0.018.
+- **R4, template.** The new `Type:` line read "confirmatory / exploratory", which the loader's pattern accepts as confirmatory if left unedited. The placeholder now starts with "exploratory" and is rejected (checked against `load.CONFIRMATORY_RE`).
+- Also added to "What I already know": two control-only figures that the review itself computed, and the prior from the literature survey. Part 2's headings were moved one level down.
+
+Two follow-ups outside this PR are listed in `docs/for-marius.md`: the runner should apply the batch correction itself before a second pair is registered, and the loader's pattern should be tightened.

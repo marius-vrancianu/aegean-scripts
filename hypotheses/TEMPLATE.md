@@ -3,7 +3,7 @@
 - **Logged:** YYYY-MM-DD (the merge commit is the timestamp of record)
 - **Task:** A?.?
 - **Layer:** L0 / L1 / L2
-- **Type:** confirmatory / exploratory (CLAUDE.md rule 10: confirmatory = tested once on held-out data, chosen in advance; exploratory = training split, FDR-controlled. The corpus loader releases the held-out split only to a merged file whose line reads `- **Type:** confirmatory`.)
+- **Type:** exploratory / confirmatory — choose one and delete the other (CLAUDE.md rule 10: confirmatory = tested once on held-out data, chosen in advance; exploratory = training split, FDR-controlled. The corpus loader releases the held-out split only to a merged file whose Type line begins with the word confirmatory.)
 - **Status:** pre-registered
 
 ## Hypothesis
