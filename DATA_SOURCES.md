@@ -98,7 +98,10 @@ Recorded so nobody re-does the check. Neither source adds independent readings.
   Not yet used.
 
 ## NeuroDecipher data (Luo, Cao & Barzilay 2019)
-- **Source:** https://github.com/j-luo93/NeuroDecipher, `data/` (Linear B–Greek cognates, 919 pairs; Ugaritic–Hebrew from Snyder et al. 2010). **Licence not yet checked** (A5.1). Not yet used.
+- **Source:** https://github.com/j-luo93/NeuroDecipher, `data/`. Pinned at commit `480bad2487820e3737fecfdd108214efa769e34b` (2021-09-20, `master` on 2026-11-14).
+- **Licence: none stated.** The repository has no LICENSE file, and neither its README nor `setup.py` names one (checked in a clone, 2026-11-14; the GitHub licence field could not be queried from the session). Without a licence the data may not be redistributed, so it is **fetched, not committed** (`data/raw/neurodecipher/fetch.py`, `SHA256SUMS`). Cite Luo, Cao & Barzilay 2019.
+- **Used (A5.17):** `linear_b-greek.cog`, sha256 `0e8099cd…`: 919 Linear B words (Unicode Linear B characters) with their Greek counterparts. `aegean.benchmark.inputs` reads column 1 only and converts each sign to its Unicode Linear B value; 918 words have two or more signs. They serve as Linear B words of known Greek meaning (the control of `docs/guardrails.md` item 2). The README says the list was prepared with `notebooks/Linear_b_simplified.ipynb`; where the words come from before that (which lexicon) is not stated there and has not been traced (open, A5.1).
+- **Not yet used:** `linear_b-greek.names.cog` (names only), `uga-heb.*.cog` (Ugaritic–Hebrew, from Snyder et al. 2010).
 
 ## Corazza, Ferrara, Montecchi, Tamburini & Valério 2021 (fraction values)
 - **What:** "The mathematical values of fraction signs in the Linear A script: A computational, statistical and typological approach", *Journal of Archaeological Science* 125:105214.
@@ -110,7 +113,7 @@ Recorded so nobody re-does the check. Neither source adds independent readings.
   - No supplementary data or code link was found.
 
 ## openscriptures HebrewLexicon (used in Finding 001)
-- **Source:** https://github.com/openscriptures/HebrewLexicon, `HebrewStrong.xml`. CC BY 4.0. Pinned at commit `21c9add13bc727d3a951361778e97e3ff7afd1ce`, sha256 `a628f4f89f8bdaf2483fd3faf1abc8653cc6717758dfc9f24beb7571d9bdd0c4`. The 2026-10-28 fetch used `master` without recording a commit; reproducing Finding 001 exactly on this pin confirms the same content. Fetched by `experiments/finding-001/reproduce.py`.
+- **Source:** https://github.com/openscriptures/HebrewLexicon, `HebrewStrong.xml`. CC BY 4.0. Pinned at commit `21c9add13bc727d3a951361778e97e3ff7afd1ce`, sha256 `a628f4f89f8bdaf2483fd3faf1abc8653cc6717758dfc9f24beb7571d9bdd0c4`. The 2026-10-28 fetch used `master` without recording a commit; reproducing Finding 001 exactly on this pin confirms the same content. Fetched by `data/raw/openscriptures-HebrewLexicon/fetch.py` (and, to the same path, by `experiments/finding-001/reproduce.py`). Used by Finding 001 and as the benchmark lexicon `hebrew-strong-verbs` (A5.17).
 
 ## Kanta, Nakassis, Palaima & Perna 2025 (Knossos sceptre overview) — HELD OUT
 - doi:10.26248/ariadne.vi.1841, CC BY-NC-SA 4.0. Descriptive only, no sign-by-sign text. **Held-out material: do not read or ingest** (see `CLAUDE.md`).

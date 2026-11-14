@@ -731,3 +731,42 @@ Same 21 items and the same grades; 16 usable for scoring. Layer L0, training spl
 - The Linear B word control in Finding 001 and the NeuroDecipher data need their source and licence recorded (A5.1) before use. DAMOS is not needed for Tier 1.
 - Whether Tier 1 runs on the training split or the full corpus is not stated in the plan. Finding 001 ran on the whole lineara.xyz word list before the freeze. A false-positive rate is a property of the method and the lexicon, so the training split should be enough; a run on held-out documents would need a confirmatory hypothesis. This is Claude's reading (Rule 5), to be settled in the hypothesis file.
 - New code goes in `src/aegean/benchmark/` (CLAUDE.md, code conventions).
+
+## 2026-11-14 — A5.17: benchmark package, M1 port, and a flaw in the Finding 001 null
+
+**Task:** A5.17 (Tier 1 false-positive benchmark), first part. Layer L1. No run on Linear A was made with the new code; that waits for H-A5-01 (rule 3).
+
+**Built** (`src/aegean/benchmark/`, described in `docs/benchmark.md`):
+- a common interface (a method takes a sign-group and a lexicon and returns a match);
+- method M1, the Finding 001 matcher, with every licence as a named parameter;
+- the Hebrew verb lexicon and the Linear B control as pinned, hash-checked inputs;
+- two pseudo-lexicon nulls and a random-sign-string null;
+- the Tier 1 runner, with a report and a command line that accepts a third party's lexicon and rules.
+
+**The port is exact.** Checks made in the session against the original scripts in a temporary HOME, as `reproduce.py` does:
+- 20,775 sign strings (the 696 Finding 001 sign-groups, its 79 Linear B words, 20,000 random strings): the port and `nulltest.parse` return the same parse for every one;
+- the lexicon (502 skeletons) and its expansion (664 forms) are identical;
+- with the Finding 001 word list and `random.Random(7)`, the port gives every figure of the Finding 001 table: 0.800, 0.828 (0.805–0.851), 0.734, 0.394 against 0.424, 0.908 and 0.935.
+
+The committed test (`tests/test_benchmark_m1.py`) repeats the comparison on random strings with a small made-up lexicon, and checks the figures that do not need the Linear A word list. It does not parse lineara.xyz's `transliteratedWords`; only the original scripts do that.
+
+**Inputs now differ from Finding 001.** Sign-groups come from `aegean.corpus.load` (training split) as uniform L1 values, not from `transliteratedWords`. Counts of complete multi-sign words that M1 can read (distinct): SigLA 321, lineara.xyz 400, Younger 195; one reading per document 414. Finding 001 had 696. The main reasons: the held-out split, the exclusion of broken groups, and signs that L1 leaves as numbers (*56 and *79, which lineara.xyz prints as PA3 and ZU).
+
+**Linear B control.** Finding 001's 79 words were hand-entered in the 2026-10-28 session (a Claude session) with no source recorded (rule 5). The benchmark uses the 918 multi-sign Linear B words with Greek counterparts from the NeuroDecipher data instead (pinned; no licence stated, so fetched and not committed; DATA_SOURCES.md). The 79 words are kept only inside the port test.
+
+**A flaw in the Finding 001 null (confidence high; it is arithmetic on the lexicons).**
+- M1 lets a root's S be read as T, and D and T interchange. After that expansion the 502 Hebrew skeletons are 664 distinct forms. The random pseudo-lexicons of Finding 001 have 502 skeletons too, but expand to about 743 (minimum 712 in 200 draws), because random forms collide less often than real roots do.
+- So the Finding 001 null offered the matcher about 12% more targets than the real lexicon. That is why real Hebrew scored below all 20 pseudo-lexicons there. On the Linear B control (918 words, 1,000 pseudo-lexicons) real Hebrew scores 0.532 against 0.561, in the lowest 2.5%.
+- **Effect on Finding 001:** its comparison was tilted against the real lexicon, so "Hebrew fits no better than random" was not shown as cleanly as the table suggests. Its other evidence stands: the hit rate rises steeply with lexicon size, and Greek words match almost as often as Linear A. Whether the conclusion holds under a fair null is what H-A5-01 tests. My expectation is that it holds (rule 5: an expectation, not a result): scaling the null to 664 forms by the size curve of Finding 001 gives roughly 0.81 against 0.800.
+- **Fix:** a matched null (`nulls.matched_lexicon`): pseudo-lexicons with exactly the real lexicon's number of forms after expansion, and its letter frequencies per length and position.
+
+**Known-script validation of the matched null, Linear B control only** (no Linear A involved): real Hebrew 0.532, matched pseudo-lexicons 0.512 (95%: 0.486–0.538), one-sided p = 0.064. The Finding 001 null gave −0.029; the matched null gives +0.020. So a small advantage of the real lexicon over matched noise remains even on Greek words. It is not significant, but it is the reason the protocol has a second test: the real lexicon's advantage on Linear A must exceed its advantage on the Greek control.
+
+**What I saw before registration, for the record:** the control figures above, under both nulls; the lexicon-side sizes; the counts of Linear A sign-groups per source. Not seen: any hit rate of the new code on Linear A sign-groups.
+
+**Next:**
+1. H-A5-01: the Tier 1 protocol with M1 × Hebrew verbs as the first registered run (review-gated).
+2. After it is merged: the run, the outcome file, and an addendum to Finding 001 about its null (review-gated).
+3. Then further methods (M2, sound-class edit distance) and lexicons, each registered against the protocol.
+
+**Open:** where the NeuroDecipher Linear B list comes from before its preparation notebook (A5.1); the Ugaritic–Hebrew data are not yet recorded.
