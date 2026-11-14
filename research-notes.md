@@ -672,3 +672,21 @@ The independent review (`docs/reviews/rules-auto-merge-review.md`) ended in CHAN
 - From here on CI judges every PR with the script now on `main`: rule files and the held-out code are review-gated, and only a review that the PR itself adds or changes counts.
 
 **Nothing else is started.** Next steps wait for Marius's direction (`docs/for-marius.md`, D3).
+
+---
+
+## 2026-11-14 — Younger's files available from a private repository; corpus-v1.0 witnesses reproduced
+
+**What Marius did.** He created the private repository `marius-vrancianu/aegean-scripts-private` and put Younger's five files in its folder `Younger/`. He also added `predictions-*` to the `corpus-tags` ruleset (checked through the API: update and deletion blocked for both patterns).
+
+**Checked.**
+- All five files match `data/raw/younger/SHA256SUMS`.
+- `python -m aegean.corpus.build_layers` on the three pinned sources gives the witnesses hash recorded in the corpus-v1.0 release manifest (`d2d4b41f…`). The committed A1.8 manifest is unchanged by the rebuild. This closes the open check from 2026-11-11.
+- The loader maps every Younger witness to a listed document: 1,316 training witnesses (lineara.xyz 573, SigLA 447, Younger 296) on all 478 training documents.
+- With the files present the test suite runs 212 tests and skips 4 (before: 15 skipped).
+
+**Changed.** `data/raw/younger/fetch.py --from DIR` copies the pinned files from a folder if their hashes match, then verifies. README, DATA_SOURCES, the changelog and `docs/for-marius.md` say where the files are.
+
+**Blinding.** The files went from the private repository to the gitignored folder and through the parser. Their text was not read by the session, was not attached to a chat and is not in the claude.ai Project.
+
+**Next:** rerun A1.11 and A8.1 on the full witnesses (separate PRs).
