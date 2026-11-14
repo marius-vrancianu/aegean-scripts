@@ -17,4 +17,4 @@ Adopted by Marius on 2026-10-28, after the Ya Diktu null test (Finding 001). The
 7. **Correct data handling does not validate the inference.** Accurate corpus counts say nothing about whether the conclusions drawn from them hold.
 8. **Apply all of these to Claude's own proposals too.**
 
-The reusable null-test code from Finding 001 (swap the lexicon to test any "Linear A is X" claim) is to be added under `src/aegean/benchmark/`. See A5.12.
+The reusable null-test code from Finding 001 (swap the lexicon to test any "Linear A is X" claim) is in `src/aegean/benchmark/`; see `docs/benchmark.md`.

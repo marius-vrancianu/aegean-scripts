@@ -10,4 +10,4 @@ python experiments/finding-001/reproduce.py --exclude-heldout  # with data/heldo
 
 Expected output: `findings/001-yadiktu-null-test.md` (Results table, and the addendum of 2026-11-04). Runtime is about a minute on a PC.
 
-The reusable benchmark version of this matcher (method M1) is to be written under `src/aegean/benchmark/` in A5.12. It should be built from these scripts, not edited into them.
+The reusable benchmark version of this matcher is method M1, `src/aegean/benchmark/m1.py` (A5.17; `docs/benchmark.md`). It was built from these scripts, not edited into them, and `tests/test_benchmark_m1.py` runs both on the same inputs.
