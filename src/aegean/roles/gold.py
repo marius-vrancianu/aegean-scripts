@@ -355,12 +355,13 @@ def render(gold: list[dict], cands: list[dict], m: dict) -> str:
           "- **Layout evidence comes from SigLA alone**; lineara.xyz contributes only its item boundaries. A label "
           "on a document that SigLA does not have can at best reach grade B.",
           "- **Grade C items are not for scoring.** They are listed so that nobody adds them later unnoticed.", "",
-          "## Before freezing", "",
-          "1. Rebuild on the full witnesses file (adds Younger's readings).",
-          "2. Check every literature row against its publication, and identify the *Minos* article "
-          "(author and title were not shown in the excerpt).",
-          "3. Marius confirms or changes the grades.",
-          "4. Then record `gold_set_sha256` from the manifest in the first A8 hypothesis file.", ""]
+          "## Before freezing", ""]
+    steps = (["Rebuild on the full witnesses file (adds Younger's readings)."] if m["partial_build"] else []) + [
+        "Check every literature row against its publication, and identify the *Minos* article "
+        "(author and title were not shown in the excerpt).",
+        "Marius confirms or changes the grades.",
+        "Then record `gold_set_sha256` from the manifest in the first A8 hypothesis file."]
+    L += [f"{n}. {t}" for n, t in enumerate(steps, 1)] + [""]
     return "\n".join(L)
 
 

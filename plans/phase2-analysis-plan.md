@@ -457,7 +457,7 @@ To-do:
 
 ### A8 to-do
 
-- [~] **A8.1 Labelled-picture gold set.** **2026-11-11: draft built, not frozen** (`python -m aegean.roles.gold`; `docs/reports/A8.1-gold-set.md`). 21 items, 16 usable for scoring; the five labelled pictures are all on HT 31. Before freezing: full three-source build, literature rows checked against the publications, grades confirmed by Marius.
+- [~] **A8.1 Labelled-picture gold set.** **2026-11-11: draft built, not frozen** (`python -m aegean.roles.gold`; `docs/reports/A8.1-gold-set.md`). 21 items, 16 usable for scoring; the five labelled pictures are all on HT 31. Before freezing: full three-source build, literature rows checked against the publications, grades confirmed by Marius. **2026-11-14:** rebuilt on all three sources (same 21 items; Younger adds a second source for SU-KI-RI-TA and SE-TO-I-JA). Still a draft: the literature check and the grades are open (`docs/for-marius.md` D1, E3).
   - *Why.* A few inscriptions write a word beside a drawn or logographic object, which gives the word's referent with no assumption about language. These are the only ground truth Linear A offers for A8, so they are collected and frozen first.
   - *How.* Search the witnesses for sign-groups written above, inside or directly beside a logogram (HT 31, a tablet of vessel signs with words written over them, is the standard example; the details are to be verified from the witnesses and GORILA, not from this plan). Record for each: document, sign-group at L0, the object, the source, and a confidence grade. Add KU-RO and KI-RO and the place names shared with Linear B, each with its published source. Freeze the list with a hash before A8.2 runs.
   - *Output.* `data/processed/gold/` plus a short report. No hypothesis needed (it is data).

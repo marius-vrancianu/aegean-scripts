@@ -702,3 +702,13 @@ The independent review (`docs/reviews/rules-auto-merge-review.md`) ended in CHAN
 - The lineara.xyz and SigLA columns are unchanged from the partial build, as expected.
 
 **Still open for A1.11:** comparison with Packard's published figures; period labels not normalised.
+
+---
+
+## 2026-11-14 — A8.1: draft gold set rebuilt on all three sources
+
+Same 21 items and the same grades; 16 usable for scoring. Layer L0, training split, corpus-v1.0 witnesses (hash verified).
+
+- **Younger adds a second source** for SU-KI-RI-TA (PH Wa 32) and SE-TO-I-JA (PR Za 1), which rested on lineara.xyz alone, and a third for DA-I-PI-TA (ZA 8), KA-TA-RE (KH 41) and I-DA. The two place names were grade A on the literature; their attestation is now less dependent on one encoding. All three sources derive from GORILA, so this is agreement between editions, not independent confirmation.
+- **The labelled pictures are unchanged:** HT 31 is a Haghia Triada tablet, which Younger's files do not cover.
+- The manifest no longer says partial build. **Status is still DRAFT:** no literature row has been checked against its publication, and the grades are mine. Both are with Marius (`docs/for-marius.md` D1, E3).
