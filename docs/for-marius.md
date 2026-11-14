@@ -10,7 +10,6 @@ Last updated: 2026-11-14.
 |---|---|---|---|---|
 | D1 | 2026-11-11 | **Gold set (A8.1): confirm or change the grades** in `docs/reports/A8.1-gold-set.md`, in particular whether the grade C items stay out of scoring. | The grades decide what counts as a right answer for A8.8. | The set stays a draft; A8.2, A8.3 and A8.8 do not start against it. |
 | D2 | 2026-11-11 | **Resampling (A1.14): one source per document, or per-sign draws?** The harness picks one source per document, so a document's disputed signs move together. Per-sign draws need sign-level alignment and create readings no editor proposed. | It is an interpretation of plan §0.7. | The per-document version is used. |
-| D3 | 2026-11-12 | **What to work on next.** Plan §0.6 gives A9.1–A9.2 (claims audit) and A5.17 (benchmark Tier 1) as the next items that do not need Linear B. | Direction. | Nothing new is started. |
 
 ## External work
 
@@ -35,6 +34,7 @@ To undo one: open the PR → **Revert** → the revert PR merges under the same 
 
 ## Settled recently
 
+- **Next task (was D3), 2026-11-14.** You chose the false-positive benchmark, A5.17 (Tier 1). A new session starts it.
 - **Younger's PDFs (was E4), 2026-11-14.** You put the five files in the private repository `marius-vrancianu/aegean-scripts-private`, folder `Younger/`. All five hashes match; the rebuilt witnesses reproduce the corpus-v1.0 hash. Sessions fetch them with `data/raw/younger/fetch.py --from`. Please keep that repository private and leave the files in place.
 
 ## Small things an agent will do without asking, unless you object
