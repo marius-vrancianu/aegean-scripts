@@ -42,5 +42,10 @@ Sources: lineara.xyz @ `9c81beba`, SigLA @ `0c4ef69f`, Younger 2024 (Academia.ed
 9. **The gate is a guard against mistakes, not a lock.** The held-out documents are in the corpus files and in the raw snapshots.
 10. The sceptre (KN Zg 57, KN Zg 58) is a separate held-out item and is in no corpus file. Its blinding was partly compromised on 2026-11-02 (`research-notes.md`).
 
+### Update 2026-11-14 (no change to the release)
+- **Limit 7 is resolved as to the hash:** the witnesses were rebuilt from all three pinned sources and reproduce the hash in the release manifest (`d2d4b41f…`). The file keeps the `corpus-v1.0-pre` path; the release content is unchanged, so no new tag.
+- **Limit 8 is closed:** the loader maps every Younger witness to a listed document (1,316 training witnesses: lineara.xyz 573, SigLA 447, Younger 296; all 478 training documents have at least one).
+- Younger's files are now obtained from Marius's private repository (`data/raw/younger/README.md`).
+
 ## corpus-v0.1 — 2026-11-04 (A1.0)
 Provisional single-source release: lineara.xyz only, L0, sceptre excluded. Built by `python -m aegean.corpus.build`; manifest in `data/processed/corpus-v0.1/`. Used by A2 (Finding 002). Every result on it carries the single-source caveat.

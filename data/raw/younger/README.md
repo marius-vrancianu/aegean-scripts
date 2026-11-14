@@ -1,6 +1,10 @@
 # John G. Younger's Linear A transliterations (Academia.edu, 2024)
 
-**Not committed.** Academia.edu states no licence, so the files stay in the gitignored `academia-2024/` folder. This folder commits only `SHA256SUMS`, this README and `fetch.py`, which verifies a manual download.
+**Not committed.** Academia.edu states no licence, so the files stay in the gitignored `academia-2024/` folder. This folder commits only `SHA256SUMS`, this README and `fetch.py`.
+
+**Where a session gets them (since 2026-11-14).** Marius keeps the five files in a private repository, `marius-vrancianu/aegean-scripts-private`, folder `Younger/`. Attach and clone that repository in the session (read access), then run `python data/raw/younger/fetch.py --from <clone>/Younger`. The script copies only files whose hash matches `SHA256SUMS` and then verifies all five. Checked 2026-11-14: all five hashes match, and a rebuild of the witnesses reproduces the corpus-v1.0 hash.
+
+**Do not attach these files to a chat or add them to the claude.ai Project.** They contain the texts of held-out documents; either route puts them into a session's context.
 
 ## Why Academia, not the old website
 
