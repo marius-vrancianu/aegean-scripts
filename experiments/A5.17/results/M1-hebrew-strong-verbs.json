@@ -1,0 +1,731 @@
+{
+ "control": {
+  "excess": 0.020070953436806982,
+  "false_positive_rate": 0.512079822616408,
+  "n": 902,
+  "n_null": 1000,
+  "null_high": 0.5376940133037694,
+  "null_low": 0.48558758314855877,
+  "null_max": 0.5554323725055432,
+  "null_min": 0.4700665188470067,
+  "null_sd": 0.013036650346794049,
+  "p": 0.06393606393606394,
+  "p_lower": 0.9440559440559441,
+  "real": 0.532150776053215
+ },
+ "control_by_length": {
+  "2": {
+   "excess": 0.03603669724770642,
+   "false_positive_rate": 0.9364403669724771,
+   "n": 109,
+   "n_null": 1000,
+   "null_high": 0.9724770642201835,
+   "null_low": 0.8899082568807339,
+   "null_max": 0.9724770642201835,
+   "null_min": 0.8623853211009175,
+   "null_sd": 0.021414235987446264,
+   "p": 0.054945054945054944,
+   "p_lower": 1.0,
+   "real": 0.9724770642201835
+  },
+  "3": {
+   "excess": 0.021779850746268647,
+   "false_positive_rate": 0.758070895522388,
+   "n": 268,
+   "n_null": 1000,
+   "null_high": 0.7985074626865671,
+   "null_low": 0.7164179104477612,
+   "null_max": 0.832089552238806,
+   "null_min": 0.6753731343283582,
+   "null_sd": 0.021402866789004573,
+   "p": 0.1888111888111888,
+   "p_lower": 0.8651348651348651,
+   "real": 0.7798507462686567
+  },
+  "4": {
+   "excess": 0.01891076923076923,
+   "false_positive_rate": 0.43955076923076924,
+   "n": 325,
+   "n_null": 1000,
+   "null_high": 0.48,
+   "null_low": 0.4,
+   "null_max": 0.49538461538461537,
+   "null_min": 0.38153846153846155,
+   "null_sd": 0.020612068518496993,
+   "p": 0.1968031968031968,
+   "p_lower": 0.8421578421578422,
+   "real": 0.4584615384615385
+  },
+  "5+": {
+   "excess": 0.010965000000000003,
+   "false_positive_rate": 0.069035,
+   "n": 200,
+   "n_null": 1000,
+   "null_high": 0.0851249999999999,
+   "null_low": 0.05,
+   "null_max": 0.095,
+   "null_min": 0.04,
+   "null_sd": 0.010163516717754346,
+   "p": 0.1998001998001998,
+   "p_lower": 0.9150849150849151,
+   "real": 0.08
+  }
+ },
+ "control_source": {
+  "commit": "480bad2487820e3737fecfdd108214efa769e34b",
+  "distinct": 918,
+  "dropped": {
+   "no_greek": 0,
+   "non_linear_b_sign": 0,
+   "too_short": 1
+  },
+  "rows_used": 918,
+  "sha256": "0e8099cd9f02c36fc14599d9bc12836489816c0b1d17f471e723b98c978b10fa",
+  "source": "j-luo93/NeuroDecipher data/linear_b-greek.cog"
+ },
+ "degrees_of_freedom": {
+  "affix_menus": {
+   "prefixes": 12,
+   "segmentations_at_most": 221,
+   "suffixes": 16
+  },
+  "doubled_signs": {
+   "collapse": true
+  },
+  "languages_pooled": {
+   "count": 1,
+   "note": "set by the lexicon passed in, not by the method"
+  },
+  "sign_value_mergers": {
+   "consonant_classes": [
+    "D",
+    "H",
+    "J",
+    "K",
+    "M",
+    "N",
+    "P",
+    "R",
+    "S",
+    "T",
+    "W"
+   ],
+   "lexicon_interchanges": {
+    "D": "DT",
+    "S": "ST",
+    "T": "DT"
+   },
+   "merged_series": {
+    "D": "d",
+    "K": "k, q",
+    "P": "p (covers p, b, ph)",
+    "R": "r (Linear B r covers r and l)",
+    "S": "s, z",
+    "T": "t"
+   }
+  },
+  "unwritten_radicals": {
+   "applies_to": "two-consonant skeletons",
+   "extra_readings": 9,
+   "positions": 3,
+   "radicals": "HWJ"
+  },
+  "vowel_signs": {
+   "note": "each pure-vowel sign is H or nothing",
+   "readings_per_sign": 2,
+   "signs": [
+    "A",
+    "E",
+    "I",
+    "O",
+    "U",
+    "AU",
+    "A3",
+    "AI"
+   ]
+  }
+ },
+ "finding_001_null": {
+  "control": {
+   "excess": -0.028759423503325943,
+   "false_positive_rate": 0.560910199556541,
+   "n": 902,
+   "n_null": 1000,
+   "null_high": 0.5886917960088692,
+   "null_low": 0.5332594235033259,
+   "null_max": 0.6075388026607539,
+   "null_min": 0.5022172949002217,
+   "null_sd": 0.014090951136761638,
+   "p": 0.9790209790209791,
+   "p_lower": 0.024975024975024976,
+   "real": 0.532150776053215
+  },
+  "linear_a": {
+   "excess": -0.027519323671497564,
+   "false_positive_rate": 0.8028816425120773,
+   "n": 414,
+   "n_null": 1000,
+   "null_high": 0.8309178743961353,
+   "null_low": 0.7729468599033816,
+   "null_max": 0.8502415458937198,
+   "null_min": 0.7415458937198067,
+   "null_sd": 0.01572924826029738,
+   "p": 0.962037962037962,
+   "p_lower": 0.05194805194805195,
+   "real": 0.7753623188405797
+  }
+ },
+ "inputs": {
+  "lineara.xyz": {
+   "distinct": 548,
+   "documents": 261,
+   "eligible": 400,
+   "occurrences": 759
+  },
+  "primary": {
+   "distinct": 545,
+   "documents": 257,
+   "eligible": 414,
+   "occurrences": 743
+  },
+  "sigla": {
+   "distinct": 431,
+   "documents": 169,
+   "eligible": 321,
+   "occurrences": 596
+  },
+  "younger": {
+   "distinct": 229,
+   "documents": 119,
+   "eligible": 195,
+   "occurrences": 266
+  }
+ },
+ "layer": "L1",
+ "lexicon": {
+  "commit": "21c9add13bc727d3a951361778e97e3ff7afd1ce",
+  "conversion": "verb lemmas (heb, arc); points removed; letters to M1 classes; length 2-4",
+  "forms": 502,
+  "forms_after_expansion": 664,
+  "licence": "CC BY 4.0",
+  "name": "hebrew-strong-verbs",
+  "sha256": "a628f4f89f8bdaf2483fd3faf1abc8653cc6717758dfc9f24beb7571d9bdd0c4",
+  "source": "openscriptures/HebrewLexicon HebrewStrong.xml"
+ },
+ "lexicon_size": {
+  "0.5": {
+   "forms": 251,
+   "max": 0.7222222222222222,
+   "mean": 0.6778985507246377,
+   "min": 0.6352657004830918
+  },
+  "1": {
+   "forms": 502,
+   "max": 0.8285024154589372,
+   "mean": 0.8077294685990338,
+   "min": 0.785024154589372
+  },
+  "2": {
+   "forms": 1004,
+   "max": 0.9057971014492754,
+   "mean": 0.8958937198067632,
+   "min": 0.8864734299516909
+  },
+  "4": {
+   "forms": 2008,
+   "max": 0.9396135265700483,
+   "mean": 0.9253623188405797,
+   "min": 0.9178743961352657
+  }
+ },
+ "linear_a": {
+  "lineara.xyz": {
+   "excess": 0.007067500000000004,
+   "false_positive_rate": 0.7654325,
+   "n": 400,
+   "n_null": 1000,
+   "null_high": 0.7975,
+   "null_low": 0.73,
+   "null_max": 0.82,
+   "null_min": 0.6975,
+   "null_sd": 0.01749035752511527,
+   "p": 0.3906093906093906,
+   "p_lower": 0.6673326673326674,
+   "real": 0.7725
+  },
+  "primary": {
+   "excess": 0.006217391304347841,
+   "false_positive_rate": 0.7691449275362319,
+   "n": 414,
+   "n_null": 1000,
+   "null_high": 0.7995772946859903,
+   "null_low": 0.7342995169082126,
+   "null_max": 0.8164251207729468,
+   "null_min": 0.7053140096618358,
+   "null_sd": 0.016920905794096906,
+   "p": 0.3966033966033966,
+   "p_lower": 0.6583416583416584,
+   "real": 0.7753623188405797
+  },
+  "sigla": {
+   "excess": 0.004925233644859861,
+   "false_positive_rate": 0.7770062305295949,
+   "n": 321,
+   "n_null": 1000,
+   "null_high": 0.8099688473520249,
+   "null_low": 0.7413551401869158,
+   "null_max": 0.8255451713395638,
+   "null_min": 0.7133956386292835,
+   "null_sd": 0.01853539093179836,
+   "p": 0.4385614385614386,
+   "p_lower": 0.6313686313686314,
+   "real": 0.7819314641744548
+  },
+  "younger": {
+   "excess": 0.0071641025641026035,
+   "false_positive_rate": 0.7466820512820512,
+   "n": 195,
+   "n_null": 1000,
+   "null_high": 0.7846153846153846,
+   "null_low": 0.7076923076923077,
+   "null_max": 0.8051282051282052,
+   "null_min": 0.6615384615384615,
+   "null_sd": 0.02066458513957856,
+   "p": 0.4325674325674326,
+   "p_lower": 0.6753246753246753,
+   "real": 0.7538461538461538
+  }
+ },
+ "linear_a_by_length": {
+  "2": {
+   "excess": 0.030305555555555475,
+   "false_positive_rate": 0.9326574074074074,
+   "n": 108,
+   "n_null": 1000,
+   "null_high": 0.9722222222222222,
+   "null_low": 0.8796296296296297,
+   "null_max": 0.9814814814814815,
+   "null_min": 0.8518518518518519,
+   "null_sd": 0.02480660562223925,
+   "p": 0.16083916083916083,
+   "p_lower": 0.922077922077922,
+   "real": 0.9629629629629629
+  },
+  "3": {
+   "excess": 0.01379310344827589,
+   "false_positive_rate": 0.825287356321839,
+   "n": 174,
+   "n_null": 1000,
+   "null_high": 0.867816091954023,
+   "null_low": 0.7758620689655172,
+   "null_max": 0.8850574712643678,
+   "null_min": 0.7528735632183908,
+   "null_sd": 0.023133309890638377,
+   "p": 0.3226773226773227,
+   "p_lower": 0.7692307692307693,
+   "real": 0.8390804597701149
+  },
+  "4": {
+   "excess": -0.029404761904761934,
+   "false_positive_rate": 0.648452380952381,
+   "n": 84,
+   "n_null": 1000,
+   "null_high": 0.7142857142857143,
+   "null_low": 0.5714285714285714,
+   "null_max": 0.7619047619047619,
+   "null_min": 0.5357142857142857,
+   "null_sd": 0.035615040776927946,
+   "p": 0.8511488511488512,
+   "p_lower": 0.26173826173826176,
+   "real": 0.6190476190476191
+  },
+  "5+": {
+   "excess": -0.013104166666666694,
+   "false_positive_rate": 0.4089375,
+   "n": 48,
+   "n_null": 1000,
+   "null_high": 0.4791666666666667,
+   "null_low": 0.3333333333333333,
+   "null_max": 0.5416666666666666,
+   "null_min": 0.2916666666666667,
+   "null_sd": 0.042744235765995356,
+   "p": 0.7222777222777222,
+   "p_lower": 0.45754245754245754,
+   "real": 0.3958333333333333
+  }
+ },
+ "method": "M1",
+ "null_lexicons": {
+  "finding_001": {
+   "forms": 502,
+   "forms_after_expansion_mean": 744.139,
+   "n": 1000,
+   "seed": 20261118
+  },
+  "matched": {
+   "forms_after_expansion": 664,
+   "forms_mean": 457.269,
+   "n": 1000,
+   "seed": 20261114
+  }
+ },
+ "outcome": "A: no better than a random lexicon",
+ "p_pair": 0.8401598401598401,
+ "params": {
+  "alpha": 0.05,
+  "n_resample": 1000,
+  "p_doubt": 0.5,
+  "seed_resample": 20261115,
+  "seed_size": 20261117,
+  "seed_strings": 20261116,
+  "source_order": [
+   "sigla",
+   "lineara.xyz",
+   "younger"
+  ],
+  "split": "train"
+ },
+ "permissiveness": {
+  "lengths": [
+   3,
+   4
+  ],
+  "letters": "DHJKMNPRSTW",
+  "lexicon_forms_after_expansion": 664,
+  "reading_space": 15972,
+  "readings_per_group_max": 41,
+  "readings_per_group_mean": 7.342995169082125,
+  "readings_per_group_median": 9.5,
+  "share_of_reading_space_in_lexicon": 0.04157275231655397
+ },
+ "protocol": "H-A5-01",
+ "provenance": {
+  "commit": "ab8a6c9",
+  "corpus": "corpus-v1.0"
+ },
+ "random_sign_strings": {
+  "max": 0.7270531400966184,
+  "mean": 0.6997584541062801,
+  "min": 0.6690821256038647,
+  "real_sign_groups": 0.7753623188405797,
+  "reps": 20
+ },
+ "resampling": {
+  "bootstrap": {
+   "difference": {
+    "high": -0.002046896345104035,
+    "low": -0.03332682150602721,
+    "max": 0.005874614666164901,
+    "median": -0.01754550189320242,
+    "min": -0.045369508863547514,
+    "n": 1000
+   },
+   "excess": {
+    "high": 0.021929705103650287,
+    "low": -0.009394019579768839,
+    "max": 0.02982835820895513,
+    "median": 0.0063943694256897166,
+    "min": -0.021736263736263695,
+    "n": 1000
+   },
+   "false_positive_rate": {
+    "high": 0.8002825008932674,
+    "low": 0.7553415937082654,
+    "max": 0.8215864661654135,
+    "median": 0.7766720331387851,
+    "min": 0.7444595588235294,
+    "n": 1000
+   },
+   "n": {
+    "high": 322.0,
+    "low": 253.0,
+    "max": 337,
+    "median": 290.0,
+    "min": 236,
+    "n": 1000
+   },
+   "p1_at_most_alpha": {
+    "high": 0.0,
+    "low": 0.0,
+    "max": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "n": 1000
+   },
+   "p2_at_most_alpha": {
+    "high": 0.0,
+    "low": 0.0,
+    "max": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "n": 1000
+   },
+   "real": {
+    "high": 0.8098859315589354,
+    "low": 0.7569189189189189,
+    "max": 0.8254545454545454,
+    "median": 0.7831941521261909,
+    "min": 0.7398373983739838,
+    "n": 1000
+   }
+  },
+  "both": {
+   "difference": {
+    "high": 0.0023823800741454653,
+    "low": -0.03258908342848522,
+    "max": 0.01776215886342425,
+    "median": -0.015239631039789037,
+    "min": -0.04899522503535714,
+    "n": 1000
+   },
+   "excess": {
+    "high": 0.026179506578947315,
+    "low": -0.008759778085991673,
+    "max": 0.041877952755905445,
+    "median": 0.008590566816236045,
+    "min": -0.025046511627906942,
+    "n": 1000
+   },
+   "false_positive_rate": {
+    "high": 0.800217956937799,
+    "low": 0.752860581105811,
+    "max": 0.8234959677419355,
+    "median": 0.7756725500345065,
+    "min": 0.7382645914396887,
+    "n": 1000
+   },
+   "n": {
+    "high": 316.025,
+    "low": 248.0,
+    "max": 336,
+    "median": 282.0,
+    "min": 223,
+    "n": 1000
+   },
+   "p1_at_most_alpha": {
+    "high": 0.0,
+    "low": 0.0,
+    "max": 1.0,
+    "median": 0.0,
+    "min": 0.0,
+    "n": 1000
+   },
+   "p2_at_most_alpha": {
+    "high": 0.0,
+    "low": 0.0,
+    "max": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "n": 1000
+   },
+   "real": {
+    "high": 0.8142857142857143,
+    "low": 0.7548973362930077,
+    "max": 0.8387096774193549,
+    "median": 0.784452296819788,
+    "min": 0.7363013698630136,
+    "n": 1000
+   }
+  },
+  "estimate": {
+   "difference": -0.017445608570018423,
+   "excess": 0.006217391304347841,
+   "false_positive_rate": 0.7691449275362319,
+   "n": 414,
+   "p1_at_most_alpha": 0.0,
+   "p2_at_most_alpha": 0.0,
+   "real": 0.7753623188405797
+  },
+  "params": {
+   "documents": 478,
+   "documents_by_number_of_sources": {
+    "1": 38,
+    "2": 257,
+    "3": 183
+   },
+   "doubtful_signs_in_primary_reading": 36,
+   "level": 0.95,
+   "n": 1000,
+   "p_doubt": 0.5,
+   "seed": 20261115,
+   "source_order": [
+    "sigla",
+    "lineara.xyz",
+    "younger"
+   ],
+   "strata": 57,
+   "stratum": "site_of"
+  },
+  "reading": {
+   "difference": {
+    "high": -0.009620293349134227,
+    "low": -0.02090078452096586,
+    "max": -0.006239692311747813,
+    "median": -0.01518168110842344,
+    "min": -0.025260995341660042,
+    "n": 1000
+   },
+   "excess": {
+    "high": 0.014064074273237855,
+    "low": 0.002673307079748994,
+    "max": 0.017214470284237726,
+    "median": 0.008496864107065683,
+    "min": -0.0014686716791980636,
+    "n": 1000
+   },
+   "false_positive_rate": {
+    "high": 0.7809297114142874,
+    "low": 0.7614762903225806,
+    "max": 0.7901454081632653,
+    "median": 0.7707906965648856,
+    "min": 0.7575617128463477,
+    "n": 1000
+   },
+   "n": {
+    "high": 404.0,
+    "low": 383.0,
+    "max": 409,
+    "median": 394.0,
+    "min": 378,
+    "n": 1000
+   },
+   "p1_at_most_alpha": {
+    "high": 0.0,
+    "low": 0.0,
+    "max": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "n": 1000
+   },
+   "p2_at_most_alpha": {
+    "high": 0.0,
+    "low": 0.0,
+    "max": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "n": 1000
+   },
+   "real": {
+    "high": 0.7909319899244333,
+    "low": 0.7682619647355163,
+    "max": 0.8035714285714286,
+    "median": 0.7794486215538847,
+    "min": 0.7615384615384615,
+    "n": 1000
+   }
+  },
+  "share_of_draws": {
+   "p1_at_most_alpha": 0.002,
+   "p2_at_most_alpha": 0.0
+  }
+ },
+ "rules": {
+  "collapse_doubled": true,
+  "initial_class": {
+   "D": "D",
+   "J": "J",
+   "K": "K",
+   "M": "M",
+   "N": "N",
+   "P": "P",
+   "Q": "K",
+   "R": "R",
+   "S": "S",
+   "T": "T",
+   "W": "W",
+   "Z": "S"
+  },
+  "interchanges": {
+   "D": "DT",
+   "S": "ST",
+   "T": "DT"
+  },
+  "laryngeal": "H",
+  "max_core": 4,
+  "max_skeleton": 4,
+  "min_core": 1,
+  "min_group": 2,
+  "min_skeleton": 2,
+  "prefixes": [
+   "A",
+   "TA",
+   "JA",
+   "I",
+   "U-NA",
+   "NA",
+   "WA",
+   "RA",
+   "A-TA",
+   "TA-NA",
+   "JA-TA",
+   "A-NA"
+  ],
+  "special_signs": {
+   "*301": "N",
+   "DWE": "D",
+   "DWO": "D",
+   "NWA": "N",
+   "PA3": "P",
+   "PTE": "P",
+   "PU2": "P",
+   "RA2": "R",
+   "RA3": "R",
+   "RO2": "R",
+   "SWA": "S",
+   "SWI": "S",
+   "TA2": "T",
+   "TWE": "T",
+   "TWO": "T"
+  },
+  "suffixes": [
+   "ME",
+   "MA",
+   "TU",
+   "TI",
+   "TE",
+   "NU",
+   "JA",
+   "SE",
+   "I",
+   "KA",
+   "NA",
+   "NE",
+   "TI-NU",
+   "U-TI-NU",
+   "MI-NA",
+   "TE-TE"
+  ],
+  "vowel_signs": [
+   "A",
+   "E",
+   "I",
+   "O",
+   "U",
+   "AU",
+   "A3",
+   "AI"
+  ],
+  "weak_radicals": "HWJ"
+ },
+ "test1": {
+  "excess": 0.006217391304347841,
+  "p": 0.3966033966033966
+ },
+ "test2": {
+  "control_false_positive_rate_standardised": 0.660086570215719,
+  "control_real_standardised": 0.6837495700900853,
+  "difference": -0.017445608570018423,
+  "excess_control": 0.023662999874366264,
+  "excess_linear_a": 0.006217391304347841,
+  "length_bins_used": [
+   2,
+   3,
+   4,
+   5
+  ],
+  "n_null": 1000,
+  "null_high": 0.03545425362304273,
+  "null_low": -0.03228580329606897,
+  "p": 0.8401598401598401
+ }
+}

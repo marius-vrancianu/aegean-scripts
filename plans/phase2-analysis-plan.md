@@ -375,7 +375,7 @@ Background: decision D1 (no audio) and the 2026-10-31 discussion. Comparing Line
 - [ ] A5.14 Run the benchmark on known pairs across the degradation grid; produce the success and permissiveness curves.
 - [ ] A5.15 Decide the phase gate: does any method keep measurable power at Linear A's conditions? Record the answer as a finding either way.
 - [ ] A5.16 Publish the benchmark (code, data provenance, protocol) in the repo so third-party claims can be run through it.
-- [ ] A5.17 (added 2026-11-10) **Tier 1, brought forward: false-positive benchmark.** Generalise Finding 001: run each lexical-matching method against random pseudo-lexicons and against Linear B words of known Greek meaning, and report its false-positive rate and degrees of freedom. Does not need DAMOS. A5.11–A5.14 (degradation grid, power curves) are Tier 2. Why and how: §0.7.
+- [ ] A5.17 (added 2026-11-10) **Tier 1, brought forward: false-positive benchmark.** Generalise Finding 001: run each lexical-matching method against random pseudo-lexicons and against Linear B words of known Greek meaning, and report its false-positive rate and degrees of freedom. Does not need DAMOS. A5.11–A5.14 (degradation grid, power curves) are Tier 2. Why and how: §0.7. *(2026-11-14: benchmark built; first registered row M1 × Hebrew verbs, outcome A (`hypotheses/outcomes/H-A5-01.md`). Open until further methods and lexicons are run.)*
 - [ ] A5.18 (added 2026-11-10) Constrained substrate matching: compare only Linear A words whose commodity is fixed by a logogram (from A8.2) with pre-Greek loanwords in Greek from the same semantic field. Candidate list and semantic fields are frozen before comparison; nulls as in A5.17. Expect a dozen candidates at most. Why and how: §0.7.
 
 ---
@@ -570,3 +570,4 @@ To-do:
 - 2026-11-14 — A1.11 report and A8.1 draft rebuilt on all three sources; Younger's files are fetched from Marius's private repository.
 - 2026-11-14 — A5.17 started: benchmark package with the common interface, M1 (Finding 001 port), a size-matched pseudo-lexicon null and the Tier 1 runner (`docs/benchmark.md`). No run on Linear A yet: the protocol (A5.13, Tier 1 part) is registered first as H-A5-01.
 - 2026-11-14 — H-A5-01 registered: the Tier 1 protocol (two tests, matched null, Greek control, batch rule) and its first run, M1 × Hebrew verbs. `hypotheses/TEMPLATE.md` gains the `Type:` line of rule 10.
+- 2026-11-14 — H-A5-01 run: outcome A (M1 cannot tell the Hebrew verb lexicon from random lexicons; p1 = 0.397, p2 = 0.840). Finding 001 gets an addendum correcting its null. A5.17 stays open for further methods and lexicons.
