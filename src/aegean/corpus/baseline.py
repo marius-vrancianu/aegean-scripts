@@ -271,8 +271,11 @@ def render(b: dict) -> str:
           "- The intervals show how much a figure moves with the choice of source and with the sample of documents. "
           "They are not confidence intervals for a property of the language: the surviving documents are not a "
           "random sample of what was written.",
-          f"- The *reading* interval mostly reflects encoding differences between sources (A1.9), not doubt about "
-          f"signs: only {R['params']['doubtful_signs_in_primary_reading']} signs in the primary reading are marked doubtful.",
+          "- The *reading* interval reflects two things: encoding differences between sources (A1.9), and the "
+          "blanking of signs a source marks as doubtful (" +
+          ", ".join(f"{x}: {P[x]['totals'].get('doubtful_tokens', 0)}" for x in src) +
+          "). A source that marks no doubt contributes no such variation, which is a property of the source, "
+          "not of the tablets.",
           "- **Counts of distinct signs and of signs occurring once fall outside their bootstrap intervals.** That is "
           "expected, not an error: a sample drawn with replacement always contains fewer distinct types than the "
           "original, so the bootstrap is biased downwards for any count of types. Use it for shares and means, "

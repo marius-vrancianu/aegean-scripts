@@ -690,3 +690,15 @@ The independent review (`docs/reviews/rules-auto-merge-review.md`) ended in CHAN
 **Blinding.** The files went from the private repository to the gitignored folder and through the parser. Their text was not read by the session, was not attached to a chat and is not in the claude.ai Project.
 
 **Next:** rerun A1.11 and A8.1 on the full witnesses (separate PRs).
+
+---
+
+## 2026-11-14 — A1.11: baseline report rebuilt on all three sources
+
+`docs/reports/A1.11-baseline-statistics.md` is no longer a partial build. Layer L0, training split, corpus-v1.0 witnesses (hash verified by the loader).
+
+- **Younger, training split:** 296 documents, 1,113 sign-groups, 1,999 identified sign tokens, 489 multi-sign groups. No Haghia Triada, so its figures describe the other sites only and are not comparable column for column with the two other sources (for example a longer mean group length, 3.36 against about 2.9–3.0, and a higher share of the ten most frequent signs).
+- **Doubt is marked very unevenly:** Younger marks 352 signs as doubtful, SigLA 34, lineara.xyz none. With Younger in the pool, the reading interval for the number of identified sign tokens (4,143–4,234) lies below the point estimate (4,299), because reading draws now blank Younger's doubtful signs half the time. The report's explanation of the reading interval is reworded to say this.
+- The lineara.xyz and SigLA columns are unchanged from the partial build, as expected.
+
+**Still open for A1.11:** comparison with Packard's published figures; period labels not normalised.
