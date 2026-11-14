@@ -103,3 +103,61 @@ Script: control and lexicon side only, protocol seeds, `main @ bbe9c69` code.
 Fix R1–R4 in the PR. A reviewer then appends a re-review below this line.
 
 Verdict: CHANGES REQUESTED
+
+## Re-review, 2026-11-14
+
+- **Reviewer:** a separate Claude instance (fresh subagent) that wrote neither H-A5-01, the benchmark code, the fixes, nor the first review above. Given the PR number and the fixed review prompt only.
+- **Reviewed:** PR #45 at `449eaa5` (branch head, same as the remote) against `main @ bbe9c69`; the fix commit `ba936de..449eaa5` line by line; the whole of `hypotheses/H-A5-01.md` again as it will be frozen; `src/aegean/benchmark/{tier1,nulls,inputs,lexicons}.py` and the gate in `src/aegean/corpus/load.py`.
+- **Not done, on purpose:** no hit rate of any lexicon on Linear A sign-groups was computed. From Linear A I computed only the counts of eligible sign-groups and their length bins, which the file lists as seen. No held-out material was read.
+
+### The four requested changes
+
+| | Status | How checked |
+|---|---|---|
+| **R1** decision rule | Fixed. Confidence high. | Read as a case table: both raw p > α → A; exactly one ≤ α → B; both ≤ α and adjusted pair p > 0.05 → B; both ≤ α and adjusted ≤ 0.05 → C. The four cases are exhaustive and exclusive. The file now says A and the first two kinds of B rest on raw values, and which label changes are possible later (C → B, third-kind B → C). Both directions are real under Benjamini–Hochberg (the correction that keeps the expected share of false discoveries in a batch below a set level): `bh_adjust([0.04, 0.04, 0.9, 0.9, 0.9])` gives 0.10 for the first two; adding enough pairs with very small p brings them back under 0.05. |
+| **R2** what Test 2 removes | Fixed. Confidence high that the text now says the right thing; the underlying point remains an argument, not a measurement. | The sentence now reads "the part of it that is **equal** on Linear A and on the control", and a new paragraph states the assumption, its failure mode (small p2 with no relationship), what p2 is calibrated against, and that only Tier 2 separates the two. Outcome C's meaning is unchanged and consistent with it. |
+| **R3** rounding | Fixed. Confidence high. | Rerun: +0.0189 at four signs; the file says +0.019. |
+| **R4** template line | Fixed. Confidence high. | `load.CONFIRMATORY_RE` does not match `hypotheses/TEMPLATE.md` as it now stands, nor H-A5-01, nor any other file under `hypotheses/`; it still matches the old wording, so the test is a real one. The template's own description of the gate ("Type line begins with the word confirmatory") agrees with the pattern. |
+
+The fix commit touches only `hypotheses/H-A5-01.md`, `hypotheses/TEMPLATE.md`, `research-notes.md` (one entry appended, nothing earlier edited) and `docs/for-marius.md` (the two follow-ups). The first review's text is untouched by the author. No constant, seed, test or threshold of the protocol changed between `d85df9c` and `449eaa5`; the other edits are the two additions to "What I already know" that the first review suggested and the heading levels of Part 2.
+
+### The four required checks, again on the final text
+
+1. **Null model — adequate.** Rerun with the protocol seed: all 1,000 matched pseudo-lexicons have exactly 664 forms after M1's expansion (457 before, on average); one seeded stream serves Linear A and the control. Greek control present (guardrail 2). The two other nulls are reported and decide nothing.
+2. **Power check — passes.** Smallest attainable p is 1/1001 ≈ 0.000999 for both tests, below α; 50/1001 = 0.04995, so the stated cap of 50 pairs is right. The "roughly 0.03" effect size is labelled approximate and not measured on Linear A; with the control re-weighted to Linear A's lengths the pseudo-lexicons' spread is 0.0145, so 0.03 is about two standard deviations, a fair description.
+3. **Decision rule and batch count — sound.** See R1. Pair p = max(p1, p2) is a valid conservative p for "both hold". Batch: 1 of 1; running A5 count 1; the dependence assumption of the correction is now stated. Prediction (outcome A) is stated in advance. Code and file agree on α, K, the seeds (20261114–20261118), the bins, the re-weighting and the leave-one-out scaling.
+4. **"What I already know" — complete as far as it can be checked.** It matches and exceeds what the research-notes entry of 2026-11-14 ("A5.17") records as seen, and now also lists the figures that reached the author through the first review and the prior from the literature.
+
+### Figures rerun (independent script, control and lexicon side, `449eaa5` code)
+
+| Claim | Rerun |
+|---|---|
+| 502 skeletons, 664 after expansion | 502, 664 |
+| Control 918 words, 902 eligible | 918, 902 |
+| Eligible Linear A sign-groups 414; 321 / 400 / 195 | 414; 321 / 400 / 195 |
+| Control: 0.532, 0.512 (0.486–0.538), +0.020, p 0.064, lower-tail 0.944, sd 0.013 | 0.5322, 0.5121 (0.4856–0.5377), +0.0201, 0.0639, 0.9441, 0.0130 |
+| Control by length: +0.036, +0.022, +0.019, +0.011 | +0.0360, +0.0218, +0.0189, +0.0110 |
+| Finding 001 null on the control: −0.029, lowest 2.5%, about 743 forms | −0.0288, lower-tail p 0.025, mean 744 |
+| Adjacent identical letters 0.14 / 0.18 | 0.139 / 0.180 |
+| Control re-weighted to Linear A's lengths: +0.024, sd 0.0145 | +0.0237, 0.0145 |
+| Split-half on the control: Test 2 ≤ 0.05 in 4% of 200 splits | 3% of 200 with a different seed (median p 0.42); same conclusion |
+
+Test suite: 241 passed, 4 skipped. Guardrail script from `main`: its only complaint before this push was the missing approval.
+
+**Not checked** (as in the first review): the synthetic-run figures (0.471 / 0.480); the full 20,775-string port comparison; the statement that no Linear A hit rate was seen before registration. The last cannot be verified from a repository. It is consistent with it: there is no `experiments/A5.17/` directory, tracked or ignored.
+
+### Notes (no change required)
+
+- **M1. One figure this re-review adds to what the author has seen.** With the control re-weighted to Linear A's length mix, the Hebrew lexicon's one-sided p against the matched pseudo-lexicons is 0.047 (unweighted: 0.064). It follows from the two figures already listed in the file (+0.024 against a spread of 0.0145), so I do not ask for it to be added. Its meaning: at Linear A's lengths the real lexicon already "beats noise" at α on Greek words. That is a measured reason, on a known script, why Test 1 alone must not decide, and it supports the file's design. It does not show that Test 2 is sufficient (R2 stands as stated in the file).
+- **M2. Repeated correction on a growing batch.** Re-applying Benjamini–Hochberg each time a pair is added lets labels move in both directions, and the false-discovery guarantee holds for the batch as it stands at any one time, not for the sequence of labels issued along the way. The file discloses the moves and requires the outcome file that causes one to say so. Acceptable for an exploratory protocol whose best outcome is "qualifies for Tier 2". (My reasoning, not a result; rule 5.)
+- **M3. Follow-ups, confirmed and two added.** The two already in `docs/for-marius.md` stand (runner applies the batch correction itself; tighten `CONFIRMATORY_RE`). Two more, both plain PRs or strengthenings, neither needed for this registration:
+  - the runner refuses a protocol only if `hypotheses/<ID>.md` is missing from the working tree; it does not check that the file is merged on `main`, as the loader does for held-out access. Rule 3 is therefore kept by the agent, not by the code;
+  - the docstring of `tier1.py` and the test name `test_difference_test_removes_a_shift_common_to_input_and_control` still carry the pre-R2 wording ("the difference removes it"). The registered text is the authority; the code comments should follow it.
+- **M4. Rule 4.** As the first review's N2: no known positive exists at Tier 1, and the file says so. Enough for a false-positive protocol; not enough for any claim of relationship, and the file makes none.
+- **M5.** Nothing in the PR touches a rule file, `data/heldout.txt` or the lock code; no guardrail is weakened; nothing in it appears to have been prompted by fetched or third-party text.
+
+### Assessment
+
+R1–R4 are fixed as requested, and the fixes introduced no new problem. The protocol states its null, its power, its decision rule and its batch, and it is candid about what was seen before registration and about what Tier 1 cannot show. It can be frozen.
+
+Verdict: APPROVE
