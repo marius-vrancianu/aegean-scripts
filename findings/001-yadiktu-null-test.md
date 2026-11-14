@@ -68,7 +68,7 @@ Real Hebrew (0.800) scores below all 20 random lexicons.
 
 ## Addendum 2026-11-14 — the null was not size-matched; corrected under H-A5-01
 
-**What was wrong.** The matcher lets a root's S be read as T, and D and T interchange. After that expansion the 502 Hebrew skeletons are 664 distinct forms. The random pseudo-lexicons of this finding also had 502 skeletons, but they expand to about 744, because random forms collide less often than real roots do. The null therefore gave the matcher about 12% more targets than the real lexicon. Confidence: high (it is arithmetic on the lexicons; rerun by two independent reviewers of H-A5-01).
+**What was wrong.** The matcher lets a root's S be read as T, and D and T interchange. After that expansion the 502 Hebrew skeletons are 664 distinct forms. The random pseudo-lexicons of this finding also had 502 skeletons, but they expand to about 744, for two reasons: a random form has more S/D/T variants on average than a real root (1,064 variants against 1,014, summed over the 502 forms), and those variants coincide less often (320 lost to duplicates against 350). The first accounts for about 50 of the 80 extra forms, the second for about 30. The null therefore gave the matcher about 12% more targets than the real lexicon. Confidence: high (it is arithmetic on the lexicons; the sizes were rerun by the reviewers of H-A5-01, the two-part breakdown by the reviewer of this addendum, `docs/reviews/H-A5-01-outcome-review.md`).
 
 **What that affects in the text above.**
 - "Real Hebrew (0.800) scores below all 20 random lexicons" (addendum of 2026-11-04) and the table row "0.828 (0.805–0.851)" are correct as computed, but the gap came from the null's size, not from Hebrew. The same gap appears when the input is Greek: on 902 Linear B words of known Greek meaning, real Hebrew is 0.029 below this null.
@@ -82,8 +82,8 @@ Real Hebrew (0.800) scores below all 20 random lexicons.
 | Linear B words of known Greek meaning, 902 | 0.532 | 0.512 (0.486–0.538) | +0.020 | 0.064 |
 | the same, at Linear A's lengths | 0.684 | 0.660 | +0.024 | |
 
-- Under a fair null Hebrew is neither below nor above random lexicons on Linear A: 397 of 1,000 random lexicons match at least as often.
-- Hebrew's small edge over random lexicons is larger on Greek words than on Linear A (difference −0.017, p = 0.840 for "larger on Linear A").
+- Under a fair null Hebrew is neither below nor above random lexicons on Linear A: 396 of 1,000 random lexicons match at least as often.
+- Hebrew's small edge over the size-matched pseudo-lexicons is larger on Greek words than on Linear A (difference −0.017, p = 0.840 for "larger on Linear A").
 
 **Other differences from the original run.**
 - **Inputs.** The original read lineara.xyz's `transliteratedWords` (696 sign-groups, all documents). That field is value-converted and is no longer parsed. The corrected test reads sign-groups from the corpus loader as L1 values, training split only, complete words only: 414 in the primary reading. Signs that L1 leaves as numbers (*56, *79) make a sign-group unreadable for the matcher; the original read them as PA3 and ZU.
@@ -93,6 +93,6 @@ Real Hebrew (0.800) scores below all 20 random lexicons.
 **Status unchanged: NEGATIVE for the method.** The interpretation "a real Semitic lexicon fits Linear A no better than random consonant triplets" now rests on a fair null and a registered test. Confidence: high for this lexicon and this encoding of the licences.
 
 **Limits, restated.**
-- The encoding of the paper's licences is approximate, and the lexicon is Hebrew verbs only; the paper pools several languages, which raises the random match rate further (table above: lexicon size).
+- The encoding of the paper's licences is approximate, and the lexicon is Hebrew verbs only; the paper pools several languages, which raises the random match rate further (the lexicon-size sentence under the Results table; the size table in `experiments/A5.17/results/M1-hebrew-strong-verbs.md`).
 - The test shows that this method cannot distinguish its lexicon from noise. It is not a test of whether Minoan is Semitic. On that question the literature survey (`docs/literature-survey-2026-10.md`, §6.5) records the Semitic proposals (Gordon, Best, di Mino 2026) as fringe, and "no match demonstrated with any family" as the consensus (Davis 2013; Salgarella 2025). This finding agrees with that consensus only in the narrow sense that one proposed demonstration fails.
 - Everything is at L1: it assumes the Linear B values of the signs, as the paper does.

@@ -813,3 +813,12 @@ Two follow-ups outside this PR are listed in `docs/for-marius.md`: the runner sh
 4. Re-run the control on DAMOS when it is available (A1.10, with Marius).
 
 **Uncertain:** the source of the NeuroDecipher word list before its preparation notebook (A5.1). Whether Test 2's equal-shift assumption holds is not measured; only unrelated-language lexicons can show it.
+
+## 2026-11-14 — PR #46: independent review requested two corrections; one corrects an earlier entry here
+
+Review: `docs/reviews/H-A5-01-outcome-review.md` (fresh subagent, fixed prompt; report recorded unedited as a comment on PR #46). It reran the registered command (identical output) and recomputed both tests with its own code: every figure reproduces, outcome A stands.
+
+- **R1.** 396, not 397, of the 1,000 pseudo-lexicons match at least as often as real Hebrew. 397 was the numerator of p1 after the added 1. p1 = 0.3966 is unchanged. Corrected in the outcome file and in the Finding 001 addendum.
+- **R2, which also corrects the entry "A5.17: benchmark package, M1 port, and a flaw in the Finding 001 null" above.** That entry said the Finding 001 pseudo-lexicons expand to more forms "because random forms collide less often than real roots do". That is less than half of it. Over 502 forms, a random lexicon has 1,064 variants before duplicates against 1,014 for real Hebrew (about 50 of the 80 extra forms), and loses 320 to duplicates against 350 (about 30). The 12% figure and what follows from it are unchanged. Why real roots have fewer S/D/T variants is not established; the reviewer suggests, as a hypothesis only, that Semitic roots avoid two similar consonants.
+- **A check the reviewer added** (pseudo-lexicons only, exploratory): cutting the Finding 001 null to 664 expanded forms, with its own letter model, puts real Hebrew 0.004 below it on Linear A and 0.006 below on Greek, both inside the null's spread. So the old deficit was the null's size, and outcome A does not depend on the letter model of the null.
+- Three wordings were made more exact (which "twelve more sign-groups"; edge "over the matched pseudo-lexicons"; a pointer to a table).
