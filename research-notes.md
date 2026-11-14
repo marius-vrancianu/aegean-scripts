@@ -712,3 +712,22 @@ Same 21 items and the same grades; 16 usable for scoring. Layer L0, training spl
 - **Younger adds a second source** for SU-KI-RI-TA (PH Wa 32) and SE-TO-I-JA (PR Za 1), which rested on lineara.xyz alone, and a third for DA-I-PI-TA (ZA 8), KA-TA-RE (KH 41) and I-DA. The two place names were grade A on the literature; their attestation is now less dependent on one encoding. All three sources derive from GORILA, so this is agreement between editions, not independent confirmation.
 - **The labelled pictures are unchanged:** HT 31 is a Haghia Triada tablet, which Younger's files do not cover.
 - The manifest no longer says partial build. **Status is still DRAFT:** no literature row has been checked against its publication, and the grades are mine. Both are with Marius (`docs/for-marius.md` D1, E3).
+
+---
+
+## 2026-11-14 — Direction: A5.17 (false-positive benchmark) is next; handover
+
+**Decided by Marius:** the next task is A5.17, the Tier 1 false-positive benchmark (plan §0.6 item 7, design in §0.7). It starts in a new session.
+
+**State of the repository at handover** (`main` @ the merge of this entry's PR):
+- `corpus-v1.0` is tagged at `238bbd0`. 90 documents are held out; analyses read the corpus through `aegean.corpus.load` (478 training documents).
+- Since 2026-11-12 every PR merges when CI is green; rule files, hypotheses and findings need an independent review (CLAUDE.md → Merging). Marius works only in the GitHub web interface; his open items are in `docs/for-marius.md`.
+- Younger's files come from the private repository `marius-vrancianu/aegean-scripts-private` (`data/raw/younger/README.md`). lineara.xyz is fetched by `data/raw/lineara.xyz/fetch.py`; SigLA is committed.
+- Done: A1.1–A1.9, A1.12, A1.14. In progress: A1.11 (Packard comparison open), A8.1 (draft gold set, not frozen), V10 (blinded read open), A1.3. With Marius: A1.10 (DAMOS).
+
+**For the session that starts A5.17** (points to check, not a design; plan §0.7 has the design):
+- The Finding 001 code is in `experiments/finding-001/` (`reproduce.py`, `original/`), with a test that reproduces its numbers. It is the first method (M1, plan A5.12).
+- Plan §0.7 asks to pre-register the protocol (A5.13) before adding any method beyond M1. A hypothesis file is review-gated, and `hypotheses/TEMPLATE.md` still has no `Type: confirmatory / exploratory` line (rule 10).
+- The Linear B word control in Finding 001 and the NeuroDecipher data need their source and licence recorded (A5.1) before use. DAMOS is not needed for Tier 1.
+- Whether Tier 1 runs on the training split or the full corpus is not stated in the plan. Finding 001 ran on the whole lineara.xyz word list before the freeze. A false-positive rate is a property of the method and the lexicon, so the training split should be enough; a run on held-out documents would need a confirmatory hypothesis. This is Claude's reading (Rule 5), to be settled in the hypothesis file.
+- New code goes in `src/aegean/benchmark/` (CLAUDE.md, code conventions).
