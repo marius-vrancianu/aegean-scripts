@@ -770,3 +770,15 @@ The committed test (`tests/test_benchmark_m1.py`) repeats the comparison on rand
 3. Then further methods (M2, sound-class edit distance) and lexicons, each registered against the protocol.
 
 **Open:** where the NeuroDecipher Linear B list comes from before its preparation notebook (A5.1); the Ugaritic–Hebrew data are not yet recorded.
+
+## 2026-11-14 — H-A5-01 registered: Tier 1 protocol and its first run (M1 × Hebrew verbs)
+
+**Task:** A5.13 (Tier 1 part) for A5.17. Layer L1. Exploratory (training split).
+
+- `hypotheses/H-A5-01.md` fixes the protocol for every Tier 1 run: the sign-group definition, 1,000 matched pseudo-lexicons with a fixed seed, two tests (real lexicon against noise on Linear A; Linear A against Linear B words of known Greek meaning), outcomes A, B and C, and Benjamini–Hochberg over all pairs ever run. It then registers the first pair, M1 with the Hebrew verb lexicon, with the prediction "outcome A".
+- Why two tests: on the Greek control the real lexicon sits +0.020 above the matched null (p = 0.064). A lexicon can beat matched noise a little for reasons unrelated to Linear A, so the Linear A excess must also exceed the control's.
+- The file lists what was seen before registration. No hit rate on Linear A sign-groups from the loader was computed.
+- `hypotheses/TEMPLATE.md` now has the `Type: confirmatory / exploratory` line (rule 10; the loader gate reads it).
+- Later pairs (other lexicons, other rules, M2 …) each get a short hypothesis file citing Part 1 of H-A5-01.
+
+**Next:** after the merge, run `python -m aegean.benchmark.tier1 --method M1 --lexicon hebrew-strong-verbs --protocol H-A5-01`, write `hypotheses/outcomes/H-A5-01.md`, and add the addendum to Finding 001 (both review-gated).

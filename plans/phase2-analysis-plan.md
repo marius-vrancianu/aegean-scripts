@@ -371,7 +371,7 @@ Background: decision D1 (no audio) and the 2026-10-31 discussion. Comparing Line
 - [ ] A5.10 P: Build the per-sign feature distributions (PanPhon / sound classes) with explicit uncertainty; build the lattice expander.
 - [ ] A5.11 Implement the degradation pipeline (A5.2 conditions) with each factor adjustable.
 - [ ] A5.12 Port M1 (Finding 001) into the benchmark; add M2, M3, M5 (and M4 if available). *(2026-11-14: M1 ported, `src/aegean/benchmark/m1.py`; the others wait for the protocol.)*
-- [ ] A5.13 Pre-register the full evaluation protocol (conditions, metrics, success thresholds) in the hypothesis log.
+- [ ] A5.13 Pre-register the full evaluation protocol (conditions, metrics, success thresholds) in the hypothesis log. *(2026-11-14: Tier 1 part registered as H-A5-01; the Tier 2 protocol is still to write.)*
 - [ ] A5.14 Run the benchmark on known pairs across the degradation grid; produce the success and permissiveness curves.
 - [ ] A5.15 Decide the phase gate: does any method keep measurable power at Linear A's conditions? Record the answer as a finding either way.
 - [ ] A5.16 Publish the benchmark (code, data provenance, protocol) in the repo so third-party claims can be run through it.
@@ -569,3 +569,4 @@ To-do:
 - 2026-11-12 — Process change, no change to tasks: Marius no longer merges; all PRs merge when CI is green, rule files are review-gated, and open items for him are kept in `docs/for-marius.md` (CLAUDE.md → Merging; research-notes 2026-11-12).
 - 2026-11-14 — A1.11 report and A8.1 draft rebuilt on all three sources; Younger's files are fetched from Marius's private repository.
 - 2026-11-14 — A5.17 started: benchmark package with the common interface, M1 (Finding 001 port), a size-matched pseudo-lexicon null and the Tier 1 runner (`docs/benchmark.md`). No run on Linear A yet: the protocol (A5.13, Tier 1 part) is registered first as H-A5-01.
+- 2026-11-14 — H-A5-01 registered: the Tier 1 protocol (two tests, matched null, Greek control, batch rule) and its first run, M1 × Hebrew verbs. `hypotheses/TEMPLATE.md` gains the `Type:` line of rule 10.
