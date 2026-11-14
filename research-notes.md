@@ -770,3 +770,27 @@ The committed test (`tests/test_benchmark_m1.py`) repeats the comparison on rand
 3. Then further methods (M2, sound-class edit distance) and lexicons, each registered against the protocol.
 
 **Open:** where the NeuroDecipher Linear B list comes from before its preparation notebook (A5.1); the Ugaritic–Hebrew data are not yet recorded.
+
+## 2026-11-14 — H-A5-01 registered: Tier 1 protocol and its first run (M1 × Hebrew verbs)
+
+**Task:** A5.13 (Tier 1 part) for A5.17. Layer L1. Exploratory (training split).
+
+- `hypotheses/H-A5-01.md` fixes the protocol for every Tier 1 run: the sign-group definition, 1,000 matched pseudo-lexicons with a fixed seed, two tests (real lexicon against noise on Linear A; Linear A against Linear B words of known Greek meaning), outcomes A, B and C, and Benjamini–Hochberg over all pairs ever run. It then registers the first pair, M1 with the Hebrew verb lexicon, with the prediction "outcome A".
+- Why two tests: on the Greek control the real lexicon sits +0.020 above the matched null (p = 0.064). A lexicon can beat matched noise a little for reasons unrelated to Linear A, so the Linear A excess must also exceed the control's.
+- The file lists what was seen before registration. No hit rate on Linear A sign-groups from the loader was computed.
+- `hypotheses/TEMPLATE.md` now has the `Type: confirmatory / exploratory` line (rule 10; the loader gate reads it).
+- Later pairs (other lexicons, other rules, M2 …) each get a short hypothesis file citing Part 1 of H-A5-01.
+
+**Next:** after the merge, run `python -m aegean.benchmark.tier1 --method M1 --lexicon hebrew-strong-verbs --protocol H-A5-01`, write `hypotheses/outcomes/H-A5-01.md`, and add the addendum to Finding 001 (both review-gated).
+
+## 2026-11-14 — H-A5-01: first independent review requested changes; fixes
+
+Review: `docs/reviews/H-A5-01-review.md` (fresh subagent, fixed prompt; its report is recorded unedited as a comment on PR #45). It reran the control-side and lexicon-side figures and confirmed them. Four changes were requested and made before the merge; none alters the first run's design or constants.
+
+- **R1, decision rule.** A pair with both raw p-values ≤ α but a batch-adjusted p above 0.05 had no label. It is now outcome B, and the file says that A and B are decided on raw values.
+- **R2, Test 2.** The file claimed that Test 2 removes whatever Linear A and the control share. It removes only a shift of equal size on both. The assumption is now stated, with its consequence: a small p2 is possible without any relationship, and only Tier 2 can tell.
+- **R3.** The control's excess at four signs is +0.019, not +0.018.
+- **R4, template.** The new `Type:` line read "confirmatory / exploratory", which the loader's pattern accepts as confirmatory if left unedited. The placeholder now starts with "exploratory" and is rejected (checked against `load.CONFIRMATORY_RE`).
+- Also added to "What I already know": two control-only figures that the review itself computed, and the prior from the literature survey. Part 2's headings were moved one level down.
+
+Two follow-ups outside this PR are listed in `docs/for-marius.md`: the runner should apply the batch correction itself before a second pair is registered, and the loader's pattern should be tightened.
