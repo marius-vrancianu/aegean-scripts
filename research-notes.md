@@ -794,3 +794,31 @@ Review: `docs/reviews/H-A5-01-review.md` (fresh subagent, fixed prompt; its repo
 - Also added to "What I already know": two control-only figures that the review itself computed, and the prior from the literature survey. Part 2's headings were moved one level down.
 
 Two follow-ups outside this PR are listed in `docs/for-marius.md`: the runner should apply the batch correction itself before a second pair is registered, and the loader's pattern should be tightened.
+
+## 2026-11-14 — H-A5-01 run: outcome A; Finding 001 addendum
+
+**Task:** A5.17. Layer L1. corpus-v1.0 @ `ab8a6c9`, training split. Exploratory; batch of 1.
+
+- H-A5-01 was approved on re-review and merged (PR #45; both reviewer reports are recorded unedited as comments on that PR). The run was made once, afterwards, on unchanged code.
+- **Result (confidence high):** M1 with the Hebrew verb lexicon matches 0.775 of 414 Linear A sign-groups; 1,000 size-matched pseudo-lexicons match 0.769 on average (0.734–0.800); p1 = 0.397. On Linear B words of known Greek meaning, re-weighted to Linear A's lengths, the same lexicon is +0.024 above the pseudo-lexicons, so the Linear A excess minus the control excess is −0.017 (p2 = 0.840). Outcome A, as predicted. No deviation from the protocol.
+- The result is stable under the A1.14 resampling: p1 ≤ 0.05 in 0.2% of combined draws, p2 in none.
+- The Finding 001 null, run alongside, puts real Hebrew 0.028 below the pseudo-lexicons on Linear A and 0.029 below on Greek. That confirms the size mismatch as the cause of "Hebrew below random" in Finding 001.
+- `findings/001-yadiktu-null-test.md` has an addendum with the corrected table. Status unchanged (negative for the method).
+- Files: `hypotheses/outcomes/H-A5-01.md`, `experiments/A5.17/results/`.
+
+**Next for A5.17** (each new pair needs its own short hypothesis file citing Part 1 of H-A5-01):
+1. Before any second pair: the runner applies the batch correction itself and checks that the hypothesis is merged on `main` (plain PR; listed in `docs/for-marius.md`).
+2. M2 (sound-class edit distance, plan A5.3) behind the same interface.
+3. More lexicons for M1. The obvious ones: a larger Semitic pool, as the paper uses, and an unrelated language's verbs as a second kind of control (the reviewer's point R2: Test 2 assumes a lexicon's non-linguistic advantage is equal on Linear A and on Greek).
+4. Re-run the control on DAMOS when it is available (A1.10, with Marius).
+
+**Uncertain:** the source of the NeuroDecipher word list before its preparation notebook (A5.1). Whether Test 2's equal-shift assumption holds is not measured; only unrelated-language lexicons can show it.
+
+## 2026-11-14 — PR #46: independent review requested two corrections; one corrects an earlier entry here
+
+Review: `docs/reviews/H-A5-01-outcome-review.md` (fresh subagent, fixed prompt; report recorded unedited as a comment on PR #46). It reran the registered command (identical output) and recomputed both tests with its own code: every figure reproduces, outcome A stands.
+
+- **R1.** 396, not 397, of the 1,000 pseudo-lexicons match at least as often as real Hebrew. 397 was the numerator of p1 after the added 1. p1 = 0.3966 is unchanged. Corrected in the outcome file and in the Finding 001 addendum.
+- **R2, which also corrects the entry "A5.17: benchmark package, M1 port, and a flaw in the Finding 001 null" above.** That entry said the Finding 001 pseudo-lexicons expand to more forms "because random forms collide less often than real roots do". That is less than half of it. Over 502 forms, a random lexicon has 1,064 variants before duplicates against 1,014 for real Hebrew (about 50 of the 80 extra forms), and loses 320 to duplicates against 350 (about 30). The 12% figure and what follows from it are unchanged. Why real roots have fewer S/D/T variants is not established; the reviewer suggests, as a hypothesis only, that Semitic roots avoid two similar consonants.
+- **A check the reviewer added** (pseudo-lexicons only, exploratory): cutting the Finding 001 null to 664 expanded forms, with its own letter model, puts real Hebrew 0.004 below it on Linear A and 0.006 below on Greek, both inside the null's spread. So the old deficit was the null's size, and outcome A does not depend on the letter model of the null.
+- Three wordings were made more exact (which "twelve more sign-groups"; edge "over the matched pseudo-lexicons"; a pointer to a table).
