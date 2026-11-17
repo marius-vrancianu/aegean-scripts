@@ -117,3 +117,29 @@ No change to the protocol, its constants, the seeds or the decision rule. The po
 Fix R2 in the PR. A reviewer then appends a re-review below this line.
 
 Verdict: CHANGES REQUESTED
+
+## Re-review 2 (after `56c5e93`)
+
+- **Reviewer:** a separate Claude instance (fresh subagent, 2026-11-17) that wrote neither H-A5-02, its fixes, the code nor either review above. Given the PR number and the fixed review prompt only.
+- **Reviewed:** PR #49 at `56c5e93`: the diff `c084048..56c5e93` of `hypotheses/H-A5-02.md`, the new research-notes entry, the PR description; against R2 and N4–N6 above and the decision rule of `hypotheses/H-A5-01.md`, Part 1.
+- **Rerun:** test suite (267 passed, 4 skipped); guardrail script from `main` (only complaint: no APPROVE in this file, as expected); for the newly registered descriptive check, the sizes of the real and the 1,000 matched pseudo-lexicons (seed 20261114) after their two-letter forms are removed, lexicon side only. No hit rate on any sign-group or control word was computed; no Linear A data or held-out material was read.
+
+### R2 — resolved
+*Confidence: high (textual, checked against H-A5-01's decision table).*
+- The headline now reads "p2 > α, that is outcome A, or B with p1 ≤ α only", and the outcomes it excludes are listed by the decision rule's own three cases: C; B with p2 ≤ α only; B with both tests passing but not after the batch correction. These are exactly the outcomes of H-A5-01's table with p2 ≤ α, so the headline, the bullets ("outcome A and B with p1 ≤ α only both meet the prediction") and the pre-fixed readings now agree. The outcome review will have one prediction to check.
+- The PR description says the same.
+
+### N4–N6 — taken up
+- N4: the Test 2 rationale now rests on subtracting the control's excess and says that the sign-count re-weighting does not remove the effect by construction. Correct.
+- N5: the Hebrew-direction inference is labelled as reasoning in the hypothesis file, and the research-notes entry that called it measured is corrected by a new entry, not by editing the old one (append-only kept).
+- N6: a descriptive check is registered (p1 and p2 recomputed with two-letter forms removed from the real lexicon and every pseudo-lexicon alike). It decides nothing. See N7 for one property it has.
+
+### Scope and the four checks
+- Null model, power check, decision rule and batch count: unchanged since re-review 1 and still correct (smallest p 1/1001; adjusted pair p = min(2p, 0.840) for p < 0.840; C needs raw pair p ≤ 0.025; H-A5-01's A cannot change).
+- "What I already know": complete as far as the repository can show; the descriptive check is listed there before the run.
+- No rule file touched; the plan gets one change-log line; `research-notes.md` is appended only relative to `main`; nothing appears prompted by fetched content. The earlier research-notes entry of this PR still says "Prediction: outcome A"; it is superseded by the later entries, which is the append-only way to correct it.
+
+### Note (no change required)
+- **N7. The descriptive check leaves the pseudo-lexicons larger than the real lexicon.** *Confidence: high for the counts (measured, lexicon side only); my reasoning for the direction.* After expansion and removal of two-letter forms, the real lexicon has 936 forms; the 1,000 pseudo-lexicons have a mean of 953.3 (95%: 945–963; minimum 939, maximum 968), so every one of them is larger. Hit rates rise with lexicon size (H-A5-01's size table), so the check will make English look slightly worse than an equal-size comparison would, and so overstate how much of a Test 1 excess the two-letter forms carry. The difference is about 2% of the lexicon; with H-A5-01's size sensitivity (0.808 at the real size, 0.896 at twice it) that is of the order of 0.002 in hit rate, small against the null spread of about 0.013. It decides nothing, so it does not block the registration. The outcome file should report these sizes beside the check and state the direction of the residual bias.
+
+Verdict: APPROVE
