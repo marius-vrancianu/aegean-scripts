@@ -42,7 +42,6 @@ To undo one: open the PR → **Revert** → the revert PR merges under the same 
 ## Small things an agent will do without asking, unless you object
 
 - A revised Tier 1 protocol with a length-stratified matched null (the current null under-draws short forms; H-A5-02 outcome). A new hypothesis file, review-gated; H-A5-01 stays as it is. Before any further lexicon with many short forms.
-
 - Comparison of the A1.11 position table with Packard's published figures, once a source for them is available.
 - One follow-up left from the review of H-A5-01 (`docs/reviews/H-A5-01-review.md`); the three plain ones were done on 2026-11-17:
   - tighten the loader's pattern for the `Type:` line so that it accepts `confirmatory` alone (today a line reading "confirmatory / exploratory" would open the held-out split). Strengthens a rule file: review-gated PR.

@@ -873,3 +873,11 @@ Run once after the merge of PR #49 (`6ca24d5`), on unchanged code. Layer L1, tra
 - **Not shown:** that Test 2's equal-shift assumption holds in general. A non-Indo-European unrelated language is the stricter check.
 
 **Next:** review of this outcome (review-gated); then either the revised protocol or a non-Indo-European unrelated lexicon; the loader `Type:` pattern PR is still open as a follow-up.
+
+## 2026-11-17 — PR #50 review notes: three clarifications to the H-A5-02 outcome
+
+The independent review of the H-A5-02 outcome (`docs/reviews/H-A5-02-outcome-review.md`, recorded unedited on PR #50) approved it and reproduced every figure with its own code. Its non-blocking notes, recorded here because the outcome file is review-gated:
+- **N1.** "Test 2 would have needed a difference of about +0.044" uses the 97.5th percentile of the null. For the one-sided test at α = 0.05 the threshold is the 95th percentile, about +0.037. The reading is unchanged. The H-A5-01 outcome uses the same convention and should be read the same way.
+- **N2.** "Test 1 alone gives false positives" rests on one lexicon. More exact: Test 1 alone *can* give false positives, and did here.
+- **N3.** Without two-letter forms, the control's remaining excess (+0.032) has p = 0.139. It is not a measured difference between English and its pseudo-lexicons and should not be quoted as one.
+- **N4.** A stray blank line in `docs/for-marius.md` is removed.
