@@ -572,3 +572,4 @@ To-do:
 - 2026-11-14 — H-A5-01 registered: the Tier 1 protocol (two tests, matched null, Greek control, batch rule) and its first run, M1 × Hebrew verbs. `hypotheses/TEMPLATE.md` gains the `Type:` line of rule 10.
 - 2026-11-14 — H-A5-01 run: outcome A (M1 cannot tell the Hebrew verb lexicon from random lexicons; p1 = 0.397, p2 = 0.840). Finding 001 gets an addendum correcting its null. A5.17 stays open for further methods and lexicons.
 - 2026-11-17 — A5.17: the Tier 1 runner applies the batch correction itself and refuses a hypothesis that is not merged on `main` (`aegean.benchmark.batch`). No result changes; no task reordered.
+- 2026-11-17 — H-A5-02 registered: M1 × English verbs, the second Tier 1 pair and the first unrelated-language lexicon (Marius's choice).

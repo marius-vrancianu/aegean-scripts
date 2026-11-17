@@ -835,3 +835,14 @@ Three of the four follow-ups from the H-A5-01 reviews (`docs/reviews/H-A5-01-rev
 **Left:** tightening the loader's pattern for the `Type:` line (a rule file, so its own review-gated PR).
 
 **Next:** that PR; then the second Tier 1 pair. The candidates, each needing its own hypothesis file: an unrelated language's verbs for M1, which also tests Test 2's equal-shift assumption; a larger Semitic pool, as the paper uses; M2 (sound-class edit distance) with the Hebrew lexicon.
+
+## 2026-11-17 — H-A5-02 registered: M1 × English verbs (second Tier 1 pair, an unrelated language)
+
+**Task:** A5.17. Layer L1. Exploratory (training split). Chosen by Marius on 2026-11-17 ("option 1, maybe even English").
+
+- **Lexicon** (PR #48): the 502 most frequent distinct consonant skeletons of English verbs (WordNet 3.0 verbs ranked by SemCor tagged-sense count; CMUdict pronunciations; consonants to M1's classes). 1,015 forms after M1's interchanges.
+- **Why:** an unrelated language is the only lexicon for which any outcome other than A is known in advance to be false, so this pair is the first check of Test 2's equal-shift assumption. Prediction: outcome A. The file fixes in advance how each outcome will be read.
+- **Caveat stated in the file:** English is Indo-European, like Greek, so any resemblance it shares with the Greek control pushes towards outcome A. A non-Indo-European unrelated language would be a stricter check and is a candidate for a later pair.
+- **Seen before registration:** lexicon-side figures only (lengths, letters, expansion size, overlap with Hebrew). No hit rate of the English lexicon on Linear A or on the control.
+
+**Next:** after the merge, the run (`python -m aegean.benchmark.tier1 --method M1 --lexicon english-verbs --protocol H-A5-02`), the outcome file and its review.
