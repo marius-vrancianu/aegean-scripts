@@ -573,3 +573,4 @@ To-do:
 - 2026-11-14 — H-A5-01 run: outcome A (M1 cannot tell the Hebrew verb lexicon from random lexicons; p1 = 0.397, p2 = 0.840). Finding 001 gets an addendum correcting its null. A5.17 stays open for further methods and lexicons.
 - 2026-11-17 — A5.17: the Tier 1 runner applies the batch correction itself and refuses a hypothesis that is not merged on `main` (`aegean.benchmark.batch`). No result changes; no task reordered.
 - 2026-11-17 — H-A5-02 registered: M1 × English verbs, the second Tier 1 pair and the first unrelated-language lexicon (Marius's choice).
+- 2026-11-17 — H-A5-02 run: outcome B (Test 1 only), as predicted. Test 1 alone gave a false positive for English (p1 = 0.009), carried by two-letter forms the matched null under-draws; Test 2 removed it (p2 = 0.754).

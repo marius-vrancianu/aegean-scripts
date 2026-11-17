@@ -862,3 +862,14 @@ The independent review of H-A5-02 (`docs/reviews/H-A5-02-review.md`, recorded un
 - **R2.** The prediction headline of H-A5-02 said "not C", while its body counted only outcome A and B with p1 ≤ α only as meeting it. It now reads "p2 > α (outcome A, or B with p1 ≤ α only)", and every outcome with p2 ≤ α is read in advance as a false positive of Test 2.
 - **Correction to the entry "PR #49: the matched null under-draws short forms" above (review note N5).** There, "the bias favoured Hebrew … Outcome A stands and is, if anything, conservative" stood under "confidence high, measured". Only the lexicon-side lengths were measured. That the bias favoured Hebrew is my reasoning from them (M1 rarely matches four-letter forms), not a measurement: no hit rate by lexicon-form length was computed for H-A5-01. Confidence in the direction: medium-high. The registered outcome A is unaffected either way.
 - **N4** (wording on why Test 2 might cancel the effect) taken as suggested. **N6:** a descriptive check is now registered in H-A5-02: both tests recomputed with the two-letter forms removed from the real and every pseudo-lexicon alike. It decides nothing.
+
+## 2026-11-17 — H-A5-02 outcome: English passes Test 1 (a false positive) and Test 2 removes it
+
+Run once after the merge of PR #49 (`6ca24d5`), on unchanged code. Layer L1, training split. Details: `hypotheses/outcomes/H-A5-02.md`.
+
+- **Outcome B, Test 1 only; prediction met.** Linear A: English 0.705 against 0.641 for matched pseudo-lexicons, p1 = 0.009. Greek control: +0.070 (p = 0.002). Test 2 difference −0.016, p2 = 0.754. Batch of 2, nothing changed for H-A5-01.
+- **Registered descriptive check:** without two-letter forms (real and all pseudo-lexicons alike), the Linear A excess goes from +0.065 to −0.007 (p1 0.581). The Test 1 false positive is carried by the forms the matched null under-draws. Leftover size bias in that check (review N7): about 0.004–0.005, same direction, too small to matter.
+- **Lessons:** (1) Test 1 alone gives false positives for an unrelated language, stably (84% of resampling draws); (2) the matched null's length bias matters for lexicons with short forms. A length-stratified null is a candidate for a revised protocol (listed in `docs/for-marius.md` as something an agent will do).
+- **Not shown:** that Test 2's equal-shift assumption holds in general. A non-Indo-European unrelated language is the stricter check.
+
+**Next:** review of this outcome (review-gated); then either the revised protocol or a non-Indo-European unrelated lexicon; the loader `Type:` pattern PR is still open as a follow-up.

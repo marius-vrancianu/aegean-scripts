@@ -77,9 +77,21 @@ python -m aegean.benchmark.tier1 --method M1 --lexicon-file claim-lexicon.txt --
 
 Subclass `interface.Method`: `name`, `eligible`, `match`, `degrees_of_freedom`, and `expand` if the method widens the lexicon. Add it to `tier1.METHODS`. Plan §0.7: no method beyond M1 is added before the protocol is merged.
 
+## Results so far
+
+`experiments/A5.17/results/batch.md` is the live table. In short:
+
+| Pair | Lexicon | Test 1 (p1) | Test 2 (p2) | Outcome |
+|---|---|---|---|---|
+| H-A5-01 | Hebrew verbs | 0.397 | 0.840 | A |
+| H-A5-02 | English verbs (unrelated) | **0.009** | 0.754 | B, Test 1 only |
+
+**Test 1 alone gives false positives.** English passed it at p = 0.009, and the advantage disappears when two-letter forms are removed from all lexicons (H-A5-02 outcome). Never quote a Tier 1 result from Test 1 alone.
+
 ## Limits
 
 - M1 is an approximate encoding of one paper's licences (Finding 001, Limitations).
-- The matched null equalises size, lengths and positional letter frequencies, not everything: real Semitic roots avoid adjacent identical consonants more than the pseudo-lexicons do (0.14 against 0.18 of forms). Test 2 exists because of residual differences of this kind.
+- **The matched null under-draws short forms.** Lengths are drawn from the real lexicon, but repeated forms are redrawn and short forms repeat most, so the pseudo-lexicons end with fewer short forms than the real lexicon (English: 79 two-letter forms against a null mean of 61.7). For a lexicon with many short forms this tilts Test 1 towards the real lexicon. A length-stratified null is a candidate for a revised protocol.
+- The matched null equalises size and positional letter frequencies, not everything: real Semitic roots avoid adjacent identical consonants more than the pseudo-lexicons do (0.14 against 0.18 of forms). Test 2 exists because of residual differences of this kind.
 - The Linear B control comes from the NeuroDecipher data until DAMOS is available (plan A1.10), and is re-run then.
 - Tier 1 measures false positives only. An outcome A says the method cannot tell the lexicon from noise; it does not say what language Linear A is not.
