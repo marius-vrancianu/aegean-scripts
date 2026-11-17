@@ -119,3 +119,44 @@ Verdict: CHANGES REQUESTED
 ## Re-review
 
 Fix R1 and R2 in the PR. A reviewer then appends a re-review below this line.
+
+### Re-review 1 (2026-11-17)
+
+- **Reviewer:** a separate Claude instance (fresh subagent) that wrote neither this PR, the fix commit, nor the first review above. It was given the PR number and the fixed review prompt only.
+- **Reviewed:** PR #46 at `fd76b03` ("fix R1 and R2"), against the first review at `2b6ba4e` and `main`.
+- **Not read (blinding respected):** KN Zg 57/58, the held-out split, Kanta et al. 2025, *Anetaki II*, Kanta–Perna.
+
+#### R1 — resolved
+*Confidence: high (recounted with my own loop over `M1.match`, not with `HitTable` or `compare`).*
+- 414 eligible sign-groups; real Hebrew 321 hits (0.7754); matched null mean 318.43 (0.7691).
+- **396** of the 1,000 matched pseudo-lexicons (seed 20261114) score at or above Hebrew; p1 = 397/1001 = 0.3966.
+- The outcome file and the addendum now say 396. The remaining "0.397" occurrences are p1 itself, which is correct.
+- Power wording: 331 hits are needed for p1 ≤ 0.05 (recomputed). That is 10 more than Hebrew's 321 and 12.6 more than the null mean of 318.4. "about 13 more … (318)" is right.
+
+#### R2 — resolved
+*Confidence: high for the figures (rerun); the mechanism stays a hypothesis, and the PR labels it so.*
+- Rerun, Finding 001 null (seed 20261118, first 300 lexicons, `M1.variants` summed per form, then the union):
+
+  | | Variants over 502 forms | Distinct | Lost to duplicates |
+  |---|---|---|---|
+  | Real Hebrew | 1,014 | 664 | 350 |
+  | Finding 001 null, mean | 1,063.8 | 743.5 | 320.3 |
+
+  Over all 1,000 lexicons the distinct mean is 744.1.
+- The addendum now names both parts (about 50 from more variants per form, about 30 from fewer duplicates). Both figures match.
+- The correction to the earlier research-notes entry is made in a new entry that references the old one. `research-notes.md` has only additions against `main`. That is what the append-only rule requires.
+
+#### Non-blocking notes from the first review — handled
+- "twelve more sign-groups" now says which comparison (see R1).
+- The "edge" sentence now says "over the matched pseudo-lexicons" (outcome file) and "over the size-matched pseudo-lexicons" (addendum). In the addendum, the only size-matched null is the one in its table, so the wording is unambiguous there.
+- The "table above" pointer now names the sentence under the Results table and the size table in the results file.
+
+#### Nothing else changed
+- The fix commit touches only `findings/001-yadiktu-null-test.md`, `hypotheses/outcomes/H-A5-01.md` and `research-notes.md`, and only in the places listed above. `hypotheses/H-A5-01.md`, code, data and rule files are untouched.
+- No p-value, outcome label or status changes. Outcome A and "Status unchanged: NEGATIVE for the method" stand.
+- Test suite: 241 passed, 4 skipped. The guardrail script from `main` fails only because no review here ends in APPROVE, as expected before this re-review.
+- The first reviewer's report is recorded as a PR comment (2026-11-14 16:41 UTC). I have not seen the original report, so I cannot confirm that the comment is unedited.
+
+**Status:** R1 and R2 resolved. No open requests.
+
+Verdict: APPROVE
