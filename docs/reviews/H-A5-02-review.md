@@ -87,3 +87,33 @@ Script: `/tmp` only, not committed; it imports `aegean.benchmark.{lexicons,nulls
 Fix R1 in the PR. A reviewer then appends a re-review below this line.
 
 Verdict: CHANGES REQUESTED
+
+## Re-review 1 (after `c084048`)
+
+- **Reviewer:** a separate Claude instance (fresh subagent, 2026-11-17) that wrote neither H-A5-02, the fix, the code nor the review above. Given the PR number and the fixed review prompt only.
+- **Reviewed:** PR #49 at `c084048`: the diff `f230103..c084048` of `hypotheses/H-A5-02.md`, the new research-notes entry, and the PR description; against R1 above and Part 1 of `hypotheses/H-A5-01.md`.
+- **Rerun:** test suite (267 passed, 4 skipped); guardrail script from `main` (only complaint: no APPROVE in this file, as expected); the whole null-length table of the file, for both lexicons, over the 1,000 matched pseudo-lexicons of seed 20261114 via `tier1.matched_lexicons`, lexicon side only. No hit rate on any sign-group or control word was computed; no Linear A data or held-out material was read.
+
+### R1 — resolved
+All four requested items are done:
+1. The measured figures are in "What I already know", labelled as found by this review. Every number reproduces exactly (English 2/3/4: skeletons 71/203/228 against null means 50.2/174.8/231.4 with 95% ranges 40–59, 153–198, 213–250; after expansion 79/310/626 against 61.7/301.6/651.7, ranges 52–70, 270–335, 617–684, null maximum at length 2 = 76; Hebrew 3/4: 488/14 against 439.4/17.9, ranges 413–464, 10–25; after expansion 634/30 against 623.4/40.6, ranges 601–642, 22–63; every pseudo-lexicon at exactly 1,015 and 664 expanded forms). The "11 × 10" capacity is correct: 11 letters occur in first position of English two-letter forms, 10 in second.
+2. The expected direction is stated before the run (Test 1 tilted towards English on any input), and the reading of "B with p1 ≤ α only" now names the artefact.
+3. The prediction is revised, with reasons.
+4. The lexicon is kept as merged in PR #48, with a reason that I accept (dropping two-consonant forms would hide the bias rather than test whether Test 2 removes it).
+No change to the protocol, its constants, the seeds or the decision rule. The power check and batch arithmetic are untouched and remain correct.
+
+### R2 (new, required). The headline prediction is looser than the prediction under it
+*Confidence: high (textual).*
+- The headline reads "**Prediction, stated in advance: not C.**" The bullets then say "outcome A or B with p1 ≤ α only are both consistent with the prediction", and the outcome readings class "B with p2 ≤ α" as a false positive.
+- Under H-A5-01's decision rule, B also covers p2 ≤ α only, and p1, p2 ≤ α with the adjusted pair p > 0.05. Both are "not C", so the headline counts them as the prediction met, while the body counts them as inconsistent with it. In an immutable file the outcome review would have to choose between the two. The decision label is unaffected; whether the prediction held is not.
+- Fix: make the headline say what the body says, e.g. "**Prediction, stated in advance: p2 > α** (outcome A, or B with p1 ≤ α only); outcome C would be false." Update the PR description's "Prediction: outcome A" to the same.
+
+### Notes (no change required; worth doing while R2 is fixed)
+- **N4. Test 2 rationale.** "It re-weights the control to Linear A's lengths, so a length-driven advantage should largely cancel" rests the expectation on the re-weighting. The cancellation comes from subtracting the control's excess (the equal-shift assumption); the re-weighting is by sign count, not by how many two-consonant cores a sign-group admits after affix removal, so it does not remove the effect by construction (R1 above). Suggested: "D subtracts the control's excess, re-weighted to Linear A's sign-group lengths, so a length-driven advantage cancels to the extent that it is equal on both inputs; that is what this pair checks."
+- **N5. Rule 5/6 labelling.** "That made the null slightly easier to beat, which favoured Hebrew" (hypothesis file) and "the bias favoured Hebrew … Outcome A stands and is, if anything, conservative" (research-notes entry, under "confidence high, measured") are inferences from lexicon-side lengths; no hit rate by lexicon-form length was measured for H-A5-01. Label them as reasoning. The direction of the inference is, I think, right.
+- **N6.** R1's optional descriptive row (hit rate by lexicon-form length, or with two-consonant forms removed from real and pseudo-lexicons alike) was not taken up. That is allowed; without it the outcome file can show the artefact's size only as a post-hoc, explicitly unregistered table.
+- Scope unchanged: no rule file touched; `research-notes.md` appended only relative to `main`; plan change-log line only; nothing appears prompted by fetched content.
+
+Fix R2 in the PR. A reviewer then appends a re-review below this line.
+
+Verdict: CHANGES REQUESTED
