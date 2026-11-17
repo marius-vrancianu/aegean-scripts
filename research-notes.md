@@ -846,3 +846,13 @@ Three of the four follow-ups from the H-A5-01 reviews (`docs/reviews/H-A5-01-rev
 - **Seen before registration:** lexicon-side figures only (lengths, letters, expansion size, overlap with Hebrew). No hit rate of the English lexicon on Linear A or on the control.
 
 **Next:** after the merge, the run (`python -m aegean.benchmark.tier1 --method M1 --lexicon english-verbs --protocol H-A5-02`), the outcome file and its review.
+
+## 2026-11-17 — PR #49: the matched null under-draws short forms (review R1)
+
+The independent review of H-A5-02 (`docs/reviews/H-A5-02-review.md`, recorded unedited on PR #49) found that `nulls.matched_lexicon` does not keep the real lexicon's length distribution. Repeated forms are redrawn, short forms repeat more often, so the pseudo-lexicons end with fewer short and more long forms. Lexicon side only, 1,000 pseudo-lexicons of seed 20261114 (confidence high, measured):
+- **English:** 79 two-letter forms after expansion against a null mean of 61.7 (95%: 52–70; maximum 76). Two-letter forms are the ones M1 matches most easily, so the bias tilts Test 1 towards English on any input.
+- **Hebrew (H-A5-01):** 30 four-letter forms against a null mean of 40.6, and 634 three-letter against 623.4. The null had more of the forms M1 rarely matches, so it was slightly easier to beat; the bias favoured Hebrew. Outcome A stands and is, if anything, conservative. The registered result is unchanged.
+
+**What changed in H-A5-02** (before its merge): the figures are added to "What I already know", the prediction is now "not C" (outcome A, or B with p1 ≤ α only) with the reasons, and the lexicon is kept as merged. The protocol is frozen and is used as registered.
+
+**For later:** a length-stratified matched null (forms drawn per length, to the real count at each length after expansion) is a candidate for a revised protocol. It would be a new hypothesis file; H-A5-01's protocol stays as it is.
