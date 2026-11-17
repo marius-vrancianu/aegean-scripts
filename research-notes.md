@@ -835,3 +835,30 @@ Three of the four follow-ups from the H-A5-01 reviews (`docs/reviews/H-A5-01-rev
 **Left:** tightening the loader's pattern for the `Type:` line (a rule file, so its own review-gated PR).
 
 **Next:** that PR; then the second Tier 1 pair. The candidates, each needing its own hypothesis file: an unrelated language's verbs for M1, which also tests Test 2's equal-shift assumption; a larger Semitic pool, as the paper uses; M2 (sound-class edit distance) with the Hebrew lexicon.
+
+## 2026-11-17 — H-A5-02 registered: M1 × English verbs (second Tier 1 pair, an unrelated language)
+
+**Task:** A5.17. Layer L1. Exploratory (training split). Chosen by Marius on 2026-11-17 ("option 1, maybe even English").
+
+- **Lexicon** (PR #48): the 502 most frequent distinct consonant skeletons of English verbs (WordNet 3.0 verbs ranked by SemCor tagged-sense count; CMUdict pronunciations; consonants to M1's classes). 1,015 forms after M1's interchanges.
+- **Why:** an unrelated language is the only lexicon for which any outcome other than A is known in advance to be false, so this pair is the first check of Test 2's equal-shift assumption. Prediction: outcome A. The file fixes in advance how each outcome will be read.
+- **Caveat stated in the file:** English is Indo-European, like Greek, so any resemblance it shares with the Greek control pushes towards outcome A. A non-Indo-European unrelated language would be a stricter check and is a candidate for a later pair.
+- **Seen before registration:** lexicon-side figures only (lengths, letters, expansion size, overlap with Hebrew). No hit rate of the English lexicon on Linear A or on the control.
+
+**Next:** after the merge, the run (`python -m aegean.benchmark.tier1 --method M1 --lexicon english-verbs --protocol H-A5-02`), the outcome file and its review.
+
+## 2026-11-17 — PR #49: the matched null under-draws short forms (review R1)
+
+The independent review of H-A5-02 (`docs/reviews/H-A5-02-review.md`, recorded unedited on PR #49) found that `nulls.matched_lexicon` does not keep the real lexicon's length distribution. Repeated forms are redrawn, short forms repeat more often, so the pseudo-lexicons end with fewer short and more long forms. Lexicon side only, 1,000 pseudo-lexicons of seed 20261114 (confidence high, measured):
+- **English:** 79 two-letter forms after expansion against a null mean of 61.7 (95%: 52–70; maximum 76). Two-letter forms are the ones M1 matches most easily, so the bias tilts Test 1 towards English on any input.
+- **Hebrew (H-A5-01):** 30 four-letter forms against a null mean of 40.6, and 634 three-letter against 623.4. The null had more of the forms M1 rarely matches, so it was slightly easier to beat; the bias favoured Hebrew. Outcome A stands and is, if anything, conservative. The registered result is unchanged.
+
+**What changed in H-A5-02** (before its merge): the figures are added to "What I already know", the prediction is now "not C" (outcome A, or B with p1 ≤ α only) with the reasons, and the lexicon is kept as merged. The protocol is frozen and is used as registered.
+
+**For later:** a length-stratified matched null (forms drawn per length, to the real count at each length after expansion) is a candidate for a revised protocol. It would be a new hypothesis file; H-A5-01's protocol stays as it is.
+
+## 2026-11-17 — PR #49, re-review 1: prediction headline fixed; one label in the entry above corrected
+
+- **R2.** The prediction headline of H-A5-02 said "not C", while its body counted only outcome A and B with p1 ≤ α only as meeting it. It now reads "p2 > α (outcome A, or B with p1 ≤ α only)", and every outcome with p2 ≤ α is read in advance as a false positive of Test 2.
+- **Correction to the entry "PR #49: the matched null under-draws short forms" above (review note N5).** There, "the bias favoured Hebrew … Outcome A stands and is, if anything, conservative" stood under "confidence high, measured". Only the lexicon-side lengths were measured. That the bias favoured Hebrew is my reasoning from them (M1 rarely matches four-letter forms), not a measurement: no hit rate by lexicon-form length was computed for H-A5-01. Confidence in the direction: medium-high. The registered outcome A is unaffected either way.
+- **N4** (wording on why Test 2 might cancel the effect) taken as suggested. **N6:** a descriptive check is now registered in H-A5-02: both tests recomputed with the two-letter forms removed from the real and every pseudo-lexicon alike. It decides nothing.
