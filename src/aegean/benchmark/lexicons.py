@@ -72,3 +72,122 @@ def from_file(path: Path, name: str | None = None) -> Lexicon:
 
 
 REGISTRY = {"hebrew-strong-verbs": hebrew_strong_verbs}
+
+
+# ---- English verbs (an unrelated-language lexicon for M1; H-A5-02) ----------------------------
+
+CMUDICT_COMMIT = "74790861f652b15e4ac49015a90074ad62a27690"
+CMUDICT_SHA256 = "81917843c7f44ce2b094ac63873c2c7a4cf802040792c455ba3ca406891c3d22"
+CMUDICT = REPO / f"data/raw/cmudict/{CMUDICT_COMMIT[:12]}/cmudict.dict"
+WORDNET_COMMIT = "550b6625bcef1f2abff2ff770a5a0d272c9c6b2a"
+WORDNET_SHA256 = "cbda5ea6eef7f36a97a43d4a75f85e07fccbb4f23657d27b4ccbc93e2646ab59"
+WORDNET_ZIP = REPO / f"data/raw/wordnet/{WORDNET_COMMIT[:12]}/wordnet.zip"
+ENGLISH_SIZE = 502  # the number of skeletons in hebrew-strong-verbs
+
+# ARPAbet consonant (and r-coloured vowel) -> M1 class, by the classes HEBREW_CLASS uses:
+# P labial stops and fricatives (Hebrew bet/pe are b~v, p~f), K velar stops, T and D as Hebrew tav and dalet
+# (including their fricative values th and dh), S every sibilant and affricate (Hebrew zayin, samekh,
+# tsade, shin), R liquids, M, N nasals, H the glottal fricative, W, J (y). Vowels are dropped.
+ENGLISH_CLASS = {
+    "P": "P", "B": "P", "F": "P", "V": "P",
+    "K": "K", "G": "K",
+    "T": "T", "TH": "T", "D": "D", "DH": "D",
+    "S": "S", "Z": "S", "SH": "S", "ZH": "S", "CH": "S", "JH": "S",
+    "R": "R", "L": "R", "ER": "R",
+    "M": "M", "N": "N", "NG": "N",
+    "HH": "H", "W": "W", "Y": "J",
+}
+
+
+def cmudict_first(text: str) -> dict[str, list[str]]:
+    """Each word's first pronunciation (the entry without "(2)", "(3)" ...), as ARPAbet phones without stress."""
+    out: dict[str, list[str]] = {}
+    for line in text.splitlines():
+        if not line.strip() or line.startswith(";;;"):
+            continue
+        parts = line.split("#", 1)[0].split()
+        word, phones = parts[0], parts[1:]
+        if "(" in word:
+            continue
+        out.setdefault(word, [re.sub(r"\d", "", p) for p in phones])
+    return out
+
+
+def english_skeleton(phones: list[str]) -> str:
+    return "".join(ENGLISH_CLASS.get(p, "") for p in phones)
+
+
+def wordnet_verbs(index_verb: str) -> list[tuple[str, int]]:
+    """(lemma, tagged sense count) for every single-word, purely alphabetic verb lemma in WordNet's index.verb.
+
+    Line format (WordNet 3.0, wndb(5)): lemma pos synset_cnt p_cnt [ptr_symbol...] sense_cnt tagsense_cnt offsets.
+    The tagged sense count is how often the lemma's senses were tagged in the SemCor corpus: a frequency proxy.
+    """
+    out = []
+    for line in index_verb.splitlines():
+        if not line or line.startswith(" "):
+            continue
+        f = line.split()
+        lemma, p_cnt = f[0], int(f[3])
+        tagsense = int(f[4 + p_cnt + 1])
+        if lemma.isalpha() and lemma.isascii():
+            out.append((lemma, tagsense))
+    return out
+
+
+def english_verb_skeletons(index_verb: str, cmudict_text: str, size: int = ENGLISH_SIZE,
+                           min_len: int = 2, max_len: int = 4) -> tuple[frozenset[str], dict]:
+    """The first `size` distinct skeletons of English verbs, most frequent verbs first.
+
+    Verbs are ranked by tagged sense count (descending), ties alphabetically; a verb without a CMUdict entry,
+    or whose skeleton is shorter than min_len or longer than max_len, is skipped.
+    """
+    pron = cmudict_first(cmudict_text)
+    ranked = sorted(wordnet_verbs(index_verb), key=lambda x: (-x[1], x[0]))
+    forms: list[str] = []
+    seen: set[str] = set()
+    skipped = {"no_pronunciation": 0, "length": 0, "duplicate": 0}
+    last = None
+    for lemma, count in ranked:
+        if len(forms) == size:
+            break
+        if lemma not in pron:
+            skipped["no_pronunciation"] += 1
+            continue
+        sk = english_skeleton(pron[lemma])
+        if not min_len <= len(sk) <= max_len:
+            skipped["length"] += 1
+            continue
+        if sk in seen:
+            skipped["duplicate"] += 1
+            continue
+        seen.add(sk)
+        forms.append(sk)
+        last = (lemma, count)
+    if len(forms) < size:
+        raise ValueError(f"only {len(forms)} distinct skeletons, {size} wanted")
+    return frozenset(forms), {"verbs_ranked": len(ranked), "last_verb_taken": last, "skipped": skipped}
+
+
+def english_verbs(cmudict: Path = CMUDICT, wordnet_zip: Path = WORDNET_ZIP, verify_hash: bool = True) -> Lexicon:
+    import zipfile
+    for path, want, script in ((cmudict, CMUDICT_SHA256, "cmudict"), (wordnet_zip, WORDNET_SHA256, "wordnet")):
+        if not path.exists():
+            raise FileNotFoundError(f"{path} is not fetched; run python data/raw/{script}/fetch.py")
+        got = hashlib.sha256(path.read_bytes()).hexdigest()
+        if verify_hash and got != want:
+            raise RuntimeError(f"HASH MISMATCH for {path}: {got}, expected {want}")
+    with zipfile.ZipFile(wordnet_zip) as z:
+        index_verb = z.read("wordnet/index.verb").decode("utf-8")
+    forms, info = english_verb_skeletons(index_verb, cmudict.read_text(encoding="utf-8"))
+    return Lexicon("english-verbs", forms, "real", {
+        "source": "Princeton WordNet 3.0 index.verb (nltk_data) + CMU Pronouncing Dictionary",
+        "wordnet_commit": WORDNET_COMMIT, "cmudict_commit": CMUDICT_COMMIT,
+        "sha256": hashlib.sha256((WORDNET_SHA256 + CMUDICT_SHA256).encode()).hexdigest(),
+        "licence": "WordNet 3.0 licence; CMUdict BSD-style",
+        "conversion": "single-word verbs by SemCor tagged-sense count; first CMUdict pronunciation; consonants "
+                      "to M1 classes (ENGLISH_CLASS); length 2-4; first 502 distinct skeletons",
+        **info})
+
+
+REGISTRY["english-verbs"] = english_verbs

@@ -115,5 +115,15 @@ Recorded so nobody re-does the check. Neither source adds independent readings.
 ## openscriptures HebrewLexicon (used in Finding 001)
 - **Source:** https://github.com/openscriptures/HebrewLexicon, `HebrewStrong.xml`. CC BY 4.0. Pinned at commit `21c9add13bc727d3a951361778e97e3ff7afd1ce`, sha256 `a628f4f89f8bdaf2483fd3faf1abc8653cc6717758dfc9f24beb7571d9bdd0c4`. The 2026-10-28 fetch used `master` without recording a commit; reproducing Finding 001 exactly on this pin confirms the same content. Fetched by `data/raw/openscriptures-HebrewLexicon/fetch.py` (and, to the same path, by `experiments/finding-001/reproduce.py`). Used by Finding 001 and as the benchmark lexicon `hebrew-strong-verbs` (A5.17).
 
+## Princeton WordNet 3.0 (English verbs, A5.17)
+- **Source:** `wordnet.zip` from https://github.com/nltk/nltk_data (`packages/corpora/wordnet.zip`), pinned at commit `550b6625bcef1f2abff2ff770a5a0d272c9c6b2a`, sha256 `cbda5ea6…`. NLTK's packaging of WordNet 3.0.
+- **Licence:** the WordNet 3.0 licence (Princeton University): use, copying, modification and distribution permitted with the copyright notice. Fetched, not committed, to keep the repository small (`data/raw/wordnet/fetch.py`).
+- **Used:** `wordnet/index.verb` only: single-word verb lemmas and their tagged-sense counts (SemCor), as a frequency ranking for the `english-verbs` lexicon (`aegean.benchmark.lexicons`).
+
+## CMU Pronouncing Dictionary (English pronunciations, A5.17)
+- **Source:** `cmudict.dict` from https://github.com/cmusphinx/cmudict, pinned at commit `74790861f652b15e4ac49015a90074ad62a27690`, sha256 `81917843…`.
+- **Licence:** BSD-style (Carnegie Mellon University, 1993–2015; LICENSE in the repository). Fetched, not committed (`data/raw/cmudict/fetch.py`).
+- **Used:** the first pronunciation of each verb, in ARPAbet, converted to M1's consonant classes for the `english-verbs` lexicon.
+
 ## Kanta, Nakassis, Palaima & Perna 2025 (Knossos sceptre overview) — HELD OUT
 - doi:10.26248/ariadne.vi.1841, CC BY-NC-SA 4.0. Descriptive only, no sign-by-sign text. **Held-out material: do not read or ingest** (see `CLAUDE.md`).
