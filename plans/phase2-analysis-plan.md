@@ -571,3 +571,4 @@ To-do:
 - 2026-11-14 — A5.17 started: benchmark package with the common interface, M1 (Finding 001 port), a size-matched pseudo-lexicon null and the Tier 1 runner (`docs/benchmark.md`). No run on Linear A yet: the protocol (A5.13, Tier 1 part) is registered first as H-A5-01.
 - 2026-11-14 — H-A5-01 registered: the Tier 1 protocol (two tests, matched null, Greek control, batch rule) and its first run, M1 × Hebrew verbs. `hypotheses/TEMPLATE.md` gains the `Type:` line of rule 10.
 - 2026-11-14 — H-A5-01 run: outcome A (M1 cannot tell the Hebrew verb lexicon from random lexicons; p1 = 0.397, p2 = 0.840). Finding 001 gets an addendum correcting its null. A5.17 stays open for further methods and lexicons.
+- 2026-11-17 — A5.17: the Tier 1 runner applies the batch correction itself and refuses a hypothesis that is not merged on `main` (`aegean.benchmark.batch`). No result changes; no task reordered.

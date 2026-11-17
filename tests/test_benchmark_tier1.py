@@ -41,6 +41,7 @@ def test_compare_p_values():
 
 
 def test_label_follows_the_decision_rule():
+    """Before the batch correction: a pair passing both tests is a would-be C."""
     assert tier1.label(0.20, 0.50).startswith("A")
     assert tier1.label(0.05, 0.05).startswith("C")
     assert tier1.label(0.01, 0.051).startswith("B: above the null")
@@ -69,8 +70,11 @@ def test_hit_table_equals_direct_computation():
         table.compare([("*56", "*79")])
 
 
-def test_difference_test_removes_a_shift_common_to_input_and_control():
-    """A lexicon that is simply larger than the null beats it everywhere: test 1 fires, test 2 does not."""
+def test_difference_test_removes_a_shift_equal_on_input_and_control():
+    """A lexicon that is simply larger than the null beats it on both inputs alike: test 1 fires, test 2 does not.
+
+    Test 2 removes only a shift of equal size on both inputs (hypotheses/H-A5-01.md, "What Test 2 assumes").
+    """
     m = M1()
     gs = groups_of(make_corpus(11))
     control = groups_of(make_corpus(12, sources=("sigla",)))
@@ -159,3 +163,24 @@ def test_run_is_deterministic_and_reports_every_section():
 def test_cli_refuses_an_unregistered_protocol(capsys):
     assert tier1.main(["--lexicon", "hebrew-strong-verbs", "--protocol", "H-A5-99"]) == 2
     assert "REFUSED" in capsys.readouterr().err
+    assert tier1.main(["--lexicon", "hebrew-strong-verbs", "--protocol", "H-A2-04"]) == 2  # not an A5 hypothesis
+    assert "REFUSED" in capsys.readouterr().err
+
+
+def test_cli_refuses_a_second_run_of_the_registered_pair_under_another_hypothesis(tmp_path, monkeypatch, capsys):
+    """The H-A5-01 pair is in the committed batch; running it again under another hypothesis is refused before any work."""
+    import shutil
+    from aegean.benchmark import batch
+    out = tmp_path / "results"
+    shutil.copytree(tier1.OUT_DIR, out)
+    monkeypatch.setattr(batch, "check_registered", lambda h, repo: None)
+    monkeypatch.setattr(tier1, "run", lambda *a, **k: pytest.fail("the run must not start"))
+    if not lexicons_present():
+        pytest.skip("Hebrew lexicon not fetched")
+    assert tier1.main(["--lexicon", "hebrew-strong-verbs", "--protocol", "H-A5-02", "--out", str(out)]) == 2
+    assert "already run under H-A5-01" in capsys.readouterr().err
+
+
+def lexicons_present():
+    from aegean.benchmark import lexicons
+    return lexicons.HEBREW_XML.exists()

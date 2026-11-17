@@ -1,0 +1,18 @@
+{
+ "pairs": [
+  {
+   "hypothesis": "H-A5-01",
+   "lexicon": "hebrew-strong-verbs",
+   "method": "M1",
+   "outcome": "A: no better than a random lexicon",
+   "p1": 0.3966033966033966,
+   "p2": 0.8401598401598401,
+   "p_adjusted": 0.8401598401598401,
+   "p_pair": 0.8401598401598401,
+   "pair_key": "9c8b2d5110d22509",
+   "stem": "M1-hebrew-strong-verbs"
+  }
+ ],
+ "protocol": "H-A5-01",
+ "q": 0.05
+}
