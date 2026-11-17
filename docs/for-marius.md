@@ -42,11 +42,8 @@ To undo one: open the PR → **Revert** → the revert PR merges under the same 
 ## Small things an agent will do without asking, unless you object
 
 - Comparison of the A1.11 position table with Packard's published figures, once a source for them is available.
-- Two follow-ups from the review of H-A5-01 (`docs/reviews/H-A5-01-review.md`):
-  - the Tier 1 runner applies the batch correction itself, so that its report cannot print an outcome C that the protocol does not grant. Plain PR, before a second (method, lexicon) pair is registered.
+- One follow-up left from the review of H-A5-01 (`docs/reviews/H-A5-01-review.md`); the three plain ones were done on 2026-11-17:
   - tighten the loader's pattern for the `Type:` line so that it accepts `confirmatory` alone (today a line reading "confirmatory / exploratory" would open the held-out split). Strengthens a rule file: review-gated PR.
-  - the runner checks that the hypothesis file it is given is merged on `main` (today it only checks that the file exists). Plain PR.
-  - bring the wording of the runner's comments and one test name in line with the registered text on what Test 2 removes. Plain PR.
 - Four strengthenings of the guardrail script that the second review of #38 recommended (each a review-gated PR; none started):
   - **N7** a verdict line with a condition after it ("APPROVE once …") is read as an approval; accept only a bare verdict line.
   - **N8** an approval does not expire when the author pushes again; require that no commit to a gated path is newer than the approving review.

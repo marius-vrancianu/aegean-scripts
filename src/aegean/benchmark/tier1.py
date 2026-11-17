@@ -6,9 +6,10 @@
 The second form runs a third-party claim: its lexicon as a file of forms and
 its licences as an M1 rules file (`aegean.benchmark.m1.M1Rules.from_json`).
 
-Protocol: hypotheses/H-A5-01.md. Do not run this on Linear A for a (method,
-lexicon) pair that has no merged hypothesis file (CLAUDE.md rule 3); the
-hypothesis ID is written into the output.
+Protocol: hypotheses/H-A5-01.md. The command line refuses a hypothesis ID
+whose file is not merged on main, is changed since, or (for any pair after
+the first) does not name H-A5-01 as its protocol (`aegean.benchmark.batch`).
+The hypothesis ID is written into the output.
 
 What is computed
 - **Hit rate** of an input under a lexicon: the share of its distinct,
@@ -23,9 +24,15 @@ What is computed
   excess on Linear B words of known Greek meaning, the control re-weighted to
   Linear A's length distribution. p2 ranks that difference among the same
   difference for each pseudo-lexicon taken in turn as if it were the real
-  one. A lexicon that is merely more or less permissive than the null shifts
-  both excesses alike, and the difference removes it.
-- **Outcome**: A, B or C from p1 and p2 (`label`).
+  one. The difference removes a shift that is *equal* on both inputs, such
+  as a lexicon that is merely more or less permissive than the null. It
+  assumes that a lexicon's non-linguistic advantage is the same size on Linear
+  A and on the control; where it is not, p2 can be small without any
+  relationship, and only Tier 2's unrelated-language lexicons can tell the
+  two apart (hypotheses/H-A5-01.md, "What Test 2 assumes").
+- **Outcome**: A, B or C from p1, p2 and the batch-adjusted pair p
+  (`aegean.benchmark.batch`). `run` alone gives the outcome before the batch
+  correction; the command line applies it and writes the batch table.
 - Secondary, descriptive: the Finding 001 null, per source, by length,
   lexicon-size sensitivity, random sign strings, permissiveness, and
   resampling intervals (A1.14).
@@ -34,7 +41,9 @@ Inputs. The primary Linear A input is one reading per document
 (`resample.primary_reading`, source order SigLA, lineara.xyz, Younger), on
 the training split. The three sources are also reported separately.
 
-Writes experiments/A5.17/results/<method>-<lexicon>.json and .md (generated).
+Writes experiments/A5.17/results/<hypothesis>-<method>-<lexicon>.json and .md,
+and batch.json and batch.md (all generated). The first run, H-A5-01, keeps its
+original name, M1-hebrew-strong-verbs.
 """
 from __future__ import annotations
 
@@ -48,7 +57,7 @@ import sys
 from pathlib import Path
 from typing import Any
 
-from aegean.benchmark import inputs, lexicons, nulls
+from aegean.benchmark import batch, inputs, lexicons, nulls
 from aegean.benchmark.interface import DOF_ITEMS, Lexicon, Method, SignGroup
 from aegean.benchmark.m1 import M1, M1Rules
 from aegean.corpus import load, resample
@@ -218,26 +227,11 @@ def difference_test(table: HitTable, groups, control: Control) -> dict[str, Any]
 
 
 def label(p1: float, p2: float, alpha: float = ALPHA) -> str:
-    """The Tier 1 outcome for one (method, lexicon) pair (hypotheses/H-A5-01.md, decision rule)."""
-    if p1 <= alpha and p2 <= alpha:
-        return "C: above the random-lexicon null, and more so than on the Greek control"
-    if p1 > alpha and p2 > alpha:
-        return "A: no better than a random lexicon"
-    if p1 <= alpha:
-        return "B: above the null, but no more than on the Greek control"
-    return "B: differs from the Greek control, but not above the null"
+    """The outcome before the batch correction: a pair passing both tests is a would-be C."""
+    return batch.label(p1, p2, max(p1, p2), alpha)
 
 
-def bh_adjust(pvalues: list[float]) -> list[float]:
-    """Benjamini-Hochberg adjusted p-values, in the input order."""
-    m = len(pvalues)
-    order = sorted(range(m), key=lambda i: pvalues[i])
-    adj = [0.0] * m
-    running = 1.0
-    for rank, i in reversed(list(enumerate(order, 1))):
-        running = min(running, pvalues[i] * m / rank)
-        adj[i] = running
-    return adj
+bh_adjust = batch.bh_adjust
 
 
 def permissiveness(method: Method, groups: list[SignGroup], prepared: Any) -> dict[str, Any] | None:
@@ -340,6 +334,8 @@ def run(method: Method, real: Lexicon, witnesses: list[dict], control: list[Sign
         "test1": {"p": p1, "excess": la["primary"]["excess"]},
         "test2": test2,
         "p_pair": max(p1, p2),
+        "batch_protocol": batch.PROTOCOL,
+        "outcome_before_batch": label(p1, p2),
         "outcome": label(p1, p2),
         "linear_a_by_length": table.by_length(sets["primary"]),
         "control_by_length": ctable.by_length(control),
@@ -382,6 +378,10 @@ def report(r: dict, provenance: dict) -> str:
         "",
         f"## Outcome: {r['outcome']}",
         "",
+        *([f"- **Batch** (Benjamini–Hochberg over {r['batch']['size']} pair{'s' if r['batch']['size'] != 1 else ''}, "
+           f"`batch.md`): adjusted pair p = {r['batch']['p_adjusted']:.4f}. Outcome before the correction: "
+           f"{r['outcome_before_batch']}."] if "batch" in r else
+          ["- **Batch correction not applied** (this report was not made by the command line)."]),
         f"- **Test 1** (real lexicon against matched pseudo-lexicons, Linear A): excess {r['test1']['excess']:+.3f}, "
         f"p1 = {r['test1']['p']:.4f}.",
         f"- **Test 2** (Linear A against the Greek control): excess on Linear A {t2['excess_linear_a']:+.3f}, on the "
@@ -480,21 +480,37 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--protocol", required=True, metavar="H-A5-NN", help="merged hypothesis file this run belongs to")
     ap.add_argument("--out", type=Path, default=OUT_DIR)
     args = ap.parse_args(argv)
-    if not load.HYPOTHESIS_ID_RE.fullmatch(args.protocol) or not (REPO / f"hypotheses/{args.protocol}.md").is_file():
-        print(f"REFUSED: hypotheses/{args.protocol}.md does not exist; register the run first (CLAUDE.md rule 3)",
-              file=sys.stderr)
+    try:
+        batch.check_registered(args.protocol, REPO)
+    except batch.NotRegistered as e:
+        print(f"REFUSED: {e}", file=sys.stderr)
         return 2
     method = METHODS[args.method](M1Rules.from_json(args.rules)) if args.rules else METHODS[args.method]()
     real = lexicons.REGISTRY[args.lexicon]() if args.lexicon else lexicons.from_file(args.lexicon_file)
+    # Check the batch before the run, so that a clash costs nothing.
+    recs = batch.records(args.out) if args.out.exists() else []
+    stem = batch.stem_for(recs, args.protocol, method.name, real.name)
+    stub = {"protocol": args.protocol, "method": method.name, "rules": method.rules.to_json() if hasattr(method, "rules") else None,
+            "lexicon": {"name": real.name, "forms": len(real), **real.meta}, "test1": {"p": 1.0}, "test2": {"p": 1.0}}
+    try:
+        batch.apply(batch.admit(recs, batch.record(stub, stem)))
+    except batch.BatchError as e:
+        print(f"REFUSED: {e}", file=sys.stderr)
+        return 2
     control, control_meta = inputs.linear_b_control()
     r = run(method, real, load.witnesses(), control, protocol=args.protocol)
     r["control_source"] = control_meta
     r["provenance"] = provenance()
     args.out.mkdir(parents=True, exist_ok=True)
-    stem = f"{method.name}-{real.name}"
+    table, changed = batch.update(args.out, r, stem)
+    r["batch"] = batch.entry(table, args.protocol)
+    r["outcome"] = r["batch"]["outcome"]
     (args.out / f"{stem}.json").write_text(json.dumps(r, indent=1, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8")
     (args.out / f"{stem}.md").write_text(report(r, r["provenance"]), encoding="utf-8")
-    print(f"{stem}: {r['outcome']}  (wrote {args.out / (stem + '.md')})")
+    batch.write(args.out, table, changed)
+    print(f"{stem}: {r['outcome']}  (wrote {args.out / (stem + '.md')}; batch of {len(table)})")
+    for c in changed:
+        print(f"OUTCOME CHANGED for an earlier pair: {c}. Record it in {args.protocol}'s outcome file.")
     return 0
 
 
