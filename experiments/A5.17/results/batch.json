@@ -11,6 +11,18 @@
    "p_pair": 0.8401598401598401,
    "pair_key": "9c8b2d5110d22509",
    "stem": "M1-hebrew-strong-verbs"
+  },
+  {
+   "hypothesis": "H-A5-02",
+   "lexicon": "english-verbs",
+   "method": "M1",
+   "outcome": "B: above the null, but no more than on the Greek control",
+   "p1": 0.008991008991008992,
+   "p2": 0.7542457542457542,
+   "p_adjusted": 0.8401598401598401,
+   "p_pair": 0.7542457542457542,
+   "pair_key": "b2b998a066bd79b9",
+   "stem": "H-A5-02-M1-english-verbs"
   }
  ],
  "protocol": "H-A5-01",

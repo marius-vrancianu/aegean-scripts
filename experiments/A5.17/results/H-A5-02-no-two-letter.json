@@ -1,0 +1,59 @@
+{
+ "as_registered": {
+  "control": {
+   "excess": 0.06965964523281598,
+   "false_positive_rate": 0.42036252771618626,
+   "n": 902,
+   "p": 0.001998001998001998,
+   "real": 0.49002217294900224
+  },
+  "lexicon_forms_null_high": 1015,
+  "lexicon_forms_null_low": 1015,
+  "lexicon_forms_null_mean": 1015.0,
+  "lexicon_forms_null_min": 1015,
+  "lexicon_forms_real": 1015,
+  "linear_a": {
+   "excess": 0.06461111111111117,
+   "false_positive_rate": 0.6407028985507246,
+   "n": 414,
+   "p": 0.008991008991008992,
+   "real": 0.7053140096618358
+  },
+  "test2": {
+   "difference": -0.01635873593942061,
+   "excess_control": 0.08096984705053178,
+   "excess_linear_a": 0.06461111111111117,
+   "p": 0.7542457542457542
+  }
+ },
+ "hypothesis": "H-A5-02",
+ "kind": "descriptive, decides nothing",
+ "seed_null": 20261114,
+ "without_two_letter_forms": {
+  "control": {
+   "excess": 0.03158093126385808,
+   "false_positive_rate": 0.3187516629711752,
+   "n": 902,
+   "p": 0.13886113886113885,
+   "real": 0.35033259423503327
+  },
+  "lexicon_forms_null_high": 963,
+  "lexicon_forms_null_low": 945,
+  "lexicon_forms_null_mean": 953.321,
+  "lexicon_forms_null_min": 939,
+  "lexicon_forms_real": 936,
+  "linear_a": {
+   "excess": -0.006770531400966173,
+   "false_positive_rate": 0.4850314009661836,
+   "n": 414,
+   "p": 0.5814185814185814,
+   "real": 0.4782608695652174
+  },
+  "test2": {
+   "difference": -0.032226749825580825,
+   "excess_control": 0.02545621842461465,
+   "excess_linear_a": -0.006770531400966173,
+   "p": 0.8891108891108891
+  }
+ }
+}
