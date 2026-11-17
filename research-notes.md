@@ -856,3 +856,9 @@ The independent review of H-A5-02 (`docs/reviews/H-A5-02-review.md`, recorded un
 **What changed in H-A5-02** (before its merge): the figures are added to "What I already know", the prediction is now "not C" (outcome A, or B with p1 ≤ α only) with the reasons, and the lexicon is kept as merged. The protocol is frozen and is used as registered.
 
 **For later:** a length-stratified matched null (forms drawn per length, to the real count at each length after expansion) is a candidate for a revised protocol. It would be a new hypothesis file; H-A5-01's protocol stays as it is.
+
+## 2026-11-17 — PR #49, re-review 1: prediction headline fixed; one label in the entry above corrected
+
+- **R2.** The prediction headline of H-A5-02 said "not C", while its body counted only outcome A and B with p1 ≤ α only as meeting it. It now reads "p2 > α (outcome A, or B with p1 ≤ α only)", and every outcome with p2 ≤ α is read in advance as a false positive of Test 2.
+- **Correction to the entry "PR #49: the matched null under-draws short forms" above (review note N5).** There, "the bias favoured Hebrew … Outcome A stands and is, if anything, conservative" stood under "confidence high, measured". Only the lexicon-side lengths were measured. That the bias favoured Hebrew is my reasoning from them (M1 rarely matches four-letter forms), not a measurement: no hit rate by lexicon-form length was computed for H-A5-01. Confidence in the direction: medium-high. The registered outcome A is unaffected either way.
+- **N4** (wording on why Test 2 might cancel the effect) taken as suggested. **N6:** a descriptive check is now registered in H-A5-02: both tests recomputed with the two-letter forms removed from the real and every pseudo-lexicon alike. It decides nothing.
