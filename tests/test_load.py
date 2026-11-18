@@ -126,3 +126,56 @@ def test_real_document_list_training_plus_heldout_is_the_analysis_set():
     train = load.documents()
     assert len(train) + len(load_split()) == 568
     assert not {r["key"] for r in train} & load_split()
+
+
+@pytest.mark.parametrize("text, ok", [
+    ("- **Type:** confirmatory\n", True),
+    ("- **Type:** Confirmatory\n", True),
+    ("- **Type:** confirmatory (held-out split, tested once)\n", True),
+    ("* **Type:** confirmatory  \n", True),
+    ("- **Type:** confirmatory / exploratory\n", False),          # the undecided template choice
+    ("- **Type:** confirmatory / exploratory (choose one)\n", False),
+    ("- **Type:** exploratory / confirmatory — choose one\n", False),
+    ("- **Type:** confirmatory or exploratory\n", False),
+    ("- **Type:** confirmatory (or exploratory)\n", False),
+    ("- **Type:** confirmatory (a) (b)\n", False),
+    ("- **Type:** confirmatory, exploratory\n", False),
+    ("- **Type:** confirmatoryish\n", False),
+    ("- **Type:** exploratory (training split)\n", False),
+    ("- **Type:** confirmatory\n- **Type:** exploratory\n", False),  # two Type lines
+    ("- **Type:** confirmatory\n- **Type:** confirmatory\n", False),
+    ("The **Type:** confirmatory line is described here.\n", False),  # not a Type line of the file's header
+    ("no type line\n", False),
+    ("- **Type:** **confirmatory**\n", False),  # the old pattern refused this too
+])
+def test_type_line_must_be_unambiguously_confirmatory(text, ok):
+    assert load.declares_confirmatory("# H-A3-09 — x\n\n" + text) is ok
+
+
+OLD_RE = __import__("re").compile(r"^\s*[-*]?\s*\*\*Type:\*\*\s*confirmatory\b", __import__("re").IGNORECASE | __import__("re").MULTILINE)
+
+
+@pytest.mark.parametrize("value", ["confirmatory", "Confirmatory", "confirmatory (x)", "confirmatory / exploratory",
+                                   "** confirmatory", "**confirmatory**", "confirmatoryish", "exploratory",
+                                   "confirmatory — once", " confirmatory", "confirmatory (or exploratory)"])
+def test_new_check_accepts_nothing_the_old_pattern_refused(value):
+    text = f"# H\n\n- **Type:** {value}\n"
+    if load.declares_confirmatory(text):
+        assert OLD_RE.search(text), value
+
+
+
+
+def test_ambiguous_type_line_releases_nothing(repo):
+    """A merged file whose Type line was copied from the template undecided is refused like an exploratory one."""
+    (repo / "hypotheses/H-A3-04.md").write_text(HYP.format(type="confirmatory / exploratory"), encoding="utf-8")
+    git(repo, "add", ".")
+    git(repo, "commit", "-q", "-m", "undecided type")
+    with pytest.raises(load.HeldoutAccessError, match="exactly one Type line"):
+        load.documents(split="heldout", heldout_for="H-A3-04", **kw(repo))
+
+
+def test_every_merged_hypothesis_is_read_as_before():
+    """The stricter pattern changes no decision for the files already merged (none is confirmatory)."""
+    for p in sorted((load.REPO / "hypotheses").glob("H-*.md")):
+        assert load.declares_confirmatory(p.read_text(encoding="utf-8")) is False, p.name

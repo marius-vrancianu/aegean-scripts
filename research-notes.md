@@ -881,3 +881,12 @@ The independent review of the H-A5-02 outcome (`docs/reviews/H-A5-02-outcome-rev
 - **N2.** "Test 1 alone gives false positives" rests on one lexicon. More exact: Test 1 alone *can* give false positives, and did here.
 - **N3.** Without two-letter forms, the control's remaining excess (+0.032) has p = 0.139. It is not a measured difference between English and its pseudo-lexicons and should not be quoted as one.
 - **N4.** A stray blank line in `docs/for-marius.md` is removed.
+
+## 2026-11-18 — Loader: the Type-line check that releases the held-out split is stricter
+
+Follow-up from the H-A5-01 review (`docs/reviews/H-A5-01-review.md`, R4 and M3). Rule file `src/aegean/corpus/load.py`, so review-gated.
+
+- **Before:** a merged hypothesis released the held-out split if any line began `**Type:** confirmatory` followed by a word boundary. A line copied from an older template, `confirmatory / exploratory`, or a file with a second, exploratory Type line would have released it.
+- **Now:** the file must have exactly one Type line, and its value must be the word `confirmatory` alone, optionally followed by one parenthesis that does not mention "exploratory". `load.declares_confirmatory`.
+- **Strictly stronger:** a test checks that the new check accepts nothing the old pattern refused. No merged hypothesis changes status: none is confirmatory under either check, and the A2 files have no Type line (refused before and now).
+- `hypotheses/TEMPLATE.md` describes the new rule.
