@@ -948,3 +948,11 @@ Run once each after the merge of PR #55 (`550dc7a`). Layer L1, training split. D
 - **Review notes M1–M5 (PR #55):** M2 and M3 did not arise (English is A under H-A5-03; Hebrew is A). M4: the narrower spread is now measured (English sd 0.020 against 0.029). M5: Turkish's pair p computed alone is 0.355. M1: any later protocol revision must close H-A5-03 to new pairs, as H-A5-03 did for H-A5-01.
 
 **Next candidates:** M2 (sound-class edit-distance matching) under H-A5-03; a null that also matches letter co-occurrence (bigram-matched), as a further protocol revision; the A5.18 constrained substrate test once A8.2 exists.
+
+## 2026-11-18 — PR #57 review notes: four corrections of wording to the H-A5-03 to H-A5-05 outcomes
+
+The independent review (`docs/reviews/H-A5-03-outcome-review.md`, recorded unedited on PR #57) approved the outcomes and reproduced every figure byte for byte. Its non-blocking notes, recorded here because the outcome files are review-gated:
+- **N1.** `docs/benchmark.md` still called the length-stratified null "a candidate"; fixed.
+- **N2.** The H-A5-04 outcome calls the Greek-word advantage over length-matched noise "the finding this pair adds". More exact: it is a **descriptive observation** on a row the protocol does not test, for two of three lexicons (English p = 0.015, Turkish p = 0.017, uncorrected; Hebrew p = 0.093). For English, shared Indo-European structure with Greek is an alternative reading; Turkish's equal advantage argues against it being the main cause. `docs/benchmark.md` now words it this way.
+- **N3.** The H-A5-04 outcome says English's drop is "close to" the check without two-letter forms (−0.007). The result, +0.012, lies between that and the old +0.065, as H-A5-04 predicted.
+- **N4.** For Hebrew and English, the Test 2 difference is negative in nearly all resampling draws. That is weak, descriptive evidence that the equal-shift assumption does not hold exactly; it errs in the conservative direction for these pairs.
