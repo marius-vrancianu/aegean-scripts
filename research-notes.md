@@ -881,3 +881,13 @@ The independent review of the H-A5-02 outcome (`docs/reviews/H-A5-02-outcome-rev
 - **N2.** "Test 1 alone gives false positives" rests on one lexicon. More exact: Test 1 alone *can* give false positives, and did here.
 - **N3.** Without two-letter forms, the control's remaining excess (+0.032) has p = 0.139. It is not a measured difference between English and its pseudo-lexicons and should not be quoted as one.
 - **N4.** A stray blank line in `docs/for-marius.md` is removed.
+
+## 2026-11-18 — A5.17: a length-stratified matched null, and room for a second protocol
+
+Code only (plain PR); no run on Linear A. Layer L1. Agreed with Marius on 2026-11-18: loader fix, then the revised protocol, then a non-Indo-European lexicon, in that order.
+
+- `nulls.stratified_matched_lexicon`: like the matched null, but filled length by length, so that at every form length the pseudo-lexicon has exactly the real lexicon's number of distinct forms after expansion. Lexicon side, 200 draws each: Hebrew 634 three- and 30 four-letter forms, English 79 two-, 310 three- and 626 four-letter forms, in every draw. This removes by construction the bias that gave English its Test 1 false positive (H-A5-02 outcome).
+- `batch.PROTOCOLS`: H-A5-01 (matched null; `batch.md`) and H-A5-03 (stratified null; `batch-H-A5-03.md`), each its own batch and correction. A pair names one protocol; the same pair may be run once under each. H-A5-01's batch and results are unchanged.
+- H-A5-03 is not registered yet. The runner refuses it until its file is merged.
+
+**Next:** register H-A5-03 (protocol v2 and its first pair) with the re-runs of Hebrew and English under it, and the non-Indo-European lexicon when its source is settled.

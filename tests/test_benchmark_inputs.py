@@ -96,6 +96,20 @@ def test_matched_lexicon_has_the_real_lexicon_size_after_expansion_and_its_posit
     assert a.forms == b.forms
 
 
+def test_stratified_lexicon_matches_the_real_lexicon_at_every_length():
+    from aegean.benchmark.m1 import M1
+    import collections
+    m = M1()
+    real = Lexicon("r", frozenset({"KP", "SR", "MN", "KWP", "SWR", "DWR", "NWN", "HWR", "TWM", "KWS", "SDKR", "PRTN"}))
+    want = collections.Counter(len(f) for f in m.prepare(real))
+    for seed in range(5):
+        fake = nulls.stratified_matched_lexicon(real, m, random.Random(seed), seed)
+        assert collections.Counter(len(f) for f in m.prepare(fake)) == want
+        assert all(f[1] == "W" for f in fake.forms if len(f) == 3)  # positional letters per length, as before
+    a, b = (nulls.stratified_matched_lexicon(real, m, random.Random(4)) for _ in range(2))
+    assert a.forms == b.forms
+
+
 def test_random_sign_strings():
     out = nulls.random_sign_strings([2, 3, 5], ["KA", "KA", "RO"], random.Random(3))
     assert [len(g) for g in out] == [2, 3, 5] and {s for g in out for s in g} <= {"KA", "RO"}

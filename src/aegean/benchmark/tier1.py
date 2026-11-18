@@ -42,7 +42,8 @@ Inputs. The primary Linear A input is one reading per document
 the training split. The three sources are also reported separately.
 
 Writes experiments/A5.17/results/<hypothesis>-<method>-<lexicon>.json and .md,
-and batch.json and batch.md (all generated). The first run, H-A5-01, keeps its
+and the protocol's batch table (batch.md for H-A5-01, batch-H-A5-03.md for
+H-A5-03; all generated). The first run, H-A5-01, keeps its
 original name, M1-hebrew-strong-verbs.
 """
 from __future__ import annotations
@@ -93,10 +94,14 @@ def hit_rate(method: Method, groups: list[SignGroup], prepared: Any) -> float:
     return sum(method.hits(el, prepared)) / len(el) if el else float("nan")
 
 
-def matched_lexicons(real: Lexicon, method: Method, n: int, seed: int) -> list[Lexicon]:
-    """n matched pseudo-lexicons (the decision null) from one seeded stream, in order."""
+def matched_lexicons(real: Lexicon, method: Method, n: int, seed: int, kind: str = "matched") -> list[Lexicon]:
+    """n pseudo-lexicons of the decision null from one seeded stream, in order.
+
+    kind "matched" is protocol H-A5-01's null; "stratified" is H-A5-03's (`batch.PROTOCOLS`).
+    """
+    draw = {"matched": nulls.matched_lexicon, "stratified": nulls.stratified_matched_lexicon}[kind]
     rng = random.Random(seed)
-    return [nulls.matched_lexicon(real, method, rng, i) for i in range(n)]
+    return [draw(real, method, rng, i) for i in range(n)]
 
 
 def null_lexicons(real: Lexicon, n: int, seed: int, size_factor: float = 1.0) -> list[Lexicon]:
@@ -255,6 +260,7 @@ def permissiveness(method: Method, groups: list[SignGroup], prepared: Any) -> di
 # ---- the run ---------------------------------------------------------------------------------
 
 def run(method: Method, real: Lexicon, witnesses: list[dict], control: list[SignGroup], *, protocol: str,
+        batch_protocol: str = batch.PROTOCOL,
         n_null: int = N_NULL, n_resample: int = N_RESAMPLE, seed_null: int = SEED_NULL,
         seed_resample: int = SEED_RESAMPLE) -> dict:
     """The whole Tier 1 table for one (method, lexicon) pair. `witnesses` come from `aegean.corpus.load`."""
@@ -266,7 +272,8 @@ def run(method: Method, real: Lexicon, witnesses: list[dict], control: list[Sign
     universe = [g for gs in sets.values() for g in gs]
 
     # The decision null (matched) and the Finding 001 null (descriptive), each over Linear A and the control.
-    matched = matched_lexicons(real, method, n_null, seed_null)
+    null_kind = batch.PROTOCOLS[batch_protocol]["null"]
+    matched = matched_lexicons(real, method, n_null, seed_null, null_kind)
     table, ctable = HitTable(method, universe, real, matched), HitTable(method, control, real, matched)
     f001 = null_lexicons(real, n_null, SEED_NULL_F001)
     table_f, ctable_f = HitTable(method, universe, real, f001), HitTable(method, control, real, f001)
@@ -319,7 +326,7 @@ def run(method: Method, real: Lexicon, witnesses: list[dict], control: list[Sign
         "rules": method.rules.to_json() if hasattr(method, "rules") else None,
         "lexicon": {"name": real.name, "forms": len(real), "forms_after_expansion": len(prepared), **real.meta},
         "null_lexicons": {
-            "matched": {"n": n_null, "seed": seed_null, "forms_after_expansion": len(prepared),
+            "matched": {"kind": null_kind, "n": n_null, "seed": seed_null, "forms_after_expansion": len(prepared),
                         "forms_mean": statistics.fmean(len(l) for l in matched)},
             "finding_001": {"n": n_null, "seed": SEED_NULL_F001, "forms": len(real),
                             "forms_after_expansion_mean": statistics.fmean(len(method.prepare(l)) for l in f001)},
@@ -334,7 +341,7 @@ def run(method: Method, real: Lexicon, witnesses: list[dict], control: list[Sign
         "test1": {"p": p1, "excess": la["primary"]["excess"]},
         "test2": test2,
         "p_pair": max(p1, p2),
-        "batch_protocol": batch.PROTOCOL,
+        "batch_protocol": batch_protocol,
         "outcome_before_batch": label(p1, p2),
         "outcome": label(p1, p2),
         "linear_a_by_length": table.by_length(sets["primary"]),
@@ -373,13 +380,14 @@ def report(r: dict, provenance: dict) -> str:
         f"- **Corpus:** {provenance['corpus']} @ `{provenance['commit']}`, training split.",
         f"- **Lexicon:** {r['lexicon']['name']}, {r['lexicon']['forms']} forms "
         f"({r['lexicon']['forms_after_expansion']} after the method's lexicon-side licences).",
-        f"- **Matched pseudo-lexicons:** {nl['matched']['n']}, seed {nl['matched']['seed']}; each has "
+        f"- **Matched pseudo-lexicons** ({'length-stratified' if nl['matched'].get('kind') == 'stratified' else 'protocol H-A5-01'}): "
+        f"{nl['matched']['n']}, seed {nl['matched']['seed']}; each has "
         f"{nl['matched']['forms_after_expansion']} forms after expansion ({nl['matched']['forms_mean']:.0f} before, on average).",
         "",
         f"## Outcome: {r['outcome']}",
         "",
         *([f"- **Batch** (Benjamini–Hochberg over {r['batch']['size']} pair{'s' if r['batch']['size'] != 1 else ''}, "
-           f"`batch.md`): adjusted pair p = {r['batch']['p_adjusted']:.4f}. Outcome before the correction: "
+           f"`{batch.PROTOCOLS[r.get('batch_protocol', batch.PROTOCOL)]['batch_stem']}.md`): adjusted pair p = {r['batch']['p_adjusted']:.4f}. Outcome before the correction: "
            f"{r['outcome_before_batch']}."] if "batch" in r else
           ["- **Batch correction not applied** (this report was not made by the command line)."]),
         f"- **Test 1** (real lexicon against matched pseudo-lexicons, Linear A): excess {r['test1']['excess']:+.3f}, "
@@ -481,14 +489,14 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--out", type=Path, default=OUT_DIR)
     args = ap.parse_args(argv)
     try:
-        batch.check_registered(args.protocol, REPO)
+        bp = batch.check_registered(args.protocol, REPO)
     except batch.NotRegistered as e:
         print(f"REFUSED: {e}", file=sys.stderr)
         return 2
     method = METHODS[args.method](M1Rules.from_json(args.rules)) if args.rules else METHODS[args.method]()
     real = lexicons.REGISTRY[args.lexicon]() if args.lexicon else lexicons.from_file(args.lexicon_file)
     # Check the batch before the run, so that a clash costs nothing.
-    recs = batch.records(args.out) if args.out.exists() else []
+    recs = batch.records(args.out, bp) if args.out.exists() else []
     stem = batch.stem_for(recs, args.protocol, method.name, real.name)
     stub = {"protocol": args.protocol, "method": method.name, "rules": method.rules.to_json() if hasattr(method, "rules") else None,
             "lexicon": {"name": real.name, "forms": len(real), **real.meta}, "test1": {"p": 1.0}, "test2": {"p": 1.0}}
@@ -498,17 +506,17 @@ def main(argv: list[str] | None = None) -> int:
         print(f"REFUSED: {e}", file=sys.stderr)
         return 2
     control, control_meta = inputs.linear_b_control()
-    r = run(method, real, load.witnesses(), control, protocol=args.protocol)
+    r = run(method, real, load.witnesses(), control, protocol=args.protocol, batch_protocol=bp)
     r["control_source"] = control_meta
     r["provenance"] = provenance()
     args.out.mkdir(parents=True, exist_ok=True)
-    table, changed = batch.update(args.out, r, stem)
+    table, changed = batch.update(args.out, r, stem, bp)
     r["batch"] = batch.entry(table, args.protocol)
     r["outcome"] = r["batch"]["outcome"]
     (args.out / f"{stem}.json").write_text(json.dumps(r, indent=1, ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8")
     (args.out / f"{stem}.md").write_text(report(r, r["provenance"]), encoding="utf-8")
-    batch.write(args.out, table, changed)
-    print(f"{stem}: {r['outcome']}  (wrote {args.out / (stem + '.md')}; batch of {len(table)})")
+    batch.write(args.out, table, changed, bp)
+    print(f"{stem}: {r['outcome']}  (wrote {args.out / (stem + '.md')}; {bp} batch of {len(table)})")
     for c in changed:
         print(f"OUTCOME CHANGED for an earlier pair: {c}. Record it in {args.protocol}'s outcome file.")
     return 0

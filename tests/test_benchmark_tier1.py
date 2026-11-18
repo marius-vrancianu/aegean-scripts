@@ -173,7 +173,7 @@ def test_cli_refuses_a_second_run_of_the_registered_pair_under_another_hypothesi
     from aegean.benchmark import batch
     out = tmp_path / "results"
     shutil.copytree(tier1.OUT_DIR, out)
-    monkeypatch.setattr(batch, "check_registered", lambda h, repo: None)
+    monkeypatch.setattr(batch, "check_registered", lambda h, repo: "H-A5-01")
     monkeypatch.setattr(tier1, "run", lambda *a, **k: pytest.fail("the run must not start"))
     if not lexicons_present():
         pytest.skip("Hebrew lexicon not fetched")
