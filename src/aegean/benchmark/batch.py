@@ -45,8 +45,10 @@ from typing import Any
 
 PROTOCOL = "H-A5-01"  # the first protocol; results files without a batch_protocol field belong to it
 PROTOCOLS = {
-    "H-A5-01": {"null": "matched", "batch_stem": "batch"},
-    "H-A5-03": {"null": "stratified", "batch_stem": "batch-H-A5-03"},
+    # "pairs": the only hypotheses a closed protocol still accepts (None = open). H-A5-03, Part 1, point 3
+    # closes H-A5-01 to new pairs, so that no pair can be run under both nulls and the better result kept.
+    "H-A5-01": {"null": "matched", "batch_stem": "batch", "pairs": {"H-A5-01", "H-A5-02"}},
+    "H-A5-03": {"null": "stratified", "batch_stem": "batch-H-A5-03", "pairs": None},
 }
 ALPHA = 0.05
 Q = 0.05
@@ -100,12 +102,18 @@ def check_registered(hypothesis_id: str, repo: Path) -> str:
     if merged != path.read_bytes():
         raise NotRegistered(f"{rel} differs from the merged version on main")
     if hypothesis_id in PROTOCOLS:
-        return hypothesis_id
-    cited = PROTOCOL_LINE_RE.findall(merged.decode("utf-8", errors="replace"))
-    if len(cited) != 1 or cited[0] not in PROTOCOLS:
-        raise NotRegistered(f"{rel} must name its protocol in one line '- **Protocol:** <one of "
-                            f"{', '.join(PROTOCOLS)}>' (found {cited or 'none'})")
-    return cited[0]
+        protocol = hypothesis_id
+    else:
+        cited = PROTOCOL_LINE_RE.findall(merged.decode("utf-8", errors="replace"))
+        if len(cited) != 1 or cited[0] not in PROTOCOLS:
+            raise NotRegistered(f"{rel} must name its protocol in one line '- **Protocol:** <one of "
+                                f"{', '.join(PROTOCOLS)}>' (found {cited or 'none'})")
+        protocol = cited[0]
+    allowed = PROTOCOLS[protocol]["pairs"]
+    if allowed is not None and hypothesis_id not in allowed:
+        raise NotRegistered(f"protocol {protocol} is closed to new pairs (H-A5-03, Part 1, point 3); "
+                            f"register {hypothesis_id} under an open protocol")
+    return protocol
 
 
 # ---- the batch -------------------------------------------------------------------------------
