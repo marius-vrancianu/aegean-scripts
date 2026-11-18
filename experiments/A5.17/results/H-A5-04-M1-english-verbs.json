@@ -1,0 +1,752 @@
+{
+ "batch": {
+  "outcome": "A: no better than a random lexicon",
+  "p_adjusted": 0.8711288711288712,
+  "q": 0.05,
+  "size": 2
+ },
+ "batch_protocol": "H-A5-03",
+ "control": {
+  "excess": 0.032535476718403566,
+  "false_positive_rate": 0.4574866962305987,
+  "n": 902,
+  "n_null": 1000,
+  "null_high": 0.4866962305986696,
+  "null_low": 0.4268292682926829,
+  "null_max": 0.5033259423503326,
+  "null_min": 0.4113082039911308,
+  "null_sd": 0.015055538910454896,
+  "p": 0.014985014985014986,
+  "p_lower": 0.991008991008991,
+  "real": 0.49002217294900224
+ },
+ "control_by_length": {
+  "2": {
+   "excess": -0.01010091743119268,
+   "false_positive_rate": 0.7990917431192661,
+   "n": 109,
+   "n_null": 1000,
+   "null_high": 0.8623853211009175,
+   "null_low": 0.7247706422018348,
+   "null_max": 0.8990825688073395,
+   "null_min": 0.6880733944954128,
+   "null_sd": 0.03529141680888527,
+   "p": 0.6713286713286714,
+   "p_lower": 0.4075924075924076,
+   "real": 0.7889908256880734
+  },
+  "3": {
+   "excess": 0.04576492537313437,
+   "false_positive_rate": 0.6631902985074627,
+   "n": 268,
+   "n_null": 1000,
+   "null_high": 0.7126865671641791,
+   "null_low": 0.6119402985074627,
+   "null_max": 0.7388059701492538,
+   "null_min": 0.5783582089552238,
+   "null_sd": 0.025629182431459806,
+   "p": 0.03996003996003996,
+   "p_lower": 0.974025974025974,
+   "real": 0.7089552238805971
+  },
+  "4": {
+   "excess": 0.052550769230769234,
+   "false_positive_rate": 0.41206461538461536,
+   "n": 325,
+   "n_null": 1000,
+   "null_high": 0.4584615384615385,
+   "null_low": 0.36615384615384616,
+   "null_max": 0.48,
+   "null_min": 0.3353846153846154,
+   "null_sd": 0.023218785029592737,
+   "p": 0.017982017982017984,
+   "p_lower": 0.989010989010989,
+   "real": 0.4646153846153846
+  },
+  "5+": {
+   "excess": 0.005519999999999997,
+   "false_positive_rate": 0.06948,
+   "n": 200,
+   "n_null": 1000,
+   "null_high": 0.095,
+   "null_low": 0.045,
+   "null_max": 0.105,
+   "null_min": 0.04,
+   "null_sd": 0.012042617017269322,
+   "p": 0.4085914085914086,
+   "p_lower": 0.7472527472527473,
+   "real": 0.075
+  }
+ },
+ "control_source": {
+  "commit": "480bad2487820e3737fecfdd108214efa769e34b",
+  "distinct": 918,
+  "dropped": {
+   "no_greek": 0,
+   "non_linear_b_sign": 0,
+   "too_short": 1
+  },
+  "rows_used": 918,
+  "sha256": "0e8099cd9f02c36fc14599d9bc12836489816c0b1d17f471e723b98c978b10fa",
+  "source": "j-luo93/NeuroDecipher data/linear_b-greek.cog"
+ },
+ "degrees_of_freedom": {
+  "affix_menus": {
+   "prefixes": 12,
+   "segmentations_at_most": 221,
+   "suffixes": 16
+  },
+  "doubled_signs": {
+   "collapse": true
+  },
+  "languages_pooled": {
+   "count": 1,
+   "note": "set by the lexicon passed in, not by the method"
+  },
+  "sign_value_mergers": {
+   "consonant_classes": [
+    "D",
+    "H",
+    "J",
+    "K",
+    "M",
+    "N",
+    "P",
+    "R",
+    "S",
+    "T",
+    "W"
+   ],
+   "lexicon_interchanges": {
+    "D": "DT",
+    "S": "ST",
+    "T": "DT"
+   },
+   "merged_series": {
+    "D": "d",
+    "K": "k, q",
+    "P": "p (covers p, b, ph)",
+    "R": "r (Linear B r covers r and l)",
+    "S": "s, z",
+    "T": "t"
+   }
+  },
+  "unwritten_radicals": {
+   "applies_to": "two-consonant skeletons",
+   "extra_readings": 9,
+   "positions": 3,
+   "radicals": "HWJ"
+  },
+  "vowel_signs": {
+   "note": "each pure-vowel sign is H or nothing",
+   "readings_per_sign": 2,
+   "signs": [
+    "A",
+    "E",
+    "I",
+    "O",
+    "U",
+    "AU",
+    "A3",
+    "AI"
+   ]
+  }
+ },
+ "finding_001_null": {
+  "control": {
+   "excess": 0.08919623059866966,
+   "false_positive_rate": 0.4008259423503326,
+   "n": 902,
+   "n_null": 1000,
+   "null_high": 0.442350332594235,
+   "null_low": 0.36247228381374724,
+   "null_max": 0.4634146341463415,
+   "null_min": 0.33148558758314856,
+   "null_sd": 0.020731875411968696,
+   "p": 0.000999000999000999,
+   "p_lower": 1.0,
+   "real": 0.49002217294900224
+  },
+  "linear_a": {
+   "excess": 0.09023429951690831,
+   "false_positive_rate": 0.6150797101449275,
+   "n": 414,
+   "n_null": 1000,
+   "null_high": 0.6714975845410628,
+   "null_low": 0.5579106280193237,
+   "null_max": 0.6980676328502415,
+   "null_min": 0.5217391304347826,
+   "null_sd": 0.029981247553665574,
+   "p": 0.000999000999000999,
+   "p_lower": 1.0,
+   "real": 0.7053140096618358
+  }
+ },
+ "inputs": {
+  "lineara.xyz": {
+   "distinct": 548,
+   "documents": 261,
+   "eligible": 400,
+   "occurrences": 759
+  },
+  "primary": {
+   "distinct": 545,
+   "documents": 257,
+   "eligible": 414,
+   "occurrences": 743
+  },
+  "sigla": {
+   "distinct": 431,
+   "documents": 169,
+   "eligible": 321,
+   "occurrences": 596
+  },
+  "younger": {
+   "distinct": 229,
+   "documents": 119,
+   "eligible": 195,
+   "occurrences": 266
+  }
+ },
+ "layer": "L1",
+ "lexicon": {
+  "cmudict_commit": "74790861f652b15e4ac49015a90074ad62a27690",
+  "conversion": "single-word verbs by SemCor tagged-sense count; first CMUdict pronunciation; consonants to M1 classes (ENGLISH_CLASS); length 2-4; first 502 distinct skeletons",
+  "forms": 502,
+  "forms_after_expansion": 1015,
+  "last_verb_taken": [
+   "hurtle",
+   2
+  ],
+  "licence": "WordNet 3.0 licence; CMUdict BSD-style",
+  "name": "english-verbs",
+  "sha256": "532b32334849b5e3857b8672cd62f6998d762b0991f8d98f1639cc9daccc2ab9",
+  "skipped": {
+   "duplicate": 496,
+   "length": 217,
+   "no_pronunciation": 6
+  },
+  "source": "Princeton WordNet 3.0 index.verb (nltk_data) + CMU Pronouncing Dictionary",
+  "verbs_ranked": 8429,
+  "wordnet_commit": "550b6625bcef1f2abff2ff770a5a0d272c9c6b2a"
+ },
+ "lexicon_size": {
+  "0.5": {
+   "forms": 251,
+   "max": 0.5120772946859904,
+   "mean": 0.4454106280193237,
+   "min": 0.37681159420289856
+  },
+  "1": {
+   "forms": 502,
+   "max": 0.6570048309178744,
+   "mean": 0.6148550724637681,
+   "min": 0.5555555555555556
+  },
+  "2": {
+   "forms": 1004,
+   "max": 0.7995169082125604,
+   "mean": 0.7626811594202898,
+   "min": 0.7270531400966184
+  },
+  "4": {
+   "forms": 2008,
+   "max": 0.8913043478260869,
+   "mean": 0.8713768115942029,
+   "min": 0.8454106280193237
+  }
+ },
+ "linear_a": {
+  "lineara.xyz": {
+   "excess": 0.006247499999999961,
+   "false_positive_rate": 0.6912525,
+   "n": 400,
+   "n_null": 1000,
+   "null_high": 0.7275,
+   "null_low": 0.65,
+   "null_max": 0.76,
+   "null_min": 0.6275,
+   "null_sd": 0.01989304468845774,
+   "p": 0.41058941058941056,
+   "p_lower": 0.6513486513486514,
+   "real": 0.6975
+  },
+  "primary": {
+   "excess": 0.012224637681159445,
+   "false_positive_rate": 0.6930893719806763,
+   "n": 414,
+   "n_null": 1000,
+   "null_high": 0.7294685990338164,
+   "null_low": 0.6545893719806763,
+   "null_max": 0.7657004830917874,
+   "null_min": 0.6183574879227053,
+   "null_sd": 0.01953637399419106,
+   "p": 0.28771228771228774,
+   "p_lower": 0.7592407592407593,
+   "real": 0.7053140096618358
+  },
+  "sigla": {
+   "excess": 0.008230529595015579,
+   "false_positive_rate": 0.7020498442367601,
+   "n": 321,
+   "n_null": 1000,
+   "null_high": 0.7445482866043613,
+   "null_low": 0.660436137071651,
+   "null_max": 0.7881619937694704,
+   "null_min": 0.6261682242990654,
+   "null_sd": 0.021415965985737175,
+   "p": 0.3676323676323676,
+   "p_lower": 0.6813186813186813,
+   "real": 0.7102803738317757
+  },
+  "younger": {
+   "excess": 0.012076923076923096,
+   "false_positive_rate": 0.6545897435897435,
+   "n": 195,
+   "n_null": 1000,
+   "null_high": 0.7025641025641025,
+   "null_low": 0.6,
+   "null_max": 0.7384615384615385,
+   "null_min": 0.5435897435897435,
+   "null_sd": 0.02636586182011966,
+   "p": 0.35764235764235763,
+   "p_lower": 0.7162837162837162,
+   "real": 0.6666666666666666
+  }
+ },
+ "linear_a_by_length": {
+  "2": {
+   "excess": -0.017398148148148218,
+   "false_positive_rate": 0.8136944444444445,
+   "n": 108,
+   "n_null": 1000,
+   "null_high": 0.8796296296296297,
+   "null_low": 0.75,
+   "null_max": 0.9259259259259259,
+   "null_min": 0.6851851851851852,
+   "null_sd": 0.032917933764743196,
+   "p": 0.7582417582417582,
+   "p_lower": 0.33966033966033965,
+   "real": 0.7962962962962963
+  },
+  "3": {
+   "excess": 0.02652298850574719,
+   "false_positive_rate": 0.7550862068965517,
+   "n": 174,
+   "n_null": 1000,
+   "null_high": 0.8047413793103447,
+   "null_low": 0.7011494252873564,
+   "null_max": 0.8390804597701149,
+   "null_min": 0.6609195402298851,
+   "null_sd": 0.02689426362803762,
+   "p": 0.18181818181818182,
+   "p_lower": 0.8791208791208791,
+   "real": 0.7816091954022989
+  },
+  "4": {
+   "excess": 0.02440476190476193,
+   "false_positive_rate": 0.606547619047619,
+   "n": 84,
+   "n_null": 1000,
+   "null_high": 0.6785714285714286,
+   "null_low": 0.5357142857142857,
+   "null_max": 0.7380952380952381,
+   "null_min": 0.4880952380952381,
+   "null_sd": 0.038748297625713655,
+   "p": 0.3176823176823177,
+   "p_lower": 0.7792207792207793,
+   "real": 0.6309523809523809
+  },
+  "5+": {
+   "excess": 0.005729166666666674,
+   "false_positive_rate": 0.3484375,
+   "n": 48,
+   "n_null": 1000,
+   "null_high": 0.4375,
+   "null_low": 0.25,
+   "null_max": 0.5,
+   "null_min": 0.20833333333333334,
+   "null_sd": 0.04688397802650746,
+   "p": 0.5274725274725275,
+   "p_lower": 0.6423576423576424,
+   "real": 0.3541666666666667
+  }
+ },
+ "method": "M1",
+ "null_lexicons": {
+  "finding_001": {
+   "forms": 502,
+   "forms_after_expansion_mean": 1136.13,
+   "n": 1000,
+   "seed": 20261118
+  },
+  "matched": {
+   "forms_after_expansion": 1015,
+   "forms_mean": 473.803,
+   "kind": "stratified",
+   "n": 1000,
+   "seed": 20261114
+  }
+ },
+ "outcome": "A: no better than a random lexicon",
+ "outcome_before_batch": "A: no better than a random lexicon",
+ "p_pair": 0.7802197802197802,
+ "params": {
+  "alpha": 0.05,
+  "n_resample": 1000,
+  "p_doubt": 0.5,
+  "seed_resample": 20261115,
+  "seed_size": 20261117,
+  "seed_strings": 20261116,
+  "source_order": [
+   "sigla",
+   "lineara.xyz",
+   "younger"
+  ],
+  "split": "train"
+ },
+ "permissiveness": {
+  "lengths": [
+   2,
+   3,
+   4
+  ],
+  "letters": "DHJKMNPRSTW",
+  "lexicon_forms_after_expansion": 1015,
+  "reading_space": 16093,
+  "readings_per_group_max": 41,
+  "readings_per_group_mean": 7.342995169082125,
+  "readings_per_group_median": 9.5,
+  "share_of_reading_space_in_lexicon": 0.06307090039147456
+ },
+ "protocol": "H-A5-04",
+ "provenance": {
+  "commit": "550dc7a",
+  "corpus": "corpus-v1.0"
+ },
+ "random_sign_strings": {
+  "max": 0.6352657004830918,
+  "mean": 0.5921497584541063,
+  "min": 0.5652173913043478,
+  "real_sign_groups": 0.7053140096618358,
+  "reps": 20
+ },
+ "resampling": {
+  "bootstrap": {
+   "difference": {
+    "high": -0.0003460545699246847,
+    "low": -0.030389774608042482,
+    "max": 0.007795082613459181,
+    "median": -0.01541787294784347,
+    "min": -0.039808517577495595,
+    "n": 1000
+   },
+   "excess": {
+    "high": 0.026022760911404916,
+    "low": -0.0034451907141422283,
+    "max": 0.03610839160839163,
+    "median": 0.01150729927007299,
+    "min": -0.013340579710144906,
+    "n": 1000
+   },
+   "false_positive_rate": {
+    "high": 0.7245832936968036,
+    "low": 0.6786808529210256,
+    "max": 0.7410518518518519,
+    "median": 0.7011442747755676,
+    "min": 0.6667572463768117,
+    "n": 1000
+   },
+   "n": {
+    "high": 322.0,
+    "low": 253.0,
+    "max": 337,
+    "median": 290.0,
+    "min": 236,
+    "n": 1000
+   },
+   "p1_at_most_alpha": {
+    "high": 0.0,
+    "low": 0.0,
+    "max": 1.0,
+    "median": 0.0,
+    "min": 0.0,
+    "n": 1000
+   },
+   "p2_at_most_alpha": {
+    "high": 0.0,
+    "low": 0.0,
+    "max": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "n": 1000
+   },
+   "real": {
+    "high": 0.7407438169066075,
+    "low": 0.6854713163180904,
+    "max": 0.762962962962963,
+    "median": 0.712280701754386,
+    "min": 0.6666666666666666,
+    "n": 1000
+   }
+  },
+  "both": {
+   "difference": {
+    "high": -0.0026827575363895496,
+    "low": -0.03607414823302744,
+    "max": 0.005555790743438482,
+    "median": -0.019288142738738634,
+    "min": -0.04681409296228134,
+    "n": 1000
+   },
+   "excess": {
+    "high": 0.02434629618226593,
+    "low": -0.009373708353791154,
+    "max": 0.03332441471571901,
+    "median": 0.007898434394219334,
+    "min": -0.021607142857142825,
+    "n": 1000
+   },
+   "false_positive_rate": {
+    "high": 0.72644063636738,
+    "low": 0.6793076160765074,
+    "max": 0.7419717741935484,
+    "median": 0.7015983083817592,
+    "min": 0.6598210116731517,
+    "n": 1000
+   },
+   "n": {
+    "high": 316.025,
+    "low": 248.0,
+    "max": 336,
+    "median": 282.0,
+    "min": 223,
+    "n": 1000
+   },
+   "p1_at_most_alpha": {
+    "high": 0.0,
+    "low": 0.0,
+    "max": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "n": 1000
+   },
+   "p2_at_most_alpha": {
+    "high": 0.0,
+    "low": 0.0,
+    "max": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "n": 1000
+   },
+   "real": {
+    "high": 0.7407441200324412,
+    "low": 0.6806005908377741,
+    "max": 0.7701612903225806,
+    "median": 0.7093224430675142,
+    "min": 0.6614785992217899,
+    "n": 1000
+   }
+  },
+  "estimate": {
+   "difference": -0.015677349149133324,
+   "excess": 0.012224637681159445,
+   "false_positive_rate": 0.6930893719806763,
+   "n": 414,
+   "p1_at_most_alpha": 0.0,
+   "p2_at_most_alpha": 0.0,
+   "real": 0.7053140096618358
+  },
+  "params": {
+   "documents": 478,
+   "documents_by_number_of_sources": {
+    "1": 38,
+    "2": 257,
+    "3": 183
+   },
+   "doubtful_signs_in_primary_reading": 36,
+   "level": 0.95,
+   "n": 1000,
+   "p_doubt": 0.5,
+   "seed": 20261115,
+   "source_order": [
+    "sigla",
+    "lineara.xyz",
+    "younger"
+   ],
+   "strata": 57,
+   "stratum": "site_of"
+  },
+  "reading": {
+   "difference": {
+    "high": -0.012030589673468635,
+    "low": -0.026272353416796956,
+    "max": -0.007996657500932258,
+    "median": -0.01919961786544455,
+    "min": -0.029272851144783618,
+    "n": 1000
+   },
+   "excess": {
+    "high": 0.015933374519756745,
+    "low": 0.0015144318181817894,
+    "max": 0.02061265822784808,
+    "median": 0.008756657327558537,
+    "min": -0.0013816793893129953,
+    "n": 1000
+   },
+   "false_positive_rate": {
+    "high": 0.7065747824510514,
+    "low": 0.6870131783395176,
+    "max": 0.7163214285714286,
+    "median": 0.6960280813987716,
+    "min": 0.6839693877551021,
+    "n": 1000
+   },
+   "n": {
+    "high": 404.0,
+    "low": 383.0,
+    "max": 409,
+    "median": 394.0,
+    "min": 378,
+    "n": 1000
+   },
+   "p1_at_most_alpha": {
+    "high": 0.0,
+    "low": 0.0,
+    "max": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "n": 1000
+   },
+   "p2_at_most_alpha": {
+    "high": 0.0,
+    "low": 0.0,
+    "max": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "n": 1000
+   },
+   "real": {
+    "high": 0.7182820830038518,
+    "low": 0.6936708860759494,
+    "max": 0.7272727272727273,
+    "median": 0.705,
+    "min": 0.6868686868686869,
+    "n": 1000
+   }
+  },
+  "share_of_draws": {
+   "p1_at_most_alpha": 0.0,
+   "p2_at_most_alpha": 0.0
+  }
+ },
+ "rules": {
+  "collapse_doubled": true,
+  "initial_class": {
+   "D": "D",
+   "J": "J",
+   "K": "K",
+   "M": "M",
+   "N": "N",
+   "P": "P",
+   "Q": "K",
+   "R": "R",
+   "S": "S",
+   "T": "T",
+   "W": "W",
+   "Z": "S"
+  },
+  "interchanges": {
+   "D": "DT",
+   "S": "ST",
+   "T": "DT"
+  },
+  "laryngeal": "H",
+  "max_core": 4,
+  "max_skeleton": 4,
+  "min_core": 1,
+  "min_group": 2,
+  "min_skeleton": 2,
+  "prefixes": [
+   "A",
+   "TA",
+   "JA",
+   "I",
+   "U-NA",
+   "NA",
+   "WA",
+   "RA",
+   "A-TA",
+   "TA-NA",
+   "JA-TA",
+   "A-NA"
+  ],
+  "special_signs": {
+   "*301": "N",
+   "DWE": "D",
+   "DWO": "D",
+   "NWA": "N",
+   "PA3": "P",
+   "PTE": "P",
+   "PU2": "P",
+   "RA2": "R",
+   "RA3": "R",
+   "RO2": "R",
+   "SWA": "S",
+   "SWI": "S",
+   "TA2": "T",
+   "TWE": "T",
+   "TWO": "T"
+  },
+  "suffixes": [
+   "ME",
+   "MA",
+   "TU",
+   "TI",
+   "TE",
+   "NU",
+   "JA",
+   "SE",
+   "I",
+   "KA",
+   "NA",
+   "NE",
+   "TI-NU",
+   "U-TI-NU",
+   "MI-NA",
+   "TE-TE"
+  ],
+  "vowel_signs": [
+   "A",
+   "E",
+   "I",
+   "O",
+   "U",
+   "AU",
+   "A3",
+   "AI"
+  ],
+  "weak_radicals": "HWJ"
+ },
+ "test1": {
+  "excess": 0.012224637681159445,
+  "p": 0.28771228771228774
+ },
+ "test2": {
+  "control_false_positive_rate_standardised": 0.5788538354818524,
+  "control_real_standardised": 0.6067558223121452,
+  "difference": -0.015677349149133324,
+  "excess_control": 0.02790198683029277,
+  "excess_linear_a": 0.012224637681159445,
+  "length_bins_used": [
+   2,
+   3,
+   4,
+   5
+  ],
+  "n_null": 1000,
+  "null_high": 0.04178098247075909,
+  "null_low": -0.03944131896396911,
+  "p": 0.7802197802197802
+ }
+}

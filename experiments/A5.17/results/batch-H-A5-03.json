@@ -1,0 +1,42 @@
+{
+ "pairs": [
+  {
+   "hypothesis": "H-A5-03",
+   "lexicon": "hebrew-strong-verbs",
+   "method": "M1",
+   "outcome": "A: no better than a random lexicon",
+   "p1": 0.46853146853146854,
+   "p2": 0.8711288711288712,
+   "p_adjusted": 0.8711288711288713,
+   "p_pair": 0.8711288711288712,
+   "pair_key": "9c8b2d5110d22509",
+   "stem": "H-A5-03-M1-hebrew-strong-verbs"
+  },
+  {
+   "hypothesis": "H-A5-04",
+   "lexicon": "english-verbs",
+   "method": "M1",
+   "outcome": "A: no better than a random lexicon",
+   "p1": 0.28771228771228774,
+   "p2": 0.7802197802197802,
+   "p_adjusted": 0.8711288711288713,
+   "p_pair": 0.7802197802197802,
+   "pair_key": "b2b998a066bd79b9",
+   "stem": "H-A5-04-M1-english-verbs"
+  },
+  {
+   "hypothesis": "H-A5-05",
+   "lexicon": "turkish-verbs",
+   "method": "M1",
+   "outcome": "A: no better than a random lexicon",
+   "p1": 0.0999000999000999,
+   "p2": 0.3546453546453546,
+   "p_adjusted": 0.8711288711288713,
+   "p_pair": 0.3546453546453546,
+   "pair_key": "9b2fd98b63d41dae",
+   "stem": "H-A5-05-M1-turkish-verbs"
+  }
+ ],
+ "protocol": "H-A5-03",
+ "q": 0.05
+}

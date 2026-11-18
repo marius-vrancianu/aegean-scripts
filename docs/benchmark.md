@@ -80,19 +80,25 @@ Subclass `interface.Method`: `name`, `eligible`, `match`, `degrees_of_freedom`, 
 
 ## Results so far
 
-`experiments/A5.17/results/batch.md` is the live table. In short:
+Live tables: `experiments/A5.17/results/batch.md` (protocol H-A5-01, closed) and `batch-H-A5-03.md` (protocol H-A5-03, length-stratified null).
 
-| Pair | Lexicon | Test 1 (p1) | Test 2 (p2) | Outcome |
-|---|---|---|---|---|
-| H-A5-01 | Hebrew verbs | 0.397 | 0.840 | A |
-| H-A5-02 | English verbs (unrelated) | **0.009** | 0.754 | B, Test 1 only |
+| Pair | Protocol | Lexicon | Test 1 (p1) | Test 2 (p2) | Outcome |
+|---|---|---|---|---|---|
+| H-A5-01 | H-A5-01 | Hebrew verbs | 0.397 | 0.840 | A |
+| H-A5-02 | H-A5-01 | English verbs (unrelated) | **0.009** | 0.754 | B, Test 1 only |
+| H-A5-03 | H-A5-03 | Hebrew verbs (re-run) | 0.469 | 0.871 | A |
+| H-A5-04 | H-A5-03 | English verbs (re-run) | 0.288 | 0.780 | A |
+| H-A5-05 | H-A5-03 | Turkish verbs (unrelated) | 0.100 | 0.355 | A |
 
-**Test 1 alone gives false positives.** English passed it at p = 0.009, and the advantage disappears when two-letter forms are removed from all lexicons (H-A5-02 outcome). Never quote a Tier 1 result from Test 1 alone.
+Cited outcomes (H-A5-03, Part 1, point 4: the less favourable of a pair's runs): Hebrew A, English A, Turkish A.
+
+- **Test 1 alone can give false positives.** English passed it under the first null (p = 0.009); the length-stratified null removed that.
+- **Real lexicons beat length-matched noise on Greek words** (English +0.033, Turkish +0.032, both p ≈ 0.015), so Test 1 alone remains unsafe under either null. Never quote a Tier 1 result from Test 1 alone.
 
 ## Limits
 
 - M1 is an approximate encoding of one paper's licences (Finding 001, Limitations).
-- **The matched null under-draws short forms.** Lengths are drawn from the real lexicon, but repeated forms are redrawn and short forms repeat most, so the pseudo-lexicons end with fewer short forms than the real lexicon (English: 79 two-letter forms against a null mean of 61.7). For a lexicon with many short forms this tilts Test 1 towards the real lexicon. A length-stratified null is a candidate for a revised protocol.
+- **H-A5-01's matched null under-draws short forms** (fixed by the length-stratified null of H-A5-03). Lengths are drawn from the real lexicon, but repeated forms are redrawn and short forms repeat most, so the pseudo-lexicons end with fewer short forms than the real lexicon (English: 79 two-letter forms against a null mean of 61.7). For a lexicon with many short forms this tilts Test 1 towards the real lexicon. A length-stratified null is a candidate for a revised protocol.
 - The matched null equalises size and positional letter frequencies, not everything: real Semitic roots avoid adjacent identical consonants more than the pseudo-lexicons do (0.14 against 0.18 of forms). Test 2 exists because of residual differences of this kind.
 - The Linear B control comes from the NeuroDecipher data until DAMOS is available (plan A1.10), and is re-run then.
 - Tier 1 measures false positives only. An outcome A says the method cannot tell the lexicon from noise; it does not say what language Linear A is not.
