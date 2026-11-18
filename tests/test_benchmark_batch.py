@@ -22,6 +22,7 @@ def repo(tmp_path):
     (h / "H-A5-02.md").write_text(PAIR_FILE.format(n="02"), encoding="utf-8")
     (h / "H-A5-07.md").write_text("# H-A5-07 — no protocol line\n", encoding="utf-8")
     (h / "H-A5-04.md").write_text(PAIR_FILE.format(n="04").replace("H-A5-01\n", "H-A5-09\n"), encoding="utf-8")
+    (h / "H-A5-08.md").write_text(PAIR_FILE.format(n="08"), encoding="utf-8")  # a new pair naming the closed H-A5-01
     git(tmp_path, "init", "-q", "-b", "main")
     git(tmp_path, "add", ".")
     git(tmp_path, "commit", "-q", "-m", "init")
@@ -70,6 +71,7 @@ def test_batches_are_kept_apart(tmp_path):
     ("../H-A5-01", "not an A5 hypothesis"),
     ("H-A5-07", "must name its protocol"),
     ("H-A5-04", "must name its protocol"),
+    ("H-A5-08", "closed to new pairs"),
 ])
 def test_unregistered_files_are_refused(repo, hid, why):
     with pytest.raises(batch.NotRegistered, match=why):
