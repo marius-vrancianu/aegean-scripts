@@ -65,3 +65,37 @@ The three files are careful and honest: the revision is narrow (one null, one ne
 The null is implemented and validated as described, the figures reproduce, the power check is right, and the prior-knowledge sections are complete as far as the repository shows. The two required changes concern the batch and decision rule across the two protocols: close H-A5-01 to new pairs (R1), and fix in advance how a pair run under both protocols is decided, including the Hebrew re-run (R2). Both are a few sentences, and both have to be in the files before they become immutable.
 
 Verdict: CHANGES REQUESTED
+
+---
+
+# Re-review — PR #55 at `66d13d3`
+
+- **Reviewer:** a separate Claude instance (fresh subagent, 2026-11-18), not the author and not the first reviewer. Given the PR number and the fixed review prompt only.
+- **Reviewed:** the fix commit `66d13d3` against the first review's commit `621c23d` (`git diff 621c23d 66d13d3`: `hypotheses/H-A5-03.md`, `H-A5-04.md`, `H-A5-05.md`, `docs/for-marius.md`, `research-notes.md`), and the three hypothesis files read whole again against H-A5-01, Part 1 (decision rule) and the first review.
+- **Rerun:** the test suite (313 passed, 4 skipped). `experiments/A5.17/results/` still holds only H-A5-01 / H-A5-02 files and the H-A5-01 batch; no `batch-H-A5-03.*`, so nothing has been run under the revised protocol (consistent with the files; not provable from the repository).
+- **Process checks:** the first review is unchanged since `621c23d` (the author did not edit it); its report is recorded on the PR as an issue comment headed "recorded unedited"; the guardrail script on `main` reads the *last* verdict line of the file, so this appended re-review is the one CI counts. No hit rate was computed, no Linear A data or held-out material read.
+
+## R1 — resolved
+*Confidence: high (read).*
+H-A5-03, Part 1, point 3 closes H-A5-01: its batch is final with H-A5-01 and H-A5-02, every later pair names H-A5-03 (or a later revision), and until the runner enforces it the rule binds author and reviewer. The intro paragraph no longer calls it "a convention". The set of pairs run under both protocols is closed and named (point 4: Hebrew and English, M1). This is what was asked. The runner check is listed in `docs/for-marius.md` as a plain follow-up PR, which is the right category (it enforces, does not weaken).
+
+## R2 — resolved
+*Confidence: high (read).*
+- Point 4 fixes, before the runs, that a pair run under both protocols is cited by the less favourable of its two outcomes (A < B < C), so C needs C under both; both runs are still reported. This is the first of the two options the first review would accept.
+- H-A5-03, Part 2 now fixes the reading of each Hebrew outcome: A as before; B or C read as a property of the null, with the pair still cited as A. H-A5-04 states the consequence for English (cited no better than B, since H-A5-02 was B).
+- Consistency with H-A5-01's decision rule: an A under either protocol makes the pair A; nothing in point 4 can turn an A into anything better. Correct.
+
+## Non-blocking notes taken up
+N1 and N4 are added to "What I already know" of H-A5-04 and H-A5-05 with the figures as measured (69 of 79, 52 of 59, 110 and 72 possible forms, 46.6); N2 (inbox) and N3 (control row as calibration, deciding nothing more) are done. The research-notes entry describes the changes accurately.
+
+## New non-blocking notes (no change required before the merge)
+- **M1. Later revisions.** Point 3 lets later pairs name "a later revision". The forking path that R1 closed reopens if a future revision (say H-A5-06) leaves H-A5-03 open. This file cannot bind that one; the review of any later revision should require it to close H-A5-03 to new pairs and to name, as point 4 does here, every pair run under more than one protocol with the less-favourable rule. Worth a line in `docs/benchmark.md` or the runner PR. *Confidence: high that the gap exists; low cost to close later, since any revision is itself review-gated.*
+- **M2. Two kinds of B.** A < B < C does not order the kinds of B (Test 1 only, Test 2 only, both but not after correction). Since only C carries any consequence (Tier 2), this does not change a decision; if English comes out B of a different kind from H-A5-02, the outcome file should report both kinds rather than pick one.
+- **M3. "To be explained before any further pair is read"** (H-A5-03, Part 2, B or C). Read literally this could hold up reading H-A5-05, which is in the same batch and runs at the same time. Suggest the outcome file read it as: no pair registered *after* this batch is interpreted until the change is explained; the three pairs of this batch are reported as registered.
+- **M4. Hedge lost in H-A5-04.** "The null's spread is smaller than under H-A5-01" is stated as fact; in the first review it was reasoning, not a measurement. Harmless in a "What I already know" section (it informs bias disclosure, not the decision), but the outcome file should either measure it (the SD of the pseudo-lexicons' hit rates under both nulls is reported anyway) or keep the hedge.
+- **M5. Batch composition.** Two of the three pairs in this batch are non-blind re-runs. They enter Turkish's BH correction. Under the predicted outcomes (large p for the re-runs) this makes the correction for Turkish more conservative than a batch of 1, which is the safe direction; a small p from a re-run could slightly ease it under step-up BH. Pre-registered, so acceptable; the outcome file of H-A5-05 should show Turkish's adjusted p both as registered and, descriptively, alone.
+
+## Assessment
+Both required changes are made, in the files that become immutable at the merge, and nothing else in the hypotheses changed beyond the notes the first review suggested. The null model, power check, decision rule and batch count, and the prior-knowledge sections all stand as checked in the first review. The notes above are for the outcome files and the next protocol revision.
+
+Verdict: APPROVE
