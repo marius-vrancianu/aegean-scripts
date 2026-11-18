@@ -69,3 +69,59 @@ def test_english_verbs_lexicon():
     # the most frequent verbs, converted by hand from their CMUdict entries
     assert {"TK", "MK", "RN", "KP", "HRD", "PRK", "PR", "DR", "KT", "KS", "HP", "PS", "KR"} <= lex.forms
     assert {len(f) for f in lex.forms} == {2, 3, 4}
+
+
+# Zemberek lines in the format of master-dictionary.dict at the pinned commit (attributes as in the real file:
+# "affetmek [A:Voicing, Aorist_A]", "ahmak [P:Adj]"); counts in FrequencyWords format, made up.
+TR_DICT = "\n".join([
+    ", [P:Punc]", "abanmak", "yapmak", "gelmek", "demek", "söylemek", "anlamak", "beklemek",
+    "affetmek [A:Voicing, Aorist_A]", "kaybetmek [A:Voicing, Aorist_A]", "benzetmek", "öğretmek",
+    "kaybolmak", "dolmak", "yetmek", "affeylemek", "deneylemek", "ahmak [P:Adj]", "değmek", "ev [P:Noun]",
+])
+TR_FREQ = "\n".join(["bir 100", "yapmak 50", "gelmek 40", "demek 30", "kaybetmek 25", "söylemek 20", "benzetmek 9",
+                     "anlamak 8", "dolmak 7", "değmek 5", "beklemek 4", "yetmek 3", "öğretmek 2"])
+
+
+def test_zemberek_verbs_and_compounds():
+    entries = L.zemberek_verbs(TR_DICT)
+    assert "ahmak" not in entries and "ev" not in entries and "yapmak" in entries
+    compound = {v for v in entries if L.turkish_compound(v, entries)}
+    # loans with etmek/olmak/eylemek out; native causatives (benzetmek, öğretmek), dolmak, yetmek, deneylemek kept
+    assert compound == {"affetmek", "kaybetmek", "kaybolmak", "affeylemek"}
+
+
+@pytest.mark.parametrize("verb, want", [
+    ("yapmak", "JP"),        # y-a-p
+    ("gelmek", "KR"),        # g-e-l
+    ("söylemek", "SJR"),     # s-ö-y-l-e
+    ("anlamak", "NR"),       # a-n-l-a
+    ("değmek", "D"),         # ğ dropped
+    ("çekmek", "SK"),        # ç -> S
+    ("vermek", "PR"),        # v -> P
+    ("hazırlamak", "HSRR"),
+    ("beklemek", "PKR"),
+])
+def test_turkish_skeleton(verb, want):
+    assert L.turkish_skeleton(verb) == want
+
+
+def test_turkish_ranking():
+    forms, info = L.turkish_verb_skeletons(TR_DICT, TR_FREQ, size=5)
+    # yapmak JP, gelmek KR, demek D (too short), kaybetmek (compound), söylemek SJR, benzetmek PNST (4), anlamak NR
+    assert forms == {"JP", "KR", "SJR", "PNST", "NR"}
+    assert info["compounds_excluded"] == 4 and info["skipped"] == {"length": 1, "duplicate": 0}
+    assert info["last_verb_taken"] == ("anlamak", 8)
+    with pytest.raises(ValueError, match="no class"):
+        L.turkish_skeleton("xyzmak")
+
+
+needs_turkish = pytest.mark.skipif(not (L.ZEMBEREK_DICT.exists() and L.TR_FREQ.exists()),
+                                   reason="run data/raw/zemberek/fetch.py and data/raw/frequencywords/fetch.py")
+
+
+@needs_turkish
+def test_turkish_verbs_lexicon():
+    lex = L.turkish_verbs()
+    assert len(lex) == 502 and lex.meta["verbs"] == 3220 and lex.meta["compounds_excluded"] == 133
+    assert lex.meta["last_verb_taken"] == ("yankılamak", 2)
+    assert {"JP", "KR", "SJR", "NR", "PKR"} <= lex.forms  # yapmak, gelmek, söylemek, anlamak, beklemek

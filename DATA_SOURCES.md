@@ -125,5 +125,15 @@ Recorded so nobody re-does the check. Neither source adds independent readings.
 - **Licence:** BSD-style (Carnegie Mellon University, 1993–2015; LICENSE in the repository). Fetched, not committed (`data/raw/cmudict/fetch.py`).
 - **Used:** the first pronunciation of each verb, in ARPAbet, converted to M1's consonant classes for the `english-verbs` lexicon.
 
+## Zemberek-NLP Turkish dictionary (Turkish verbs, A5.17)
+- **Source:** `morphology/src/main/resources/tr/master-dictionary.dict` from https://github.com/ahmetaa/zemberek-nlp, pinned at commit `fd8c674927f0c86dc4c09429e6dbc4f6f4abd924`, sha256 `7eec0b78…`.
+- **Licence:** Apache-2.0 (`LICENSE` at the repository root: "Copyright 2018 Ahmet A. Akın, Mehmet D. Akın"). The list itself is probably derived from the Turkish Language Association's dictionary (a sibling file is `non-tdk.dict`); that provenance is unverified, so the file is fetched, not committed (`data/raw/zemberek/fetch.py`).
+- **Used:** verb entries (infinitives in -mak/-mek, not tagged as another part of speech) and Zemberek's `Voicing` attribute, to identify light-verb compounds with etmek, for the `turkish-verbs` lexicon (`aegean.benchmark.lexicons`).
+
+## FrequencyWords, Turkish (word frequencies, A5.17)
+- **Source:** `content/2018/tr/tr_full.txt` from https://github.com/hermitdave/FrequencyWords, pinned at commit `525f9b560de45753a5ea01069454e72e9aa541c6`, sha256 `62fed3d2…` (OpenSubtitles 2018).
+- **Licence:** README: "MIT License for code. CC-by-sa-4.0 for content." Fetched, not committed (30 MB; `data/raw/frequencywords/fetch.py`).
+- **Used:** the count of each verb's infinitive, as the frequency ranking of the `turkish-verbs` lexicon. Homographs inflate a few counts (*yemek* "to eat" and "food").
+
 ## Kanta, Nakassis, Palaima & Perna 2025 (Knossos sceptre overview) — HELD OUT
 - doi:10.26248/ariadne.vi.1841, CC BY-NC-SA 4.0. Descriptive only, no sign-by-sign text. **Held-out material: do not read or ingest** (see `CLAUDE.md`).

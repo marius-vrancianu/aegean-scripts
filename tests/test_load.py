@@ -1,5 +1,6 @@
 """The corpus loader's held-out gate (A1.12). Everything runs on a throwaway repository."""
 import json
+import re
 import subprocess
 
 import pytest
@@ -152,7 +153,7 @@ def test_type_line_must_be_unambiguously_confirmatory(text, ok):
     assert load.declares_confirmatory("# H-A3-09 — x\n\n" + text) is ok
 
 
-OLD_RE = __import__("re").compile(r"^\s*[-*]?\s*\*\*Type:\*\*\s*confirmatory\b", __import__("re").IGNORECASE | __import__("re").MULTILINE)
+OLD_RE = re.compile(r"^\s*[-*]?\s*\*\*Type:\*\*\s*confirmatory\b", re.IGNORECASE | re.MULTILINE)
 
 
 @pytest.mark.parametrize("value", ["confirmatory", "Confirmatory", "confirmatory (x)", "confirmatory / exploratory",
@@ -175,7 +176,10 @@ def test_ambiguous_type_line_releases_nothing(repo):
         load.documents(split="heldout", heldout_for="H-A3-04", **kw(repo))
 
 
-def test_every_merged_hypothesis_is_read_as_before():
-    """The stricter pattern changes no decision for the files already merged (none is confirmatory)."""
+def test_every_merged_hypothesis_is_accepted_only_if_the_old_pattern_accepted_it():
+    """For every hypothesis file in the repository the stricter check releases nothing the old one did not
+    (review of PR #52, N2: the earlier form of this test would have failed on the first confirmatory file)."""
     for p in sorted((load.REPO / "hypotheses").glob("H-*.md")):
-        assert load.declares_confirmatory(p.read_text(encoding="utf-8")) is False, p.name
+        text = p.read_text(encoding="utf-8")
+        if load.declares_confirmatory(text):
+            assert OLD_RE.search(text), p.name
