@@ -966,3 +966,9 @@ Code only (plain PR); no run on Linear A or the control. Layer L1. Order agreed 
 - **Classes:** from LingPy's DOLGO model, read for its class table only (GPL-3.0, not a dependency). They differ from M1's: d with t, affricates with K, v with W. So the three lexicons have Dolgopolsky versions (`*-dolgo`), with the same verbs and selection. Hebrew has 428 distinct skeletons (D and T merge), English and Turkish 502.
 - **Threshold 1/4, chosen before any data:** on 1,000 uniform random strings of Linear B values (not Linear A, not the control), 0 allows no edit, 1/4 gives real-lexicon match rates of 0.27–0.59, and 1/3 saturates (0.93–0.99 for two- and three-class skeletons). 1/4 is the strictest value that allows any edit at the lexicons' form lengths.
 - **Eligibility** (counts only): 378 of the 545 distinct Linear A sign-groups of the primary input. Signs without a Linear B value block the rest (*56, *79, *301 …); unlike M1, M2 does not read *301 as N. 881 of the 918 control words are eligible.
+
+## 2026-11-18 — H-A5-06 to H-A5-08 registered: M2 × Hebrew, English, Turkish
+
+Pairs 4–6 of protocol H-A5-03 (batch of 6). Exploratory, training split, layer L1. All predicted A. M2 and its threshold are fixed in code (PR #59) and in the files; nothing has been run with M2 on Linear A or the control.
+
+**Next:** after the merge, the three runs and their outcome files (review-gated); then the further protocol revision (a null that also matches letter co-occurrence).
