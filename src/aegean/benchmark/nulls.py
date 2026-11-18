@@ -16,6 +16,13 @@ Three nulls, each answering a different question:
    length per form and redraws repeats; short forms repeat more often, so it
    ends with fewer short forms than the real lexicon (H-A5-02 outcome). This
    null removes that bias by construction.
+1c. **Bigram-matched, length-stratified pseudo-lexicons** (`bigram_matched_lexicon`;
+   candidate decision null of a second protocol revision). As (1a), but letters
+   are drawn from a first-order Markov chain fitted to the real lexicon: the
+   first letter from the real first-letter frequencies at that length, every
+   later letter from the real frequencies of what follows the previous letter
+   (pooled over all lengths and positions). This matches adjacent-letter
+   co-occurrence, which (1a) does not.
 1b. **Finding 001 pseudo-lexicons** (`pseudo_lexicon`). The same number of
    forms *before* the method's licences and overall letter frequencies only.
    Kept because Finding 001 used it. It is not size-matched as the method
@@ -149,6 +156,62 @@ def stratified_matched_lexicon(real: Lexicon, method: Method, rng: random.Random
             fake.add(form)
             expanded |= new
     label = f"stratified({real.name})" + (f"#{index}" if index is not None else "")
+    return Lexicon(label, frozenset(fake), "null", {"of": real.name, "index": index,
+                                                    "expanded_forms_by_length": dict(sorted(target.items()))})
+
+
+def bigram_model(forms: list[str]) -> tuple[dict[int, tuple[list[str], list[int]]], dict[str, tuple[list[str], list[int]]]]:
+    """(first-letter frequencies per length, next-letter frequencies per letter) of a list of forms."""
+    first: dict[int, collections.Counter] = {}
+    nxt: dict[str, collections.Counter] = {}
+    for f in forms:
+        first.setdefault(len(f), collections.Counter())[f[0]] += 1
+        for a, b in zip(f, f[1:]):
+            nxt.setdefault(a, collections.Counter())[b] += 1
+    pack = lambda c: (sorted(c), [c[x] for x in sorted(c)])
+    return {n: pack(c) for n, c in first.items()}, {a: pack(c) for a, c in nxt.items()}
+
+
+def bigram_matched_lexicon(real: Lexicon, method: Method, rng: random.Random, index: int | None = None,
+                           max_draws: int = 1_000_000) -> Lexicon:
+    """A random lexicon with the real lexicon's expanded-form count at every length and its letter transitions.
+
+    As `stratified_matched_lexicon`, except that a form is drawn from a first-order Markov chain fitted to the
+    real lexicon's forms (`bigram_model`). A letter that is never followed by anything in the real lexicon
+    (it occurs only finally) ends the draw early; such a draw is discarded and redrawn.
+    """
+    base = sorted(real.forms)
+    first, nxt = bigram_model(base)
+    target: dict[int, int] = {}
+    for f in method.prepare(real):
+        target[len(f)] = target.get(len(f), 0) + 1
+    if set(target) != set(first):
+        raise ValueError("the method's expansion changes form lengths; a length-stratified null is not defined")
+    fake: set[str] = set()
+    draws = 0
+    for n in sorted(target):
+        expanded: set[str] = set()
+        while len(expanded) < target[n]:
+            draws += 1
+            if draws > max_draws:
+                raise RuntimeError(f"no bigram lexicon after {max_draws} draws (length {n}: "
+                                   f"{len(expanded)} of {target[n]} expanded forms)")
+            letters, weights = first[n]
+            form = rng.choices(letters, weights)[0]
+            while len(form) < n and form[-1] in nxt:
+                letters, weights = nxt[form[-1]]
+                form += rng.choices(letters, weights)[0]
+            if len(form) < n or form in fake:
+                continue
+            new = method.expand(form)
+            if any(len(x) != n for x in new):
+                raise ValueError(f"expansion of {form!r} changes its length")
+            new = new - expanded
+            if len(expanded) + len(new) > target[n]:
+                continue
+            fake.add(form)
+            expanded |= new
+    label = f"bigram({real.name})" + (f"#{index}" if index is not None else "")
     return Lexicon(label, frozenset(fake), "null", {"of": real.name, "index": index,
                                                     "expanded_forms_by_length": dict(sorted(target.items()))})
 

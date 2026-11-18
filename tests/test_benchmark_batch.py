@@ -21,7 +21,7 @@ def repo(tmp_path):
     (h / "H-A5-01.md").write_text("# H-A5-01 — protocol\n", encoding="utf-8")
     (h / "H-A5-02.md").write_text(PAIR_FILE.format(n="02"), encoding="utf-8")
     (h / "H-A5-07.md").write_text("# H-A5-07 — no protocol line\n", encoding="utf-8")
-    (h / "H-A5-04.md").write_text(PAIR_FILE.format(n="04").replace("H-A5-01\n", "H-A5-09\n"), encoding="utf-8")
+    (h / "H-A5-04.md").write_text(PAIR_FILE.format(n="04").replace("H-A5-01\n", "H-A5-99\n"), encoding="utf-8")
     (h / "H-A5-08.md").write_text(PAIR_FILE.format(n="08"), encoding="utf-8")  # a new pair naming the closed H-A5-01
     git(tmp_path, "init", "-q", "-b", "main")
     git(tmp_path, "add", ".")
@@ -44,6 +44,11 @@ def test_a_pair_under_the_second_protocol(repo):
     assert batch.check_registered("H-A5-05", repo) == "H-A5-03"
     with pytest.raises(batch.NotRegistered, match="must name its protocol"):  # two Protocol lines
         batch.check_registered("H-A5-06", repo)
+
+
+def test_h_a5_03_is_closed_after_its_six_pairs():
+    assert batch.PROTOCOLS["H-A5-03"]["pairs"] == {f"H-A5-0{i}" for i in range(3, 9)}
+    assert batch.PROTOCOLS["H-A5-09"]["pairs"] is None and batch.PROTOCOLS["H-A5-09"]["null"] == "bigram"
 
 
 def test_batches_are_kept_apart(tmp_path):
