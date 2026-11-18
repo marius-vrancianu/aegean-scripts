@@ -61,6 +61,7 @@ from typing import Any
 from aegean.benchmark import batch, inputs, lexicons, nulls
 from aegean.benchmark.interface import DOF_ITEMS, Lexicon, Method, SignGroup
 from aegean.benchmark.m1 import M1, M1Rules
+from aegean.benchmark.m2 import M2
 from aegean.corpus import load, resample
 
 REPO = Path(__file__).resolve().parents[3]
@@ -83,7 +84,7 @@ SIZE_FACTORS = (0.5, 1.0, 2.0, 4.0)
 N_SIZE = 20
 LENGTH_BINS = (2, 3, 4, 5)  # 5 means 5 or more
 
-METHODS = {"M1": M1}
+METHODS = {"M1": M1, "M2": M2}
 
 
 # ---- core ------------------------------------------------------------------------------------
@@ -467,8 +468,9 @@ def report(r: dict, provenance: dict) -> str:
                   f"- The expanded lexicon holds {pm['lexicon_forms_after_expansion']} of the {pm['reading_space']} "
                   f"possible forms ({pm['share_of_reading_space_in_lexicon']:.1%}; letters {pm['letters']}, "
                   f"lengths {pm['lengths']})."]
-    for item in DOF_ITEMS:
-        lines.append(f"- **{item.replace('_', ' ')}:** `{json.dumps(r['degrees_of_freedom'].get(item), ensure_ascii=False)}`")
+    dof = r["degrees_of_freedom"]
+    for item in list(DOF_ITEMS) + [k for k in dof if k not in DOF_ITEMS]:
+        lines.append(f"- **{item.replace('_', ' ')}:** `{json.dumps(dof.get(item), ensure_ascii=False)}`")
     return "\n".join(lines) + "\n"
 
 
@@ -492,6 +494,9 @@ def main(argv: list[str] | None = None) -> int:
         bp = batch.check_registered(args.protocol, REPO)
     except batch.NotRegistered as e:
         print(f"REFUSED: {e}", file=sys.stderr)
+        return 2
+    if args.rules and args.method != "M1":
+        print("REFUSED: --rules is defined for M1 only; M2's rules are fixed in M2Rules", file=sys.stderr)
         return 2
     method = METHODS[args.method](M1Rules.from_json(args.rules)) if args.rules else METHODS[args.method]()
     real = lexicons.REGISTRY[args.lexicon]() if args.lexicon else lexicons.from_file(args.lexicon_file)

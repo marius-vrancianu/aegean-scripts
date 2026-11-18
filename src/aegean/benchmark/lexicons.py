@@ -38,12 +38,12 @@ _VERB = re.compile(r'<w pos="v"[^>]*xml:lang="(heb|arc)">([^<]+)</w>')
 _POINTS = re.compile(r"[֑-ׇ]")  # cantillation marks and vowel points
 
 
-def hebrew_verb_skeletons(xml: str, min_len: int = 2, max_len: int = 4) -> frozenset[str]:
+def hebrew_verb_skeletons(xml: str, min_len: int = 2, max_len: int = 4, classes: dict | None = None) -> frozenset[str]:
     """Consonant-class skeletons of the verb lemmas (Hebrew and Biblical Aramaic) in HebrewStrong.xml."""
     out = set()
     for m in _VERB.finditer(xml):
         word = _POINTS.sub("", m.group(2))
-        sk = "".join(HEBREW_CLASS.get(c, "") for c in word)
+        sk = "".join((classes or HEBREW_CLASS).get(c, "") for c in word)
         if min_len <= len(sk) <= max_len:
             out.add(sk)
     return frozenset(out)
@@ -113,8 +113,8 @@ def cmudict_first(text: str) -> dict[str, list[str]]:
     return out
 
 
-def english_skeleton(phones: list[str]) -> str:
-    return "".join(ENGLISH_CLASS.get(p, "") for p in phones)
+def english_skeleton(phones: list[str], classes: dict | None = None) -> str:
+    return "".join((classes or ENGLISH_CLASS).get(p, "") for p in phones)
 
 
 def wordnet_verbs(index_verb: str) -> list[tuple[str, int]]:
@@ -135,7 +135,7 @@ def wordnet_verbs(index_verb: str) -> list[tuple[str, int]]:
     return out
 
 
-def english_verb_skeletons(index_verb: str, cmudict_text: str, size: int = ENGLISH_SIZE,
+def english_verb_skeletons(index_verb: str, cmudict_text: str, size: int = ENGLISH_SIZE, classes: dict | None = None,
                            min_len: int = 2, max_len: int = 4) -> tuple[frozenset[str], dict]:
     """The first `size` distinct skeletons of English verbs, most frequent verbs first.
 
@@ -154,7 +154,7 @@ def english_verb_skeletons(index_verb: str, cmudict_text: str, size: int = ENGLI
         if lemma not in pron:
             skipped["no_pronunciation"] += 1
             continue
-        sk = english_skeleton(pron[lemma])
+        sk = english_skeleton(pron[lemma], classes)
         if not min_len <= len(sk) <= max_len:
             skipped["length"] += 1
             continue
@@ -258,16 +258,17 @@ def turkish_compound(verb: str, entries: dict[str, str]) -> bool:
     return False
 
 
-def turkish_skeleton(verb: str) -> str:
+def turkish_skeleton(verb: str, classes: dict | None = None) -> str:
     """The consonant skeleton of a verb's stem (the infinitive without -mak/-mek)."""
     stem = verb[:-3]
     out = []
     for c in stem:
         if c in TR_VOWELS:
             continue
-        if c not in TURKISH_CLASS:
+        table = classes or TURKISH_CLASS
+        if c not in table:
             raise ValueError(f"no class for {c!r} in {verb!r}")
-        out.append(TURKISH_CLASS[c])
+        out.append(table[c])
     return "".join(out)
 
 
@@ -281,7 +282,7 @@ def word_counts(text: str) -> dict[str, int]:
     return out
 
 
-def turkish_verb_skeletons(dictionary: str, frequencies: str, size: int = ENGLISH_SIZE,
+def turkish_verb_skeletons(dictionary: str, frequencies: str, size: int = ENGLISH_SIZE, classes: dict | None = None,
                            min_len: int = 2, max_len: int = 4) -> tuple[frozenset[str], dict]:
     """The first `size` distinct skeletons of Turkish verbs, most frequent infinitives first.
 
@@ -299,7 +300,7 @@ def turkish_verb_skeletons(dictionary: str, frequencies: str, size: int = ENGLIS
     for v in ranked:
         if len(forms) == size:
             break
-        sk = turkish_skeleton(v)
+        sk = turkish_skeleton(v, classes)
         if not min_len <= len(sk) <= max_len:
             skipped["length"] += 1
             continue
@@ -335,3 +336,60 @@ def turkish_verbs(dictionary: Path = ZEMBEREK_DICT, frequencies: Path = TR_FREQ,
 
 
 REGISTRY["turkish-verbs"] = turkish_verbs
+
+
+# ---- Dolgopolsky-class versions, for method M2 ---------------------------------------------------
+# Same verbs, same selection; consonants to Dolgopolsky's classes (aegean.benchmark.m2, after LingPy's DOLGO
+# model). Differences from the M1 classes: d with t (T), affricates with velars (K), v with w (W).
+
+# Hebrew letters: as HEBREW_CLASS except dalet -> T. Tsade (Biblical ṣ, an emphatic sibilant) stays S.
+HEBREW_DOLGO = {c: ("T" if k == "D" else k) for c, k in HEBREW_CLASS.items()}
+ENGLISH_DOLGO = {
+    "P": "P", "B": "P", "F": "P", "V": "W", "W": "W",
+    "K": "K", "G": "K", "CH": "K", "JH": "K",
+    "T": "T", "D": "T", "TH": "T", "DH": "T",
+    "S": "S", "Z": "S", "SH": "S", "ZH": "S",
+    "R": "R", "L": "R", "ER": "R",
+    "M": "M", "N": "N", "NG": "N", "HH": "H", "Y": "J",
+}
+TURKISH_DOLGO = {
+    "b": "P", "p": "P", "f": "P", "v": "W", "w": "W",
+    "k": "K", "g": "K", "q": "K", "c": "K", "ç": "K",
+    "t": "T", "d": "T",
+    "s": "S", "z": "S", "ş": "S", "j": "S",
+    "l": "R", "r": "R", "m": "M", "n": "N", "h": "H", "y": "J",
+    "ğ": "",
+}
+DOLGO_NOTE = "Dolgopolsky classes (aegean.benchmark.m2): d with t, affricates with K, v with W"
+
+
+def _dolgo(lex: Lexicon, name: str, forms: frozenset[str], info: dict | None = None) -> Lexicon:
+    meta = {k: v for k, v in lex.meta.items() if k not in ("conversion", "last_verb_taken", "skipped")}
+    return Lexicon(name, forms, "real", {**meta, **(info or {}), "classes": DOLGO_NOTE,
+                                         "conversion": lex.meta.get("conversion", "") + "; " + DOLGO_NOTE})
+
+
+def hebrew_strong_verbs_dolgo(path: Path = HEBREW_XML) -> Lexicon:
+    base = hebrew_strong_verbs(path)
+    forms = hebrew_verb_skeletons(path.read_text(encoding="utf-8"), classes=HEBREW_DOLGO)
+    return _dolgo(base, "hebrew-strong-verbs-dolgo", forms)
+
+
+def english_verbs_dolgo(cmudict: Path = CMUDICT, wordnet_zip: Path = WORDNET_ZIP) -> Lexicon:
+    import zipfile
+    base = english_verbs(cmudict, wordnet_zip)
+    with zipfile.ZipFile(wordnet_zip) as z:
+        index_verb = z.read("wordnet/index.verb").decode("utf-8")
+    forms, info = english_verb_skeletons(index_verb, cmudict.read_text(encoding="utf-8"), classes=ENGLISH_DOLGO)
+    return _dolgo(base, "english-verbs-dolgo", forms, info)
+
+
+def turkish_verbs_dolgo(dictionary: Path = ZEMBEREK_DICT, frequencies: Path = TR_FREQ) -> Lexicon:
+    base = turkish_verbs(dictionary, frequencies)
+    forms, info = turkish_verb_skeletons(dictionary.read_text(encoding="utf-8"), frequencies.read_text(encoding="utf-8"),
+                                         classes=TURKISH_DOLGO)
+    return _dolgo(base, "turkish-verbs-dolgo", forms, info)
+
+
+REGISTRY.update({"hebrew-strong-verbs-dolgo": hebrew_strong_verbs_dolgo, "english-verbs-dolgo": english_verbs_dolgo,
+                 "turkish-verbs-dolgo": turkish_verbs_dolgo})
