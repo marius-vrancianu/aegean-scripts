@@ -4,7 +4,7 @@ Code: `src/aegean/benchmark/`. Layer: L1 (sign-groups read in conventional Linea
 
 **Tier 1 (A5.17)** asks one question of a method that matches Linear A sign-groups to a language's lexicon: how often does it find a language that is not there? **Tier 2** (A5.11–A5.14: can any method find a language that *is* there, at Linear A's size?) is not built yet.
 
-Protocol and decision rule: `hypotheses/H-A5-01.md`. This page says how the code is organised and how to use it.
+Protocols and decision rule: `hypotheses/H-A5-01.md` (Part 1), and its revision `hypotheses/H-A5-03.md` once registered, which changes only the decision null (length-stratified). Each protocol has its own batch. This page says how the code is organised and how to use it.
 
 ## Parts
 
@@ -29,11 +29,12 @@ For one method and one lexicon:
 - **Outcome A, B or C** from the two tests and the batch-adjusted pair p (`batch.label`). A would-be C whose adjusted p is above 0.05 is reported as B.
 - Descriptive tables: each source separately, by length, lexicon size, random sign strings, the method's degrees of freedom (`docs/guardrails.md`, item 3), and resampling intervals (A1.14).
 
-## The two pseudo-lexicon nulls
+## The pseudo-lexicon nulls
 
 A method sees a lexicon only after its own lexicon-side licences. M1 lets S be read as T and D and T interchange, so the 502 Hebrew verb skeletons become 664 distinct forms.
 
 - **Matched** (`nulls.matched_lexicon`): 664 forms after the same expansion, with the real lexicon's lengths and its letter frequencies at each position. The decision uses this one.
+- **Length-stratified matched** (`nulls.stratified_matched_lexicon`), the decision null of protocol H-A5-03: the same, but filled length by length, so that at every form length it has exactly the real lexicon's number of forms after expansion. The matched null above under-draws short forms (English: 61.7 two-letter forms on average against the real 79), which produced a Test 1 false positive for English (H-A5-02); this null removes that bias by construction.
 - **Finding 001** (`nulls.pseudo_lexicon`): 502 forms before expansion, overall letter frequencies. After expansion these average about 743 forms, so they offer the method about 12% more targets than the real lexicon does. On the Greek control the real lexicon falls in the lowest 2.5% of this null. It is reported for continuity only.
 
 ## Running it
@@ -49,14 +50,14 @@ python -m aegean.benchmark.tier1 --method M1 --lexicon hebrew-strong-verbs --pro
 
 Output, all generated:
 - `experiments/A5.17/results/<hypothesis>-<method>-<lexicon>.json` and `.md`. The first run, H-A5-01, keeps its original name `M1-hebrew-strong-verbs`. A run takes about two minutes on a PC.
-- `batch.json` and `batch.md`: every pair run under the protocol, with raw and adjusted p and the final outcome. `python -m aegean.benchmark.batch` rebuilds them from the results files without running anything.
+- `batch.json` and `batch.md` (protocol H-A5-01), `batch-H-A5-03.json` and `.md` (protocol H-A5-03): every pair run under that protocol, with raw and adjusted p and the final outcome. `python -m aegean.benchmark.batch [--protocol H-A5-03]` rebuilds them from the results files without running anything.
 
 The results files are the record of the batch: commit them with the outcome file, and never delete one.
 
 **What the runner refuses** (before any computation):
 - a hypothesis ID whose file does not exist, is not on `main`, or differs from the version on `main`;
-- for any pair after the first, a file without the line `- **Protocol:** H-A5-01`;
-- a hypothesis that was already run with a different (method, rules, lexicon), or a pair already run under another hypothesis;
+- unless the file is itself a protocol, a file without exactly one line `- **Protocol:** H-A5-01` (or `H-A5-03`);
+- a hypothesis that was already run with a different (method, rules, lexicon), or a pair already run under another hypothesis of the same protocol (the same pair may be run once under each protocol);
 - a batch of more than 50 pairs (H-A5-01, power check).
 
 If adding a pair changes an earlier pair's outcome (a C becoming B), the runner prints it and `batch.md` lists it. The new pair's outcome file must record it.

@@ -890,3 +890,13 @@ Follow-up from the H-A5-01 review (`docs/reviews/H-A5-01-review.md`, R4 and M3).
 - **Now:** the file must have exactly one Type line, and its value must be the word `confirmatory` alone, optionally followed by one parenthesis that does not mention "exploratory". `load.declares_confirmatory`.
 - **Strictly stronger:** a test checks that the new check accepts nothing the old pattern refused. No merged hypothesis changes status: none is confirmatory under either check, and the A2 files have no Type line (refused before and now).
 - `hypotheses/TEMPLATE.md` describes the new rule.
+
+## 2026-11-18 — A5.17: a length-stratified matched null, and room for a second protocol
+
+Code only (plain PR); no run on Linear A. Layer L1. Agreed with Marius on 2026-11-18: loader fix, then the revised protocol, then a non-Indo-European lexicon, in that order.
+
+- `nulls.stratified_matched_lexicon`: like the matched null, but filled length by length, so that at every form length the pseudo-lexicon has exactly the real lexicon's number of distinct forms after expansion. Lexicon side, 200 draws each: Hebrew 634 three- and 30 four-letter forms, English 79 two-, 310 three- and 626 four-letter forms, in every draw. This removes by construction the bias that gave English its Test 1 false positive (H-A5-02 outcome).
+- `batch.PROTOCOLS`: H-A5-01 (matched null; `batch.md`) and H-A5-03 (stratified null; `batch-H-A5-03.md`), each its own batch and correction. A pair names one protocol; the same pair may be run once under each. H-A5-01's batch and results are unchanged.
+- H-A5-03 is not registered yet. The runner refuses it until its file is merged.
+
+**Next:** register H-A5-03 (protocol v2 and its first pair) with the re-runs of Hebrew and English under it, and the non-Indo-European lexicon when its source is settled.

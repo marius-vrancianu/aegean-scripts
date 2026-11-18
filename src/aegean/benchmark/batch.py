@@ -1,11 +1,22 @@
-"""The Tier 1 batch: registration check and the batch correction (hypotheses/H-A5-01.md, Part 1).
+"""The Tier 1 batches: registration check and the batch correction.
+
+Two protocols exist. Each has its own batch, its own correction and its own
+batch table; a pair belongs to exactly one protocol, named in its hypothesis file.
+
+| Protocol | Decision null | Batch table |
+|---|---|---|
+| H-A5-01 (Part 1) | matched pseudo-lexicons (`nulls.matched_lexicon`) | `batch.md`, `batch.json` |
+| H-A5-03 | length-stratified matched pseudo-lexicons (`nulls.stratified_matched_lexicon`) | `batch-H-A5-03.md`, `.json` |
+
+Everything else (inputs, tests, α, decision rule, Benjamini–Hochberg) is the same.
 
 Two things the runner must not leave to whoever calls it:
 
 1. **A run belongs to a merged hypothesis** (CLAUDE.md rule 3). `check_registered`
    accepts a hypothesis ID only if `hypotheses/<ID>.md` exists, is byte-identical
-   to the file on `origin/main` (or `main`), and, for any pair after the first,
-   names the protocol in a line `- **Protocol:** H-A5-01`.
+   to the file on `origin/main` (or `main`), and, unless it is itself a protocol
+   file, names one protocol in a line `- **Protocol:** H-A5-01` (or H-A5-03). It
+   returns that protocol.
 2. **Outcome C is granted only after the batch correction.** The batch is every
    (method, lexicon) pair ever run under the protocol, failures included. Each
    run is one generated JSON file in `experiments/A5.17/results/`; `records`
@@ -32,11 +43,15 @@ import subprocess
 from pathlib import Path
 from typing import Any
 
-PROTOCOL = "H-A5-01"
+PROTOCOL = "H-A5-01"  # the first protocol; results files without a batch_protocol field belong to it
+PROTOCOLS = {
+    "H-A5-01": {"null": "matched", "batch_stem": "batch"},
+    "H-A5-03": {"null": "stratified", "batch_stem": "batch-H-A5-03"},
+}
 ALPHA = 0.05
 Q = 0.05
 MAX_PAIRS = 50  # H-A5-01, power check: beyond 50 pairs the smallest attainable p is no longer attainable after BH
-BATCH_FILES = ("batch.json",)
+BATCH_FILES = tuple(f"{v['batch_stem']}.json" for v in PROTOCOLS.values())
 MAIN_REFS = ("origin/main", "main")
 HYPOTHESIS_ID_RE = re.compile(r"H-A5-\d+")
 PROTOCOL_LINE_RE = re.compile(r"^\s*[-*]?\s*\*\*Protocol:\*\*\s*`?(H-A5-\d+)`?", re.MULTILINE)
@@ -71,8 +86,8 @@ def _on_main(repo: Path, rel: str) -> bytes | None:
     return None
 
 
-def check_registered(hypothesis_id: str, repo: Path) -> Path:
-    """The hypothesis file, if a Tier 1 run may cite it; NotRegistered otherwise."""
+def check_registered(hypothesis_id: str, repo: Path) -> str:
+    """The protocol a Tier 1 run of this hypothesis belongs to; NotRegistered if it may not be run."""
     if not isinstance(hypothesis_id, str) or not HYPOTHESIS_ID_RE.fullmatch(hypothesis_id):
         raise NotRegistered(f"not an A5 hypothesis ID (H-A5-<nn>): {hypothesis_id!r}")
     rel = f"hypotheses/{hypothesis_id}.md"
@@ -84,12 +99,13 @@ def check_registered(hypothesis_id: str, repo: Path) -> Path:
         raise NotRegistered(f"{rel} is not on main: a hypothesis is registered only once it is merged")
     if merged != path.read_bytes():
         raise NotRegistered(f"{rel} differs from the merged version on main")
-    if hypothesis_id != PROTOCOL:
-        cited = PROTOCOL_LINE_RE.findall(merged.decode("utf-8", errors="replace"))
-        if cited != [PROTOCOL]:
-            raise NotRegistered(f"{rel} must name its protocol in one line '- **Protocol:** {PROTOCOL}' "
-                                f"(found {cited or 'none'})")
-    return path
+    if hypothesis_id in PROTOCOLS:
+        return hypothesis_id
+    cited = PROTOCOL_LINE_RE.findall(merged.decode("utf-8", errors="replace"))
+    if len(cited) != 1 or cited[0] not in PROTOCOLS:
+        raise NotRegistered(f"{rel} must name its protocol in one line '- **Protocol:** <one of "
+                            f"{', '.join(PROTOCOLS)}>' (found {cited or 'none'})")
+    return cited[0]
 
 
 # ---- the batch -------------------------------------------------------------------------------
@@ -108,14 +124,14 @@ def record(result: dict, stem: str) -> dict:
             "p1": result["test1"]["p"], "p2": result["test2"]["p"], "p_pair": max(result["test1"]["p"], result["test2"]["p"])}
 
 
-def records(out_dir: Path) -> list[dict]:
-    """One record per results file in the folder, sorted by hypothesis ID number."""
+def records(out_dir: Path, protocol: str = PROTOCOL) -> list[dict]:
+    """One record per results file of `protocol` in the folder, sorted by hypothesis ID number."""
     out = []
     for p in sorted(Path(out_dir).glob("*.json")):
         if p.name in BATCH_FILES:
             continue
         r = json.loads(p.read_text(encoding="utf-8"))
-        if r.get("batch_protocol", PROTOCOL) == PROTOCOL and "test1" in r:
+        if r.get("batch_protocol", PROTOCOL) == protocol and "test1" in r:
             out.append(record(r, p.stem))
     return sorted(out, key=lambda x: int(x["hypothesis"].rsplit("-", 1)[1]))
 
@@ -182,9 +198,10 @@ def stem_for(recs: list[dict], hypothesis: str, method: str, lexicon: str) -> st
     return f"{hypothesis}-{method}-{lexicon}"
 
 
-def report(table: list[dict], changed: list[str]) -> str:
+def report(table: list[dict], changed: list[str], protocol: str = PROTOCOL) -> str:
+    where = "hypotheses/H-A5-01.md, Part 1" if protocol == "H-A5-01" else f"hypotheses/{protocol}.md"
     lines = [
-        "# Tier 1 batch (hypotheses/H-A5-01.md, Part 1)",
+        f"# Tier 1 batch ({where})",
         "",
         "Generated by `python -m aegean.benchmark.tier1`; do not edit. Every (method, lexicon) pair run under the "
         f"protocol, failures included. Benjamini–Hochberg at q = {Q} over the pair p-values (the larger of p1 and "
@@ -203,19 +220,22 @@ def report(table: list[dict], changed: list[str]) -> str:
     return "\n".join(lines) + "\n"
 
 
-def update(out_dir: Path, result: dict, stem: str) -> tuple[list[dict], list[str]]:
-    """Add one run to the batch; returns the new table and the outcome changes it caused. Writes nothing."""
-    previous_path = Path(out_dir) / "batch.json"
-    previous = json.loads(previous_path.read_text(encoding="utf-8"))["pairs"] if previous_path.exists() else []
-    table = apply(admit(records(out_dir), record(result, stem)))
-    return table, changes(previous, table)
+def _previous(out_dir: Path, protocol: str) -> list[dict]:
+    path = Path(out_dir) / f"{PROTOCOLS[protocol]['batch_stem']}.json"
+    return json.loads(path.read_text(encoding="utf-8"))["pairs"] if path.exists() else []
 
 
-def write(out_dir: Path, table: list[dict], changed: list[str]) -> None:
-    out_dir = Path(out_dir)
-    (out_dir / "batch.json").write_text(json.dumps({"protocol": PROTOCOL, "q": Q, "pairs": table}, indent=1,
-                                                   ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8")
-    (out_dir / "batch.md").write_text(report(table, changed), encoding="utf-8")
+def update(out_dir: Path, result: dict, stem: str, protocol: str = PROTOCOL) -> tuple[list[dict], list[str]]:
+    """Add one run to its protocol's batch; returns the new table and the outcome changes it caused. Writes nothing."""
+    table = apply(admit(records(out_dir, protocol), record(result, stem)))
+    return table, changes(_previous(out_dir, protocol), table)
+
+
+def write(out_dir: Path, table: list[dict], changed: list[str], protocol: str = PROTOCOL) -> None:
+    out_dir, stem = Path(out_dir), PROTOCOLS[protocol]["batch_stem"]
+    (out_dir / f"{stem}.json").write_text(json.dumps({"protocol": protocol, "q": Q, "pairs": table}, indent=1,
+                                                     ensure_ascii=False, sort_keys=True) + "\n", encoding="utf-8")
+    (out_dir / f"{stem}.md").write_text(report(table, changed, protocol), encoding="utf-8")
 
 
 def entry(table: list[dict], hypothesis: str) -> dict[str, Any]:
@@ -227,22 +247,22 @@ def entry(table: list[dict], hypothesis: str) -> dict[str, Any]:
 def main(argv: list[str] | None = None) -> int:
     """Rebuild batch.json and batch.md from the results files, without running anything.
 
-      python -m aegean.benchmark.batch [--out experiments/A5.17/results]
+      python -m aegean.benchmark.batch [--protocol H-A5-01] [--out experiments/A5.17/results]
     """
     import argparse
     import sys
     ap = argparse.ArgumentParser(description=main.__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--out", type=Path, default=Path(__file__).resolve().parents[3] / "experiments/A5.17/results")
+    ap.add_argument("--protocol", choices=sorted(PROTOCOLS), default=PROTOCOL)
     args = ap.parse_args(argv)
-    previous_path = args.out / "batch.json"
-    previous = json.loads(previous_path.read_text(encoding="utf-8"))["pairs"] if previous_path.exists() else []
+    previous = _previous(args.out, args.protocol)
     try:
-        table = apply(records(args.out))
+        table = apply(records(args.out, args.protocol))
     except BatchError as e:
         print(f"REFUSED: {e}", file=sys.stderr)
         return 2
     changed = changes(previous, table)
-    write(args.out, table, changed)
+    write(args.out, table, changed, args.protocol)
     for r in table:
         print(f"{r['hypothesis']}  {r['stem']}: pair p {r['p_pair']:.4f}, adjusted {r['p_adjusted']:.4f}, {r['outcome']}")
     for c in changed:

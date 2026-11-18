@@ -20,7 +20,7 @@ def repo(tmp_path):
     h.mkdir()
     (h / "H-A5-01.md").write_text("# H-A5-01 — protocol\n", encoding="utf-8")
     (h / "H-A5-02.md").write_text(PAIR_FILE.format(n="02"), encoding="utf-8")
-    (h / "H-A5-03.md").write_text("# H-A5-03 — no protocol line\n", encoding="utf-8")
+    (h / "H-A5-07.md").write_text("# H-A5-07 — no protocol line\n", encoding="utf-8")
     (h / "H-A5-04.md").write_text(PAIR_FILE.format(n="04").replace("H-A5-01\n", "H-A5-09\n"), encoding="utf-8")
     git(tmp_path, "init", "-q", "-b", "main")
     git(tmp_path, "add", ".")
@@ -28,16 +28,47 @@ def repo(tmp_path):
     return tmp_path
 
 
-def test_registered_files_pass(repo):
-    assert batch.check_registered("H-A5-01", repo).name == "H-A5-01.md"
-    assert batch.check_registered("H-A5-02", repo).name == "H-A5-02.md"
+def test_registered_files_pass_and_name_their_protocol(repo):
+    assert batch.check_registered("H-A5-01", repo) == "H-A5-01"
+    assert batch.check_registered("H-A5-02", repo) == "H-A5-01"
+
+
+def test_a_pair_under_the_second_protocol(repo):
+    (repo / "hypotheses/H-A5-03.md").write_text("# H-A5-03 — protocol v2\n", encoding="utf-8")
+    (repo / "hypotheses/H-A5-05.md").write_text(PAIR_FILE.format(n="05").replace("H-A5-01\n", "H-A5-03\n"), encoding="utf-8")
+    (repo / "hypotheses/H-A5-06.md").write_text(PAIR_FILE.format(n="06") + "- **Protocol:** H-A5-03\n", encoding="utf-8")
+    git(repo, "add", ".")
+    git(repo, "commit", "-q", "-m", "v2")
+    assert batch.check_registered("H-A5-03", repo) == "H-A5-03"
+    assert batch.check_registered("H-A5-05", repo) == "H-A5-03"
+    with pytest.raises(batch.NotRegistered, match="must name its protocol"):  # two Protocol lines
+        batch.check_registered("H-A5-06", repo)
+
+
+def test_batches_are_kept_apart(tmp_path):
+    """The same pair may be run under both protocols; each batch sees only its own runs."""
+    def result(h, bp, p1):
+        return {"protocol": h, "batch_protocol": bp, "method": "M1", "rules": None,
+                "lexicon": {"name": "x", "forms": 1, "sha256": "s"}, "test1": {"p": p1}, "test2": {"p": 0.5}}
+    (tmp_path / "M1-x.json").write_text(json.dumps(result("H-A5-01", "H-A5-01", 0.3)), encoding="utf-8")
+    old = result("H-A5-01", "H-A5-01", 0.3)
+    del old["batch_protocol"]  # files written before the field existed belong to H-A5-01
+    (tmp_path / "old.json").write_text(json.dumps({**old, "protocol": "H-A5-02", "lexicon": {"name": "y"}}), encoding="utf-8")
+    new = result("H-A5-04", "H-A5-03", 0.2)
+    assert [r["hypothesis"] for r in batch.records(tmp_path, "H-A5-01")] == ["H-A5-01", "H-A5-02"]
+    assert batch.records(tmp_path, "H-A5-03") == []
+    table, _ = batch.update(tmp_path, new, "H-A5-04-M1-x", "H-A5-03")  # same pair as M1-x, other protocol: allowed
+    assert [r["hypothesis"] for r in table] == ["H-A5-04"]
+    batch.write(tmp_path, table, [], "H-A5-03")
+    assert (tmp_path / "batch-H-A5-03.md").exists() and not (tmp_path / "batch.md").exists()
+    assert "hypotheses/H-A5-03.md" in (tmp_path / "batch-H-A5-03.md").read_text(encoding="utf-8")
 
 
 @pytest.mark.parametrize("hid, why", [
     ("H-A5-99", "does not exist"),
     ("H-A2-04", "not an A5 hypothesis"),
     ("../H-A5-01", "not an A5 hypothesis"),
-    ("H-A5-03", "must name its protocol"),
+    ("H-A5-07", "must name its protocol"),
     ("H-A5-04", "must name its protocol"),
 ])
 def test_unregistered_files_are_refused(repo, hid, why):

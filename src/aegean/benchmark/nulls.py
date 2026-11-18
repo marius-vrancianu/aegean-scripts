@@ -9,6 +9,13 @@ Three nulls, each answering a different question:
    lexicon's frequencies for that length and position. Question: does the
    real lexicon fit the sign-groups better than a lexicon of no language?
    This is the null the Tier 1 decision uses.
+1a. **Length-stratified matched pseudo-lexicons** (`stratified_matched_lexicon`;
+   the decision null of protocol H-A5-03). As (1), but filled length by
+   length: at each form length the pseudo-lexicon has exactly the real
+   lexicon's number of distinct forms *after expansion*. Null (1) draws a
+   length per form and redraws repeats; short forms repeat more often, so it
+   ends with fewer short forms than the real lexicon (H-A5-02 outcome). This
+   null removes that bias by construction.
 1b. **Finding 001 pseudo-lexicons** (`pseudo_lexicon`). The same number of
    forms *before* the method's licences and overall letter frequencies only.
    Kept because Finding 001 used it. It is not size-matched as the method
@@ -103,6 +110,47 @@ def matched_lexicon(real: Lexicon, method: Method, rng: random.Random, index: in
         raise RuntimeError(f"no matched lexicon after {max_draws} draws ({len(expanded)} of {target} expanded forms)")
     label = f"matched({real.name})" + (f"#{index}" if index is not None else "")
     return Lexicon(label, frozenset(fake), "null", {"of": real.name, "index": index, "expanded_forms": target})
+
+
+def stratified_matched_lexicon(real: Lexicon, method: Method, rng: random.Random, index: int | None = None,
+                               max_draws: int = 1_000_000) -> Lexicon:
+    """A random lexicon with, at every form length, exactly as many expanded forms as `real` has.
+
+    Lengths are taken in increasing order. At each length, forms are drawn letter by letter from the real
+    lexicon's frequencies at that length and position; a form is kept unless it is a duplicate or would take
+    the number of distinct expanded forms of that length past the real lexicon's. (The method's expansion must
+    keep lengths, as M1's letter interchanges do; anything else is an error.)
+    """
+    base = sorted(real.forms)
+    freqs = positional_frequencies(base)
+    target: dict[int, int] = {}
+    for f in method.prepare(real):
+        target[len(f)] = target.get(len(f), 0) + 1
+    if set(target) != set(freqs):
+        raise ValueError("the method's expansion changes form lengths; a length-stratified null is not defined")
+    fake: set[str] = set()
+    draws = 0
+    for n in sorted(target):
+        expanded: set[str] = set()
+        while len(expanded) < target[n]:
+            draws += 1
+            if draws > max_draws:
+                raise RuntimeError(f"no stratified lexicon after {max_draws} draws (length {n}: "
+                                   f"{len(expanded)} of {target[n]} expanded forms)")
+            form = "".join(rng.choices(letters, weights)[0] for letters, weights in freqs[n])
+            if form in fake:
+                continue
+            new = method.expand(form)
+            if any(len(x) != n for x in new):
+                raise ValueError(f"expansion of {form!r} changes its length")
+            new = new - expanded
+            if len(expanded) + len(new) > target[n]:
+                continue
+            fake.add(form)
+            expanded |= new
+    label = f"stratified({real.name})" + (f"#{index}" if index is not None else "")
+    return Lexicon(label, frozenset(fake), "null", {"of": real.name, "index": index,
+                                                    "expanded_forms_by_length": dict(sorted(target.items()))})
 
 
 def random_sign_strings(lengths: list[int], sign_pool: list[str], rng: random.Random) -> list[SignGroup]:
