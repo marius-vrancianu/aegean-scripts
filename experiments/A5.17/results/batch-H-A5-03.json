@@ -7,7 +7,7 @@
    "outcome": "A: no better than a random lexicon",
    "p1": 0.46853146853146854,
    "p2": 0.8711288711288712,
-   "p_adjusted": 0.8711288711288713,
+   "p_adjusted": 0.946053946053946,
    "p_pair": 0.8711288711288712,
    "pair_key": "9c8b2d5110d22509",
    "stem": "H-A5-03-M1-hebrew-strong-verbs"
@@ -19,7 +19,7 @@
    "outcome": "A: no better than a random lexicon",
    "p1": 0.28771228771228774,
    "p2": 0.7802197802197802,
-   "p_adjusted": 0.8711288711288713,
+   "p_adjusted": 0.946053946053946,
    "p_pair": 0.7802197802197802,
    "pair_key": "b2b998a066bd79b9",
    "stem": "H-A5-04-M1-english-verbs"
@@ -31,10 +31,46 @@
    "outcome": "A: no better than a random lexicon",
    "p1": 0.0999000999000999,
    "p2": 0.3546453546453546,
-   "p_adjusted": 0.8711288711288713,
+   "p_adjusted": 0.946053946053946,
    "p_pair": 0.3546453546453546,
    "pair_key": "9b2fd98b63d41dae",
    "stem": "H-A5-05-M1-turkish-verbs"
+  },
+  {
+   "hypothesis": "H-A5-06",
+   "lexicon": "hebrew-strong-verbs-dolgo",
+   "method": "M2",
+   "outcome": "A: no better than a random lexicon",
+   "p1": 0.9460539460539461,
+   "p2": 0.938061938061938,
+   "p_adjusted": 0.946053946053946,
+   "p_pair": 0.9460539460539461,
+   "pair_key": "9bff7c16fa26f312",
+   "stem": "H-A5-06-M2-hebrew-strong-verbs-dolgo"
+  },
+  {
+   "hypothesis": "H-A5-07",
+   "lexicon": "english-verbs-dolgo",
+   "method": "M2",
+   "outcome": "A: no better than a random lexicon",
+   "p1": 0.7162837162837162,
+   "p2": 0.932067932067932,
+   "p_adjusted": 0.946053946053946,
+   "p_pair": 0.932067932067932,
+   "pair_key": "839805ed75612972",
+   "stem": "H-A5-07-M2-english-verbs-dolgo"
+  },
+  {
+   "hypothesis": "H-A5-08",
+   "lexicon": "turkish-verbs-dolgo",
+   "method": "M2",
+   "outcome": "A: no better than a random lexicon",
+   "p1": 0.6713286713286714,
+   "p2": 0.5844155844155844,
+   "p_adjusted": 0.946053946053946,
+   "p_pair": 0.6713286713286714,
+   "pair_key": "13a1966ae0cb7498",
+   "stem": "H-A5-08-M2-turkish-verbs-dolgo"
   }
  ],
  "protocol": "H-A5-03",

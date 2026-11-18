@@ -1,0 +1,636 @@
+{
+ "batch": {
+  "outcome": "A: no better than a random lexicon",
+  "p_adjusted": 0.946053946053946,
+  "q": 0.05,
+  "size": 6
+ },
+ "batch_protocol": "H-A5-03",
+ "control": {
+  "excess": -0.0026583427922813874,
+  "false_positive_rate": 0.6269489216799091,
+  "n": 881,
+  "n_null": 1000,
+  "null_high": 0.6617480136208853,
+  "null_low": 0.5891032917139614,
+  "null_max": 0.684449489216799,
+  "null_min": 0.5686719636776391,
+  "null_sd": 0.01866364360990707,
+  "p": 0.5894105894105894,
+  "p_lower": 0.4405594405594406,
+  "real": 0.6242905788876277
+ },
+ "control_by_length": {
+  "2": {
+   "excess": 0.021746987951807295,
+   "false_positive_rate": 0.7011445783132529,
+   "n": 83,
+   "n_null": 1000,
+   "null_high": 0.7951807228915663,
+   "null_low": 0.5903614457831325,
+   "null_max": 0.8433734939759037,
+   "null_min": 0.5060240963855421,
+   "null_sd": 0.05363921967214564,
+   "p": 0.3966033966033966,
+   "p_lower": 0.6863136863136863,
+   "real": 0.7228915662650602
+  },
+  "3": {
+   "excess": -0.020048689138576714,
+   "false_positive_rate": 0.6679887640449438,
+   "n": 267,
+   "n_null": 1000,
+   "null_high": 0.7153558052434457,
+   "null_low": 0.6104868913857678,
+   "null_max": 0.7453183520599251,
+   "null_min": 0.5805243445692884,
+   "null_sd": 0.02753622785910949,
+   "p": 0.8001998001998002,
+   "p_lower": 0.23076923076923078,
+   "real": 0.6479400749063671
+  },
+  "4": {
+   "excess": -0.002480122324159062,
+   "false_positive_rate": 0.6905535168195719,
+   "n": 327,
+   "n_null": 1000,
+   "null_high": 0.7370030581039755,
+   "null_low": 0.6422018348623854,
+   "null_max": 0.7706422018348624,
+   "null_min": 0.617737003058104,
+   "null_sd": 0.02392181568987714,
+   "p": 0.5834165834165834,
+   "p_lower": 0.4805194805194805,
+   "real": 0.6880733944954128
+  },
+  "5+": {
+   "excess": 0.009887254901960796,
+   "false_positive_rate": 0.44109313725490196,
+   "n": 204,
+   "n_null": 1000,
+   "null_high": 0.49019607843137253,
+   "null_low": 0.3871323529411765,
+   "null_max": 0.5147058823529411,
+   "null_min": 0.35294117647058826,
+   "null_sd": 0.027178024268416246,
+   "p": 0.3986013986013986,
+   "p_lower": 0.6743256743256744,
+   "real": 0.45098039215686275
+  }
+ },
+ "control_source": {
+  "commit": "480bad2487820e3737fecfdd108214efa769e34b",
+  "distinct": 918,
+  "dropped": {
+   "no_greek": 0,
+   "non_linear_b_sign": 0,
+   "too_short": 1
+  },
+  "rows_used": 918,
+  "sha256": "0e8099cd9f02c36fc14599d9bc12836489816c0b1d17f471e723b98c978b10fa",
+  "source": "j-luo93/NeuroDecipher data/linear_b-greek.cog"
+ },
+ "degrees_of_freedom": {
+  "affix_menus": {
+   "prefixes": 0,
+   "suffixes": 0
+  },
+  "doubled_signs": {
+   "collapse": false
+  },
+  "edit_distance": {
+   "max_normalised": 0.25
+  },
+  "languages_pooled": {
+   "count": 1,
+   "note": "set by the lexicon passed in, not by the method"
+  },
+  "sign_value_mergers": {
+   "classes": "Dolgopolsky (10 consonant classes)",
+   "merged": "voicing; place within class; t/d; affricates with velars; v with w; r with l (also Linear B r)"
+  },
+  "unwritten_radicals": {
+   "note": "none, except through the edit distance"
+  },
+  "vowel_signs": {
+   "note": "a pure vowel sign gives nothing; a2 is H",
+   "readings_per_sign": 1
+  }
+ },
+ "finding_001_null": {
+  "control": {
+   "excess": -0.03292281498297389,
+   "false_positive_rate": 0.6572133938706016,
+   "n": 881,
+   "n_null": 1000,
+   "null_high": 0.7015039727582293,
+   "null_low": 0.6118047673098751,
+   "null_max": 0.7343927355278093,
+   "null_min": 0.58683314415437,
+   "null_sd": 0.023186149550380647,
+   "p": 0.9240759240759241,
+   "p_lower": 0.08291708291708291,
+   "real": 0.6242905788876277
+  },
+  "linear_a": {
+   "excess": 0.011150793650793633,
+   "false_positive_rate": 0.7057804232804233,
+   "n": 378,
+   "n_null": 1000,
+   "null_high": 0.7619708994708994,
+   "null_low": 0.6481481481481481,
+   "null_max": 0.7883597883597884,
+   "null_min": 0.5925925925925926,
+   "null_sd": 0.029345030671692855,
+   "p": 0.3916083916083916,
+   "p_lower": 0.6483516483516484,
+   "real": 0.716931216931217
+  }
+ },
+ "inputs": {
+  "lineara.xyz": {
+   "distinct": 548,
+   "documents": 261,
+   "eligible": 364,
+   "occurrences": 759
+  },
+  "primary": {
+   "distinct": 545,
+   "documents": 257,
+   "eligible": 378,
+   "occurrences": 743
+  },
+  "sigla": {
+   "distinct": 431,
+   "documents": 169,
+   "eligible": 296,
+   "occurrences": 596
+  },
+  "younger": {
+   "distinct": 229,
+   "documents": 119,
+   "eligible": 175,
+   "occurrences": 266
+  }
+ },
+ "layer": "L1",
+ "lexicon": {
+  "classes": "Dolgopolsky classes (aegean.benchmark.m2): d with t, affricates with K, v with W",
+  "compounds_excluded": 133,
+  "conversion": "infinitive verbs; light-verb compounds (etmek/olmak/eylemek) excluded; ranked by infinitive count; stem consonants to M1 classes (TURKISH_CLASS; ğ dropped); length 2-4; first 502 distinct skeletons; Dolgopolsky classes (aegean.benchmark.m2): d with t, affricates with K, v with W",
+  "forms": 502,
+  "forms_after_expansion": 502,
+  "frequencywords_commit": "525f9b560de45753a5ea01069454e72e9aa541c6",
+  "last_verb_taken": [
+   "koyultmak",
+   1
+  ],
+  "licence": "Zemberek Apache-2.0; FrequencyWords content CC BY-SA 4.0",
+  "name": "turkish-verbs-dolgo",
+  "sha256": "3e29bdb33af7d3fc21974c1fe68d61f647a6e0110a15305949dc375bd7ae6613",
+  "skipped": {
+   "duplicate": 788,
+   "length": 262
+  },
+  "source": "Zemberek-NLP master-dictionary.dict + FrequencyWords tr_full (OpenSubtitles 2018)",
+  "verbs": 3220,
+  "verbs_ranked": 3087,
+  "zemberek_commit": "fd8c674927f0c86dc4c09429e6dbc4f6f4abd924"
+ },
+ "lexicon_size": {
+  "0.5": {
+   "forms": 251,
+   "max": 0.5767195767195767,
+   "mean": 0.5097883597883598,
+   "min": 0.4656084656084656
+  },
+  "1": {
+   "forms": 502,
+   "max": 0.7857142857142857,
+   "mean": 0.711111111111111,
+   "min": 0.6534391534391535
+  },
+  "2": {
+   "forms": 1004,
+   "max": 0.8888888888888888,
+   "mean": 0.8665343915343915,
+   "min": 0.8253968253968254
+  },
+  "4": {
+   "forms": 2008,
+   "max": 0.9682539682539683,
+   "mean": 0.9493386243386244,
+   "min": 0.9206349206349206
+  }
+ },
+ "linear_a": {
+  "lineara.xyz": {
+   "excess": -0.01714560439560442,
+   "false_positive_rate": 0.728684065934066,
+   "n": 364,
+   "n_null": 1000,
+   "null_high": 0.771978021978022,
+   "null_low": 0.6839972527472528,
+   "null_max": 0.7994505494505495,
+   "null_min": 0.6538461538461539,
+   "null_sd": 0.023263022126293442,
+   "p": 0.7812187812187812,
+   "p_lower": 0.24675324675324675,
+   "real": 0.7115384615384616
+  },
+  "primary": {
+   "excess": -0.008470899470899407,
+   "false_positive_rate": 0.7254021164021164,
+   "n": 378,
+   "n_null": 1000,
+   "null_high": 0.7671957671957672,
+   "null_low": 0.6798941798941799,
+   "null_max": 0.791005291005291,
+   "null_min": 0.6481481481481481,
+   "null_sd": 0.023265768977633623,
+   "p": 0.6713286713286714,
+   "p_lower": 0.3676323676323676,
+   "real": 0.716931216931217
+  },
+  "sigla": {
+   "excess": -0.0016756756756757252,
+   "false_positive_rate": 0.7482972972972973,
+   "n": 296,
+   "n_null": 1000,
+   "null_high": 0.793918918918919,
+   "null_low": 0.6959459459459459,
+   "null_max": 0.8209459459459459,
+   "null_min": 0.668918918918919,
+   "null_sd": 0.025324811105430788,
+   "p": 0.5574425574425574,
+   "p_lower": 0.4875124875124875,
+   "real": 0.7466216216216216
+  },
+  "younger": {
+   "excess": -0.05111428571428578,
+   "false_positive_rate": 0.6968285714285715,
+   "n": 175,
+   "n_null": 1000,
+   "null_high": 0.7542857142857143,
+   "null_low": 0.6342857142857142,
+   "null_max": 0.7885714285714286,
+   "null_min": 0.5942857142857143,
+   "null_sd": 0.030672882546035132,
+   "p": 0.948051948051948,
+   "p_lower": 0.07092907092907093,
+   "real": 0.6457142857142857
+  }
+ },
+ "linear_a_by_length": {
+  "2": {
+   "excess": 0.0747951807228916,
+   "false_positive_rate": 0.7444819277108433,
+   "n": 83,
+   "n_null": 1000,
+   "null_high": 0.8433734939759037,
+   "null_low": 0.6385542168674698,
+   "null_max": 0.891566265060241,
+   "null_min": 0.5180722891566265,
+   "null_sd": 0.05207470517498778,
+   "p": 0.08491508491508491,
+   "p_lower": 0.9460539460539461,
+   "real": 0.8192771084337349
+  },
+  "3": {
+   "excess": -0.04198830409356724,
+   "false_positive_rate": 0.755438596491228,
+   "n": 171,
+   "n_null": 1000,
+   "null_high": 0.8128654970760234,
+   "null_low": 0.695906432748538,
+   "null_max": 0.8538011695906432,
+   "null_min": 0.6608187134502924,
+   "null_sd": 0.030611675708499354,
+   "p": 0.9330669330669331,
+   "p_lower": 0.1018981018981019,
+   "real": 0.7134502923976608
+  },
+  "4": {
+   "excess": -9.523809523803717e-05,
+   "false_positive_rate": 0.7977142857142857,
+   "n": 84,
+   "n_null": 1000,
+   "null_high": 0.8571428571428571,
+   "null_low": 0.7261904761904762,
+   "null_max": 0.8928571428571429,
+   "null_min": 0.6904761904761905,
+   "null_sd": 0.03260130607940813,
+   "p": 0.5844155844155844,
+   "p_lower": 0.5404595404595405,
+   "real": 0.7976190476190477
+  },
+  "5+": {
+   "excess": -0.055550000000000044,
+   "false_positive_rate": 0.40555,
+   "n": 40,
+   "n_null": 1000,
+   "null_high": 0.5,
+   "null_low": 0.325,
+   "null_max": 0.575,
+   "null_min": 0.25,
+   "null_sd": 0.05040325374405891,
+   "p": 0.9180819180819181,
+   "p_lower": 0.19880119880119881,
+   "real": 0.35
+  }
+ },
+ "method": "M2",
+ "null_lexicons": {
+  "finding_001": {
+   "forms": 502,
+   "forms_after_expansion_mean": 502.0,
+   "n": 1000,
+   "seed": 20261118
+  },
+  "matched": {
+   "forms_after_expansion": 502,
+   "forms_mean": 502.0,
+   "kind": "stratified",
+   "n": 1000,
+   "seed": 20261114
+  }
+ },
+ "outcome": "A: no better than a random lexicon",
+ "outcome_before_batch": "A: no better than a random lexicon",
+ "p_pair": 0.6713286713286714,
+ "params": {
+  "alpha": 0.05,
+  "n_resample": 1000,
+  "p_doubt": 0.5,
+  "seed_resample": 20261115,
+  "seed_size": 20261117,
+  "seed_strings": 20261116,
+  "source_order": [
+   "sigla",
+   "lineara.xyz",
+   "younger"
+  ],
+  "split": "train"
+ },
+ "permissiveness": {
+  "lengths": [
+   2,
+   3,
+   4
+  ],
+  "letters": "HJKMNPRSTW",
+  "lexicon_forms_after_expansion": 502,
+  "reading_space": 11100,
+  "readings_per_group_max": 7029,
+  "readings_per_group_mean": 99.71164021164022,
+  "readings_per_group_median": 38.0,
+  "share_of_reading_space_in_lexicon": 0.04522522522522523
+ },
+ "protocol": "H-A5-08",
+ "provenance": {
+  "commit": "4280cf1",
+  "corpus": "corpus-v1.0"
+ },
+ "random_sign_strings": {
+  "max": 0.7115384615384616,
+  "mean": 0.6774213812468156,
+  "min": 0.6416666666666667,
+  "real_sign_groups": 0.716931216931217,
+  "reps": 20
+ },
+ "resampling": {
+  "bootstrap": {
+   "difference": {
+    "high": 0.014414002714402028,
+    "low": -0.024124871922476903,
+    "max": 0.03015622162467435,
+    "median": -0.005261744066649254,
+    "min": -0.04335020696990022,
+    "n": 1000
+   },
+   "excess": {
+    "high": 0.011489527943570168,
+    "low": -0.02771285826136465,
+    "max": 0.026199170124481364,
+    "median": -0.00838551720776054,
+    "min": -0.046373390557939986,
+    "n": 1000
+   },
+   "false_positive_rate": {
+    "high": 0.743354628144277,
+    "low": 0.7030214280508543,
+    "max": 0.7550035714285713,
+    "median": 0.7235290448588709,
+    "min": 0.6876060606060607,
+    "n": 1000
+   },
+   "n": {
+    "high": 294.0,
+    "low": 229.0,
+    "max": 313,
+    "median": 263.0,
+    "min": 209,
+    "n": 1000
+   },
+   "p1_at_most_alpha": {
+    "high": 0.0,
+    "low": 0.0,
+    "max": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "n": 1000
+   },
+   "p2_at_most_alpha": {
+    "high": 0.0,
+    "low": 0.0,
+    "max": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "n": 1000
+   },
+   "real": {
+    "high": 0.7439159891598915,
+    "low": 0.683392893984497,
+    "max": 0.7642857142857142,
+    "median": 0.7153024911032029,
+    "min": 0.6566523605150214,
+    "n": 1000
+   }
+  },
+  "both": {
+   "difference": {
+    "high": 0.01368469416689527,
+    "low": -0.028562919507273153,
+    "max": 0.026779236558012842,
+    "median": -0.009080054587857156,
+    "min": -0.051594619166651756,
+    "n": 1000
+   },
+   "excess": {
+    "high": 0.010575014401794964,
+    "low": -0.031423202928870186,
+    "max": 0.02268674698795181,
+    "median": -0.012250504104853843,
+    "min": -0.0551548117154812,
+    "n": 1000
+   },
+   "false_positive_rate": {
+    "high": 0.7550987676161027,
+    "low": 0.7106406739239869,
+    "max": 0.7676069868995634,
+    "median": 0.7330464905464906,
+    "min": 0.6951601731601731,
+    "n": 1000
+   },
+   "n": {
+    "high": 290.025,
+    "low": 224.97500000000002,
+    "max": 306,
+    "median": 257.0,
+    "min": 200,
+    "n": 1000
+   },
+   "p1_at_most_alpha": {
+    "high": 0.0,
+    "low": 0.0,
+    "max": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "n": 1000
+   },
+   "p2_at_most_alpha": {
+    "high": 0.0,
+    "low": 0.0,
+    "max": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "n": 1000
+   },
+   "real": {
+    "high": 0.7520016528925619,
+    "low": 0.6877244319686459,
+    "max": 0.7768924302788844,
+    "median": 0.7208817829457363,
+    "min": 0.6612244897959184,
+    "n": 1000
+   }
+  },
+  "estimate": {
+   "difference": -0.00467151872527094,
+   "excess": -0.008470899470899407,
+   "false_positive_rate": 0.7254021164021164,
+   "n": 378,
+   "p1_at_most_alpha": 0.0,
+   "p2_at_most_alpha": 0.0,
+   "real": 0.716931216931217
+  },
+  "params": {
+   "documents": 478,
+   "documents_by_number_of_sources": {
+    "1": 38,
+    "2": 257,
+    "3": 183
+   },
+   "doubtful_signs_in_primary_reading": 36,
+   "level": 0.95,
+   "n": 1000,
+   "p_doubt": 0.5,
+   "seed": 20261115,
+   "source_order": [
+    "sigla",
+    "lineara.xyz",
+    "younger"
+   ],
+   "strata": 57,
+   "stratum": "site_of"
+  },
+  "reading": {
+   "difference": {
+    "high": -0.0010067554637161957,
+    "low": -0.015966946026477063,
+    "max": 0.003267844664597508,
+    "median": -0.008844851161960432,
+    "min": -0.020340798323344345,
+    "n": 1000
+   },
+   "excess": {
+    "high": -0.0045284091685455444,
+    "low": -0.019745707142801976,
+    "max": -0.0004917127071824012,
+    "median": -0.01255264086803709,
+    "min": -0.024339832869080813,
+    "n": 1000
+   },
+   "false_positive_rate": {
+    "high": 0.7457537087912088,
+    "low": 0.7263677495291901,
+    "max": 0.7533410404624277,
+    "median": 0.7366970123243467,
+    "min": 0.7165870786516854,
+    "n": 1000
+   },
+   "n": {
+    "high": 370.0,
+    "low": 350.0,
+    "max": 373,
+    "median": 361.0,
+    "min": 344,
+    "n": 1000
+   },
+   "p1_at_most_alpha": {
+    "high": 0.0,
+    "low": 0.0,
+    "max": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "n": 1000
+   },
+   "p2_at_most_alpha": {
+    "high": 0.0,
+    "low": 0.0,
+    "max": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "n": 1000
+   },
+   "real": {
+    "high": 0.7366983635559488,
+    "low": 0.710594336384896,
+    "max": 0.7430939226519337,
+    "median": 0.7240437158469946,
+    "min": 0.7008310249307479,
+    "n": 1000
+   }
+  },
+  "share_of_draws": {
+   "p1_at_most_alpha": 0.0,
+   "p2_at_most_alpha": 0.0
+  }
+ },
+ "rules": {
+  "max_distance": 0.25,
+  "min_group": 2,
+  "min_skeleton": 2
+ },
+ "test1": {
+  "excess": -0.008470899470899407,
+  "p": 0.6713286713286714
+ },
+ "test2": {
+  "control_false_positive_rate_standardised": 0.6562732792453057,
+  "control_real_standardised": 0.6524738984996772,
+  "difference": -0.00467151872527094,
+  "excess_control": -0.0037993807456284667,
+  "excess_linear_a": -0.008470899470899407,
+  "length_bins_used": [
+   2,
+   3,
+   4,
+   5
+  ],
+  "n_null": 1000,
+  "null_high": 0.044863346347025705,
+  "null_low": -0.049922253955116735,
+  "p": 0.5844155844155844
+ }
+}

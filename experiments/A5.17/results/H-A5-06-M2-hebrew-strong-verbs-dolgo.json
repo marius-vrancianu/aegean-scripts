@@ -1,0 +1,623 @@
+{
+ "batch": {
+  "outcome": "A: no better than a random lexicon",
+  "p_adjusted": 0.9460539460539461,
+  "q": 0.05,
+  "size": 4
+ },
+ "batch_protocol": "H-A5-03",
+ "control": {
+  "excess": 0.006254256526674273,
+  "false_positive_rate": 0.3467536889897843,
+  "n": 881,
+  "n_null": 1000,
+  "null_high": 0.3825482406356413,
+  "null_low": 0.3087400681044268,
+  "null_max": 0.40635641316685583,
+  "null_min": 0.2883087400681044,
+  "null_sd": 0.019220544424730278,
+  "p": 0.3856143856143856,
+  "p_lower": 0.6373626373626373,
+  "real": 0.3530079455164586
+ },
+ "control_by_length": {
+  "2": {
+   "excess": -0.0026385542168674714,
+   "false_positive_rate": 0.01468674698795181,
+   "n": 83,
+   "n_null": 1000,
+   "null_high": 0.024096385542168676,
+   "null_low": 0.0,
+   "null_max": 0.03614457831325301,
+   "null_min": 0.0,
+   "null_sd": 0.008395131310324861,
+   "p": 0.8481518481518482,
+   "p_lower": 0.6343656343656343,
+   "real": 0.012048192771084338
+  },
+  "3": {
+   "excess": -0.01714232209737826,
+   "false_positive_rate": 0.2643333333333333,
+   "n": 267,
+   "n_null": 1000,
+   "null_high": 0.30711610486891383,
+   "null_low": 0.2209737827715356,
+   "null_max": 0.3408239700374532,
+   "null_min": 0.19101123595505617,
+   "null_sd": 0.022419383962799445,
+   "p": 0.8031968031968032,
+   "p_lower": 0.24175824175824176,
+   "real": 0.24719101123595505
+  },
+  "4": {
+   "excess": 0.03028134556574924,
+   "false_positive_rate": 0.5048868501529052,
+   "n": 327,
+   "n_null": 1000,
+   "null_high": 0.5596330275229358,
+   "null_low": 0.44648318042813456,
+   "null_max": 0.5902140672782875,
+   "null_min": 0.40672782874617736,
+   "null_sd": 0.029454028251477943,
+   "p": 0.16983016983016982,
+   "p_lower": 0.8551448551448552,
+   "real": 0.5351681957186545
+  },
+  "5+": {
+   "excess": 0.0019803921568627425,
+   "false_positive_rate": 0.33625490196078434,
+   "n": 204,
+   "n_null": 1000,
+   "null_high": 0.3872549019607843,
+   "null_low": 0.27941176470588236,
+   "null_max": 0.4166666666666667,
+   "null_min": 0.2549019607843137,
+   "null_sd": 0.026978190937530414,
+   "p": 0.5214785214785215,
+   "p_lower": 0.5514485514485514,
+   "real": 0.3382352941176471
+  }
+ },
+ "control_source": {
+  "commit": "480bad2487820e3737fecfdd108214efa769e34b",
+  "distinct": 918,
+  "dropped": {
+   "no_greek": 0,
+   "non_linear_b_sign": 0,
+   "too_short": 1
+  },
+  "rows_used": 918,
+  "sha256": "0e8099cd9f02c36fc14599d9bc12836489816c0b1d17f471e723b98c978b10fa",
+  "source": "j-luo93/NeuroDecipher data/linear_b-greek.cog"
+ },
+ "degrees_of_freedom": {
+  "affix_menus": {
+   "prefixes": 0,
+   "suffixes": 0
+  },
+  "doubled_signs": {
+   "collapse": false
+  },
+  "edit_distance": {
+   "max_normalised": 0.25
+  },
+  "languages_pooled": {
+   "count": 1,
+   "note": "set by the lexicon passed in, not by the method"
+  },
+  "sign_value_mergers": {
+   "classes": "Dolgopolsky (10 consonant classes)",
+   "merged": "voicing; place within class; t/d; affricates with velars; v with w; r with l (also Linear B r)"
+  },
+  "unwritten_radicals": {
+   "note": "none, except through the edit distance"
+  },
+  "vowel_signs": {
+   "note": "a pure vowel sign gives nothing; a2 is H",
+   "readings_per_sign": 1
+  }
+ },
+ "finding_001_null": {
+  "control": {
+   "excess": -0.042231555051078284,
+   "false_positive_rate": 0.39523950056753687,
+   "n": 881,
+   "n_null": 1000,
+   "null_high": 0.4324914869466515,
+   "null_low": 0.35527809307604996,
+   "null_max": 0.45970488081725314,
+   "null_min": 0.30192962542565266,
+   "null_sd": 0.019643961899532353,
+   "p": 0.988011988011988,
+   "p_lower": 0.01898101898101898,
+   "real": 0.3530079455164586
+  },
+  "linear_a": {
+   "excess": -0.042227513227513225,
+   "false_positive_rate": 0.36233333333333334,
+   "n": 378,
+   "n_null": 1000,
+   "null_high": 0.4074074074074074,
+   "null_low": 0.31746031746031744,
+   "null_max": 0.43915343915343913,
+   "null_min": 0.2857142857142857,
+   "null_sd": 0.02242887573645372,
+   "p": 0.97002997002997,
+   "p_lower": 0.03996003996003996,
+   "real": 0.3201058201058201
+  }
+ },
+ "inputs": {
+  "lineara.xyz": {
+   "distinct": 548,
+   "documents": 261,
+   "eligible": 364,
+   "occurrences": 759
+  },
+  "primary": {
+   "distinct": 545,
+   "documents": 257,
+   "eligible": 378,
+   "occurrences": 743
+  },
+  "sigla": {
+   "distinct": 431,
+   "documents": 169,
+   "eligible": 296,
+   "occurrences": 596
+  },
+  "younger": {
+   "distinct": 229,
+   "documents": 119,
+   "eligible": 175,
+   "occurrences": 266
+  }
+ },
+ "layer": "L1",
+ "lexicon": {
+  "classes": "Dolgopolsky classes (aegean.benchmark.m2): d with t, affricates with K, v with W",
+  "commit": "21c9add13bc727d3a951361778e97e3ff7afd1ce",
+  "conversion": "verb lemmas (heb, arc); points removed; letters to M1 classes; length 2-4; Dolgopolsky classes (aegean.benchmark.m2): d with t, affricates with K, v with W",
+  "forms": 428,
+  "forms_after_expansion": 428,
+  "licence": "CC BY 4.0",
+  "name": "hebrew-strong-verbs-dolgo",
+  "sha256": "a628f4f89f8bdaf2483fd3faf1abc8653cc6717758dfc9f24beb7571d9bdd0c4",
+  "source": "openscriptures/HebrewLexicon HebrewStrong.xml"
+ },
+ "lexicon_size": {
+  "0.5": {
+   "forms": 214,
+   "max": 0.2619047619047619,
+   "mean": 0.21071428571428572,
+   "min": 0.16137566137566137
+  },
+  "1": {
+   "forms": 428,
+   "max": 0.4074074074074074,
+   "mean": 0.36084656084656086,
+   "min": 0.3148148148148148
+  },
+  "2": {
+   "forms": 856,
+   "max": 0.5555555555555556,
+   "mean": 0.5392857142857144,
+   "min": 0.5211640211640212
+  },
+  "4": {
+   "forms": 1712,
+   "max": 0.6111111111111112,
+   "mean": 0.6011904761904762,
+   "min": 0.5925925925925926
+  }
+ },
+ "linear_a": {
+  "lineara.xyz": {
+   "excess": -0.04028846153846155,
+   "false_positive_rate": 0.3562225274725275,
+   "n": 364,
+   "n_null": 1000,
+   "null_high": 0.3956043956043956,
+   "null_low": 0.3131868131868132,
+   "null_max": 0.42032967032967034,
+   "null_min": 0.2857142857142857,
+   "null_sd": 0.021049313666918718,
+   "p": 0.972027972027972,
+   "p_lower": 0.03696303696303696,
+   "real": 0.3159340659340659
+  },
+  "primary": {
+   "excess": -0.03159259259259262,
+   "false_positive_rate": 0.35169841269841273,
+   "n": 378,
+   "n_null": 1000,
+   "null_high": 0.3915343915343915,
+   "null_low": 0.31216931216931215,
+   "null_max": 0.41534391534391535,
+   "null_min": 0.2804232804232804,
+   "null_sd": 0.020343170146142772,
+   "p": 0.9460539460539461,
+   "p_lower": 0.07292707292707293,
+   "real": 0.3201058201058201
+  },
+  "sigla": {
+   "excess": -0.03334797297297293,
+   "false_positive_rate": 0.35767229729729727,
+   "n": 296,
+   "n_null": 1000,
+   "null_high": 0.39864864864864863,
+   "null_low": 0.3141891891891892,
+   "null_max": 0.4391891891891892,
+   "null_min": 0.28040540540540543,
+   "null_sd": 0.02268989605869803,
+   "p": 0.9400599400599401,
+   "p_lower": 0.08091908091908091,
+   "real": 0.32432432432432434
+  },
+  "younger": {
+   "excess": 0.004742857142857104,
+   "false_positive_rate": 0.3609714285714286,
+   "n": 175,
+   "n_null": 1000,
+   "null_high": 0.4057142857142857,
+   "null_low": 0.3142857142857143,
+   "null_max": 0.4342857142857143,
+   "null_min": 0.26857142857142857,
+   "null_sd": 0.0246495155941692,
+   "p": 0.4825174825174825,
+   "p_lower": 0.6073926073926074,
+   "real": 0.3657142857142857
+  }
+ },
+ "linear_a_by_length": {
+  "2": {
+   "excess": -0.0010602409638554217,
+   "false_positive_rate": 0.0010602409638554217,
+   "n": 83,
+   "n_null": 1000,
+   "null_high": 0.012048192771084338,
+   "null_low": 0.0,
+   "null_max": 0.024096385542168676,
+   "null_min": 0.0,
+   "null_sd": 0.0035402490975722915,
+   "p": 1.0,
+   "p_lower": 0.9150849150849151,
+   "real": 0.0
+  },
+  "3": {
+   "excess": -0.01854970760233915,
+   "false_positive_rate": 0.3811228070175438,
+   "n": 171,
+   "n_null": 1000,
+   "null_high": 0.4444444444444444,
+   "null_low": 0.32149122807017544,
+   "null_max": 0.5029239766081871,
+   "null_min": 0.2631578947368421,
+   "null_sd": 0.03207777160204972,
+   "p": 0.7582417582417582,
+   "p_lower": 0.3026973026973027,
+   "real": 0.36257309941520466
+  },
+  "4": {
+   "excess": -0.14194047619047623,
+   "false_positive_rate": 0.6538452380952381,
+   "n": 84,
+   "n_null": 1000,
+   "null_high": 0.7380952380952381,
+   "null_low": 0.5711309523809524,
+   "null_max": 0.7857142857142857,
+   "null_min": 0.4880952380952381,
+   "null_sd": 0.04471371864684633,
+   "p": 0.999000999000999,
+   "p_lower": 0.002997002997002997,
+   "real": 0.5119047619047619
+  },
+  "5+": {
+   "excess": 0.08102500000000001,
+   "false_positive_rate": 0.318975,
+   "n": 40,
+   "n_null": 1000,
+   "null_high": 0.375,
+   "null_low": 0.25,
+   "null_max": 0.4,
+   "null_min": 0.225,
+   "null_sd": 0.029668241936110392,
+   "p": 0.014985014985014986,
+   "p_lower": 1.0,
+   "real": 0.4
+  }
+ },
+ "method": "M2",
+ "null_lexicons": {
+  "finding_001": {
+   "forms": 428,
+   "forms_after_expansion_mean": 428.0,
+   "n": 1000,
+   "seed": 20261118
+  },
+  "matched": {
+   "forms_after_expansion": 428,
+   "forms_mean": 428.0,
+   "kind": "stratified",
+   "n": 1000,
+   "seed": 20261114
+  }
+ },
+ "outcome": "A: no better than a random lexicon",
+ "outcome_before_batch": "A: no better than a random lexicon",
+ "p_pair": 0.9460539460539461,
+ "params": {
+  "alpha": 0.05,
+  "n_resample": 1000,
+  "p_doubt": 0.5,
+  "seed_resample": 20261115,
+  "seed_size": 20261117,
+  "seed_strings": 20261116,
+  "source_order": [
+   "sigla",
+   "lineara.xyz",
+   "younger"
+  ],
+  "split": "train"
+ },
+ "permissiveness": {
+  "lengths": [
+   3,
+   4
+  ],
+  "letters": "HJKMNPRSTW",
+  "lexicon_forms_after_expansion": 428,
+  "reading_space": 11000,
+  "readings_per_group_max": 7029,
+  "readings_per_group_mean": 99.71164021164022,
+  "readings_per_group_median": 38.0,
+  "share_of_reading_space_in_lexicon": 0.03890909090909091
+ },
+ "protocol": "H-A5-06",
+ "provenance": {
+  "commit": "4280cf1",
+  "corpus": "corpus-v1.0"
+ },
+ "random_sign_strings": {
+  "max": 0.3878116343490305,
+  "mean": 0.35900194358655213,
+  "min": 0.33613445378151263,
+  "real_sign_groups": 0.3201058201058201,
+  "reps": 20
+ },
+ "resampling": {
+  "bootstrap": {
+   "difference": {
+    "high": -0.013203482951491607,
+    "low": -0.055788229279187966,
+    "max": 0.0004283405892709369,
+    "median": -0.03348935297925537,
+    "min": -0.08288775945247118,
+    "n": 1000
+   },
+   "excess": {
+    "high": -0.015106742487829448,
+    "low": -0.05712159165213597,
+    "max": -0.0005158730158730251,
+    "median": -0.03497679071628651,
+    "min": -0.08445258620689655,
+    "n": 1000
+   },
+   "false_positive_rate": {
+    "high": 0.3650206597697999,
+    "low": 0.31782972180930136,
+    "max": 0.3778036363636364,
+    "median": 0.34258235362588757,
+    "min": 0.30144656488549615,
+    "n": 1000
+   },
+   "n": {
+    "high": 294.0,
+    "low": 229.0,
+    "max": 313,
+    "median": 263.0,
+    "min": 209,
+    "n": 1000
+   },
+   "p1_at_most_alpha": {
+    "high": 0.0,
+    "low": 0.0,
+    "max": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "n": 1000
+   },
+   "p2_at_most_alpha": {
+    "high": 0.0,
+    "low": 0.0,
+    "max": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "n": 1000
+   },
+   "real": {
+    "high": 0.3384615384615385,
+    "low": 0.2748083006670793,
+    "max": 0.3613138686131387,
+    "median": 0.30674779872108204,
+    "min": 0.25301204819277107,
+    "n": 1000
+   }
+  },
+  "both": {
+   "difference": {
+    "high": -0.018319931896929823,
+    "low": -0.06212773049003816,
+    "max": 0.0015539265991751927,
+    "median": -0.04020438076403113,
+    "min": -0.08005254142978258,
+    "n": 1000
+   },
+   "excess": {
+    "high": -0.01968734235481978,
+    "low": -0.0629750412942091,
+    "max": -0.0003333333333332966,
+    "median": -0.04130857048748354,
+    "min": -0.08037777777777777,
+    "n": 1000
+   },
+   "false_positive_rate": {
+    "high": 0.3747246710526316,
+    "low": 0.32335069169960473,
+    "max": 0.39001127819548875,
+    "median": 0.3502781105733135,
+    "min": 0.3057066666666666,
+    "n": 1000
+   },
+   "n": {
+    "high": 290.025,
+    "low": 224.97500000000002,
+    "max": 306,
+    "median": 257.0,
+    "min": 200,
+    "n": 1000
+   },
+   "p1_at_most_alpha": {
+    "high": 0.0,
+    "low": 0.0,
+    "max": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "n": 1000
+   },
+   "p2_at_most_alpha": {
+    "high": 0.0,
+    "low": 0.0,
+    "max": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "n": 1000
+   },
+   "real": {
+    "high": 0.3405901216058637,
+    "low": 0.27450626459970273,
+    "max": 0.36401673640167365,
+    "median": 0.30943396226415093,
+    "min": 0.25296442687747034,
+    "n": 1000
+   }
+  },
+  "estimate": {
+   "difference": -0.03019712072789893,
+   "excess": -0.03159259259259262,
+   "false_positive_rate": 0.35169841269841273,
+   "n": 378,
+   "p1_at_most_alpha": 0.0,
+   "p2_at_most_alpha": 0.0,
+   "real": 0.3201058201058201
+  },
+  "params": {
+   "documents": 478,
+   "documents_by_number_of_sources": {
+    "1": 38,
+    "2": 257,
+    "3": 183
+   },
+   "doubtful_signs_in_primary_reading": 36,
+   "level": 0.95,
+   "n": 1000,
+   "p_doubt": 0.5,
+   "seed": 20261115,
+   "source_order": [
+    "sigla",
+    "lineara.xyz",
+    "younger"
+   ],
+   "strata": 57,
+   "stratum": "site_of"
+  },
+  "reading": {
+   "difference": {
+    "high": -0.03059698040687411,
+    "low": -0.04511255949006034,
+    "max": -0.02681971126818644,
+    "median": -0.037826729895527406,
+    "min": -0.04885064454894095,
+    "n": 1000
+   },
+   "excess": {
+    "high": -0.031882063678150226,
+    "low": -0.046344030181223586,
+    "max": -0.028425414364640855,
+    "median": -0.03907514663323894,
+    "min": -0.04972905027932961,
+    "n": 1000
+   },
+   "false_positive_rate": {
+    "high": 0.36818178748097413,
+    "low": 0.34981921028466484,
+    "max": 0.37475,
+    "median": 0.3593458824170181,
+    "min": 0.34439835164835164,
+    "n": 1000
+   },
+   "n": {
+    "high": 370.0,
+    "low": 350.0,
+    "max": 373,
+    "median": 361.0,
+    "min": 344,
+    "n": 1000
+   },
+   "p1_at_most_alpha": {
+    "high": 0.0,
+    "low": 0.0,
+    "max": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "n": 1000
+   },
+   "p2_at_most_alpha": {
+    "high": 0.0,
+    "low": 0.0,
+    "max": 0.0,
+    "median": 0.0,
+    "min": 0.0,
+    "n": 1000
+   },
+   "real": {
+    "high": 0.33150722156045265,
+    "low": 0.3081228707699296,
+    "max": 0.3398876404494382,
+    "median": 0.32011331444759206,
+    "min": 0.30337078651685395,
+    "n": 1000
+   }
+  },
+  "share_of_draws": {
+   "p1_at_most_alpha": 0.0,
+   "p2_at_most_alpha": 0.0
+  }
+ },
+ "rules": {
+  "max_distance": 0.25,
+  "min_group": 2,
+  "min_skeleton": 2
+ },
+ "test1": {
+  "excess": -0.03159259259259262,
+  "p": 0.9460539460539461
+ },
+ "test2": {
+  "control_false_positive_rate_standardised": 0.270583839924009,
+  "control_real_standardised": 0.2691883680593153,
+  "difference": -0.03019712072789893,
+  "excess_control": -0.001395471864693687,
+  "excess_linear_a": -0.03159259259259262,
+  "length_bins_used": [
+   2,
+   3,
+   4,
+   5
+  ],
+  "n_null": 1000,
+  "null_high": 0.03755902446923738,
+  "null_low": -0.03926296457990483,
+  "p": 0.938061938061938
+ }
+}

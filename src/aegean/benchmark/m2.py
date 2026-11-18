@@ -71,7 +71,7 @@ class M2Rules:
     # Normalised Levenshtein distance allowed. 1/4 is the strictest value that allows any edit at the lexicons'
     # form lengths (2-4 classes: one edit once the longer string has 4 classes). Chosen before any run on Linear A
     # or the control, on uniform random strings of Linear B values: 0 allows no edit at all, and 1/3 saturates
-    # (0.93-0.99 of two- and three-class skeletons match any of the three lexicons).
+    # (0.90-0.99 of two- and three-class skeletons match, across the three lexicons).
     max_distance: float = 0.25
     min_skeleton: int = 2      # a sign-group needs at least this many consonant classes to be eligible
     min_group: int = 2
