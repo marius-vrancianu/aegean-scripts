@@ -914,3 +914,19 @@ Code only (plain PR). Layer L1. No hit rate computed.
 - **Lexicon-side figures:** 52 / 169 / 281 skeletons of 2 / 3 / 4 consonants; 859 forms after expansion; R 0.29 of letters (the denominal suffix *-la-/-le-* stays in the stem); 0.185 of forms have adjacent identical letters; 91 skeletons shared with Hebrew, 157 with English.
 - **Known limits:** loans built with the native suffix *-la-* on Arabic nouns are not removed; homographs inflate a few frequency counts.
 - **Also:** a test from the loader PR (#52) would have failed on the first confirmatory hypothesis (review note N2). It now checks only that the new Type-line check accepts nothing the old pattern refused.
+
+## 2026-11-18 — H-A5-03 to H-A5-05 registered: revised Tier 1 protocol and three pairs
+
+Order agreed with Marius on 2026-11-18: loader fix (PR #52, merged), revised protocol, non-Indo-European lexicon. Layer L1, all exploratory, training split.
+
+- **H-A5-03** revises the Tier 1 protocol in one respect: the decision null is length-stratified (`nulls.stratified_matched_lexicon`), so pseudo-lexicons match the real lexicon's number of expanded forms at every length. It has its own batch (`batch-H-A5-03.md`); H-A5-01's batch is unchanged. Its first pair re-runs Hebrew.
+- **H-A5-04** re-runs English under the revised null. Its purpose is to check the null: under H-A5-01 English passed Test 1 at p1 = 0.009, and if the revision works it should not pass now. Predicted: A.
+- **H-A5-05** is Turkish, the first non-Indo-European unrelated lexicon and the stricter check of Test 2. Predicted: A.
+- Hebrew and English are not blind (their H-A5-01 results are known), and the files say so. Nothing has been run under the revised null.
+
+## 2026-11-18 — PR #55, first review: H-A5-01 closed to new pairs; the less favourable outcome counts
+
+The review (`docs/reviews/H-A5-03-review.md`, recorded unedited on PR #55) found no fault in the null, the power check or the disclosures, and requested two changes:
+- **R1.** With two protocols open, any future pair could be run under both nulls and the better result kept. H-A5-03 now closes H-A5-01 to new pairs (Part 1, point 3). Runner enforcement follows as a plain PR.
+- **R2.** No rule covered a pair whose two protocols disagree. Now the two pairs run under both (Hebrew, English) are cited by the less favourable of their two outcomes (A < B < C), so a C needs C under both (Part 1, point 4). The Hebrew re-run has its outcome readings fixed in advance.
+- Notes taken up: N1 and N4 (at two letters the stratified null is close to a copy of the real lexicon; Turkish's shortfall under the old null would have been larger than English's) added to H-A5-04 and H-A5-05; N2 (inbox) updated; N3 (the control row is the null's calibration and decides nothing more) added to Part 1.

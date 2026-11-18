@@ -35,6 +35,8 @@ To undo one: open the PR → **Revert** → the revert PR merges under the same 
 
 ## Settled recently
 
+- **Revised Tier 1 protocol, 2026-11-18.** H-A5-03 replaces the null with a length-stratified one and closes H-A5-01 to new pairs; Hebrew and English are re-run under it and Turkish is added (H-A5-04, H-A5-05). Results follow in the outcome files.
+
 - **Next task (was D3), 2026-11-14.** You chose the false-positive benchmark, A5.17 (Tier 1). Started the same day: the benchmark code and the port of the Finding 001 matcher are in `src/aegean/benchmark/` (how it works: `docs/benchmark.md`). Nothing has been run on Linear A yet; the protocol is registered first (`hypotheses/H-A5-01.md`, review in `docs/reviews/H-A5-01-review.md`). The same PR added the `Type:` line to `hypotheses/TEMPLATE.md`.
 - **First benchmark result, 2026-11-14 (no action needed).** The registered run of the Finding 001 matcher with the Hebrew verb lexicon gave outcome A: Hebrew matches 77.5% of 414 Linear A sign-groups, random lexicons of the same size 76.9% on average (p = 0.40). On Greek words Hebrew's edge over random lexicons is larger than on Linear A. Read: `hypotheses/outcomes/H-A5-01.md`.
 - **Finding 001 corrected, same conclusion.** Its random lexicons gave the matcher about 12% more targets than the real Hebrew lexicon, which is why Hebrew scored *below* random there. With a fair null it scores the same as random. The addendum of 2026-11-14 in `findings/001-yadiktu-null-test.md` has the corrected table.
@@ -42,7 +44,7 @@ To undo one: open the PR → **Revert** → the revert PR merges under the same 
 
 ## Small things an agent will do without asking, unless you object
 
-- A revised Tier 1 protocol with a length-stratified matched null (the current null under-draws short forms; H-A5-02 outcome). A new hypothesis file, review-gated; H-A5-01 stays as it is. Before any further lexicon with many short forms.
+- The runner refuses new pairs under H-A5-01, which H-A5-03 closes (plain PR, after H-A5-03 is merged).
 - Comparison of the A1.11 position table with Packard's published figures, once a source for them is available.
 - Four strengthenings of the guardrail script that the second review of #38 recommended (each a review-gated PR; none started):
   - **N7** a verdict line with a condition after it ("APPROVE once …") is read as an approval; accept only a bare verdict line.
