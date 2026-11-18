@@ -136,3 +136,64 @@ No value or reading here was derived from a lexicon under test. *Confidence: hig
 - **After R1:** once the author has fixed R1, a reviewer (this instance or a new one) appends a re-review to this file.
 
 Verdict: CHANGES REQUESTED
+
+---
+
+## Re-review
+
+### Re-review 1 (2026-11-18)
+
+- **Reviewer:** a separate Claude instance (fresh subagent). I wrote neither this PR, the fix commit, nor the first review above. I was given the PR number and the fixed review prompt only.
+- **Reviewed:** PR #62 at `47e1f70` ("fix R1 … N1-N5"), against the first review at `62c51c0` and `main @ 4280cf1`. I read the whole diff against `main`, not only the fix commit.
+- **Rerun:**
+  - **New figures in the fix**, with my own scratch scripts (not committed) over `aegean.corpus.load` (training split), `M2`, the lexicon registry and `tier1.matched_lexicons`. Results under "New claims" below.
+  - **The test suite:** 335 passed, 4 skipped.
+  - **The guardrail script from `main`** (`git show origin/main:tools/check_guardrails.py`), with the current PR body: before this re-review it fails only on the first review's CHANGES REQUESTED verdict.
+- **Not read (blinding respected):** KN Zg 57/58, `data/heldout.txt`, the held-out split, Kanta et al. 2025, *Anetaki II*, Kanta–Perna.
+
+#### R1 — resolved
+*Confidence: high.*
+
+All five places named in R1 are reworded:
+1. "What follows" in all three outcome files now uses the suggested wording. It is labelled descriptive (rule 5), says the change is not tested, lists the four ways M2 differs from M1, and names the English (Indo-European) alternative.
+2. H-A5-07's per-pair bullet no longer attributes the change to M1's licences. It gives both forms of the figure (raw, and at Linear A's lengths).
+3. `docs/benchmark.md`: "gone for Turkish … smaller for English … the change is not tested … the cause is open".
+4. `research-notes.md`: the heading claim is removed, and the bullet is reworded the same way. The edited entry is new in this PR; against `main` the file changes only by appended lines (checked with `git diff origin/main`).
+5. The PR description is reworded the same way.
+
+I grepped the whole PR diff for "largely", "mostly disappear", "partly a property" and "licences". No assertion of the old kind remains outside this review file. The figures quoted match the M1 outcomes (H-A5-04: +0.033, p 0.015, +0.028 at Linear A's lengths; H-A5-05: +0.032, p 0.017, +0.022) and the M2 reports.
+
+#### New claims in the fix, checked
+| Claim (where) | Check | Result |
+|---|---|---|
+| Hebrew three-sign groups 0.363 against 0.381, four-sign 0.512 against 0.654 (H-A5-06) | generated report, "By length" | matches |
+| Hebrew: 130 two-class groups never match, 81 of the 83 two-sign groups among them; the groups of six or more classes never match either (H-A5-06 to -08, N2) | sign count × class count over the 378 eligible groups; real Hebrew hits by class count | 81 (2,2) + 45 (3,2) + 4 (4,2) = 130, all 0 hits; 2 two-sign groups have 3 classes; 6 or more classes: 8 groups, 0 hits; 5 classes: 19 groups, 2 hits (so "six or more" is the right cut-off) |
+| Dropping groups that can never match changes no p1 (N2) | argument | correct: a constant zero in every lexicon's hit count leaves every rank unchanged |
+| On uniform random strings the real lexicons trail their pseudo-lexicons "mostly at three and four consonant classes" (N4) | calibration strings (seed 99), 20 pseudo-lexicons, gap by class count | Hebrew −0.020 (3), −0.008 (4); English −0.026, −0.015; Turkish −0.018, −0.022. At two classes English and Turkish are *ahead* (+0.009, +0.011). "Mostly at three and four" holds |
+| Threshold 1/3 saturation 0.90–0.99 across the three lexicons (outcome correction, research-notes correction, `m2.py` comment) | same strings, threshold 1/3, by class count | Hebrew 0.972, 0.964; English 0.929, 0.991; Turkish 0.901, 0.955. Range 0.90–0.99: correct |
+| The Hebrew null shares on average 268 of the real 414 three-class forms (H-A5-06) | all 1,000 registered pseudo-lexicons (seed 20261114) | 414 is right; mean 266.8 (range 247–287). See note M3 |
+
+#### Other changes in the fix
+- **`src/aegean/benchmark/m2.py`:** the change is to a comment only (the 1/3 saturation range). So the first review's "This PR changes nothing under `src/`" no longer holds, but nothing that is computed changes. The file is not a rule file or held-out lock code, and the tests pass.
+- **The first review's report** is recorded on the PR as a comment headed "recorded unedited", as CLAUDE.md requires.
+- **H-A5-08's per-pair bullet** ("Under M2 both advantages are gone (−0.009 … −0.003 …)") is a statement about point estimates, and it is true of them. It makes no causal claim, so R1 did not cover it and it needs no change.
+
+#### Notes (non-blocking; none affects an outcome, a p-value or a reading)
+- **M1. Date of the new research-notes entry.** It is headed "2026-11-19", but the fix commit is dated 2026-11-18 23:54 +0200 (21:54 UTC). The entry becomes append-only on merge, so a later entry can correct the date if it matters.
+- **M2. Heading of the review-points section.** In all three outcome files, the items taken from the review of PR #62 sit under the heading "Points from the review of PR #60 …, seen before the run":
+  - the N3 correction;
+  - the Hebrew null overlap;
+  - the added sentence in N2.
+
+  They were not seen before the run. Each one is labelled with its source, so a reader can tell, but the heading is no longer exact. A later plain PR could split the section.
+- **M3. Hebrew null overlap.**
+  - Over the 1,000 registered pseudo-lexicons the mean is 266.8 shared forms (range 247–287), not 268. The figure comes from the PR #60 review, which probably used another sample; the difference is immaterial.
+  - "Close to the lexicon itself" fits a sharing of about two-thirds less well than "shares about two-thirds of its three-class forms". It is a matter of wording only.
+
+#### Process
+- The description's first line still names this file.
+- No rule file, held-out file or enforcement code is touched.
+- `research-notes.md` and the plan change only by appended lines against `main`.
+- With this verdict, the guardrail script from `main` should pass, and CI (`test`) merges the PR.
+
+Verdict: APPROVE
