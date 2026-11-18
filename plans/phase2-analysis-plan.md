@@ -578,3 +578,4 @@ To-do:
 - 2026-11-18 — H-A5-03 to H-A5-05 run: all outcome A, as predicted. The length-stratified null removes English's Test 1 false positive; Turkish comes closest (p1 = 0.100) and Test 2 shows nothing beyond its advantage on Greek words.
 - 2026-11-18 — H-A5-06 to H-A5-08 registered: method M2 (Dolgopolsky sound-class matching) × Hebrew, English and Turkish, pairs 4–6 of protocol H-A5-03.
 - 2026-11-18 — H-A5-06 to H-A5-08 run: M2 × Hebrew, English, Turkish all outcome A, as predicted; protocol H-A5-03's batch complete and closed.
+- 2026-11-19 — H-A5-09 registered: Tier 1 protocol revision 2 (bigram-matched null; H-A5-03 closed), with the six M1 and M2 pairs re-run under it as disclosed checks (H-A5-09 to H-A5-14).

@@ -997,3 +997,16 @@ The review (`docs/reviews/H-A5-06-outcome-review.md`, recorded unedited on PR #6
 Notes taken up: N1 (81 of 83 two-sign groups can never match for Hebrew), N2 (a misplaced pointer; sign versus class counts), N3, N4 (dropping never-matching groups changes no p1, by construction), N5 (Hebrew null overlap, 268 of 414 three-class forms).
 
 **Correction to the entry "A5.17: method M2" (2026-11-18, N3):** its saturation figure for threshold 1/3, "0.93–0.99", is English's. Across the three lexicons it is 0.90–0.99. The threshold choice is unaffected.
+
+## 2026-11-19 — H-A5-09 to H-A5-14 registered: protocol revision 2 (bigram-matched null) and six re-runs
+
+Agreed with Marius on 2026-11-18 (M2 first, then a further protocol revision). Layer L1, all exploratory, training split.
+
+- **H-A5-09, Part 1:** as H-A5-03, except that the decision null is bigram-matched and length-stratified (`nulls.bigram_matched_lexicon`, PR #61). The protocol has its own batch. H-A5-03 is closed. A pair run under several protocols is cited by the least favourable of all its outcomes.
+- **Pairs:** M1 and M2 × Hebrew, English and Turkish, all re-runs (H-A5-09 to H-A5-14), all predicted A, and none blind. A reading of the null's calibration row is fixed in advance: if M1 × English and M1 × Turkish still beat the null on Greek words at p ≤ 0.05, letter co-occurrence is not the explanation.
+- **Nothing has been run under the bigram null.**
+
+**Points from the re-review of PR #62** (`docs/reviews/H-A5-06-outcome-review.md`, re-review 1; the outcome files are now review-gated):
+- **M1.** The entry "PR #62, first review: wording …" is dated 2026-11-19, but it was written on 2026-11-18 at 23:54 local time. It should read 2026-11-18.
+- **M2.** In the M2 outcome files, items from the PR #62 review sit under a heading that says the points were "seen before the run". Each item names its source; the ones attributed to PR #62 were added after the run.
+- **M3.** "Close to the lexicon itself" (Hebrew null overlap, H-A5-06 outcome) overstates it. About two-thirds of the three-class forms are shared: 266.8 of 414 on average over the 1,000 registered pseudo-lexicons (247–287).
