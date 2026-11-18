@@ -35,6 +35,7 @@ To undo one: open the PR → **Revert** → the revert PR merges under the same 
 
 ## Settled recently
 
+- **Second method run, 2026-11-18 (for your information, no action needed).** M2, a generic sound-class matcher, gives outcome A for Hebrew, English and Turkish (H-A5-06 to H-A5-08). Table: `docs/benchmark.md`.
 - **Revised benchmark run, 2026-11-18 (for your information, no action needed).** H-A5-03 to H-A5-05 give outcome A for Hebrew, English and Turkish. The new null removed English's false positive on the first test; Turkish came closest (p = 0.100). The runner now refuses new pairs under the old protocol (PR #56). Table: `docs/benchmark.md`, "Results so far".
 - **Revised Tier 1 protocol, 2026-11-18.** H-A5-03 replaces the null with a length-stratified one and closes H-A5-01 to new pairs; Hebrew and English are re-run under it and Turkish is added (H-A5-04, H-A5-05). Results follow in the outcome files.
 - **Next task (was D3), 2026-11-14.** You chose the false-positive benchmark, A5.17 (Tier 1). Started the same day: the benchmark code and the port of the Finding 001 matcher are in `src/aegean/benchmark/` (how it works: `docs/benchmark.md`). Nothing has been run on Linear A yet; the protocol is registered first (`hypotheses/H-A5-01.md`, review in `docs/reviews/H-A5-01-review.md`). The same PR added the `Type:` line to `hypotheses/TEMPLATE.md`.

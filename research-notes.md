@@ -972,3 +972,20 @@ Code only (plain PR); no run on Linear A or the control. Layer L1. Order agreed 
 Pairs 4–6 of protocol H-A5-03 (batch of 6). Exploratory, training split, layer L1. All predicted A. M2 and its threshold are fixed in code (PR #59) and in the files; nothing has been run with M2 on Linear A or the control.
 
 **Next:** after the merge, the three runs and their outcome files (review-gated); then the further protocol revision (a null that also matches letter co-occurrence).
+
+## 2026-11-18 — H-A5-06 to H-A5-08 outcomes: M2 is uninformative too; the Greek-word advantage is largely M1's
+
+Run once each after the merge of PR #60 (`4280cf1`). Layer L1, training split. Details: `hypotheses/outcomes/H-A5-06.md` to `-08.md`.
+
+| Pair | Lexicon (M2) | Linear A excess, p1 | Greek control excess, p | Test 2 D, p2 | Outcome |
+|---|---|---|---|---|---|
+| H-A5-06 | Hebrew | −0.032, 0.946 | +0.006, 0.386 | −0.030, 0.938 | A |
+| H-A5-07 | English | −0.010, 0.716 | +0.019, 0.139 | −0.032, 0.932 | A |
+| H-A5-08 | Turkish | −0.009, 0.671 | −0.003, 0.589 | −0.005, 0.584 | A |
+
+- All as predicted; protocol H-A5-03's batch is complete (6 pairs, every adjusted pair p 0.946) and closed.
+- With M2, no lexicon is even above its random lexicons on Linear A; Hebrew is furthest below (lower-tail p = 0.073).
+- **The unrelated lexicons' advantage on Greek words under M1 (p ≈ 0.015) mostly disappears under M2**, so it is partly a property of M1's licences (descriptive; my reading).
+- Review notes of PR #60 taken up in the outcome files. The threshold calibration is committed with its seeds and reproduces exactly (N5). A post hoc Test 2 re-weighted by sign count × class count (N1) changes no reading (p2 0.921, 0.924, 0.513).
+
+**Next:** register H-A5-09 (bigram-matched null), re-running the six pairs as disclosed checks under the less-favourable rule.

@@ -84,18 +84,21 @@ Subclass `interface.Method`: `name`, `eligible`, `match`, `degrees_of_freedom`, 
 
 Live tables: `experiments/A5.17/results/batch.md` (protocol H-A5-01, closed) and `batch-H-A5-03.md` (protocol H-A5-03, length-stratified null).
 
-| Pair | Protocol | Lexicon | Test 1 (p1) | Test 2 (p2) | Outcome |
+| Pair | Protocol | Lexicon (method M1 unless stated) | Test 1 (p1) | Test 2 (p2) | Outcome |
 |---|---|---|---|---|---|
 | H-A5-01 | H-A5-01 | Hebrew verbs | 0.397 | 0.840 | A |
 | H-A5-02 | H-A5-01 | English verbs (unrelated) | **0.009** | 0.754 | B, Test 1 only |
 | H-A5-03 | H-A5-03 | Hebrew verbs (re-run) | 0.469 | 0.871 | A |
 | H-A5-04 | H-A5-03 | English verbs (re-run) | 0.288 | 0.780 | A |
 | H-A5-05 | H-A5-03 | Turkish verbs (unrelated) | 0.100 | 0.355 | A |
+| H-A5-06 | H-A5-03 | M2 × Hebrew verbs | 0.946 | 0.938 | A |
+| H-A5-07 | H-A5-03 | M2 × English verbs | 0.716 | 0.932 | A |
+| H-A5-08 | H-A5-03 | M2 × Turkish verbs | 0.671 | 0.584 | A |
 
-Cited outcomes (H-A5-03, Part 1, point 4: the less favourable of a pair's runs): Hebrew A, English A, Turkish A.
+Cited outcomes (H-A5-03, Part 1, point 4: the less favourable of a pair's runs): M1 and M2, Hebrew A, English A, Turkish A.
 
 - **Test 1 alone can give false positives.** English passed it under the first null (p = 0.009); the length-stratified null removed that.
-- **On Greek words, two unrelated lexicons beat length-matched noise** (English +0.033, Turkish +0.032, both p ≈ 0.015 uncorrected; Hebrew +0.017, p = 0.093). This is a descriptive row, not a tested claim, but it means Test 1 alone is not safe under either null. Never quote a Tier 1 result from Test 1 alone.
+- **On Greek words, two unrelated lexicons beat length-matched noise** (English +0.033, Turkish +0.032, both p ≈ 0.015 uncorrected; Hebrew +0.017, p = 0.093). This is a descriptive row, not a tested claim, but it means Test 1 alone is not safe under either null. Under M2 the advantage is much smaller (English +0.019, p = 0.139; Turkish −0.003), so it is partly a property of M1's licences. Never quote a Tier 1 result from Test 1 alone.
 
 ## Limits
 
