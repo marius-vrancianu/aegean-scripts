@@ -7,6 +7,7 @@ batch table; a pair belongs to exactly one protocol, named in its hypothesis fil
 |---|---|---|
 | H-A5-01 (Part 1) | matched pseudo-lexicons (`nulls.matched_lexicon`) | `batch.md`, `batch.json` |
 | H-A5-03 | length-stratified matched pseudo-lexicons (`nulls.stratified_matched_lexicon`) | `batch-H-A5-03.md`, `.json` |
+| H-A5-09 | bigram-matched, length-stratified pseudo-lexicons (`nulls.bigram_matched_lexicon`) | `batch-H-A5-09.md`, `.json` |
 
 Everything else (inputs, tests, α, decision rule, Benjamini–Hochberg) is the same.
 
@@ -48,7 +49,10 @@ PROTOCOLS = {
     # "pairs": the only hypotheses a closed protocol still accepts (None = open). H-A5-03, Part 1, point 3
     # closes H-A5-01 to new pairs, so that no pair can be run under both nulls and the better result kept.
     "H-A5-01": {"null": "matched", "batch_stem": "batch", "pairs": {"H-A5-01", "H-A5-02"}},
-    "H-A5-03": {"null": "stratified", "batch_stem": "batch-H-A5-03", "pairs": None},
+    # H-A5-09 closes H-A5-03 to new pairs in turn (review of PR #55, M1): only its six registered pairs remain.
+    "H-A5-03": {"null": "stratified", "batch_stem": "batch-H-A5-03",
+                "pairs": {"H-A5-03", "H-A5-04", "H-A5-05", "H-A5-06", "H-A5-07", "H-A5-08"}},
+    "H-A5-09": {"null": "bigram", "batch_stem": "batch-H-A5-09", "pairs": None},
 }
 ALPHA = 0.05
 Q = 0.05
