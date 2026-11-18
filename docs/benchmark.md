@@ -12,7 +12,8 @@ Protocols and decision rule: `hypotheses/H-A5-01.md` (Part 1), and its revision 
 |---|---|
 | `interface` | `Method`, `Lexicon`, `Match`. A method is a pure function of (sign-group, lexicon). |
 | `m1` | Method M1: the Finding 001 root matcher, ported from `experiments/finding-001/original/nulltest.py`. Every licence is a field of `M1Rules`. |
-| `lexicons` | Real lexicons converted to the forms a method compares against: Hebrew verb skeletons (Strong's); English verb skeletons (WordNet + CMUdict) and Turkish verb skeletons (Zemberek + FrequencyWords), unrelated-language lexicons. |
+| `m2` | Method M2: Dolgopolsky sound-class skeleton matching, normalised edit distance ≤ 1/4, no claim-specific licences. |
+| `lexicons` | Real lexicons converted to the forms a method compares against: Hebrew verb skeletons (Strong's); English verb skeletons (WordNet + CMUdict) and Turkish verb skeletons (Zemberek + FrequencyWords), unrelated-language lexicons; each also in Dolgopolsky classes (`*-dolgo`) for M2. |
 | `nulls` | Matched pseudo-lexicons (the decision null), Finding 001 pseudo-lexicons (kept for continuity), random sign strings. |
 | `inputs` | Linear A sign-groups through `aegean.corpus.load` (training split); Linear B words of known Greek meaning (NeuroDecipher data). |
 | `tier1` | The runner, the report and the command line. |

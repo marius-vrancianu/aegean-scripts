@@ -135,5 +135,10 @@ Recorded so nobody re-does the check. Neither source adds independent readings.
 - **Licence:** README: "MIT License for code. CC-by-sa-4.0 for content." Fetched, not committed (30 MB; `data/raw/frequencywords/fetch.py`).
 - **Used:** the count of each verb's infinitive, as the frequency ranking of the `turkish-verbs` lexicon. Homographs inflate a few counts (*yemek* "to eat" and "food").
 
+## LingPy DOLGO sound-class model (reference for method M2, A5.17)
+- **Source:** LingPy 2.6.13 (PyPI wheel, sha256 `d582f6b3…`), `lingpy/data/models/dolgo/converter`: Dolgopolsky's (1986) consonant classes as compiled by J.-M. List (2012).
+- **Licence:** GPL-3.0. LingPy is **not** a dependency and nothing from it is committed. Its class table was read and the ten classes are restated in `src/aegean/benchmark/m2.py` with the sounds they cover (a short factual list of class memberships).
+- **Used:** to define M2's classes and the `*-dolgo` lexicon conversions.
+
 ## Kanta, Nakassis, Palaima & Perna 2025 (Knossos sceptre overview) — HELD OUT
 - doi:10.26248/ariadne.vi.1841, CC BY-NC-SA 4.0. Descriptive only, no sign-by-sign text. **Held-out material: do not read or ingest** (see `CLAUDE.md`).
