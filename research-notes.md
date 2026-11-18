@@ -930,3 +930,21 @@ The review (`docs/reviews/H-A5-03-review.md`, recorded unedited on PR #55) found
 - **R1.** With two protocols open, any future pair could be run under both nulls and the better result kept. H-A5-03 now closes H-A5-01 to new pairs (Part 1, point 3). Runner enforcement follows as a plain PR.
 - **R2.** No rule covered a pair whose two protocols disagree. Now the two pairs run under both (Hebrew, English) are cited by the less favourable of their two outcomes (A < B < C), so a C needs C under both (Part 1, point 4). The Hebrew re-run has its outcome readings fixed in advance.
 - Notes taken up: N1 and N4 (at two letters the stratified null is close to a copy of the real lexicon; Turkish's shortfall under the old null would have been larger than English's) added to H-A5-04 and H-A5-05; N2 (inbox) updated; N3 (the control row is the null's calibration and decides nothing more) added to Part 1.
+
+## 2026-11-18 — H-A5-03 to H-A5-05 outcomes: all A; the revised null works; Test 2 still needed
+
+Run once each after the merge of PR #55 (`550dc7a`). Layer L1, training split. Details: `hypotheses/outcomes/H-A5-03.md`, `-04.md`, `-05.md`.
+
+| Pair | Lexicon | Linear A excess, p1 | Greek control excess, p | Test 2 D, p2 | Outcome |
+|---|---|---|---|---|---|
+| H-A5-03 | Hebrew (re-run) | +0.003, 0.469 | +0.017, 0.093 | −0.017, 0.871 | A |
+| H-A5-04 | English (re-run) | +0.012, 0.288 | +0.033, 0.015 | −0.016, 0.780 | A |
+| H-A5-05 | Turkish | +0.028, 0.100 | +0.032, 0.017 | +0.006, 0.355 | A |
+
+- All three as predicted; batch-adjusted pair p 0.871 for each. Cited outcomes (less favourable of a pair's runs): Hebrew A, English A, Turkish A.
+- **The length-stratified null removed English's Test 1 false positive** (p1 0.009 → 0.288; 84% → 0% of resampling draws with p1 ≤ α).
+- **Real lexicons still beat length-matched noise on Greek words.** Both unrelated lexicons do so at p ≈ 0.015. My reading (rule 5): letter co-occurrence within forms, which no null here matches. Test 2 removes it; Test 1 alone is unsafe under either null.
+- **Turkish came closest:** p1 = 0.100 (SigLA alone 0.042; 13.5% of resampling draws ≤ α). Its Greek-word advantage is as large, so Test 2 finds nothing specific to Linear A.
+- **Review notes M1–M5 (PR #55):** M2 and M3 did not arise (English is A under H-A5-03; Hebrew is A). M4: the narrower spread is now measured (English sd 0.020 against 0.029). M5: Turkish's pair p computed alone is 0.355. M1: any later protocol revision must close H-A5-03 to new pairs, as H-A5-03 did for H-A5-01.
+
+**Next candidates:** M2 (sound-class edit-distance matching) under H-A5-03; a null that also matches letter co-occurrence (bigram-matched), as a further protocol revision; the A5.18 constrained substrate test once A8.2 exists.

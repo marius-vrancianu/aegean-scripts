@@ -575,3 +575,4 @@ To-do:
 - 2026-11-17 — H-A5-02 registered: M1 × English verbs, the second Tier 1 pair and the first unrelated-language lexicon (Marius's choice).
 - 2026-11-17 — H-A5-02 run: outcome B (Test 1 only), as predicted. Test 1 alone gave a false positive for English (p1 = 0.009), carried by two-letter forms the matched null under-draws; Test 2 removed it (p2 = 0.754).
 - 2026-11-18 — H-A5-03 registered: Tier 1 protocol revision 1 (length-stratified null, its own batch), with three pairs: Hebrew and English re-run (H-A5-03, H-A5-04; not blind) and Turkish (H-A5-05, the first non-Indo-European unrelated language).
+- 2026-11-18 — H-A5-03 to H-A5-05 run: all outcome A, as predicted. The length-stratified null removes English's Test 1 false positive; Turkish comes closest (p1 = 0.100) and Test 2 shows nothing beyond its advantage on Greek words.
