@@ -900,3 +900,17 @@ Code only (plain PR); no run on Linear A. Layer L1. Agreed with Marius on 2026-1
 - H-A5-03 is not registered yet. The runner refuses it until its file is merged.
 
 **Next:** register H-A5-03 (protocol v2 and its first pair) with the re-runs of Hebrew and English under it, and the non-Indo-European lexicon when its source is settled.
+
+## 2026-11-18 — A5.17: Turkish verb lexicon (a non-Indo-European unrelated language)
+
+Code only (plain PR). Layer L1. No hit rate computed.
+
+- **Why Turkish.** A subagent searched for a non-Indo-European language with no published Linear A link and open, pinnable sources. Rejected: Finnish and Hungarian (Revesz 2017 proposes a Ugric link), Basque (Gordon 1931), Japanese (a fringe web claim), Georgian (Gordeziani; from memory). For Turkish no scholarly proposal was found (high confidence); a fringe web claim cannot be excluded (medium). Turkish spelling is close to phonemic, so no pronunciation dictionary is needed.
+- **Lexicon** `turkish-verbs`:
+  - verbs from Zemberek's dictionary (Apache-2.0), ranked by the count of the infinitive in the OpenSubtitles 2018 frequency list (FrequencyWords, CC BY-SA 4.0);
+  - stem consonants to M1's classes (`TURKISH_CLASS`; ğ dropped, c/ç/j as sibilants, v as P);
+  - light-verb compounds excluded (133). These are mostly Arabic and Persian loans with *etmek*, *olmak* or *eylemek*, which would put Semitic roots into an unrelated-language control. The subagent's first rule would also have dropped native verbs (*dolmak*, *yetmek*) and, when tightened, native causatives (*benzetmek*). The rule used reads Zemberek's own `Voicing` attribute instead (`turkish_compound`; fixture tests);
+  - the first 502 distinct skeletons of 2–4 consonants.
+- **Lexicon-side figures:** 52 / 169 / 281 skeletons of 2 / 3 / 4 consonants; 859 forms after expansion; R 0.29 of letters (the denominal suffix *-la-/-le-* stays in the stem); 0.185 of forms have adjacent identical letters; 91 skeletons shared with Hebrew, 157 with English.
+- **Known limits:** loans built with the native suffix *-la-* on Arabic nouns are not removed; homographs inflate a few frequency counts.
+- **Also:** a test from the loader PR (#52) would have failed on the first confirmatory hypothesis (review note N2). It now checks only that the new Type-line check accepts nothing the old pattern refused.

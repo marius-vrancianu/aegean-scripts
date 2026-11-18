@@ -191,3 +191,147 @@ def english_verbs(cmudict: Path = CMUDICT, wordnet_zip: Path = WORDNET_ZIP, veri
 
 
 REGISTRY["english-verbs"] = english_verbs
+
+
+# ---- Turkish verbs (a non-Indo-European unrelated-language lexicon for M1) ---------------------
+
+ZEMBEREK_COMMIT = "fd8c674927f0c86dc4c09429e6dbc4f6f4abd924"
+ZEMBEREK_SHA256 = "7eec0b78ca39c243e665bb1001eaaa6bda3a8dc86773e736d3a21fc9eb1c4c23"
+ZEMBEREK_DICT = REPO / f"data/raw/zemberek/{ZEMBEREK_COMMIT[:12]}/master-dictionary.dict"
+FREQWORDS_COMMIT = "525f9b560de45753a5ea01069454e72e9aa541c6"
+FREQWORDS_SHA256 = "62fed3d295a3250920f8a151f597cb28208633b6ff6e7bff90faed51ee86a9a5"
+TR_FREQ = REPO / f"data/raw/frequencywords/{FREQWORDS_COMMIT[:12]}/tr_full.txt"
+
+TR_VOWELS = "aeıioöuüâîû"
+# Turkish letter -> M1 class, by the groupings HEBREW_CLASS and ENGLISH_CLASS use. Turkish spelling is close to
+# phonemic. c is /dʒ/ and ç /tʃ/ (affricates -> S, as English JH and CH); j is /ʒ/; ğ (yumuşak g) is silent or
+# lengthens the preceding vowel in standard Turkish and is dropped; y is /j/; v -> P as in English.
+TURKISH_CLASS = {
+    "b": "P", "p": "P", "f": "P", "v": "P",
+    "k": "K", "g": "K", "q": "K",
+    "t": "T", "d": "D",
+    "s": "S", "z": "S", "ş": "S", "c": "S", "ç": "S", "j": "S",
+    "l": "R", "r": "R",
+    "m": "M", "n": "N", "h": "H", "y": "J", "w": "W",
+    "ğ": "",
+}
+_TR_LINE = re.compile(r"^([a-zçğıöşüâîû]+m[ae]k)(?:\s+\[(.*)\])?\s*$")
+
+
+def zemberek_verbs(text: str) -> dict[str, str]:
+    """{infinitive: attribute text} for every verb entry of Zemberek's master dictionary.
+
+    A verb is an entry in the infinitive (-mak/-mek) whose part-of-speech tag, if any, is Verb; entries in -mak
+    tagged as nouns, adjectives or adverbs (ahmak "fool") are not verbs.
+    """
+    out = {}
+    for line in text.splitlines():
+        m = _TR_LINE.match(line)
+        if not m:
+            continue
+        pos = re.findall(r"P:(\w+)", m.group(2) or "")
+        if pos and pos != ["Verb"]:
+            continue
+        out[m.group(1)] = m.group(2) or ""
+    return out
+
+
+def turkish_compound(verb: str, entries: dict[str, str]) -> bool:
+    """Whether a verb is a light-verb compound with etmek, olmak or eylemek (mostly Arabic and Persian loans).
+
+    - X-etmek with X non-empty and Zemberek's Voicing attribute (from etmek's own t~d alternation): affetmek,
+      hissetmek, kaybetmek. Native causatives in -t- (benzetmek, öğretmek) do not carry it.
+    - X-olmak with X non-empty, ending in a consonant and containing a vowel: kaybolmak, mahvolmak. Native
+      dolmak, solmak, yolmak have no vowel before -olmak.
+    - X-eylemek whose X-etmek is such a compound: affeylemek, sabreylemek.
+    """
+    def voiced_etmek(v: str) -> bool:
+        a = entries.get(v, "")
+        return v.endswith("etmek") and len(v) > 5 and "Voicing" in a.replace("NoVoicing", "")
+    if verb.endswith("etmek"):
+        return voiced_etmek(verb)
+    if verb.endswith("olmak") and len(verb) > 5:
+        x = verb[:-5]
+        return x[-1] not in TR_VOWELS and any(c in TR_VOWELS for c in x)
+    if verb.endswith("eylemek") and len(verb) > 7:
+        return voiced_etmek(verb[:-7] + "etmek")
+    return False
+
+
+def turkish_skeleton(verb: str) -> str:
+    """The consonant skeleton of a verb's stem (the infinitive without -mak/-mek)."""
+    stem = verb[:-3]
+    out = []
+    for c in stem:
+        if c in TR_VOWELS:
+            continue
+        if c not in TURKISH_CLASS:
+            raise ValueError(f"no class for {c!r} in {verb!r}")
+        out.append(TURKISH_CLASS[c])
+    return "".join(out)
+
+
+def word_counts(text: str) -> dict[str, int]:
+    """FrequencyWords format: one "word count" pair per line."""
+    out = {}
+    for line in text.splitlines():
+        parts = line.split()
+        if len(parts) == 2 and parts[1].isdigit():
+            out.setdefault(parts[0], int(parts[1]))
+    return out
+
+
+def turkish_verb_skeletons(dictionary: str, frequencies: str, size: int = ENGLISH_SIZE,
+                           min_len: int = 2, max_len: int = 4) -> tuple[frozenset[str], dict]:
+    """The first `size` distinct skeletons of Turkish verbs, most frequent infinitives first.
+
+    Verbs are ranked by the count of the infinitive in the frequency list (descending), ties alphabetically;
+    light-verb compounds (`turkish_compound`) are excluded; skeletons outside min_len..max_len are skipped.
+    """
+    entries = zemberek_verbs(dictionary)
+    counts = word_counts(frequencies)
+    compounds = sorted(v for v in entries if turkish_compound(v, entries))
+    ranked = sorted((v for v in entries if v not in set(compounds)), key=lambda v: (-counts.get(v, 0), v))
+    forms: list[str] = []
+    seen: set[str] = set()
+    skipped = {"length": 0, "duplicate": 0}
+    last = None
+    for v in ranked:
+        if len(forms) == size:
+            break
+        sk = turkish_skeleton(v)
+        if not min_len <= len(sk) <= max_len:
+            skipped["length"] += 1
+            continue
+        if sk in seen:
+            skipped["duplicate"] += 1
+            continue
+        seen.add(sk)
+        forms.append(sk)
+        last = (v, counts.get(v, 0))
+    if len(forms) < size:
+        raise ValueError(f"only {len(forms)} distinct skeletons, {size} wanted")
+    return frozenset(forms), {"verbs": len(entries), "compounds_excluded": len(compounds),
+                              "verbs_ranked": len(ranked), "last_verb_taken": last, "skipped": skipped}
+
+
+def turkish_verbs(dictionary: Path = ZEMBEREK_DICT, frequencies: Path = TR_FREQ, verify_hash: bool = True) -> Lexicon:
+    for path, want, script in ((dictionary, ZEMBEREK_SHA256, "zemberek"), (frequencies, FREQWORDS_SHA256, "frequencywords")):
+        if not path.exists():
+            raise FileNotFoundError(f"{path} is not fetched; run python data/raw/{script}/fetch.py")
+        got = hashlib.sha256(path.read_bytes()).hexdigest()
+        if verify_hash and got != want:
+            raise RuntimeError(f"HASH MISMATCH for {path}: {got}, expected {want}")
+    forms, info = turkish_verb_skeletons(dictionary.read_text(encoding="utf-8"), frequencies.read_text(encoding="utf-8"))
+    return Lexicon("turkish-verbs", forms, "real", {
+        "source": "Zemberek-NLP master-dictionary.dict + FrequencyWords tr_full (OpenSubtitles 2018)",
+        "zemberek_commit": ZEMBEREK_COMMIT, "frequencywords_commit": FREQWORDS_COMMIT,
+        "sha256": hashlib.sha256((ZEMBEREK_SHA256 + FREQWORDS_SHA256).encode()).hexdigest(),
+        "licence": "Zemberek Apache-2.0; FrequencyWords content CC BY-SA 4.0",
+        "conversion": "infinitive verbs; light-verb compounds (etmek/olmak/eylemek) excluded; ranked by infinitive "
+                      "count; stem consonants to M1 classes (TURKISH_CLASS; ğ dropped); length 2-4; first 502 "
+                      "distinct skeletons",
+        **info})
+
+
+REGISTRY["turkish-verbs"] = turkish_verbs
