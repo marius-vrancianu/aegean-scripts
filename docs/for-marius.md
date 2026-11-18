@@ -31,6 +31,7 @@ To undo one: open the PR → **Revert** → the revert PR merges under the same 
 | PR | Date | What changed | Weakens a guardrail? |
 |---|---|---|---|
 | #38 | 2026-11-12 | No manual merges; rule files review-gated; guardrail script run from `main`; held-out lock in CI; held-out code added to the rule files | **Yes**: rule changes no longer need your merge (your instruction, 2026-11-12). Also stronger in four places: review gate no longer accepts an approval from another PR; removed held-out lines need a `predictions-` tag; the guardrail script cannot approve its own change; `load.py`, `heldout.py`, `split.py` are now rule files. |
+| #52 | 2026-11-18 | The corpus loader's Type-line check: only an unambiguous `confirmatory` (one Type line; no "/ exploratory", no second line) releases the held-out split | No: stronger. Accepts nothing the old pattern refused (tested). |
 
 ## Settled recently
 
@@ -43,8 +44,6 @@ To undo one: open the PR → **Revert** → the revert PR merges under the same 
 
 - A revised Tier 1 protocol with a length-stratified matched null (the current null under-draws short forms; H-A5-02 outcome). A new hypothesis file, review-gated; H-A5-01 stays as it is. Before any further lexicon with many short forms.
 - Comparison of the A1.11 position table with Packard's published figures, once a source for them is available.
-- One follow-up left from the review of H-A5-01 (`docs/reviews/H-A5-01-review.md`); the three plain ones were done on 2026-11-17:
-  - tighten the loader's pattern for the `Type:` line so that it accepts `confirmatory` alone (today a line reading "confirmatory / exploratory" would open the held-out split). Strengthens a rule file: review-gated PR.
 - Four strengthenings of the guardrail script that the second review of #38 recommended (each a review-gated PR; none started):
   - **N7** a verdict line with a condition after it ("APPROVE once …") is read as an approval; accept only a bare verdict line.
   - **N8** an approval does not expire when the author pushes again; require that no commit to a gated path is newer than the approving review.

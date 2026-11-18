@@ -13,8 +13,13 @@ withheld. Reading it needs the ID of a frozen confirmatory hypothesis:
   1. exists,
   2. is byte-identical to the file on `origin/main` (merged = pre-registered
      and immutable, CLAUDE.md rule 3), and
-  3. declares itself confirmatory with a line `- **Type:** confirmatory`
-     (CLAUDE.md rule 10).
+  3. declares itself confirmatory in exactly one Type line whose value is the
+     word `confirmatory` alone, optionally followed by a parenthesis that does
+     not mention "exploratory": `- **Type:** confirmatory` or
+     `- **Type:** confirmatory (held-out split, tested once)` (CLAUDE.md
+     rule 10). A line such as `confirmatory / exploratory`, copied from the
+     template and not decided, releases nothing; nor does a file with two
+     Type lines.
 Anything else raises HeldoutAccessError. The check stops mistakes, not a
 determined caller: the split documents are in the corpus files, and reading
 those files directly bypasses this module. Do not do that.
@@ -42,7 +47,18 @@ RELEASE_MANIFEST = REPO / "data/processed/corpus-v1.0/MANIFEST.json"
 
 SPLITS = ("train", "heldout", "all")
 HYPOTHESIS_ID_RE = re.compile(r"H-A\d+-\d+")
-CONFIRMATORY_RE = re.compile(r"^\s*[-*]?\s*\*\*Type:\*\*\s*confirmatory\b", re.IGNORECASE | re.MULTILINE)
+TYPE_LINE_RE = re.compile(r"^\s*[-*]?\s*\*\*Type:\*\*(.*)$", re.IGNORECASE | re.MULTILINE)
+# The value of the Type line: "confirmatory" alone, or followed by one parenthesis, nothing else.
+CONFIRMATORY_RE = re.compile(r"^\s*confirmatory\s*(\([^()]*\))?\s*$", re.IGNORECASE)
+
+
+def declares_confirmatory(text: str) -> bool:
+    """Whether a hypothesis file declares itself confirmatory, unambiguously (see the module docstring, point 3)."""
+    values = TYPE_LINE_RE.findall(text)
+    if len(values) != 1:
+        return False
+    m = CONFIRMATORY_RE.match(values[0])
+    return bool(m) and "exploratory" not in values[0].lower()
 MAIN_REFS = ("origin/main", "main")
 
 
@@ -81,8 +97,8 @@ def check_frozen_hypothesis(hypothesis_id: str, repo: Path = REPO) -> Path:
         raise HeldoutAccessError(f"{rel} is not on main: a hypothesis is frozen only once it is merged")
     if merged != path.read_bytes():
         raise HeldoutAccessError(f"{rel} differs from the merged version on main")
-    if not CONFIRMATORY_RE.search(merged.decode("utf-8", errors="replace")):
-        raise HeldoutAccessError(f"{rel} does not declare '- **Type:** confirmatory' (CLAUDE.md rule 10): "
+    if not declares_confirmatory(merged.decode("utf-8", errors="replace")):
+        raise HeldoutAccessError(f"{rel} does not declare '- **Type:** confirmatory' in exactly one Type line (CLAUDE.md rule 10): "
                                  "exploratory hypotheses use the training split")
     return path
 
