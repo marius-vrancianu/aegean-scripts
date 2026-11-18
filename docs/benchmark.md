@@ -98,7 +98,7 @@ Live tables: `experiments/A5.17/results/batch.md` (protocol H-A5-01, closed) and
 Cited outcomes (H-A5-03, Part 1, point 4: the less favourable of a pair's runs): M1 and M2, Hebrew A, English A, Turkish A.
 
 - **Test 1 alone can give false positives.** English passed it under the first null (p = 0.009); the length-stratified null removed that.
-- **On Greek words, two unrelated lexicons beat length-matched noise** (English +0.033, Turkish +0.032, both p ≈ 0.015 uncorrected; Hebrew +0.017, p = 0.093). This is a descriptive row, not a tested claim, but it means Test 1 alone is not safe under either null. Under M2 the advantage is much smaller (English +0.019, p = 0.139; Turkish −0.003), so it is partly a property of M1's licences. Never quote a Tier 1 result from Test 1 alone.
+- **On Greek words, two unrelated lexicons beat length-matched noise** (English +0.033, Turkish +0.032, both p ≈ 0.015 uncorrected; Hebrew +0.017, p = 0.093). This is a descriptive row, not a tested claim, but it means Test 1 alone is not safe under either null. Under M2 it is gone for Turkish (−0.003) and smaller for English (+0.019, p = 0.139); the change is not tested and M2 differs from M1 in several ways, so the cause is open. Never quote a Tier 1 result from Test 1 alone.
 
 ## Limits
 

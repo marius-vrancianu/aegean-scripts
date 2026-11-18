@@ -973,7 +973,7 @@ Pairs 4–6 of protocol H-A5-03 (batch of 6). Exploratory, training split, layer
 
 **Next:** after the merge, the three runs and their outcome files (review-gated); then the further protocol revision (a null that also matches letter co-occurrence).
 
-## 2026-11-18 — H-A5-06 to H-A5-08 outcomes: M2 is uninformative too; the Greek-word advantage is largely M1's
+## 2026-11-18 — H-A5-06 to H-A5-08 outcomes: M2 is uninformative too
 
 Run once each after the merge of PR #60 (`4280cf1`). Layer L1, training split. Details: `hypotheses/outcomes/H-A5-06.md` to `-08.md`.
 
@@ -985,7 +985,15 @@ Run once each after the merge of PR #60 (`4280cf1`). Layer L1, training split. D
 
 - All as predicted; protocol H-A5-03's batch is complete (6 pairs, every adjusted pair p 0.946) and closed.
 - With M2, no lexicon is even above its random lexicons on Linear A; Hebrew is furthest below (lower-tail p = 0.073).
-- **The unrelated lexicons' advantage on Greek words under M1 (p ≈ 0.015) mostly disappears under M2**, so it is partly a property of M1's licences (descriptive; my reading).
+- **The Greek-word advantage (descriptive; my reading):** under M2 it is gone for Turkish (+0.032 → −0.003) and smaller for English (+0.033 → +0.019; +0.028 → +0.022 at Linear A's lengths). The change is not tested, and M2 differs from M1 in licences, classes, lexicon conversion and matching rule, so the cause is open. English, the Indo-European lexicon, keeps part of it.
 - Review notes of PR #60 taken up in the outcome files. The threshold calibration is committed with its seeds and reproduces exactly (N5). A post hoc Test 2 re-weighted by sign count × class count (N1) changes no reading (p2 0.921, 0.924, 0.513).
 
 **Next:** register H-A5-09 (bigram-matched null), re-running the six pairs as disclosed checks under the less-favourable rule.
+
+## 2026-11-19 — PR #62, first review: wording on the Greek-word advantage corrected before merge
+
+The review (`docs/reviews/H-A5-06-outcome-review.md`, recorded unedited on PR #62) reproduced every figure and all three outcomes. It requested one change (R1): the outcome files, `docs/benchmark.md` and the entry above said the unrelated lexicons' Greek-word advantage "mostly disappears" under M2 and is "largely a property of M1['s licences]". It disappears for Turkish but only shrinks for English, the change was not tested, and M2 differs from M1 in more than licences. Reworded everywhere before merge.
+
+Notes taken up: N1 (81 of 83 two-sign groups can never match for Hebrew), N2 (a misplaced pointer; sign versus class counts), N3, N4 (dropping never-matching groups changes no p1, by construction), N5 (Hebrew null overlap, 268 of 414 three-class forms).
+
+**Correction to the entry "A5.17: method M2" (2026-11-18, N3):** its saturation figure for threshold 1/3, "0.93–0.99", is English's. Across the three lexicons it is 0.90–0.99. The threshold choice is unaffected.
