@@ -1,0 +1,78 @@
+{
+ "pairs": [
+  {
+   "hypothesis": "H-A5-09",
+   "lexicon": "hebrew-strong-verbs",
+   "method": "M1",
+   "outcome": "A: no better than a random lexicon",
+   "p1": 0.7812187812187812,
+   "p2": 0.9310689310689311,
+   "p_adjusted": 0.9310689310689311,
+   "p_pair": 0.9310689310689311,
+   "pair_key": "9c8b2d5110d22509",
+   "stem": "H-A5-09-M1-hebrew-strong-verbs"
+  },
+  {
+   "hypothesis": "H-A5-10",
+   "lexicon": "english-verbs",
+   "method": "M1",
+   "outcome": "A: no better than a random lexicon",
+   "p1": 0.13686313686313686,
+   "p2": 0.3386613386613387,
+   "p_adjusted": 0.9310689310689311,
+   "p_pair": 0.3386613386613387,
+   "pair_key": "b2b998a066bd79b9",
+   "stem": "H-A5-10-M1-english-verbs"
+  },
+  {
+   "hypothesis": "H-A5-11",
+   "lexicon": "turkish-verbs",
+   "method": "M1",
+   "outcome": "A: no better than a random lexicon",
+   "p1": 0.05194805194805195,
+   "p2": 0.5824175824175825,
+   "p_adjusted": 0.9310689310689311,
+   "p_pair": 0.5824175824175825,
+   "pair_key": "9b2fd98b63d41dae",
+   "stem": "H-A5-11-M1-turkish-verbs"
+  },
+  {
+   "hypothesis": "H-A5-12",
+   "lexicon": "hebrew-strong-verbs-dolgo",
+   "method": "M2",
+   "outcome": "A: no better than a random lexicon",
+   "p1": 0.8961038961038961,
+   "p2": 0.6213786213786214,
+   "p_adjusted": 0.9310689310689311,
+   "p_pair": 0.8961038961038961,
+   "pair_key": "9bff7c16fa26f312",
+   "stem": "H-A5-12-M2-hebrew-strong-verbs-dolgo"
+  },
+  {
+   "hypothesis": "H-A5-13",
+   "lexicon": "english-verbs-dolgo",
+   "method": "M2",
+   "outcome": "A: no better than a random lexicon",
+   "p1": 0.5984015984015985,
+   "p2": 0.4985014985014985,
+   "p_adjusted": 0.9310689310689311,
+   "p_pair": 0.5984015984015985,
+   "pair_key": "839805ed75612972",
+   "stem": "H-A5-13-M2-english-verbs-dolgo"
+  },
+  {
+   "hypothesis": "H-A5-14",
+   "lexicon": "turkish-verbs-dolgo",
+   "method": "M2",
+   "outcome": "A: no better than a random lexicon",
+   "p1": 0.6823176823176823,
+   "p2": 0.47052947052947053,
+   "p_adjusted": 0.9310689310689311,
+   "p_pair": 0.6823176823176823,
+   "pair_key": "13a1966ae0cb7498",
+   "stem": "H-A5-14-M2-turkish-verbs-dolgo"
+  }
+ ],
+ "protocol": "H-A5-09",
+ "q": 0.05
+}

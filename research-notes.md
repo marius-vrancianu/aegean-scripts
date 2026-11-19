@@ -1026,3 +1026,23 @@ Re-review 1 (`docs/reviews/H-A5-09-review.md`, recorded unedited on PR #63) foun
 - "Changes one factor" was wrong. At length 2 a first-order chain is the forms' joint distribution, so every pseudo-lexicon's two-letter forms are exactly the real ones. At lengths 3 and 4 the overlap also rises (3: 0.44–0.72 → 0.62–0.81; 4: 0.02–0.36 → 0.33–0.54).
 - A null that shares more forms lowers the excess whatever its cause. So the fixed reading's first branch ("advantage removed") could come from copying alone; it now says so. The second branch ("not removed") is the conservative one.
 - Notes N5–N8 taken up: the PR description; leftover "bigram" naming; a sorted set in `null_validation.py`, so its output is bit-for-bit reproducible; "raw p2".
+
+## 2026-11-19 — H-A5-09 to H-A5-14 outcomes: all A; calibration inconclusive; Turkish closest yet on Test 1
+
+Run once each after the merge of PR #63 (`fbde909`), on unchanged code. Layer L1, training split, protocol H-A5-09 (position-aware bigram null). Details in the six outcome files.
+
+| Pair | Method × lexicon | Linear A excess, p1 | Greek control excess, p | Test 2 D, p2 | Outcome |
+|---|---|---|---|---|---|
+| H-A5-09 | M1 × Hebrew | −0.008, 0.781 | +0.010, 0.167 | −0.022, 0.931 | A |
+| H-A5-10 | M1 × English | +0.012, 0.137 | +0.010, 0.162 | +0.005, 0.339 | A |
+| H-A5-11 | M1 × Turkish | +0.022, 0.052 | +0.025, 0.012 | −0.002, 0.582 | A |
+| H-A5-12 | M2 × Hebrew | −0.021, 0.896 | −0.011, 0.789 | −0.006, 0.621 | A |
+| H-A5-13 | M2 × English | −0.001, 0.598 | +0.002, 0.467 | +0.000, 0.499 | A |
+| H-A5-14 | M2 × Turkish | −0.006, 0.682 | −0.002, 0.571 | +0.001, 0.471 | A |
+
+- All as predicted; every adjusted pair p is 0.931. No false positive of this protocol (no raw p2 ≤ α). Cited outcomes across all protocols: every pair A.
+- **Calibration reading (fixed in advance): inconclusive.** English's Greek-word excess fell from +0.033 to +0.010 (p 0.162); Turkish's stayed at +0.025 (p 0.012). As re-review 2 of PR #63 anticipated, this null could not cleanly separate co-occurrence from copying.
+- **M1 × Turkish came within reach of Test 1:** p1 = 0.052, at or below α in 42% of resampling draws. Its advantage is the same on Greek words, so Test 2 finds nothing. The narrower null (sd 0.012 against 0.020) is why p1 fell while the excess also fell.
+- **Correction to the entry "PR #63, re-review 1" above (re-review 2, N10):** that entry called `null_validation.py` bit-for-bit reproducible after one set was sorted. Two further unsorted iterations remained. Both are now sorted, and the output is identical under two hash seeds (checked). No figure changes beyond the 17th digit.
+
+**Where A5.17 stands:** three methods-and-nulls rounds, 14 registered pairs, every cited outcome A. The benchmark is consistent: two lexical-matching methods, with three nulls of increasing strictness, never tell a real lexicon from noise on Linear A more than on Greek words. Test 1 alone gave one false positive and nearly a second.
