@@ -103,3 +103,69 @@ The registration is mostly sound: the null is implemented as described, the powe
 The protocol revision is well motivated, correctly implemented and correctly enforced. The pair files are honest about being re-runs. The defects are in what the immutable protocol text says about its null and about how one descriptive row will be read. They cannot be corrected after merge except by a new entry, so they should be fixed now. A re-review needs to check only R1 and R2.
 
 Verdict: CHANGES REQUESTED
+
+---
+
+## Re-review 1 (2026-11-19)
+
+- **Reviewer:** a separate Claude instance (fresh subagent). I did not write this PR, PR #64 or the first review above. I was given the PR number and the fixed review prompt only.
+- **Reviewed:** PR #63 at `921ae51` against `origin/main @ 7b96bbe` (PR #64 merged: `nulls.positional_bigram_matched_lexicon`, `batch.PROTOCOLS["H-A5-09"]["null"] = "posbigram"`, `experiments/A5.17/null_validation.py`). All of `hypotheses/H-A5-09.md` to `H-A5-14.md`, the plan line and the research-notes entries, not only R1 and R2: the decision null changed, so check 1 had to be redone.
+- **Rerun:**
+  - `pytest tests/test_benchmark_batch.py tests/test_benchmark_inputs.py tests/test_guardrails.py`: 42 passed;
+  - `tools/check_guardrails.py origin/main`: the only failure is the missing APPROVE;
+  - `batch.check_registered` in a scratch clone with `main` set to the PR head: H-A5-09 to H-A5-14 map to protocol H-A5-09 with null `posbigram`; H-A5-03 to H-A5-08 still map to H-A5-03 (`stratified`), which accepts no other IDs;
+  - `experiments/A5.17/null_validation.py`: reproduces the committed JSON (one float differs in the 17th digit; N7);
+  - scratch scripts (not committed): the first 100 and 200 pseudo-lexicons of the **registered** stream (`random.Random(20261114)`, in sequence), stratified and position-aware, all six pairs, with overlap broken down by form length.
+- **Deliberately not done:** no hit rate of any pseudo-lexicon, under any null, on Linear A or the control. Linear A and the control were not loaded. I read the already-committed `control_by_length` rows of H-A5-04 and H-A5-05 only. No held-out material.
+
+### R1: resolved as asked; the "one factor" claim does not hold (R3)
+*Confidence: high (code read; measured).*
+- `positional_bigram_matched_lexicon` does what Part 1, point 1 says: first letter per length, letter i from transitions seen at (length, i, previous letter), filled length by length to the expanded-form counts. A draw cannot get stuck. `tier1.matched_lexicons(kind="posbigram")` draws in sequence from the seed.
+- On the registered stream the file's ranges hold: position TV 0.051–0.061 (stratified 0.063–0.079), bigram TV 0.079–0.093, overlap 0.529–0.794 (stratified 0.344–0.686). Positional frequencies are kept. The calibration reading now uses the excess as well as p, covers the mixed cases, and attributes no cause. R1 is resolved as the first review framed it.
+- **New, material, not disclosed (R3).** The position-aware chain also makes the pseudo-lexicons reproduce more of the real forms, and the file says that this "changes one factor". It does not:
+  - **At length 2 the null is the real lexicon.** A first-order chain over two letters is the joint distribution of the forms, and the count is matched exactly. So every pseudo-lexicon's two-letter forms are exactly the real lexicon's. Checked on all of the first 200 registered draws for M1 × English (79 forms) and Turkish (59), and for M2 × English (66) and Turkish (51). Two-letter forms therefore add nothing to the excess of either test. The file's "close to the real forms themselves" at sparse states understates this. It is structural, not a matter of few forms.
+  - **Mean overlap by form length**, registered stream (stratified → position-aware):
+
+    | Pair | Length 2 | Length 3 | Length 4 |
+    |---|---|---|---|
+    | M1 × Hebrew | n/a | 0.72 → 0.81 | 0.02 → 0.40 |
+    | M1 × English | 0.88 → 1.00 | 0.57 → 0.73 | 0.28 → 0.46 |
+    | M1 × Turkish | 0.88 → 1.00 | 0.65 → 0.77 | 0.36 → 0.54 |
+    | M2 × Hebrew | n/a | 0.65 → 0.76 | 0.02 → 0.35 |
+    | M2 × English | 0.86 → 1.00 | 0.44 → 0.62 | 0.13 → 0.33 |
+    | M2 × Turkish | 0.78 → 1.00 | 0.56 → 0.71 | 0.28 → 0.44 |
+
+  - **Why it matters for the reading fixed in advance.** A null that shares more forms with the real lexicon pulls its hit rate towards the real one, so the excess shrinks whatever the cause of the advantage. The direction is known in advance. A rough illustration (*confidence: low*; it assumes the excess scales with the share of real forms that the null does not reproduce, which saturation of hit rates makes inexact): for M1 × English that share falls from 0.59 to 0.42, and for Turkish from 0.52 to 0.36. On that assumption alone, +0.033 and +0.032 would become about +0.023 and +0.022, close to the +0.020 boundary of the second branch. So branch 1 ("consistent with adjacent-letter co-occurrence accounting for most of that advantage") can come out from copying alone, and branch 2 is harder to reach for the same reason.
+  - Matching co-occurrence and reproducing real forms cannot be fully separated in a first-order chain over forms of 2 to 4 letters. Requiring a different null would be out of proportion. What is needed is that the immutable text says so.
+
+### R2: resolved
+*Confidence: high.* The figures are now cited to a committed script with recorded seeds (0–99) and a committed output. The script reproduces them, and the registered stream gives the same ranges (above). The pooled-bigram figures match the first review's.
+
+### Checks 2 to 4
+- **Power check:** unchanged and correct (n, K, the 1/1001 minimum, the raw 0.0083 needed in a batch of 6). Effective power is lower than before. Length-2 forms contribute nothing, and most other forms are shared. The file now says that an A is a weaker negative (N3 taken up). With R3 the reason will be stated exactly.
+- **Decision rule and batch:** unchanged from the first review. Point 5 (false positives counted per protocol run) takes up N2 correctly and changes no decision.
+- **"What I already know":** N1 is taken up (real-lexicon rates known; all six H-A5-03 control rows listed and correct against the outcome files). The switch to the position-aware null is disclosed as made after the lexicon-side figures were seen. After this re-review the per-length overlaps above are known too. They should be listed as seen through the review.
+
+### Required change
+- **R3. State the copying property, and qualify the calibration reading** (H-A5-09, Part 1). Wording is the author's; a possible version:
+  1. In "Why position-aware", replace "so it changes one factor" with: "It keeps the positional frequencies and adds adjacent-letter co-occurrence. Matching co-occurrence also makes the pseudo-lexicons reproduce more of the real forms (below), and this null cannot separate the two."
+  2. Under "Its price" or "What it does not match", add: "At length 2 a first-order chain is the forms' joint distribution, so every pseudo-lexicon's two-letter forms are exactly the real lexicon's (English and Turkish, both methods). Two-letter forms add nothing to either test. Mean overlap at length 3 is 0.62–0.81 and at length 4 0.33–0.54 (review of PR #63, re-review 1)."
+  3. In branch 1 of the calibration reading: "consistent with adjacent-letter co-occurrence, or with the null's larger share of real forms, accounting for most of that advantage; this null does not separate the two". Also note in one line that the larger overlap lowers the excess whatever its cause, so branch 2 is the conservative one.
+  4. In "What I already know", list the per-length overlaps as seen through this re-review.
+
+### Non-blocking notes
+- **N5.** The PR description's "Null model and known-script validation" section still gives the pooled null's figures (overlap 0.38–0.68, bigram TV 0.10–0.13) as "the bigram null". Its opening paragraph has the new ones. Update it.
+- **N6. Naming left over.** Several places still say only "bigram", although the decision null is now the position-aware one:
+  - H-A5-09's Part 2 heading ("re-run under the bigram-matched null");
+  - "Reported besides the decision" ("against the bigram null");
+  - the plan change-log line ("bigram-matched null");
+  - the research-notes entry ("Nothing has been run under the bigram null").
+
+  The first two are in the immutable file; fix them with R3.
+- **N7.** `null_validation.py` is not bit-for-bit reproducible. `position_tv` iterates a `set` of letters, so float summation order depends on `PYTHONHASHSEED`. One value differed in the 17th digit on my rerun. Sort the set (plain PR); no figure changes.
+- **N8.** Point 5 and the pair files' "any outcome with p2 ≤ α" mean the raw p2, before the batch correction. That is consistent with the earlier files; saying "raw" once in point 5 would remove the doubt.
+
+### Assessment
+R1 and R2 are fixed, and the position-aware null is a better choice than the pooled one. The code, the enforcement and the disclosures are sound. One property of the new null is in effect a partial copy of the real lexicon: an exact copy at length 2, and a large share at lengths 3 and 4. It bears on the one reading fixed in advance and contradicts the file's "changes one factor". The fix is wording only, in a file that becomes immutable on merge. A further re-review needs to check only R3 (and N6's first two items, if taken up).
+
+Verdict: CHANGES REQUESTED
