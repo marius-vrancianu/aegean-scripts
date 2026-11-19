@@ -125,3 +125,82 @@ No value or reading here was derived from a lexicon under test. *Confidence: hig
 - **After R1:** once the author has fixed R1, a reviewer (this instance or a new one) appends a re-review to this file.
 
 Verdict: CHANGES REQUESTED
+
+---
+
+# Re-review 1 (PR #65 at `dcc1d0a`)
+
+- **Reviewer:** a separate Claude instance (fresh subagent, 2026-11-19). I did not write this PR, the fix commit or the first review above. I was given the PR number and the fixed review prompt only.
+- **Reviewed:** the fix commit `dcc1d0a` (R1, N1–N5, N7), the correction it adds to the merged `hypotheses/outcomes/H-A5-05.md`, and, again, every figure in the six outcome tables against the generated reports.
+- **Rerun:**
+  - The six registered commands, in order, into a scratch copy of `experiments/A5.17/results/` from `main @ fbde909`. All 14 generated files are identical to the committed ones except the provenance commit hash (`dcc1d0a` against `fbde909`, one line per file). `batch-H-A5-09.{md,json}` is identical byte for byte.
+  - `git diff da83d1d dcc1d0a -- src tests tools .github data experiments` is empty, so the fix touched no code and no generated output.
+  - Test suite: 336 passed, 4 skipped. Guardrail script from `main` with the PR body: it fails only on the missing APPROVE, as expected. `research-notes.md` against `main` has no removed or changed line. Editing `hypotheses/outcomes/H-A5-05.md` is allowed (`MUTABLE` in the script).
+- **Not read (blinding respected):** KN Zg 57/58, `data/heldout.txt`, the held-out split, Kanta et al. 2025, *Anetaki II*, Kanta–Perna.
+
+## Summary
+**R1 is fixed in all three places, and N1–N5 and N7 are taken up correctly.** The outcomes, p-values, batch and calibration label still stand (confidence: high).
+
+**Two new requests block the merge.**
+- **R2:** eight figures in the outcome files are mis-copied in the third decimal from the generated reports. The first review did not check these columns.
+- **R3:** the R1 fix goes further than R1. In the merged H-A5-05 outcome and in the new research-notes entry, it records as false two statements that were true, or only ambiguous, in their context. The research-notes entry becomes append-only on merge.
+
+Neither request changes an outcome, a decision p-value or the calibration reading.
+
+## R1 and the notes: checked
+- **R1.**
+  - H-A5-11 now reads "the nearest an outcome-A pair has come to passing Test 1", with English's p1 = 0.009 (H-A5-02, outcome B) in brackets.
+  - The research-notes heading and the inbox line are reworded to match.
+  - The fact claimed is true. Outcome-A runs had p1 of 0.397, 0.469, 0.288, 0.100, 0.946, 0.716 and 0.671 before this protocol, and 0.052 is the lowest (`docs/benchmark.md`, "Results so far").
+  - One wording point is folded into R3: "outcome-A *pair*" should be "outcome-A *run*".
+- **N1.** The calibration paragraph now places English (+0.0104) in the middle band and says that Turkish alone also rules out branch 1. That is correct against H-A5-09, Part 1.
+- **N2.** The stability bounds are now −0.018 to +0.009 (H-A5-09) and +0.012 to +0.037 (H-A5-11). They match the reports (line 54, "both" column).
+- **N3, N4, N5, N7.** Each is taken up as suggested. The N4 wording ("my reading, not tested") is exact.
+
+## Required changes
+
+**R2. Eight figures in the outcome files differ from the generated reports.** The source is each pair's `experiments/A5.17/results/H-A5-NN-*.md` (primary row at line 20; Test 2 at line 13), and its JSON agrees with it.
+
+| File | Where | Outcome file | Report / JSON |
+|---|---|---|---|
+| H-A5-09 | Test 1 row, 95% band, low end | 0.759 | **0.758** (0.75845) |
+| H-A5-10 | Test 1 row, 95% band, low end | 0.672 | **0.671** (0.67150) |
+| H-A5-11 | Test 1 row, false-positive rate | 0.636 | **0.635** (0.63546) |
+| H-A5-11 | Test 2 row, 95% band, high end | +0.024 | **+0.023** (0.02345) |
+| H-A5-11 | "Per source", lineara.xyz excess | +0.024 | **+0.023** (0.02348) |
+| H-A5-13 | Test 1 row, false-positive rate | 0.737 | **0.736** (0.73648) |
+| H-A5-13 | "Greek control at Linear A's lengths" | −0.002 | **−0.001** (−0.00146) |
+| H-A5-14 | Test 1 row, false-positive rate | 0.723 | **0.722** (0.72248) |
+
+- **Fix:** copy these eight values from the reports. I compared every other number in the six tables, the per-source lines and the stability lines with the JSON at three decimals, and they agree.
+- **Why blocking:** an outcome file is the record that later work cites. It should not disagree with the output it reports, and the fix is mechanical.
+- **What it does not affect:** no decision quantity. p1, p2, D, the pair p, the batch and the calibration figures are all correct.
+- **About the first review:** its table compared the JSON with its own recomputation, and both are right. The 3-decimal transcriptions in the outcome files were not checked column by column.
+- *Confidence: high.*
+
+**R3. The H-A5-05 correction and the new research-notes entry overstate what was wrong.**
+- **H-A5-05's sentence:** "This is the nearest any pair has come to passing". It does not say "Test 1". When it was written there were five runs (H-A5-01 to H-A5-05), and their pair p were 0.840, 0.754, 0.871, 0.780 and 0.355. The pair p decides the outcome, and their p2 were the same values.
+  - On Test 2 and on the pair p, Turkish (0.355) *was* the nearest any pair had come to passing.
+  - Only if "passing" means Test 1 is the sentence false.
+  - So the sentence was ambiguous, not "wrong as written", which is what the added correction says.
+- **The 2026-11-18 research-notes entry:** its "Turkish came closest" sits under a table of the three H-A5-03 runs, and among those three it is true. The new entry (`research-notes.md`, "PR #65, first review") says that entry carries "the same claim", and it does not.
+- **Why blocking:** the new research-notes entry becomes append-only on merge. It would permanently record that two earlier statements were false when they were not. This is the reason R1 was blocking.
+- **Suggested wording** (any equivalent is fine):
+  - **H-A5-05 correction:** "*Correction (2026-11-19, review of PR #65):* 'nearest any pair has come to passing' is ambiguous. It is true of Test 2 and of the pair p (0.355, the lowest of the five runs then made). It is false of Test 1: M1 × English passed Test 1 under H-A5-01's null (p1 = 0.009; outcome B, H-A5-02). This p1 (0.100) was the lowest of the outcome-A runs at that point. No figure or outcome changes."
+    - Also move the block quote after the bullet list, or before "This is the nearest…". At present it splits the line that ends in ":" from its list.
+  - **New research-notes entry:** replace the sentence about the H-A5-05 outcome and the 2026-11-18 entry with: "The merged H-A5-05 outcome said Turkish was 'the nearest any pair has come to passing'. That is true of Test 2 and the pair p but not of Test 1, so it gets a dated clarifying note. The 2026-11-18 entry's 'Turkish came closest' refers to the three H-A5-03 runs and is correct as written."
+  - **"pair" → "run":** English's *cited* outcome is also A (`docs/benchmark.md`: "English A"), so "the nearest outcome-A pair" could include English, which passed Test 1. "Run" is exact.
+    - Required in the research-notes heading ("Turkish the nearest A run to Test 1") and in the body bullet ("the nearest an outcome-A run has come").
+    - Recommended, not required, in H-A5-11 and the inbox line. There the brackets already remove the ambiguity, and the files stay editable.
+- *Confidence: high on the facts (pair p and p2 from `docs/benchmark.md` and the outcome files). Medium on what the H-A5-05 author meant by "passing". That uncertainty is the point: the record should not settle it as "wrong".*
+
+## Notes (non-blocking)
+- **N8. The PR description** does not mention the edit to the merged `hypotheses/outcomes/H-A5-05.md`. A merged outcome being changed is something Marius would want to see in the description. Add one bullet under "What this does".
+- **N9. "Nearest to passing" will need a new qualifier.** Under this protocol, H-A5-10 (M1 × English) has the lowest pair p of any run so far (0.339, against Turkish H-A5-05's 0.355). No file in this PR claims otherwise. Any later summary of "closest to passing" should name the test it means.
+- N6 from the first review is still open and is fine as a later plain PR.
+
+## Process
+- The first line of the description still names this file. The fix commit is on the PR branch and does not touch code.
+- After R2 and R3 are fixed, a reviewer appends re-review 2 to this file.
+
+Verdict: CHANGES REQUESTED
