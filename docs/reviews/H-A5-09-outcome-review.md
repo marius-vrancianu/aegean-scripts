@@ -204,3 +204,46 @@ Neither request changes an outcome, a decision p-value or the calibration readin
 - After R2 and R3 are fixed, a reviewer appends re-review 2 to this file.
 
 Verdict: CHANGES REQUESTED
+
+---
+
+# Re-review 2 (PR #65 at `e310dad`)
+
+- **Reviewer:** a separate Claude instance (fresh subagent, 2026-11-19). I did not write this PR, either fix commit, the first review or re-review 1. I was given the PR number and the fixed review prompt only.
+- **Reviewed:** the fix commit `e310dad` (R2, R3, N8); again every figure in the six outcome tables, per-source lines, stability lines and null-spread lines against the generated JSON; the edit to the merged `hypotheses/outcomes/H-A5-05.md`; the two new research-notes entries, the inbox line and the PR description.
+- **Rerun:**
+  - The six registered commands, in order, into a scratch copy of `experiments/A5.17/results/` from `main @ fbde909`. All 12 per-pair files differ from the committed ones only in the provenance commit hash (`e310dad` against `fbde909`, one line per file). `batch-H-A5-09.{md,json}` is identical byte for byte.
+  - `git diff dcc1d0a e310dad -- src tests tools .github data experiments` is empty: the fix touched no code and no generated output.
+  - `null_validation.py` under `PYTHONHASHSEED=42` (a third seed, after the first review's 1 and 987): output identical to the committed `null-validation.json`.
+  - Test suite: 336 passed, 4 skipped.
+  - Guardrail script from `main`, with the current PR body: it fails only because the review file's last verdict is CHANGES REQUESTED, as expected before this re-review.
+  - `research-notes.md` and the plan against `main`: no removed or changed line.
+- **Not read (blinding respected):** KN Zg 57/58, `data/heldout.txt`, the held-out split, Kanta et al. 2025, *Anetaki II*, Kanta–Perna. Linear A only through the registered runner (training split).
+
+## Summary
+**R2, R3 and N8 are fixed. Nothing blocks the merge.** The six outcomes (all A), the decision p-values, the batch (adjusted 0.931 for all six) and the calibration label (inconclusive) stand. Confidence: high.
+
+## Checked
+
+**R2 (eight figures).** All eight now match the reports: H-A5-09 band low 0.758; H-A5-10 band low 0.671; H-A5-11 false-positive rate 0.635, Test 2 band high +0.023, lineara.xyz +0.023; H-A5-13 false-positive rate 0.736, control at Linear A's lengths −0.001; H-A5-14 false-positive rate 0.722. I then compared, by script, every other figure in the six tables with the JSON at three decimals: real rate, false-positive rate and 95% band for Test 1; the control row; the control at Linear A's lengths; D, its band and p2; the pair p; the three per-source excesses and p; the stability interval and both shares of draws; the null sd. All agree. The earlier-run figures quoted in the files (H-A5-03 to -08 control excess and p, null sd) also agree with those runs' JSON.
+- The new research-notes bullet attributes the errors to "hand-rounding of four-decimal values". That fits all eight: each wrong value is what rounding the four-decimal value gives (for example 0.75845 → 0.7585 → 0.759), and each correct value is the direct three-decimal rounding.
+
+**R3 (H-A5-05 note and research-notes entry).**
+- The H-A5-05 note now says the sentence is ambiguous: true of Test 2 and of the pair p, false of Test 1. The facts check: the pair p of the five runs then made were 0.840, 0.754, 0.871, 0.780 and 0.355, and p2 had the same values (`docs/benchmark.md`; H-A5-02 to -05 JSON). The p1 of the outcome-A runs were 0.397, 0.469, 0.288 and 0.100. English passed Test 1 under H-A5-01 (p1 = 0.009, outcome B).
+- The note now sits after the bullet list, so the line ending in ":" leads into its list again.
+- The research-notes entry "PR #65, first review" now says the 2026-11-18 "Turkish came closest" refers to the three H-A5-03 runs and is correct as written. That is so: it sits under the H-A5-03 to H-A5-05 table (line 947).
+- "pair" → "run" is made in the research-notes heading and body bullet (required), and in H-A5-11 and the inbox line (recommended).
+- Editing a merged outcome file is allowed (`MUTABLE` in the guardrail script) and is review-gated; this review covers it.
+
+**N8.** The PR description now has a bullet for the edit to the merged H-A5-05 outcome, and one for the R2 figures.
+
+## Notes (non-blocking)
+- **N10.** The H-A5-05 block is headed "Correction", while the commit title and the research-notes entry call it a "clarifying note". Re-review 1 suggested "Correction" itself, and the note's text is exact, so this is cosmetic. The outcome file stays editable; "Clarification" would match the research notes.
+- **N11.** The inbox line says Turkish "came closest of the runs that came out A", and the bracket ties that to the first test. On the pair p, H-A5-10 (M1 × English, 0.339) is now the lowest of any run (re-review 1, N9). The bracket makes it clear enough. "Came closest on the first test" would be exact, and the inbox can be edited later.
+- **N6** (per-pair reports show the batch-adjusted p as it stood when each pair ran) remains a candidate for a later plain PR.
+
+## Process
+- The first line of the description still names this file. No rule file, held-out file or enforcement code is touched.
+- This re-review is committed to the PR branch; with it, the last verdict in this file is APPROVE.
+
+Verdict: APPROVE
