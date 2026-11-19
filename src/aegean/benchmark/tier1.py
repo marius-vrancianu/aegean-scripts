@@ -389,7 +389,8 @@ def report(r: dict, provenance: dict) -> str:
         f"## Outcome: {r['outcome']}",
         "",
         *([f"- **Batch** (Benjamini–Hochberg over {r['batch']['size']} pair{'s' if r['batch']['size'] != 1 else ''}, "
-           f"`{batch.PROTOCOLS[r.get('batch_protocol', batch.PROTOCOL)]['batch_stem']}.md`): adjusted pair p = {r['batch']['p_adjusted']:.4f}. Outcome before the correction: "
+           f"`{batch.PROTOCOLS[r.get('batch_protocol', batch.PROTOCOL)]['batch_stem']}.md`): adjusted pair p = {r['batch']['p_adjusted']:.4f} "
+           f"as it stood when this run was made; later pairs can change it, and the batch table has the current value. Outcome before the correction: "
            f"{r['outcome_before_batch']}."] if "batch" in r else
           ["- **Batch correction not applied** (this report was not made by the command line)."]),
         f"- **Test 1** (real lexicon against matched pseudo-lexicons, Linear A): excess {r['test1']['excess']:+.3f}, "
