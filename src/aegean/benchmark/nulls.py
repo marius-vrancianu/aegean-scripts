@@ -23,6 +23,13 @@ Three nulls, each answering a different question:
    later letter from the real frequencies of what follows the previous letter
    (pooled over all lengths and positions). This matches adjacent-letter
    co-occurrence, which (1a) does not.
+1d. **Position-aware bigram-matched, length-stratified pseudo-lexicons**
+   (`positional_bigram_matched_lexicon`; the decision null of protocol H-A5-09).
+   As (1c), but every transition is conditioned on the form's length and the
+   position: letter i is drawn from the real frequencies of what follows the
+   previous letter at that length and position. So it keeps (1a)'s per-position
+   letter frequencies and adds adjacent-letter co-occurrence. The price: it
+   reproduces more of the real lexicon's own forms (H-A5-09).
 1b. **Finding 001 pseudo-lexicons** (`pseudo_lexicon`). The same number of
    forms *before* the method's licences and overall letter frequencies only.
    Kept because Finding 001 used it. It is not size-matched as the method
@@ -212,6 +219,64 @@ def bigram_matched_lexicon(real: Lexicon, method: Method, rng: random.Random, in
             fake.add(form)
             expanded |= new
     label = f"bigram({real.name})" + (f"#{index}" if index is not None else "")
+    return Lexicon(label, frozenset(fake), "null", {"of": real.name, "index": index,
+                                                    "expanded_forms_by_length": dict(sorted(target.items()))})
+
+
+def positional_bigram_model(forms: list[str]) -> tuple[dict, dict]:
+    """(first-letter frequencies per length, next-letter frequencies per (length, position, previous letter))."""
+    first: dict[int, collections.Counter] = {}
+    trans: dict[tuple[int, int, str], collections.Counter] = {}
+    for f in forms:
+        first.setdefault(len(f), collections.Counter())[f[0]] += 1
+        for i in range(1, len(f)):
+            trans.setdefault((len(f), i, f[i - 1]), collections.Counter())[f[i]] += 1
+    pack = lambda c: (sorted(c), [c[x] for x in sorted(c)])
+    return {n: pack(c) for n, c in first.items()}, {k: pack(c) for k, c in trans.items()}
+
+
+def positional_bigram_matched_lexicon(real: Lexicon, method: Method, rng: random.Random, index: int | None = None,
+                                      max_draws: int = 1_000_000) -> Lexicon:
+    """A random lexicon with the real lexicon's expanded-form count at every length, its per-position letters,
+    and its letter transitions at each length and position (`positional_bigram_model`).
+
+    Every transition used has been seen in the real lexicon at the same length and position, so a draw can never
+    get stuck; a draw that cannot continue is impossible by construction but would be discarded and redrawn.
+    """
+    base = sorted(real.forms)
+    first, trans = positional_bigram_model(base)
+    target: dict[int, int] = {}
+    for f in method.prepare(real):
+        target[len(f)] = target.get(len(f), 0) + 1
+    if set(target) != set(first):
+        raise ValueError("the method's expansion changes form lengths; a length-stratified null is not defined")
+    fake: set[str] = set()
+    draws = 0
+    for n in sorted(target):
+        expanded: set[str] = set()
+        while len(expanded) < target[n]:
+            draws += 1
+            if draws > max_draws:
+                raise RuntimeError(f"no positional bigram lexicon after {max_draws} draws (length {n}: "
+                                   f"{len(expanded)} of {target[n]} expanded forms)")
+            letters, weights = first[n]
+            form = rng.choices(letters, weights)[0]
+            for i in range(1, n):
+                t = trans.get((n, i, form[-1]))
+                if t is None:
+                    break
+                form += rng.choices(t[0], t[1])[0]
+            if len(form) < n or form in fake:
+                continue
+            new = method.expand(form)
+            if any(len(x) != n for x in new):
+                raise ValueError(f"expansion of {form!r} changes its length")
+            new = new - expanded
+            if len(expanded) + len(new) > target[n]:
+                continue
+            fake.add(form)
+            expanded |= new
+    label = f"posbigram({real.name})" + (f"#{index}" if index is not None else "")
     return Lexicon(label, frozenset(fake), "null", {"of": real.name, "index": index,
                                                     "expanded_forms_by_length": dict(sorted(target.items()))})
 
