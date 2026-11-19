@@ -1027,7 +1027,7 @@ Re-review 1 (`docs/reviews/H-A5-09-review.md`, recorded unedited on PR #63) foun
 - A null that shares more forms lowers the excess whatever its cause. So the fixed reading's first branch ("advantage removed") could come from copying alone; it now says so. The second branch ("not removed") is the conservative one.
 - Notes N5–N8 taken up: the PR description; leftover "bigram" naming; a sorted set in `null_validation.py`, so its output is bit-for-bit reproducible; "raw p2".
 
-## 2026-11-19 — H-A5-09 to H-A5-14 outcomes: all A; calibration inconclusive; Turkish closest yet on Test 1
+## 2026-11-19 — H-A5-09 to H-A5-14 outcomes: all A; calibration inconclusive; Turkish the nearest A pair to Test 1
 
 Run once each after the merge of PR #63 (`fbde909`), on unchanged code. Layer L1, training split, protocol H-A5-09 (position-aware bigram null). Details in the six outcome files.
 
@@ -1042,7 +1042,11 @@ Run once each after the merge of PR #63 (`fbde909`), on unchanged code. Layer L1
 
 - All as predicted; every adjusted pair p is 0.931. No false positive of this protocol (no raw p2 ≤ α). Cited outcomes across all protocols: every pair A.
 - **Calibration reading (fixed in advance): inconclusive.** English's Greek-word excess fell from +0.033 to +0.010 (p 0.162); Turkish's stayed at +0.025 (p 0.012). As re-review 2 of PR #63 anticipated, this null could not cleanly separate co-occurrence from copying.
-- **M1 × Turkish came within reach of Test 1:** p1 = 0.052, at or below α in 42% of resampling draws. Its advantage is the same on Greek words, so Test 2 finds nothing. The narrower null (sd 0.012 against 0.020) is why p1 fell while the excess also fell.
+- **M1 × Turkish came within reach of Test 1** (the nearest an outcome-A pair has come; M1 × English passed Test 1 under H-A5-01's null, H-A5-02): p1 = 0.052, at or below α in 42% of resampling draws. Its advantage is the same on Greek words, so Test 2 finds nothing. p1 fell while the excess also fell, with a narrower null (sd 0.012 against 0.020); that the narrowing comes from shared forms is my reading, not tested.
 - **Correction to the entry "PR #63, re-review 1" above (re-review 2, N10):** that entry called `null_validation.py` bit-for-bit reproducible after one set was sorted. Two further unsorted iterations remained. Both are now sorted, and the output is identical under two hash seeds (checked). No figure changes beyond the 17th digit.
 
 **Where A5.17 stands:** three methods-and-nulls rounds, 14 registered pairs, every cited outcome A. The benchmark is consistent: two lexical-matching methods, with three nulls of increasing strictness, never tell a real lexicon from noise on Linear A more than on Greek words. Test 1 alone gave one false positive and nearly a second.
+
+## 2026-11-19 — PR #65, first review: one false claim corrected before merge
+
+The review (`docs/reviews/H-A5-09-outcome-review.md`, recorded unedited on PR #65) reran all six commands byte for byte, recomputed every figure in exact fractions and confirmed all six outcomes A. It requested one change (R1). The PR said M1 × Turkish came nearer to passing Test 1 than any pair before it, and that is false: M1 × English passed Test 1 under H-A5-01's null (p1 = 0.009; H-A5-02). Corrected in the outcome file, the heading of the entry above, and the inbox: Turkish is the nearest *outcome-A* pair. The same claim in the merged H-A5-05 outcome (and in the research-notes entry of 2026-11-18, "Turkish came closest") gets a dated correction note in that outcome file; the research-notes entry stays as written and is corrected here. Notes taken up: N1 (English is in the calibration reading's middle band, which is what makes it inconclusive), N2 (two stability bounds), N3 ("42% of draws", not "even odds"; "both inputs measured", not "any input"), N4 (why the null is narrower is not tested), N5 (the copying estimate was low confidence), N7 (a repeated label).
