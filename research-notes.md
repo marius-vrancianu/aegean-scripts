@@ -1026,3 +1026,28 @@ Re-review 1 (`docs/reviews/H-A5-09-review.md`, recorded unedited on PR #63) foun
 - "Changes one factor" was wrong. At length 2 a first-order chain is the forms' joint distribution, so every pseudo-lexicon's two-letter forms are exactly the real ones. At lengths 3 and 4 the overlap also rises (3: 0.44–0.72 → 0.62–0.81; 4: 0.02–0.36 → 0.33–0.54).
 - A null that shares more forms lowers the excess whatever its cause. So the fixed reading's first branch ("advantage removed") could come from copying alone; it now says so. The second branch ("not removed") is the conservative one.
 - Notes N5–N8 taken up: the PR description; leftover "bigram" naming; a sorted set in `null_validation.py`, so its output is bit-for-bit reproducible; "raw p2".
+
+## 2026-11-19 — H-A5-09 to H-A5-14 outcomes: all A; calibration inconclusive; Turkish the nearest A run to Test 1
+
+Run once each after the merge of PR #63 (`fbde909`), on unchanged code. Layer L1, training split, protocol H-A5-09 (position-aware bigram null). Details in the six outcome files.
+
+| Pair | Method × lexicon | Linear A excess, p1 | Greek control excess, p | Test 2 D, p2 | Outcome |
+|---|---|---|---|---|---|
+| H-A5-09 | M1 × Hebrew | −0.008, 0.781 | +0.010, 0.167 | −0.022, 0.931 | A |
+| H-A5-10 | M1 × English | +0.012, 0.137 | +0.010, 0.162 | +0.005, 0.339 | A |
+| H-A5-11 | M1 × Turkish | +0.022, 0.052 | +0.025, 0.012 | −0.002, 0.582 | A |
+| H-A5-12 | M2 × Hebrew | −0.021, 0.896 | −0.011, 0.789 | −0.006, 0.621 | A |
+| H-A5-13 | M2 × English | −0.001, 0.598 | +0.002, 0.467 | +0.000, 0.499 | A |
+| H-A5-14 | M2 × Turkish | −0.006, 0.682 | −0.002, 0.571 | +0.001, 0.471 | A |
+
+- All as predicted; every adjusted pair p is 0.931. No false positive of this protocol (no raw p2 ≤ α). Cited outcomes across all protocols: every pair A.
+- **Calibration reading (fixed in advance): inconclusive.** English's Greek-word excess fell from +0.033 to +0.010 (p 0.162); Turkish's stayed at +0.025 (p 0.012). As re-review 2 of PR #63 anticipated, this null could not cleanly separate co-occurrence from copying.
+- **M1 × Turkish came within reach of Test 1** (the nearest an outcome-A run has come; M1 × English passed Test 1 under H-A5-01's null, H-A5-02): p1 = 0.052, at or below α in 42% of resampling draws. Its advantage is the same on Greek words, so Test 2 finds nothing. p1 fell while the excess also fell, with a narrower null (sd 0.012 against 0.020); that the narrowing comes from shared forms is my reading, not tested.
+- **Correction to the entry "PR #63, re-review 1" above (re-review 2, N10):** that entry called `null_validation.py` bit-for-bit reproducible after one set was sorted. Two further unsorted iterations remained. Both are now sorted, and the output is identical under two hash seeds (checked). No figure changes beyond the 17th digit.
+
+**Where A5.17 stands:** three methods-and-nulls rounds, 14 registered pairs, every cited outcome A. The benchmark is consistent: two lexical-matching methods, with three nulls of increasing strictness, never tell a real lexicon from noise on Linear A more than on Greek words. Test 1 alone gave one false positive and nearly a second.
+
+## 2026-11-19 — PR #65, first review: one false claim corrected before merge
+
+The review (`docs/reviews/H-A5-09-outcome-review.md`, recorded unedited on PR #65) reran all six commands byte for byte, recomputed every figure in exact fractions and confirmed all six outcomes A. It requested one change (R1). The PR said M1 × Turkish came nearer to passing Test 1 than any pair before it, and that is false: M1 × English passed Test 1 under H-A5-01's null (p1 = 0.009; H-A5-02). Corrected in the outcome file, the heading of the entry above, and the inbox: Turkish is the nearest *outcome-A run*. The merged H-A5-05 outcome said Turkish was "the nearest any pair has come to passing". That is true of Test 2 and the pair p but not of Test 1, so it gets a dated clarifying note. The 2026-11-18 entry's "Turkish came closest" refers to the three H-A5-03 runs and is correct as written (re-review 1 of PR #65, R3). Notes taken up: N1 (English is in the calibration reading's middle band, which is what makes it inconclusive), N2 (two stability bounds), N3 ("42% of draws", not "even odds"; "both inputs measured", not "any input"), N4 (why the null is narrower is not tested), N5 (the copying estimate was low confidence), N7 (a repeated label).
+- Re-review 1 of PR #65 also found eight figures in the outcome files off by one in the third decimal against the generated reports (R2): hand-rounding of four-decimal values. They are corrected; none feeds a decision.

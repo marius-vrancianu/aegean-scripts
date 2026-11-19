@@ -579,3 +579,4 @@ To-do:
 - 2026-11-18 — H-A5-06 to H-A5-08 registered: method M2 (Dolgopolsky sound-class matching) × Hebrew, English and Turkish, pairs 4–6 of protocol H-A5-03.
 - 2026-11-18 — H-A5-06 to H-A5-08 run: M2 × Hebrew, English, Turkish all outcome A, as predicted; protocol H-A5-03's batch complete and closed.
 - 2026-11-19 — H-A5-09 registered: Tier 1 protocol revision 2 (position-aware bigram-matched null; H-A5-03 closed), with the six M1 and M2 pairs re-run under it as disclosed checks (H-A5-09 to H-A5-14).
+- 2026-11-19 — H-A5-09 to H-A5-14 run: all A, as predicted. The fixed calibration reading is inconclusive (English's Greek-word excess +0.033 → +0.010, Turkish's +0.032 → +0.025). M1 × Turkish came within reach of Test 1 (p1 = 0.052) and Test 2 found nothing.

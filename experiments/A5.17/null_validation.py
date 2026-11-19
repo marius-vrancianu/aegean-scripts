@@ -35,8 +35,9 @@ def position_tv(real, fake):
     cf, tf = freq(fake)
     total = sum(tr.values())
     out = 0.0
-    for key, n in tr.items():
-        letters = sorted({k[2] for k in list(cr) + list(cf) if k[:2] == key})  # sorted: summation order fixed
+    for key in sorted(tr):  # sorted: summation order fixed
+        n = tr[key]
+        letters = sorted({k[2] for k in list(cr) + list(cf) if k[:2] == key})
         d = 0.5 * sum(abs(cr[key + (c,)] / n - (cf[key + (c,)] / tf[key] if tf[key] else 0)) for c in letters)
         out += n / total * d
     return out
@@ -48,7 +49,7 @@ def bigram_tv(real, fake):
         n = sum(c.values())
         return {k: v / n for k, v in c.items()}
     p, q = freq(real), freq(fake)
-    return 0.5 * sum(abs(p.get(k, 0) - q.get(k, 0)) for k in set(p) | set(q))
+    return 0.5 * sum(abs(p.get(k, 0) - q.get(k, 0)) for k in sorted(set(p) | set(q)))
 
 
 def main() -> None:

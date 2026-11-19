@@ -31,7 +31,7 @@
    "lexicon": "english-verbs",
    "null": "stratified",
    "overlap": 0.41033497536945807,
-   "position_tv": 0.07585705256633556,
+   "position_tv": 0.07585705256633557,
    "bigram_tv": 0.25610605232564804
   },
   {
@@ -63,7 +63,7 @@
    "lexicon": "turkish-verbs",
    "null": "bigram",
    "overlap": 0.4359254947613504,
-   "position_tv": 0.17482007155114007,
+   "position_tv": 0.17482007155114004,
    "bigram_tv": 0.130969082592391
   },
   {
@@ -103,7 +103,7 @@
    "lexicon": "english-verbs-dolgo",
    "null": "stratified",
    "overlap": 0.34408366533864543,
-   "position_tv": 0.07040428061831154,
+   "position_tv": 0.07040428061831153,
    "bigram_tv": 0.23466949152542374
   },
   {
