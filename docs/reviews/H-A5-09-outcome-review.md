@@ -1,0 +1,127 @@
+# Independent review: outcomes of H-A5-09 to H-A5-14 (protocol H-A5-09, position-aware bigram null), PR #65
+
+- **Reviewer:** a separate Claude instance (fresh subagent, 2026-11-19). I did not write H-A5-09 to H-A5-14, the position-aware null, the outcome files or any other part of this PR. `CLAUDE.md` → Merging (review-gated) requires this review. I was given the PR number and the fixed review prompt only.
+- **Reviewed:** PR #65 at `da83d1d` against `main @ fbde909`. Files: `hypotheses/outcomes/H-A5-09.md` to `-14.md`; `experiments/A5.17/results/H-A5-09`–`14-*.{md,json}` and `batch-H-A5-09.{md,json}`; the change to `experiments/A5.17/null_validation.py` and `results/null-validation.json`; the changes to `docs/benchmark.md`, `docs/for-marius.md`, the plan and `research-notes.md`. I read them against `hypotheses/H-A5-09.md` (Part 1) and `H-A5-10.md` to `-14.md`, the review of PR #63 (`docs/reviews/H-A5-09-review.md`, including both re-reviews) and `src/aegean/benchmark/{nulls,tier1,batch,m1,m2}.py`.
+- **Kind of review:** outcomes under `hypotheses/`, so I used both lists. From the hypothesis list, as it bears on the run: did the run follow the frozen files? From the finding list: do the claims follow from the registered outcomes, do the numbers rerun, is there circularity, and what does the literature say?
+- **Rerun:**
+  - **The six registered commands**, in the registered order, into a scratch copy of `experiments/A5.17/results/` as it stands on `main @ fbde909`. All 14 generated files are byte-identical to the committed ones. The one exception is the provenance commit hash: my checkout is `da83d1d`, the run's was `fbde909`, which is expected. `batch-H-A5-09.{md,json}` are identical byte for byte.
+  - **An independent script** (scratch, not committed). It reuses only the corpus loading (training split), the primary reading, input construction, the lexicon loaders and the methods' `expand`/`eligible`/`hits`; neither matcher has changed since earlier reviews checked them (M2 by brute force in the review of PR #62). It reimplements the rest:
+    - the position-aware bigram generator, written from the text of H-A5-09, Part 1;
+    - hit rates, Test 1, the length standardisation of the control, Test 2 with an explicit leave-one-out mean, and Benjamini–Hochberg, all in exact `Fraction` arithmetic.
+
+    My generator draws the same 1,000 pseudo-lexicons per pair from `random.Random(20261114)`. Over all 6,000 of them I found no violation of two properties: the expanded-form count by length equals the real lexicon's, and every first letter and every transition was seen in the real lexicon at the same length and position. Every figure agrees with the committed JSON (table below).
+  - **`null_validation.py`:** run under `PYTHONHASHSEED=1` and `=987`. The two outputs are identical to each other and to the committed `null-validation.json`. The three changed values in that file differ only in the 17th significant digit.
+  - **The test suite:** 336 passed, 4 skipped.
+  - **The guardrail script from `main`**, with the PR body: before this review it fails only because the review is missing, as expected.
+- **Code between the registered commit and the run:** `git diff 7b96bbe fbde909 -- src tests tools` and `git diff fbde909 da83d1d -- src tests tools .github data` are both empty. The outcome files say `src/` did not change, and that is correct.
+- **Not read (blinding respected):** KN Zg 57/58, `data/heldout.txt`, the held-out split, Kanta et al. 2025, *Anetaki II*, Kanta–Perna. I read Linear A only through `aegean.corpus.load` (training split).
+
+## Summary
+**The registered results stand.** For all six pairs, outcome A is the label the decision rule gives. Every prediction is met. The runs followed the frozen files with no deviation that I can find. Every number in the decision reproduces exactly, and so do the batch and the calibration reading. Confidence: high.
+
+**One request blocks the merge (R1), and it concerns wording only.** "Nearest any pair has come to passing Test 1 under any protocol" (H-A5-11) is false: M1 × English *passed* Test 1 under H-A5-01 (H-A5-02, p1 = 0.009). The same claim, in the form "closest yet", appears in the new research-notes heading and in Marius's inbox. The research-notes entry becomes append-only once merged. No p-value, outcome or registered reading is affected.
+
+## Checks
+
+### The runs against the frozen hypotheses
+- **Timing.** PR #63 was merged at `fbde909` (09:07:08 +0200). The outcome commit `da83d1d` is at 09:16:57. Six runs of about 60 s each fit in that interval. *Confidence: high that the runs followed the merge. That each command ran only once rests on the author's statement and cannot be checked from the repository.*
+- **Null and seeds:** `positional_bigram_matched_lexicon` (`batch.PROTOCOLS["H-A5-09"]["null"] == "posbigram"`), K = 1,000, `random.Random(20261114)` in sequence, as registered. The A1.14 seed is 20261115 and α = 0.05. The methods run at their default rules. The control is the NeuroDecipher set: 902 eligible words under M1 and 881 under M2, as in the power checks.
+- **Commands:** each outcome quotes its hypothesis file's command exactly (`--protocol H-A5-09` to `H-A5-14`). The runner resolves H-A5-10 to H-A5-14 to protocol H-A5-09 through their `**Protocol:**` lines.
+- **The decision rule.** p1 > α and p2 > α for every pair, so every pair is A on the raw values. The batch correction cannot change an A.
+  - BH over the six pair p-values (0.9311, 0.3387, 0.5824, 0.8961, 0.5984, 0.6823) gives 0.9311 for all six, as reported.
+  - The batch count is 6, within the limit of 50.
+- **Margin on M1 × Turkish:** p1 = 52/1001. Of the 1,000 pseudo-lexicons, 51 match at least as often as the real lexicon, and 49 or fewer would have been needed for p1 ≤ α. So Test 1 missed by two pseudo-lexicons. Test 2 (p2 = 0.582) and the batch threshold for C (raw pair p ≤ 0.0083) were far out of reach, so the outcome would have been B at most.
+- **Point 4 (cited outcome = least favourable of all runs).** Every pair is cited as A. For English (B, A, A) the least favourable in the order A < B < C is A. That is correct.
+- **Point 5 (false positives per protocol run).** No pair has raw p2 ≤ α, so this protocol has no false positive. `docs/benchmark.md` now lists each protocol's runs separately, as point 5 requires.
+- **Reported besides the decision.** Each outcome file gives the control row beside the H-A5-03 row, as Part 1 requires.
+
+### The calibration reading fixed in advance
+- **The figures.** Raw control excess against this null: English +0.01044 (p 0.162), Turkish +0.02531 (p 0.012). The registered comparison is with the raw H-A5-03 rows (+0.033, +0.032), so the raw rows are the right ones to use.
+- **The branches.**
+  - Branch 1 needs both excesses below +0.010; English is not below it.
+  - Branch 2 needs both at or above +0.020 with p ≤ 0.05; English is neither.
+  - So the reading is the third branch, **inconclusive**, and that label is correct.
+- **The label is robust to English's boundary.** English sits only 0.0004 above +0.010, which is less than one control word's worth of hits (1/902 ≈ 0.0011). Its length-standardised excess is +0.008. But the reading would be inconclusive either way: Turkish's second-branch values rule out branch 1, and English's p rules out branch 2.
+- **The reason given is wrong, though; see N1.**
+
+### Numbers (independent recomputation)
+
+| Pair | Linear A real, FPR, excess, p1 | Control real, FPR, excess, p; at Linear A's lengths | D, p2 | Mean overlap |
+|---|---|---|---|---|
+| H-A5-09 M1 × Hebrew | 0.7754, 0.7838, −0.0084, 0.7812 | 0.5322, 0.5224, +0.0098, 0.1668; +0.0134 | −0.0219, 0.9311 | 0.794 |
+| H-A5-10 M1 × English | 0.7053, 0.6929, +0.0124, 0.1369 | 0.4900, 0.4796, +0.0104, 0.1618; +0.0078 | +0.0046, 0.3387 | 0.582 |
+| H-A5-11 M1 × Turkish | 0.6570, 0.6355, +0.0215, 0.0519 | 0.4124, 0.3871, +0.0253, 0.0120; +0.0237 | −0.0022, 0.5824 | 0.638 |
+| H-A5-12 M2 × Hebrew | 0.3201, 0.3411, −0.0210, 0.8961 | 0.3530, 0.3641, −0.0110, 0.7892; −0.0153 | −0.0057, 0.6214 | 0.749 |
+| H-A5-13 M2 × English | 0.7354, 0.7365, −0.0010, 0.5984 | 0.7242, 0.7224, +0.0018, 0.4665; −0.0015 | +0.0004, 0.4985 | 0.531 |
+| H-A5-14 M2 × Turkish | 0.7169, 0.7225, −0.0055, 0.6823 | 0.6243, 0.6264, −0.0021, 0.5714; −0.0068 | +0.0013, 0.4705 | 0.586 |
+
+- **Agreement:** every value equals the committed JSON to every printed digit. The overlap range, 0.53 to 0.79, matches H-A5-09, Part 1.
+- **Other figures:** the per-source rows, the null standard deviations (including the H-A5-03 values they are compared with), the earlier-run figures quoted under "Blind" and "Earlier runs", and the shares of resampling draws all match the generated reports.
+- **Two stability bounds are mis-transcribed** (N2).
+
+### Claims follow from the registered outcome or are labelled
+- **Follow from the registered rules:** the outcome labels, the p-values, "as predicted", the batch, the cited outcomes, "no false positive of this protocol" and "inconclusive".
+- **Limits:** "Weaker negative" is carried into every outcome file, with the length-2 identity, as H-A5-09, Part 1 and review N3 of PR #63 asked.
+- **Descriptive readings:** the comparison with the +0.023 / +0.022 estimate is labelled descriptive ("my reading, rule 5").
+- **Unlabelled interpretive sentences:** H-A5-11's "how close this came" section has a few. They are mild, but one is false (R1) and two overstate what was measured (N3).
+- **`docs/benchmark.md`:** the new false-positive line is accurate ("fired once … came close once more").
+- **The research-notes summary** "two lexical-matching methods, with three nulls of increasing strictness, never tell a real lexicon from noise on Linear A more than on Greek words" is a fair summary of 14 Test 2 results with no p2 ≤ α.
+
+### Circularity
+- **Lexicons, classes, readings and control:** unchanged from PR #62 and checked there. The lexicons are Strong's Hebrew, WordNet/CMUdict English and Zemberek/FrequencyWords Turkish. The classes are LingPy's DOLGO table. Linear A is read in conventional Linear B values (L1). The control is NeuroDecipher's Linear B–Greek data.
+- **The null:** fitted only to each real lexicon's own forms, by length and position. It is not fitted to any Aegean input.
+- **The calibration thresholds:** fixed in H-A5-09 before any pseudo-lexicon hit rate under a bigram null had been seen (its "Not seen" line), and I have no evidence otherwise.
+
+No value or reading here was derived from a lexicon under test. *Confidence: high.*
+
+### Literature
+- **No claim about Linear A's language.** The outcomes make none: they are rows of a false-positive benchmark. The result agrees with the long-standing finding that chance resemblances between unrelated word lists are frequent, and that only a permutation or surrogate baseline gives them a meaning: Ringe 1992, "On calculating the factor of chance in language comparison"; Baxter & Manaster Ramer 2000; Kessler 2001, *The Significance of Word Lists*.
+- **Markov-chain pseudo-words.** These are the standard way to make pseudo-words that keep a lexicon's local phonotactics. Psycholinguistic generators such as Wuggy (Keuleers & Brysbaert 2010, *Behavior Research Methods* 42) filter real words out of their output. This null does not, and at length 2 it cannot. That is the copying problem the outcome files call a "weaker negative", and the literature supports the caveat.
+- **A null that keeps more of the data's structure is more conservative against the data.** This is the usual trade-off in surrogate-data testing (Theiler et al. 1992, *Physica D* 58). It fits the narrower null spread reported here.
+- I cite these from memory, not at first hand. *Confidence: medium-high; not a blocker.*
+
+## Required change
+
+**R1. "Nearest any pair has come to passing Test 1" / "closest yet on Test 1" is false.**
+
+*Where:*
+1. `hypotheses/outcomes/H-A5-11.md`, "How close this came": "This is the nearest any pair has come to passing Test 1 under any protocol";
+2. `research-notes.md`, the heading of the new entry: "Turkish closest yet on Test 1" (the entry is new in this PR, so it can still be edited now, but not after the merge);
+3. `docs/for-marius.md`: "M1 × Turkish came closest yet on the first test (p = 0.052)".
+
+*Why it is false:* M1 × English passed Test 1 under H-A5-01 (H-A5-02 outcome B, p1 = 0.009, an outcome in this same benchmark). `docs/benchmark.md` in this PR states it correctly: Test 1 "fired once (English, H-A5-01's null) and came close once more (Turkish under H-A5-09)".
+
+*Suggested wording* (any equivalent is fine):
+- **H-A5-11:** "This is the nearest any pair has come to passing Test 1 without passing it (English passed under H-A5-01, H-A5-02: p1 = 0.009)".
+- **Research-notes heading:** "Turkish nearly passes Test 1".
+- **Inbox:** "M1 × Turkish nearly passed the first test (p = 0.052; only English under the first null did pass it)".
+
+*Why blocking:* the research-notes entry becomes append-only on merge, and the inbox line is what Marius reads. Both would record a false statement about the benchmark's own history. *Confidence: high.*
+
+## Notes (non-blocking; none affects an outcome, a p-value or the registered reading)
+
+- **N1. The reason given for "inconclusive" is wrong** (H-A5-10 and H-A5-11, calibration section).
+  - The text says English is "just above the +0.010 boundary of the first branch", Turkish is in the second branch, and "one lexicon each way is the third branch". But English is not in the first branch. It lies between +0.010 and +0.020, which is the third branch on its own terms.
+  - Suggested: "English's excess (+0.0104) lies between +0.010 and +0.020, just above the first branch's boundary; Turkish meets the second branch's conditions. Either fact makes the reading inconclusive."
+  - Best fixed together with R1, since the files are being edited anyway.
+- **N2. Two stability bounds are mis-transcribed** from the generated reports.
+  - H-A5-09: "excess −0.018 to +0.010"; the report has −0.018 to +0.009 (high 0.00946).
+  - H-A5-11: "+0.013 to +0.037"; the report has +0.012 to +0.037 (low 0.01249).
+- **N3. Two sentences in H-A5-11 overstate what was measured.**
+  - "Test 1 alone would have called it at about even odds over resampling": 42% of draws is less than even. Say "in about two draws out of five".
+  - "Turkish differs from even this structure-matched noise in some way that helps on any input": two inputs were measured, not any. Say "that helps on both Linear A and the Greek words", and label it descriptive.
+- **N4. "This null is narrower than H-A5-03's because it shares more forms with the real lexicon"** (all six files) is stated as fact.
+  - The mechanism is sound: forms that every pseudo-lexicon shares with the real lexicon add hits common to all of them and no variance between them.
+  - But it was not separated from the bigram constraint itself, which also narrows the space of pseudo-lexicons. "Mainly because", or labelling it as the likely reason, would be exact.
+- **N5. The +0.023 / +0.022 estimate** was given at *low* confidence in re-review 1 of PR #63, and its assumption is inexact. The calibration paragraph compares the observed figures with it ("English's drop is larger than that estimate; Turkish's is close to it"). Adding "(low-confidence estimate)" would keep the comparison from reading as a test.
+- **N6. The adjusted p in the per-pair reports.** Each generated `.md`/`.json` records the batch-adjusted p as it stood when that pair was run: batch of 1, 2 and so on, so H-A5-10's report shows 0.6773. The outcome files correctly quote the final batch (0.931). This is the runner's existing behaviour (the H-A5-03 batch shows the same), but a reader of a single report could be misled. A later plain PR could have `python -m aegean.benchmark.batch` note in each report that the batch file is authoritative.
+- **N7. "Control under H-A5-03: H-A5-03: +0.017"** (H-A5-09 outcome) repeats the label. This is cosmetic.
+
+## Process
+- **Description:** its first line is "**Review-gated: `docs/reviews/H-A5-09-outcome-review.md`**", which is this file.
+- **Files touched:** no rule file, held-out file or enforcement code. Under `experiments/`, only an exploration script (`null_validation.py`) changes, and its output is reproducible bit for bit. `research-notes.md` and the plan change only by appended lines against `main`.
+- **Inbox:** `docs/for-marius.md` gains an information-only item, which R1 asks to reword.
+- **CI:** before this review, CI (`test`) failed for the missing review, as expected. With this verdict it will keep failing until a re-review approves.
+- **After R1:** once the author has fixed R1, a reviewer (this instance or a new one) appends a re-review to this file.
+
+Verdict: CHANGES REQUESTED
