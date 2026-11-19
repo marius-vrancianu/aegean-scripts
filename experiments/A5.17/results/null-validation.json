@@ -1,0 +1,150 @@
+{
+ "draws": 100,
+ "seeds": "random.Random(i), i = 0 .. 99",
+ "rows": [
+  {
+   "method": "M1",
+   "lexicon": "hebrew-strong-verbs",
+   "null": "stratified",
+   "overlap": 0.684683734939759,
+   "position_tv": 0.06560762102265073,
+   "bigram_tv": 0.16264469946943783
+  },
+  {
+   "method": "M1",
+   "lexicon": "hebrew-strong-verbs",
+   "null": "bigram",
+   "overlap": 0.6785240963855422,
+   "position_tv": 0.09346863037754473,
+   "bigram_tv": 0.11547703259084532
+  },
+  {
+   "method": "M1",
+   "lexicon": "hebrew-strong-verbs",
+   "null": "posbigram",
+   "overlap": 0.7940963855421687,
+   "position_tv": 0.05472813348545023,
+   "bigram_tv": 0.09277454081107957
+  },
+  {
+   "method": "M1",
+   "lexicon": "english-verbs",
+   "null": "stratified",
+   "overlap": 0.41033497536945807,
+   "position_tv": 0.07585705256633556,
+   "bigram_tv": 0.25610605232564804
+  },
+  {
+   "method": "M1",
+   "lexicon": "english-verbs",
+   "null": "bigram",
+   "overlap": 0.4656551724137931,
+   "position_tv": 0.11008118719586088,
+   "bigram_tv": 0.11099182065871811
+  },
+  {
+   "method": "M1",
+   "lexicon": "english-verbs",
+   "null": "posbigram",
+   "overlap": 0.5831822660098522,
+   "position_tv": 0.05820662621382678,
+   "bigram_tv": 0.08583291954849531
+  },
+  {
+   "method": "M1",
+   "lexicon": "turkish-verbs",
+   "null": "stratified",
+   "overlap": 0.4827008149010477,
+   "position_tv": 0.07727217352527666,
+   "bigram_tv": 0.18853519197168794
+  },
+  {
+   "method": "M1",
+   "lexicon": "turkish-verbs",
+   "null": "bigram",
+   "overlap": 0.4359254947613504,
+   "position_tv": 0.17482007155114007,
+   "bigram_tv": 0.130969082592391
+  },
+  {
+   "method": "M1",
+   "lexicon": "turkish-verbs",
+   "null": "posbigram",
+   "overlap": 0.640721769499418,
+   "position_tv": 0.06132260358737482,
+   "bigram_tv": 0.0831291119230256
+  },
+  {
+   "method": "M2",
+   "lexicon": "hebrew-strong-verbs-dolgo",
+   "null": "stratified",
+   "overlap": 0.6209579439252336,
+   "position_tv": 0.06280431432973806,
+   "bigram_tv": 0.14181609195402298
+  },
+  {
+   "method": "M2",
+   "lexicon": "hebrew-strong-verbs-dolgo",
+   "null": "bigram",
+   "overlap": 0.6261915887850467,
+   "position_tv": 0.09129429892141758,
+   "bigram_tv": 0.1039080459770115
+  },
+  {
+   "method": "M2",
+   "lexicon": "hebrew-strong-verbs-dolgo",
+   "null": "posbigram",
+   "overlap": 0.7497196261682242,
+   "position_tv": 0.0512788906009245,
+   "bigram_tv": 0.08022988505747125
+  },
+  {
+   "method": "M2",
+   "lexicon": "english-verbs-dolgo",
+   "null": "stratified",
+   "overlap": 0.34408366533864543,
+   "position_tv": 0.07040428061831153,
+   "bigram_tv": 0.23466949152542374
+  },
+  {
+   "method": "M2",
+   "lexicon": "english-verbs-dolgo",
+   "null": "bigram",
+   "overlap": 0.4135856573705179,
+   "position_tv": 0.10626040428061831,
+   "bigram_tv": 0.10121186440677966
+  },
+  {
+   "method": "M2",
+   "lexicon": "english-verbs-dolgo",
+   "null": "posbigram",
+   "overlap": 0.5317529880478087,
+   "position_tv": 0.05684304399524375,
+   "bigram_tv": 0.08260169491525424
+  },
+  {
+   "method": "M2",
+   "lexicon": "turkish-verbs-dolgo",
+   "null": "stratified",
+   "overlap": 0.4256972111553785,
+   "position_tv": 0.07881609195402299,
+   "bigram_tv": 0.17046849757673666
+  },
+  {
+   "method": "M2",
+   "lexicon": "turkish-verbs-dolgo",
+   "null": "bigram",
+   "overlap": 0.38278884462151397,
+   "position_tv": 0.16636206896551722,
+   "bigram_tv": 0.12075928917609048
+  },
+  {
+   "method": "M2",
+   "lexicon": "turkish-verbs-dolgo",
+   "null": "posbigram",
+   "overlap": 0.5860756972111554,
+   "position_tv": 0.057999999999999996,
+   "bigram_tv": 0.08043618739903069
+  }
+ ]
+}

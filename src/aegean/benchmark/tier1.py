@@ -98,10 +98,10 @@ def hit_rate(method: Method, groups: list[SignGroup], prepared: Any) -> float:
 def matched_lexicons(real: Lexicon, method: Method, n: int, seed: int, kind: str = "matched") -> list[Lexicon]:
     """n pseudo-lexicons of the decision null from one seeded stream, in order.
 
-    kind "matched" is protocol H-A5-01's null, "stratified" H-A5-03's, "bigram" H-A5-09's (`batch.PROTOCOLS`).
+    kind "matched" is protocol H-A5-01's null, "stratified" H-A5-03's, "posbigram" H-A5-09's; "bigram" (pooled transitions) is kept for comparison (`batch.PROTOCOLS`).
     """
     draw = {"matched": nulls.matched_lexicon, "stratified": nulls.stratified_matched_lexicon,
-            "bigram": nulls.bigram_matched_lexicon}[kind]
+            "bigram": nulls.bigram_matched_lexicon, "posbigram": nulls.positional_bigram_matched_lexicon}[kind]
     rng = random.Random(seed)
     return [draw(real, method, rng, i) for i in range(n)]
 
@@ -382,7 +382,7 @@ def report(r: dict, provenance: dict) -> str:
         f"- **Corpus:** {provenance['corpus']} @ `{provenance['commit']}`, training split.",
         f"- **Lexicon:** {r['lexicon']['name']}, {r['lexicon']['forms']} forms "
         f"({r['lexicon']['forms_after_expansion']} after the method's lexicon-side licences).",
-        f"- **Matched pseudo-lexicons** ({ {'stratified': 'length-stratified', 'bigram': 'bigram-matched, length-stratified'}.get(nl['matched'].get('kind'), 'protocol H-A5-01') }): "
+        f"- **Matched pseudo-lexicons** ({ {'stratified': 'length-stratified', 'bigram': 'bigram-matched, length-stratified', 'posbigram': 'position-aware bigram-matched, length-stratified'}.get(nl['matched'].get('kind'), 'protocol H-A5-01') }): "
         f"{nl['matched']['n']}, seed {nl['matched']['seed']}; each has "
         f"{nl['matched']['forms_after_expansion']} forms after expansion ({nl['matched']['forms_mean']:.0f} before, on average).",
         "",

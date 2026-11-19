@@ -48,7 +48,7 @@ def test_a_pair_under_the_second_protocol(repo):
 
 def test_h_a5_03_is_closed_after_its_six_pairs():
     assert batch.PROTOCOLS["H-A5-03"]["pairs"] == {f"H-A5-0{i}" for i in range(3, 9)}
-    assert batch.PROTOCOLS["H-A5-09"]["pairs"] is None and batch.PROTOCOLS["H-A5-09"]["null"] == "bigram"
+    assert batch.PROTOCOLS["H-A5-09"]["pairs"] is None and batch.PROTOCOLS["H-A5-09"]["null"] == "posbigram"
 
 
 def test_batches_are_kept_apart(tmp_path):
