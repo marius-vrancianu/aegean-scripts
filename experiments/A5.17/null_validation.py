@@ -36,7 +36,7 @@ def position_tv(real, fake):
     total = sum(tr.values())
     out = 0.0
     for key, n in tr.items():
-        letters = {k[2] for k in list(cr) + list(cf) if k[:2] == key}
+        letters = sorted({k[2] for k in list(cr) + list(cf) if k[:2] == key})  # sorted: summation order fixed
         d = 0.5 * sum(abs(cr[key + (c,)] / n - (cf[key + (c,)] / tf[key] if tf[key] else 0)) for c in letters)
         out += n / total * d
     return out

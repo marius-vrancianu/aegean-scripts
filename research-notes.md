@@ -997,3 +997,32 @@ The review (`docs/reviews/H-A5-06-outcome-review.md`, recorded unedited on PR #6
 Notes taken up: N1 (81 of 83 two-sign groups can never match for Hebrew), N2 (a misplaced pointer; sign versus class counts), N3, N4 (dropping never-matching groups changes no p1, by construction), N5 (Hebrew null overlap, 268 of 414 three-class forms).
 
 **Correction to the entry "A5.17: method M2" (2026-11-18, N3):** its saturation figure for threshold 1/3, "0.93–0.99", is English's. Across the three lexicons it is 0.90–0.99. The threshold choice is unaffected.
+
+## 2026-11-19 — H-A5-09 to H-A5-14 registered: protocol revision 2 (bigram-matched null) and six re-runs
+
+Agreed with Marius on 2026-11-18 (M2 first, then a further protocol revision). Layer L1, all exploratory, training split.
+
+- **H-A5-09, Part 1:** as H-A5-03, except that the decision null is position-aware bigram-matched and length-stratified (`nulls.positional_bigram_matched_lexicon`, PR #64; see the entry below). The protocol has its own batch. H-A5-03 is closed. A pair run under several protocols is cited by the least favourable of all its outcomes.
+- **Pairs:** M1 and M2 × Hebrew, English and Turkish, all re-runs (H-A5-09 to H-A5-14), all predicted A, and none blind. A three-way reading of the null's calibration row (M1 × English and Turkish on Greek words) is fixed in advance; it says only whether this null removes that advantage.
+- **Nothing has been run under the position-aware bigram null.**
+
+**Points from the re-review of PR #62** (`docs/reviews/H-A5-06-outcome-review.md`, re-review 1; the outcome files are now review-gated):
+- **M1.** The entry "PR #62, first review: wording …" is dated 2026-11-19, but it was written on 2026-11-18 at 23:54 local time. It should read 2026-11-18.
+- **M2.** In the M2 outcome files, items from the PR #62 review sit under a heading that says the points were "seen before the run". Each item names its source; the ones attributed to PR #62 were added after the run.
+- **M3.** "Close to the lexicon itself" (Hebrew null overlap, H-A5-06 outcome) overstates it. About two-thirds of the three-class forms are shared: 266.8 of 414 on average over the 1,000 registered pseudo-lexicons (247–287).
+
+## 2026-11-19 — PR #63, first review: the null is now position-aware (Marius's choice)
+
+The review (`docs/reviews/H-A5-09-review.md`, recorded unedited on PR #63) requested two changes:
+- **R1.** The pooled bigram null discards per-position letter frequencies (position distance 0.09–0.18, against 0.06–0.08 for H-A5-03's null). Moving to it would change two factors at once, so no reading could isolate co-occurrence. Three options went to Marius: position-aware bigram, pooled bigram with disclosure, or both. **He chose position-aware** (2026-11-19).
+  - Lexicon side (`experiments/A5.17/null_validation.py`, PR #64): position distance 0.05–0.06 and bigram distance 0.08–0.09 to the real lexicon. The cost is overlap with the real forms of 0.53–0.79, against 0.34–0.69, so an A under it is a weaker negative.
+  - The calibration reading is rewritten. It uses both excess and p, gives a reading for mixed cases, and attributes no cause.
+- **R2.** The validation figures were cited to a research-notes entry that does not exist. They are now produced by a committed, seeded script.
+- Notes taken up: N1 (real-lexicon hit rates and all control rows disclosed); N2 (false positives counted per protocol run, Part 1, point 5); N3 (A under this null is a weaker negative).
+
+## 2026-11-19 — PR #63, re-review 1: the position-aware null partly copies the real lexicon
+
+Re-review 1 (`docs/reviews/H-A5-09-review.md`, recorded unedited on PR #63) found R1 and R2 resolved and asked for one more change, R3 (wording, before the file freezes):
+- "Changes one factor" was wrong. At length 2 a first-order chain is the forms' joint distribution, so every pseudo-lexicon's two-letter forms are exactly the real ones. At lengths 3 and 4 the overlap also rises (3: 0.44–0.72 → 0.62–0.81; 4: 0.02–0.36 → 0.33–0.54).
+- A null that shares more forms lowers the excess whatever its cause. So the fixed reading's first branch ("advantage removed") could come from copying alone; it now says so. The second branch ("not removed") is the conservative one.
+- Notes N5–N8 taken up: the PR description; leftover "bigram" naming; a sorted set in `null_validation.py`, so its output is bit-for-bit reproducible; "raw p2".
