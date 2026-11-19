@@ -169,3 +169,57 @@ Verdict: CHANGES REQUESTED
 R1 and R2 are fixed, and the position-aware null is a better choice than the pooled one. The code, the enforcement and the disclosures are sound. One property of the new null is in effect a partial copy of the real lexicon: an exact copy at length 2, and a large share at lengths 3 and 4. It bears on the one reading fixed in advance and contradicts the file's "changes one factor". The fix is wording only, in a file that becomes immutable on merge. A further re-review needs to check only R3 (and N6's first two items, if taken up).
 
 Verdict: CHANGES REQUESTED
+
+---
+
+## Re-review 2 (2026-11-19)
+
+- **Reviewer:** a separate Claude instance (fresh subagent). I did not write this PR, PR #64, the first review or re-review 1. I was given the PR number and the fixed review prompt only.
+- **Reviewed:** PR #63 at `c62f707` against `origin/main @ 7b96bbe`. Scope: R3 and the notes N5–N8 of re-review 1. I read the full diff `921ae51..c62f707` and the whole of `hypotheses/H-A5-09.md`. I also compared H-A5-10 to H-A5-14 against each other: they are unchanged since re-review 1 and consistent with one another.
+- **Rerun:**
+  - `pytest tests/test_benchmark_batch.py tests/test_benchmark_inputs.py tests/test_guardrails.py`: 42 passed;
+  - `tools/check_guardrails.py origin/main`: the only failure is the missing APPROVE;
+  - `experiments/A5.17/null_validation.py` under `PYTHONHASHSEED` 1 and 12345 (N7; see below);
+  - the run commands' lexicon IDs against `lexicons.REGISTRY`: all six exist.
+- **Checked by reading code:** that the length-2 identity is structural. In `nulls.positional_bigram_matched_lexicon`, a two-letter draw is a first letter seen at length 2 followed by a transition seen at (2, 1, that letter), so it can only be a real two-letter base form. The length is filled to the real expanded-form count, so the expanded two-letter set must equal the real one.
+- **Not done:** I computed no hit rate of any pseudo-lexicon, under any null, on Linear A or the control. Linear A and the control were not loaded. I read no held-out material. Nothing I saw is new beyond what re-review 1 listed, so "What I already know" needs no addition.
+- **Commit history:** the review file was changed only by the two reviewer commits (`5da6f88`, `cfa7b43`). The author did not edit it.
+
+### R3: resolved
+*Confidence: high.*
+1. "So it changes one factor" is gone from H-A5-09. In its place the text says that matching co-occurrence also makes the pseudo-lexicons reproduce more of the real forms, and that this null cannot separate the two.
+2. Under "Its price", the file now states the length-2 identity as structural. It also gives the length-3 and length-4 overlap ranges with H-A5-03's figures beside them. I recomputed every range from re-review 1's table, and all are correct:
+   - length 3: 0.62–0.81 (0.44–0.72);
+   - length 4: 0.33–0.54 (0.02–0.36).
+3. **Branch 1 of the calibration reading** names both explanations and says that this null does not separate them. The added paragraph says three things correctly:
+   - the larger overlap lowers the excess whatever its cause;
+   - branch 2 is therefore the conservative one;
+   - no branch attributes a cause.
+4. "What I already know" lists all 16 per-length overlaps (each matches re-review 1's table) and the low-confidence +0.023 / +0.022 estimate.
+
+### N5–N8
+- **N5 (PR description):** the validation figures are updated. One leftover remains: the "Changed after the first review" paragraph still says "so it changes one factor" (N9).
+- **N6 (naming):** done in both places in the immutable file, in the plan line and in the research-notes bullet. The research-notes heading of the 2026-11-19 registration entry still reads "(bigram-matched null)". This is cosmetic.
+- **N7 (reproducibility):** partly done. Sorting the letter set did not make the output bit-for-bit reproducible. Under `PYTHONHASHSEED=1` the committed JSON reproduces exactly. Under `12345`, two `position_tv` values differ in the 17th significant digit (M1 × English stratified, M2 × English stratified). The cause: the outer loop runs over `tr.items()`, and that Counter is filled by iterating `real.forms` and `fake.forms`, which are frozensets. So the order in which the per-key terms are added still depends on the hash seed. No rounded figure changes. The decision draws themselves do not depend on the hash seed: `positional_bigram_model` and the null both work on `sorted(real.forms)`, and the overlap and bigram columns came out identical under both seeds (N10).
+- **N8 ("raw p2"):** done, in point 5.
+
+### Checks 2 to 4
+These are unchanged since re-review 1, and no figure they rest on was edited:
+- power: n, K = 1,000, minimum p 1/1001, raw 0.0083 needed in a batch of 6;
+- decision rule and batch: H-A5-03's rule, own batch of 6, H-A5-03 closed, the least-favourable rule, false positives counted per protocol run;
+- disclosures: complete.
+
+One observation, *not* a required change. The low-confidence estimate in "What I already know" (+0.023 / +0.022 from copying alone) sits just above branch 2's +0.020 threshold. A smaller excess will also usually have a larger p than H-A5-03's 0.015. So "inconclusive" is a likely result of the calibration reading even if co-occurrence explains none of the advantage. The file already calls the reading descriptive, says it decides no outcome, and calls branch 2 conservative. The outcome files should read an inconclusive result in that light.
+
+### Non-blocking notes
+- **N9.** The PR description still says "so it changes one factor". Edit it; the description is not immutable.
+- **N10.** Two statements about `null_validation.py` are not exact:
+  - the comment "summation order fixed" in the script;
+  - the research-notes entry "so its output is bit-for-bit reproducible".
+
+  To make them true, sort the outer keys as well (`for key in sorted(tr)`) and iterate `sorted(set(p) | set(q))` in `bigram_tv`. That is a plain PR. If the research-notes line is not corrected before merge, a later entry should correct it (the file is append-only).
+
+### Assessment
+R3 is fixed as asked, and the immutable text now describes the null accurately: what it matches, what it copies, and what the calibration reading can and cannot show. The remaining points are in the PR description, a code comment and a research-notes line. None of them affects a registered decision.
+
+Verdict: APPROVE
