@@ -1002,11 +1002,20 @@ Notes taken up: N1 (81 of 83 two-sign groups can never match for Hebrew), N2 (a 
 
 Agreed with Marius on 2026-11-18 (M2 first, then a further protocol revision). Layer L1, all exploratory, training split.
 
-- **H-A5-09, Part 1:** as H-A5-03, except that the decision null is bigram-matched and length-stratified (`nulls.bigram_matched_lexicon`, PR #61). The protocol has its own batch. H-A5-03 is closed. A pair run under several protocols is cited by the least favourable of all its outcomes.
-- **Pairs:** M1 and M2 × Hebrew, English and Turkish, all re-runs (H-A5-09 to H-A5-14), all predicted A, and none blind. A reading of the null's calibration row is fixed in advance: if M1 × English and M1 × Turkish still beat the null on Greek words at p ≤ 0.05, letter co-occurrence is not the explanation.
+- **H-A5-09, Part 1:** as H-A5-03, except that the decision null is position-aware bigram-matched and length-stratified (`nulls.positional_bigram_matched_lexicon`, PR #64; see the entry below). The protocol has its own batch. H-A5-03 is closed. A pair run under several protocols is cited by the least favourable of all its outcomes.
+- **Pairs:** M1 and M2 × Hebrew, English and Turkish, all re-runs (H-A5-09 to H-A5-14), all predicted A, and none blind. A three-way reading of the null's calibration row (M1 × English and Turkish on Greek words) is fixed in advance; it says only whether this null removes that advantage.
 - **Nothing has been run under the bigram null.**
 
 **Points from the re-review of PR #62** (`docs/reviews/H-A5-06-outcome-review.md`, re-review 1; the outcome files are now review-gated):
 - **M1.** The entry "PR #62, first review: wording …" is dated 2026-11-19, but it was written on 2026-11-18 at 23:54 local time. It should read 2026-11-18.
 - **M2.** In the M2 outcome files, items from the PR #62 review sit under a heading that says the points were "seen before the run". Each item names its source; the ones attributed to PR #62 were added after the run.
 - **M3.** "Close to the lexicon itself" (Hebrew null overlap, H-A5-06 outcome) overstates it. About two-thirds of the three-class forms are shared: 266.8 of 414 on average over the 1,000 registered pseudo-lexicons (247–287).
+
+## 2026-11-19 — PR #63, first review: the null is now position-aware (Marius's choice)
+
+The review (`docs/reviews/H-A5-09-review.md`, recorded unedited on PR #63) requested two changes:
+- **R1.** The pooled bigram null discards per-position letter frequencies (position distance 0.09–0.18, against 0.06–0.08 for H-A5-03's null). Moving to it would change two factors at once, so no reading could isolate co-occurrence. Three options went to Marius: position-aware bigram, pooled bigram with disclosure, or both. **He chose position-aware** (2026-11-19).
+  - Lexicon side (`experiments/A5.17/null_validation.py`, PR #64): position distance 0.05–0.06 and bigram distance 0.08–0.09 to the real lexicon. The cost is overlap with the real forms of 0.53–0.79, against 0.34–0.69, so an A under it is a weaker negative.
+  - The calibration reading is rewritten. It uses both excess and p, gives a reading for mixed cases, and attributes no cause.
+- **R2.** The validation figures were cited to a research-notes entry that does not exist. They are now produced by a committed, seeded script.
+- Notes taken up: N1 (real-lexicon hit rates and all control rows disclosed); N2 (false positives counted per protocol run, Part 1, point 5); N3 (A under this null is a weaker negative).
